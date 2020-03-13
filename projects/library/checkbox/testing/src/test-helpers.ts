@@ -2,12 +2,11 @@ import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TsCheckboxComponent } from '@terminus/ui/checkbox';
 
-
 /**
  * Get all TsCheckboxComponent instances
  *
  * @param fixture - The component fixture
- * @return The array of TsCheckboxComponent instances
+ * @returns The array of TsCheckboxComponent instances
  */
 export function getAllCheckboxInstances(fixture: ComponentFixture<any>): TsCheckboxComponent[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-checkbox'));
@@ -22,7 +21,7 @@ export function getAllCheckboxInstances(fixture: ComponentFixture<any>): TsCheck
  *
  * @param fixture - The component fixture
  * @param index - The index of the checkbox to return
- * @return The TsCheckboxComponent instance
+ * @returns The TsCheckboxComponent instance
  */
 export function getCheckboxInstance(fixture: ComponentFixture<any>, index = 0): TsCheckboxComponent {
   const all = getAllCheckboxInstances(fixture);
@@ -37,7 +36,7 @@ export function getCheckboxInstance(fixture: ComponentFixture<any>, index = 0): 
  *
  * @param fixture - The component fixture
  * @param index - The index of the checkbox to return
- * @return The TsCheckboxComponent element
+ * @returns The TsCheckboxComponent element
  */
 export function getCheckboxElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-checkbox'));
@@ -55,7 +54,7 @@ export function getCheckboxElement(fixture: ComponentFixture<any>, index = 0): H
  *
  * @param fixture - The component fixture
  * @param index - The index of the checkbox to return
- * @return The Promise from fixture.whenStable
+ * @returns The Promise from fixture.whenStable
  */
 export function toggleCheckbox(fixture: ComponentFixture<any>, index = 0): Promise<any> {
   const element = getCheckboxElement(fixture);

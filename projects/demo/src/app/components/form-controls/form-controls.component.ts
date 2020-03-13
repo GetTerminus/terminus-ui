@@ -10,9 +10,7 @@ export interface MyOption extends TsOption {
   selector: 'demo-form-controls',
   templateUrl: './form-controls.component.html',
   styleUrls: ['./form-controls.component.scss'],
-  host: {
-    class: 'form-control-demo',
-  },
+  host: { class: 'form-control-demo' },
 })
 export class FormControlsComponent {
   options: MyOption[] = [
@@ -33,7 +31,7 @@ export class FormControlsComponent {
   selectionListModelSingle = [this.options[0]];
   emptyModel1 = [];
   emptyModel2 = [];
-  selectionListFormatter = v => v ? v.name : '';
+  selectionListFormatter = v => (v ? v.name : '');
   uiFormatterRadio = v => v.name;
   modelFormatterRadio = v => v.value;
   inputModel = 'My value';

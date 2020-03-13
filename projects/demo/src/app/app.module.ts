@@ -11,7 +11,6 @@ import {
   TsDocumentService,
   TsWindowService,
 } from '@terminus/ngx-tools/browser';
-import 'hammerjs';
 
 import { TsOptionModule } from '@terminus/ui/option';
 import { TsSelectionListModule } from '@terminus/ui/selection-list';

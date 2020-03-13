@@ -6,11 +6,11 @@ import {
 } from '@angular/forms';
 import { TsCardModule } from '@terminus/ui/card';
 import { TsCohortDateRangeModule } from '@terminus/ui/cohort-date-range';
-import { TsDateRangeModule } from "@terminus/ui/date-range";
+import { TsDateRangeModule } from '@terminus/ui/date-range';
 import { TsSpacingModule } from '@terminus/ui/spacing';
 
-import { CohortDateRangeComponent } from "./cohort-date-range.component";
-import { CohortDateRangeRoutingModule } from "./cohort-date-range-routing.module";
+import { CohortDateRangeRoutingModule } from './cohort-date-range-routing.module';
+import { CohortDateRangeComponent } from './cohort-date-range.component';
 
 
 @NgModule({

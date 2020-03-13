@@ -6,11 +6,9 @@ import { TsWindowService } from '@terminus/ngx-tools/browser';
 export class TsDropProtectionService {
   private hasProtection = false;
 
-
   constructor(
     private windowService: TsWindowService,
   ) { }
-
 
   /**
    * Add drop protection
@@ -23,7 +21,6 @@ export class TsDropProtectionService {
     }
   }
 
-
   /**
    * Remove drop protection
    */
@@ -35,13 +32,12 @@ export class TsDropProtectionService {
     }
   }
 
-
   /**
    * Prevent default
    *
    * NOTE: In order to remove an event listener we need a reference to a method that does not change.
    *
-   * @param event - The event
+   * @param e - The event
    */
   public prevent(e: Event): void {
     e.preventDefault();

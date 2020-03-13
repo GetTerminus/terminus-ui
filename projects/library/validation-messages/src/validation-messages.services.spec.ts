@@ -1,6 +1,6 @@
 import { TsDatePipe } from '@terminus/ui/pipes';
-import { TsValidationMessagesService } from './validation-messages.service';
 
+import { TsValidationMessagesService } from './validation-messages.service';
 
 describe(`TsValidationMessagesService`, function() {
   let service: TsValidationMessagesService;
@@ -10,14 +10,11 @@ describe(`TsValidationMessagesService`, function() {
     service = new TsValidationMessagesService(datePipe);
   });
 
-
   it(`should exist`, () => {
     expect(service).toBeTruthy();
   });
 
-
   describe(`getValidatorErrorMessage()`, () => {
-
     test(`should return a supplied minLength message`, () => {
       const validatorValueMock = { requiredLength: 9 };
       const actual = service.getValidatorErrorMessage('minLength', validatorValueMock);
@@ -25,7 +22,6 @@ describe(`TsValidationMessagesService`, function() {
 
       expect(actual).toEqual(expect.stringContaining(expected));
     });
-
 
     test(`should return an error message when supplied lowercase letters less than required`, () => {
       const validatorValueMock = { lowercase: 4 };
@@ -35,7 +31,6 @@ describe(`TsValidationMessagesService`, function() {
       expect(actual).toEqual(expect.stringContaining(expected));
     });
 
-
     test(`should return a maxLength message`, () => {
       const validatorValueMock = { requiredLength: 12 };
       const actual = service.getValidatorErrorMessage('maxLength', validatorValueMock);
@@ -43,7 +38,6 @@ describe(`TsValidationMessagesService`, function() {
 
       expect(actual).toEqual(expect.stringContaining(expected));
     });
-
 
     test(`should return the maxDate validation message`, () => {
       const date = new Date(2017, 3, 1);
@@ -58,7 +52,6 @@ describe(`TsValidationMessagesService`, function() {
       expect(actual).toEqual(expected);
     });
 
-
     test(`should return the minDate validation message`, () => {
       const date = new Date(2017, 3, 1);
       const minDate = new Date(2017, 2, 1);
@@ -72,7 +65,6 @@ describe(`TsValidationMessagesService`, function() {
       expect(actual).toEqual(expected);
     });
 
-
     test(`should return a maxLength message`, () => {
       const validatorValueMock = { actual: '3:12' };
       const actual = service.getValidatorErrorMessage('imageRatio', validatorValueMock);
@@ -81,9 +73,7 @@ describe(`TsValidationMessagesService`, function() {
       expect(actual).toEqual(expected);
     });
 
-
     describe(`should return appropriate messages for Angular's built-in validators`, () => {
-
       test(`min should return min message`, () => {
         const validatorValueMock = {
           actual: 5,
@@ -113,10 +103,6 @@ describe(`TsValidationMessagesService`, function() {
 
         expect(actual).toEqual(expect.stringContaining(expected));
       });
-
-
     });
-
   });
-
 });

@@ -1,59 +1,59 @@
 const micromatch = require('micromatch');
+const escape = require('shell-quote').quote;
+const IGNORE = [
+  'dist/**',
+  'docs/**',
+  'coverage/**',
+  'node_modules/**',
+  'package.json',
+  'yarn.lock',
+];
 
 module.exports = {
-
-  // Target TESTING files
-  // '**/testing/**/*.ts': [
-  //   `yarn run lint:tslint:spec:fix`,
-  //   `git add`,
-  // ],
-
-  // Target SPEC files
-  // '**/*.spec.ts': files => {
-  //   const fileList = removeDirectories(files);
-  //
-  //   return [
-  //     `yarn run lint:tslint:spec:fix ${fileList}`,
-  //     `git add ${fileList}`,
-  //   ];
-  // },
-
-
-  // Target TYPESCRIPT files
-  '!(*spec|*mock).ts': files => {
-    const fileList = removeDirectories(files);
-
+  // Target all TS & JS files
+  '**/*.{js,ts}': filenames => {
+    const escapedFileNames = filenames.map(filename => `"${escape([filename])}"`).join(' ');
     return [
-      // `yarn run lint:tslint:fix ${fileList}`,
-      `eslint --config .eslintrc.js --fix ${fileList}`,
-      `git add ${fileList}`,
+      `eslint --fix ${filenames.map(f => `"${f}"`).join(' ')}`,
+      `git add ${escapedFileNames}`,
+    ]
+  },
+
+  // Target library SCSS files
+  'projects/library/**/!(*.spec).scss': files => {
+    const foo = 2;
+    return [
+      `yarn run library:lint:scss ${files}`,
     ];
   },
 
-
-  // Target SCSS files
-  '!(*.spec).scss': files => {
-    const fileList = removeDirectories(files);
-
+  // Target demo SCSS files
+  'projects/demo/**/!(*.spec).scss': files => {
+    const foo = 2;
     return [
-      `yarn run lint:scss ${fileList}`,
-      `git add ${fileList}`,
+      `yarn run demo:lint:scss ${files}`,
     ];
   },
 
-}
-
-
+  // Target visual-regression SCSS files
+  'projects/visual-regression/**/!(*.spec).scss': files => {
+    const foo = 2;
+    return [
+      `yarn run vr:lint:scss ${files}`,
+    ];
+  },
+};
 
 
 /**
  * Function to remove any testing or demo files and return a string containing all file names
  *
- * @param {Object} files
- * @return {string} fileNames
+ * @param files
+ * @returns fileNames
  */
 function removeDirectories(files) {
   const match = micromatch.not(files, [
+    ...IGNORE,
     '**/testing/**',
     '**/demo/**',
   ]);

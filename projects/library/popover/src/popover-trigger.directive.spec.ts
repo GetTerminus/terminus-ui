@@ -17,15 +17,23 @@ import {
   dispatchEvent,
   dispatchKeyboardEvent,
 } from '@terminus/ngx-tools/testing';
-
 import * as testComponents from '@terminus/ui/popover/testing';
-import { TsPopoverTestComponents } from '../testing/src/test-components';
-import { TsPopoverTriggerDirective } from './popover-trigger.directive';
-import { TsPopoverModule } from './popover.module';
+// eslint-disable-next-line no-duplicate-imports
+import { TsPopoverTestComponents } from '@terminus/ui/popover/testing';
+
+import {
+  TsPopoverComponent,
+  TsPopoverModule,
+} from './popover.module';
 
 describe(`popover trigger`, () => {
   let fixture: ComponentFixture<TsPopoverTestComponents>;
 
+  /**
+   * Create test host component
+   *
+   * @param component
+   */
   function createComponent<T>(component: Type<T>): ComponentFixture<T> {
     const moduleImports = [
       CommonModule,
@@ -34,48 +42,35 @@ describe(`popover trigger`, () => {
     ];
     const providers = [];
 
-    return createComponentInner(component, providers, moduleImports);
+    return createComponentInner<T>(component, providers, moduleImports);
   }
 
   describe(`TsPopoverTriggerDirective`, () => {
-    let testComponent: ComponentFixture<TsPopoverTestComponents>;
-    let popoverNativeElement: HTMLElement;
-    let popoverTriggerDebugElement: DebugElement;
     let buttonDebugElement: HTMLElement;
-    let popoverTriggerInstance: ComponentFixture<TsPopoverTestComponents>;
-    let popoverTrigger: ComponentFixture<TsPopoverTestComponents>;
     let popoverDebugElement: DebugElement;
-    let buttonInstance: ComponentFixture<TsPopoverTestComponents>;
-    let popoverInstance: ComponentFixture<TsPopoverTestComponents>;
+    let popoverInstance: TsPopoverComponent;
 
-    function setup(component = testComponents.Basic) {
-      fixture = createComponent(component);
+    /**
+     * Set up for tests
+     *
+     * @param component
+     */
+    function setup<T>(component: T) {
+      // TODO: fix this
+      // @ts-ignore
+      fixture = createComponent<T>(component);
       fixture.detectChanges();
-      testComponent = fixture.debugElement.componentInstance;
-      popoverTriggerDebugElement = fixture.debugElement.query(By.directive(TsPopoverTriggerDirective));
       popoverDebugElement = fixture.debugElement.query(By.css('.popover__container'));
       buttonDebugElement = fixture.debugElement.query(By.css('.popover-button')).nativeElement as HTMLElement;
-      buttonInstance = fixture.debugElement.query(By.css('.popover-button')).componentInstance;
-      popoverNativeElement = popoverDebugElement.nativeElement as HTMLElement;
-      popoverTriggerInstance = popoverTriggerDebugElement.componentInstance;
-      popoverTrigger = fixture.debugElement.query(By.directive(TsPopoverTriggerDirective)).componentInstance;
       popoverInstance = popoverDebugElement.componentInstance;
     }
 
     // TODO: In order to get this condition tested, we might have to create a service and token and mock the service
-    // describe(`popper.js import`, () => {
-    //   test(`should throw error if no popper.js import`, () => {
-    //     const component = new TsPopoverComponent({} as any, {} as any);
-    //     global.Popper = undefined as any;
-    //
-    //     const spinUp = () => component.ngOnInit();
-    //     expect(spinUp).toThrowError();
-    //   });
-    // });
+    test.todo(`should throw error if popper.js was not imported`);
 
     describe(`ID`, () => {
       test(`should support a custom ID`, fakeAsync(() => {
-        setup();
+        setup(testComponents.Basic);
         fixture.componentInstance.id = 'example10reference1';
         fixture.detectChanges();
         tick();
@@ -83,7 +78,7 @@ describe(`popover trigger`, () => {
       }));
 
       test(`should fall back to the UID if no ID is passed in`, () => {
-        setup();
+        setup(testComponents.Basic);
         fixture.componentInstance.id = undefined as any;
         fixture.detectChanges();
 
@@ -98,7 +93,7 @@ describe(`popover trigger`, () => {
         event.initEvent('click', true, false);
       });
       test(`should set popover position based on input`, fakeAsync(() => {
-        setup();
+        setup(testComponents.Basic);
         fixture.componentInstance.position = 'right';
         fixture.detectChanges();
 
@@ -109,9 +104,9 @@ describe(`popover trigger`, () => {
       }));
 
       test(`should throw UI library error if provided position is not allowed`, fakeAsync(() => {
-        setup();
+        setup(testComponents.Basic);
         const setPosition = () => {
-          fixture.componentInstance.position = 'foo';
+          fixture.componentInstance.position = 'foo' as any;
           fixture.detectChanges();
           tick();
         };
@@ -127,7 +122,7 @@ describe(`popover trigger`, () => {
       });
 
       test(`should hide if click outside and hideOnBlur set to true`, fakeAsync(() => {
-        setup();
+        setup(testComponents.Basic);
         fixture.componentInstance.popoverOnHidden = jest.fn();
         fixture.componentInstance.popoverOnShown = jest.fn();
         fixture.detectChanges();
@@ -156,7 +151,7 @@ describe(`popover trigger`, () => {
 
     describe(`escape`, () => {
       test(`should close popover with escape key down`, fakeAsync(() => {
-        setup();
+        setup(testComponents.Basic);
         fixture.componentInstance.popoverOnHidden = jest.fn();
         fixture.detectChanges();
         const event = document.createEvent('MouseEvent');
@@ -173,12 +168,12 @@ describe(`popover trigger`, () => {
     });
 
     test(`should return if referenceObject is null`, () => {
-      setup();
-      popoverInstance.popoverOnShown = jest.fn();
-      popoverInstance.referenceObject = undefined;
+      setup(testComponents.Basic);
+      popoverInstance.onUpdate.emit = jest.fn();
+      popoverInstance.referenceObject = undefined as any;
       fixture.detectChanges();
-      popoverInstance.show();
-      expect(popoverInstance.popoverOnShown).not.toHaveBeenCalled();
+      popoverInstance.show({});
+      expect(popoverInstance.onUpdate.emit).not.toHaveBeenCalled();
     });
   });
 });

@@ -68,7 +68,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
   /**
    * Getter to return the date range as an object
    *
-   * @return The current date range
+   * @returns The current date range
    */
   private get dateRange(): TsDateRange {
     return {
@@ -90,7 +90,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    *
    * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject and the value could be a Date or undefined
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public endMinDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   /**
@@ -126,7 +126,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
    *
    * NOTE: `any` is used since we cannot seem to use union types in a BehaviorSubject and the value could be a Date or undefined
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public startMaxDate$: BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   /**
@@ -136,6 +136,8 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
 
   /**
    * Define the form group to attach the date range to
+   *
+   * @param value
    */
   @Input()
   public set dateFormGroup(value: FormGroup | AbstractControl | undefined) {
@@ -234,15 +236,13 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.setUpFormControlSync();
   }
 
-
   /**
    * Needed for untilComponentDestroyed
    */
   public ngOnDestroy(): void {}
 
-
   /**
-   * Set up subscriptions to sync the internat FormControl to the external FormControl
+   * Set up subscriptions to sync the internal FormControl to the external FormControl
    */
   private setUpFormControlSync(): void {
     if (!this.dateFormGroup) {
@@ -284,7 +284,6 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.detectChanges();
   }
 
-
   /**
    * Set up initial min and max dates
    *
@@ -302,12 +301,10 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.startMaxDate$.next(endValueToUse);
   }
 
-
   /**
    * Emit the selected start date and date range
    *
-   * @param datepickerEvent - The event received from the range start event
-   * {@link TsDatepickerComponent}
+   * @param date
    */
   public startDateSelected(date: Date): void {
     if (date) {
@@ -327,12 +324,10 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Emit the selected end date and date range
    *
-   * @param datepickerEvent - The event received from the range end event
-   * {@link TsDatepickerComponent}
+   * @param date
    */
   public endDateSelected(date: Date): void {
     if (date) {
@@ -351,7 +346,6 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       this.startMaxDate$.next(this.startMaxDate);
     }
   }
-
 
   /**
    * Update dates when the start date input receives a blur event
@@ -375,7 +369,6 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Update dates when the end date input receives a blur event
    *
@@ -397,5 +390,4 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
       this.dateRangeChange.emit(this.dateRange);
     }
   }
-
 }

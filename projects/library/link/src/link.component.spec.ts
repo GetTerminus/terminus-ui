@@ -1,25 +1,18 @@
-import { APP_BASE_HREF } from '@angular/common';
 import {
   Component,
-  Provider,
-  Type,
   ViewChild,
 } from '@angular/core';
 import {
   async,
   ComponentFixture,
-  TestBed,
-  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
-import { getDomAttribute } from '@terminus/ngx-tools/browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 import { TsLinkComponent } from './link.component';
 import { TsLinkModule } from './link.module';
-
 
 @Component({
   template: `
@@ -45,7 +38,6 @@ class TestHostComponent {
   public linkComponent!: TsLinkComponent;
 }
 
-
 describe(`TsLinkComponent`, function() {
   let component: TestHostComponent;
   let fixture: ComponentFixture<TestHostComponent>;
@@ -60,14 +52,11 @@ describe(`TsLinkComponent`, function() {
     fixture.detectChanges();
   }));
 
-
   test(`should exist`, () => {
     expect(linkComponent).toBeTruthy();
   });
 
-
   describe(`isInternal`, () => {
-
     test(`should default and retrieve`, () => {
       link = fixture.debugElement.query(By.css('.c-link')).nativeElement;
       component.isExternal = false;
@@ -76,9 +65,7 @@ describe(`TsLinkComponent`, function() {
       expect(link.classList).toContain('qa-link-internal');
     });
 
-
     describe(`fragment`, function() {
-
       test(`should correctly add the fragment`, function() {
         fixture.componentInstance.destination = ['foo', 'bar'];
         fixture.componentInstance.fragment = 'fooBar-bing';
@@ -89,7 +76,6 @@ describe(`TsLinkComponent`, function() {
         expect(href).toEqual('/foo/bar#fooBar-bing');
       });
 
-
       test(`should use a route to the current page if none is passed in`, function() {
         fixture.componentInstance.fragment = 'fooBar-bing';
         fixture.detectChanges();
@@ -98,14 +84,10 @@ describe(`TsLinkComponent`, function() {
         const href = fixture.debugElement.query(By.css('a')).nativeElement.getAttribute('href');
         expect(href).toEqual('/#fooBar-bing');
       });
-
     });
-
   });
 
-
   describe(`isExternal`, () => {
-
     test(`should set and retrieve`, () => {
       component.destination = 'www.google.com';
       component.isExternal = true;
@@ -115,11 +97,9 @@ describe(`TsLinkComponent`, function() {
       expect(link.classList).toContain('qa-link-external');
       expect(link.children[0].textContent).toContain('open_in_new');
     });
-
   });
 
   describe(`showExternalIcon`, () => {
-
     test(`should not show external icon when it is an email or phone`, () => {
       component.destination = 'mailto: support@comcast.com';
       component.isExternal = true;
@@ -138,7 +118,6 @@ describe(`TsLinkComponent`, function() {
   });
 
   describe(`tabIndex`, () => {
-
     test(`should default to 0 and be set`, () => {
       expect(link.tabIndex).toEqual(0);
 
@@ -148,12 +127,9 @@ describe(`TsLinkComponent`, function() {
 
       expect(link.tabIndex).toEqual(9);
     });
-
   });
 
-
   describe(`theme`, function() {
-
     test(`should set the appropriate class`, function() {
       link = fixture.debugElement.query(By.css('.ts-link')).nativeElement;
 
@@ -167,7 +143,5 @@ describe(`TsLinkComponent`, function() {
       expect(link.classList).toContain('ts-link--accent');
       expect.assertions(3);
     });
-
   });
-
 });

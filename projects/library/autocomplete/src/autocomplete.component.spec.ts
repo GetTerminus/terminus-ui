@@ -37,6 +37,11 @@ import { getValidationMessageElement } from '@terminus/ui/validation-messages/te
 
 import { TsAutocompleteModule } from './autocomplete.module';
 
+/**
+ * Create test host component
+ *
+ * @param component
+ */
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
   const moduleImports = [
     FormsModule,
@@ -49,16 +54,13 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
   return createComponentInner(component, undefined, moduleImports);
 }
 
-
 describe(`TsAutocompleteComponent`, function() {
-
   test(`should exist`, function() {
     const fixture = createComponent(testComponents.Autocomplete);
     fixture.detectChanges();
 
     expect(fixture.debugElement.query(By.css('.ts-autocomplete'))).toBeTruthy();
   });
-
 
   test(`should show a progress indicator`, () => {
     jest.useFakeTimers();
@@ -76,7 +78,6 @@ describe(`TsAutocompleteComponent`, function() {
 
     expect.assertions(2);
   });
-
 
   test(`should not open when disabled`, () => {
     const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
@@ -123,7 +124,6 @@ describe(`TsAutocompleteComponent`, function() {
   });
 
   describe(`chips`, function() {
-
     test(`should show selections as chips`, () => {
       const fixture = createComponent(testComponents.SeededAutocomplete);
       fixture.detectChanges();
@@ -132,7 +132,6 @@ describe(`TsAutocompleteComponent`, function() {
 
       expect(chip).toBeTruthy();
     });
-
 
     test(`should allow chips to be removed`, () => {
       jest.useFakeTimers();
@@ -164,7 +163,6 @@ describe(`TsAutocompleteComponent`, function() {
       jest.runAllTimers();
     });
 
-
     test(`should allow removal with the backspace key`, () => {
       // NOTE: `dispatchKeyboardEvent` suddenly stopped working for this test during the Angular v8 upgrade
       const event = document.createEvent('KeyboardEvent');
@@ -195,9 +193,7 @@ describe(`TsAutocompleteComponent`, function() {
     });
   });
 
-
   describe(`debounce`, function() {
-
     test(`should debounce the stream`, () => {
       jest.useFakeTimers();
       const fixture = createComponent<testComponents.Debounce>(testComponents.Debounce);
@@ -215,7 +211,6 @@ describe(`TsAutocompleteComponent`, function() {
       expect(fixture.componentInstance.change).toHaveBeenCalledTimes(1);
     });
 
-
     test(`should allow a custom debounce delay`, () => {
       jest.useFakeTimers();
       const fixture = createComponent<testComponents.CustomDebounce>(testComponents.CustomDebounce);
@@ -232,12 +227,9 @@ describe(`TsAutocompleteComponent`, function() {
 
       expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
     });
-
   });
 
-
   describe(`minimumCharacters`, function() {
-
     test(`should only emit query once past the minimum character count`, () => {
       jest.useFakeTimers();
       const fixture = createComponent<testComponents.CustomCharacterCount>(testComponents.CustomCharacterCount);
@@ -256,7 +248,6 @@ describe(`TsAutocompleteComponent`, function() {
 
       expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
     });
-
 
     test(`should allow a custom minimum character count`, () => {
       jest.useFakeTimers();
@@ -277,9 +268,7 @@ describe(`TsAutocompleteComponent`, function() {
 
       expect(fixture.componentInstance.change).toHaveBeenCalledTimes(4);
     });
-
   });
-
 
   test(`should only allow unique queries`, function() {
     jest.useFakeTimers();
@@ -299,7 +288,6 @@ describe(`TsAutocompleteComponent`, function() {
   });
 
   describe(`duplicate selections`, function() {
-
     // NOTE: Even though we are simulating a typed query, the list of states is not actually changing.
     test(`should not be allowed by default but should emit an event`, fakeAsync(function() {
       const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
@@ -328,9 +316,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect.assertions(3);
     }));
 
-
     describe(`when allowed`, function() {
-
       test(`should allow a duplicate selection`, fakeAsync(() => {
         const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
         fixture.componentInstance.allowDuplicates = true;
@@ -355,22 +341,16 @@ describe(`TsAutocompleteComponent`, function() {
         chips = getAllChipInstances(fixture);
         expect(chips.length).toEqual(2);
         const autocomplete = getAutocompleteInstance(fixture);
-        const option = autocomplete.options.find(o => o.value === states[4]);
         expect(autocomplete.autocompleteFormControl.value.length).toEqual(2);
         expect(autocomplete.autocompleteFormControl.value).toEqual([states[4], states[4]]);
 
         expect.assertions(4);
       }));
-
     });
-
   });
 
-
   describe(`trigger`, function() {
-
     describe(`in single selection mode`, function() {
-
       test(`should set single value`, fakeAsync(() => {
         const fixture = createComponent<testComponents.SeededAutocomplete>(testComponents.SeededAutocomplete);
         fixture.componentInstance.allowMultiple = false;
@@ -392,10 +372,7 @@ describe(`TsAutocompleteComponent`, function() {
 
         expect(instance.autocompleteFormControl.value).toEqual([states[0]]);
       }));
-
     });
-
-
 
     test(`should reset the query when a selection is made`, fakeAsync(function() {
       const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
@@ -460,7 +437,6 @@ describe(`TsAutocompleteComponent`, function() {
       const input = getAutocompleteInput(fixture);
       const instance = getAutocompleteInstance(fixture);
       const triggerInstance = instance.autocompleteTrigger;
-
       instance.focus();
       triggerInstance.openPanel();
       fixture.detectChanges();
@@ -468,10 +444,8 @@ describe(`TsAutocompleteComponent`, function() {
       expect(triggerInstance.panelOpen).toEqual(true);
 
       const event = createFakeEvent('blur');
-
       fixture.componentInstance.states.length = 0;
       fixture.detectChanges();
-
       input.dispatchEvent(event);
       fixture.detectChanges();
 
@@ -484,18 +458,17 @@ describe(`TsAutocompleteComponent`, function() {
       fixture.detectChanges();
       const input2 = getAutocompleteInput(fixture, 1);
       const instance = getAutocompleteInstance(fixture);
-      const triggerinstance = instance.autocompleteTrigger;
+      const triggerInstance = instance.autocompleteTrigger;
 
       instance.focus();
-      triggerinstance.openPanel();
+      triggerInstance.openPanel();
       fixture.detectChanges();
-      expect(triggerinstance.panelOpen).toEqual(true);
+      expect(triggerInstance.panelOpen).toEqual(true);
 
       input2.click();
       fixture.detectChanges();
       expect(instance.panelOpen).toEqual(false);
     });
-
 
     test(`should update the overlay position when a chip is removed`, function() {
       jest.useFakeTimers();
@@ -518,9 +491,7 @@ describe(`TsAutocompleteComponent`, function() {
       jest.runAllTimers();
     });
 
-
     describe(`required`, () => {
-
       test(`should set required if the form control is required`, () => {
         const fixture = createComponent(testComponents.ValidateOnChange);
         fixture.detectChanges();
@@ -547,9 +518,7 @@ describe(`TsAutocompleteComponent`, function() {
       });
     });
 
-
     describe(`panel`, function() {
-
       test(`should support a custom ID`, () => {
         const fixture = createComponent<testComponents.Autocomplete>(testComponents.Autocomplete);
         fixture.componentInstance.disabled = true;
@@ -562,11 +531,8 @@ describe(`TsAutocompleteComponent`, function() {
         expect(instance.autocompletePanel.isOpen).toEqual(true);
         expect(panel.getAttribute('id')).toEqual(expect.stringContaining('-panel'));
       });
-
     });
-
   });
-
 
   test(`should be able to hide the required marker`, function() {
     const fixture = createComponent<testComponents.HideRequired>(testComponents.HideRequired);
@@ -581,7 +547,6 @@ describe(`TsAutocompleteComponent`, function() {
     expect(marker).toBeFalsy();
   });
 
-
   test(`should support a custom hint`, function() {
     const fixture = createComponent(testComponents.Hint);
     fixture.detectChanges();
@@ -592,9 +557,7 @@ describe(`TsAutocompleteComponent`, function() {
     expect(contents.nativeElement.textContent).toEqual('foo');
   });
 
-
   describe(`ID`, function() {
-
     test(`should support a custom ID`, () => {
       const fixture = createComponent(testComponents.Id);
       fixture.detectChanges();
@@ -602,7 +565,6 @@ describe(`TsAutocompleteComponent`, function() {
 
       expect(trigger.getAttribute('id')).toEqual('foo');
     });
-
 
     test(`should fall back to the UID if no ID is passed in`, () => {
       const fixture = createComponent<testComponents.Id>(testComponents.Id);
@@ -612,9 +574,7 @@ describe(`TsAutocompleteComponent`, function() {
 
       expect(trigger.getAttribute('id')).toEqual(expect.stringContaining('ts-autocomplete-'));
     });
-
   });
-
 
   test(`should show error immediately if validating on change`, function() {
     const fixture = createComponent(testComponents.ValidateOnChange);
@@ -624,9 +584,7 @@ describe(`TsAutocompleteComponent`, function() {
     expect(messageContainer.nativeElement.textContent.trim()).toEqual('Required');
   });
 
-
   describe(`option`, function() {
-
     test(`should throw error if template is used but no option is passed in`, () => {
       const create = () => {
         const fixture = createComponent(testComponents.OptionError);
@@ -636,9 +594,7 @@ describe(`TsAutocompleteComponent`, function() {
       expect(create).toThrowError(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     });
 
-
     describe(`id`, function() {
-
       test(`should support custom IDs`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
@@ -646,7 +602,6 @@ describe(`TsAutocompleteComponent`, function() {
 
         expect(option.id).toEqual('Alabama');
       });
-
 
       test(`should fall back to UID`, () => {
         const fixture = createComponent(testComponents.OptionId);
@@ -658,12 +613,9 @@ describe(`TsAutocompleteComponent`, function() {
 
         expect(option.id).toEqual(expect.stringContaining('ts-option-'));
       });
-
     });
 
-
     describe(`getLabel`, function() {
-
       test(`should return the viewValue`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
@@ -671,12 +623,9 @@ describe(`TsAutocompleteComponent`, function() {
 
         expect(option.getLabel()).toEqual('Alabama');
       });
-
     });
 
-
     describe(`option`, function() {
-
       test(`should retrieve the option object`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
@@ -684,12 +633,9 @@ describe(`TsAutocompleteComponent`, function() {
 
         expect(option.option).toEqual(expect.objectContaining({ name: 'Alabama' }));
       });
-
     });
 
-
     describe(`deselect`, function() {
-
       test(`should emit event not from user interaction`, () => {
         const fixture = createComponent<testComponents.OptionId>(testComponents.OptionId);
         fixture.detectChanges();
@@ -705,11 +651,9 @@ describe(`TsAutocompleteComponent`, function() {
         // Verify it was not called with the boolean
         expect(option['emitSelectionChangeEvent'].mock.calls[0]).toEqual([]);
       });
-
     });
 
     describe(`checkbox`, function() {
-
       test(`should not have checkbox in front of an item list`, fakeAsync(() => {
         const fixture = createComponent(testComponents.AutocompleteAllowMultipleNoReopen);
         fixture.detectChanges();
@@ -721,10 +665,8 @@ describe(`TsAutocompleteComponent`, function() {
         const opt = getOptionElement(fixture, 0, 1);
         fixture.detectChanges();
         expect(opt.querySelectorAll('ts-checkbox')).toHaveLength(0);
-
       }));
     });
-
   });
 
   test('onContainerClick', () => {
@@ -741,5 +683,4 @@ describe(`TsAutocompleteComponent`, function() {
     autocomplete.value = 'testing';
     expect(autocomplete.value).toEqual('testing');
   });
-
 });

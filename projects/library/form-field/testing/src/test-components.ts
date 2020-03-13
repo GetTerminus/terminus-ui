@@ -36,10 +36,10 @@ export class Id {
   public myId: string | undefined = 'foo';
 
   @ViewChild(TsInputComponent, { static: true })
-  public inputComponent: TsInputComponent;
+  public inputComponent!: TsInputComponent;
 
   @ViewChild(TsFormFieldComponent, { static: true })
-  public formField: TsFormFieldComponent;
+  public formField!: TsFormFieldComponent;
 }
 
 @Component({
@@ -60,7 +60,7 @@ export class RequiredMarker {
   public hideRequiredMarker = false;
 
   @ViewChild(TsInputComponent, { static: true })
-  public inputComponent: TsInputComponent;
+  public inputComponent!: TsInputComponent;
 }
 
 @Component({
@@ -81,10 +81,10 @@ export class Float {
   public float;
 
   @ViewChild(TsInputComponent, { static: true })
-  public inputComponent: TsInputComponent;
+  public inputComponent!: TsInputComponent;
 
   @ViewChild(TsFormFieldComponent, { static: true })
-  public formField: TsFormFieldComponent;
+  public formField!: TsFormFieldComponent;
 }
 
 @Component({
@@ -112,10 +112,10 @@ export class ErrorState implements OnInit {
   public formControl = new FormControl(null, Validators.required);
 
   @ViewChild(TsInputComponent, { static: true })
-  public inputComponent: TsInputComponent;
+  public inputComponent!: TsInputComponent;
 
   @ViewChild(TsFormFieldComponent, { static: true })
-  public formField: TsFormFieldComponent;
+  public formField!: TsFormFieldComponent;
 
   public ngOnInit() {
     this.formControl.markAsDirty();
@@ -136,10 +136,10 @@ export class UpdateOutline {
   public formControl = new FormControl();
 
   @ViewChild(TsInputComponent, { static: true })
-  public inputComponent: TsInputComponent;
+  public inputComponent!: TsInputComponent;
 
   @ViewChild(TsFormFieldComponent, { static: true })
-  public formField: TsFormFieldComponent;
+  public formField!: TsFormFieldComponent;
 }
 
 @Component({

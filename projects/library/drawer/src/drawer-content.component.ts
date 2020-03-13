@@ -4,7 +4,6 @@ import {
 } from '@angular/cdk/overlay';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   NgZone,
@@ -24,7 +23,6 @@ export class TsDrawerContentComponent extends CdkScrollable {
   public rightMargin: number | null = null;
 
   constructor(
-    private changeDetectorRef: ChangeDetectorRef,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
     ngZone: NgZone,

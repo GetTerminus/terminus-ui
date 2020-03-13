@@ -30,6 +30,8 @@ export class TsAutofocusDirective implements AfterViewInit {
 
   /**
    * Define if the element should be focused after initialization
+   *
+   * @param value
    */
   @Input()
   public set tsAutofocus(value: string | boolean) {

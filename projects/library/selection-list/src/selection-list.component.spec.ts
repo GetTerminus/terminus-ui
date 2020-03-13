@@ -46,7 +46,11 @@ import { TsSelectionListTriggerDirective } from './selection-list-panel/selectio
 import { TsSelectionListComponent } from './selection-list.component';
 import { TsSelectionListModule } from './selection-list.module';
 
-
+/**
+ * Create test host component
+ *
+ * @param component
+ */
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
   const moduleImports = [
     FormsModule,
@@ -55,13 +59,10 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
     TsOptionModule,
     NoopAnimationsModule,
   ];
-
   return createComponentInner(component, undefined, moduleImports);
 }
 
-
 describe(`TsSelectionListComponent`, function() {
-
   test(`should exist`, function() {
     const fixture = createComponent(testComponents.Basic);
     fixture.detectChanges();
@@ -91,13 +92,13 @@ describe(`TsSelectionListComponent`, function() {
     fixture.detectChanges();
     const instance = getSelectionListInstance(fixture);
     const selectionList = fixture.debugElement.query(By.css('.ts-selection-list')).nativeElement;
-    instance.changeDetectorRef.markForCheck = jest.fn();
+    instance['changeDetectorRef'].markForCheck = jest.fn();
     instance.stateChanges.next = jest.fn();
 
     instance.setDisabledState(true);
     fixture.detectChanges();
 
-    expect(instance.changeDetectorRef.markForCheck).toHaveBeenCalled();
+    expect(instance['changeDetectorRef'].markForCheck).toHaveBeenCalled();
     expect(instance.stateChanges.next).toHaveBeenCalled();
     expect(instance.isDisabled).toEqual(true);
     expect(selectionList.classList).toContain('ts-selection-list--disabled');
@@ -115,7 +116,6 @@ describe(`TsSelectionListComponent`, function() {
   });
 
   describe(`chips`, function() {
-
     test(`should show selections as chips`, () => {
       const fixture = createComponent(testComponents.Seeded);
       fixture.detectChanges();
@@ -177,11 +177,9 @@ describe(`TsSelectionListComponent`, function() {
       chips = getAllChipInstances(fixture);
       expect(chips.length).toEqual(0);
     });
-
   });
 
   describe(`debounce`, function() {
-
     test(`should debounce the stream`, () => {
       jest.useFakeTimers();
       const fixture = createComponent(testComponents.Debounce);
@@ -215,11 +213,9 @@ describe(`TsSelectionListComponent`, function() {
 
       expect(fixture.componentInstance.change).toHaveBeenCalledTimes(3);
     });
-
   });
 
   describe(`minimumCharacters`, function() {
-
     test(`should only emit query once past the minimum character count`, () => {
       jest.useFakeTimers();
       const fixture = createComponent(testComponents.CustomCharacterCount);
@@ -258,7 +254,6 @@ describe(`TsSelectionListComponent`, function() {
 
       expect(fixture.componentInstance.change).toHaveBeenCalledTimes(4);
     });
-
   });
 
   test(`should only allow unique queries`, function() {
@@ -279,10 +274,10 @@ describe(`TsSelectionListComponent`, function() {
   });
 
   describe(`duplicate selections`, function() {
-
     // NOTE: Even though we are simulating a typed query, the list of states is not actually changing.
     test(`should not be allowed by default but should emit an event`, fakeAsync(function() {
       const fixture = createComponent(testComponents.Seeded);
+      fixture.componentInstance.duplicate = jest.fn();
       fixture.detectChanges();
       const component = fixture.componentInstance;
       component.duplicate = jest.fn();
@@ -304,17 +299,18 @@ describe(`TsSelectionListComponent`, function() {
       // Verify the selection did NOT work
       chips = getAllChipInstances(fixture);
       expect(chips.length).toEqual(1);
+      // TODO: Why are these ignores needed?
+      // @ts-ignore
       expect(fixture.componentInstance.duplicate.mock.calls[0][0].source).toBeInstanceOf(TsSelectionListComponent);
+      // @ts-ignore
       expect(fixture.componentInstance.duplicate.mock.calls[0][0].value).toEqual(expect.objectContaining({ name: 'Florida' }));
       expect.assertions(4);
     }));
 
     describe(`when allowed`, function() {
-
       test(`should allow a duplicate selection`, fakeAsync(() => {
         const fixture = createComponent(testComponents.Seeded);
         fixture.componentInstance.allowDuplicates = true;
-        fixture.componentInstance.selection = jest.fn();
         fixture.detectChanges();
 
         let chips = getAllChipInstances(fixture);
@@ -339,15 +335,11 @@ describe(`TsSelectionListComponent`, function() {
         expect(instance.selectionListFormControl.value).toEqual([states[4], states[4]]);
         expect.assertions(3);
       }));
-
     });
-
   });
 
   describe(`trigger`, function() {
-
     describe(`in single selection mode`, function() {
-
       test(`should set single value`, fakeAsync(() => {
         const fixture = createComponent(testComponents.Seeded);
         fixture.componentInstance.allowMultiple = false;
@@ -371,7 +363,6 @@ describe(`TsSelectionListComponent`, function() {
       }));
 
       test.todo(`should set a value using the displayFormatter if it exists`);
-
     });
 
     test(`should reset the query when a selection is made`, fakeAsync(function() {
@@ -401,7 +392,6 @@ describe(`TsSelectionListComponent`, function() {
     });
 
     describe(`ngModel`, () => {
-
       test(`should seed the model after timeout when using ngModel`, fakeAsync(function() {
         const fixture = createComponent(testComponents.SeededNgModel);
         fixture.detectChanges();
@@ -414,7 +404,6 @@ describe(`TsSelectionListComponent`, function() {
         const instance = getSelectionListInstance(fixture);
         expect(instance.selectionListFormControl.value).toEqual([states[4]]);
       }));
-
     });
 
     test(`should allow a value seeded by a FormControl`, fakeAsync(function() {
@@ -499,7 +488,6 @@ describe(`TsSelectionListComponent`, function() {
     }));
 
     describe(`required`, () => {
-
       test(`should set required if the form control is required`, () => {
         const fixture = createComponent(testComponents.ValidateOnChange);
         fixture.detectChanges();
@@ -525,11 +513,9 @@ describe(`TsSelectionListComponent`, function() {
         expect(validationMessage).toBeTruthy();
       });
     });
-
   });
 
   describe(`panel`, function() {
-
     test(`should support a custom ID`, () => {
       const fixture = createComponent(testComponents.Basic);
       fixture.componentInstance.disabled = true;
@@ -542,7 +528,6 @@ describe(`TsSelectionListComponent`, function() {
       expect(instance.panel.isOpen).toEqual(true);
       expect(panel.getAttribute('id')).toEqual(expect.stringContaining('-panel'));
     });
-
   });
 
   test(`should be able to hide the required marker`, function() {
@@ -569,7 +554,6 @@ describe(`TsSelectionListComponent`, function() {
   });
 
   describe(`ID`, function() {
-
     test(`should support a custom ID`, () => {
       const fixture = createComponent(testComponents.Id);
       fixture.detectChanges();
@@ -577,7 +561,6 @@ describe(`TsSelectionListComponent`, function() {
 
       expect(trigger.getAttribute('id')).toEqual('foo');
     });
-
 
     test(`should fall back to the UID if no ID is passed in`, () => {
       const fixture = createComponent(testComponents.Id);
@@ -587,7 +570,6 @@ describe(`TsSelectionListComponent`, function() {
 
       expect(trigger.getAttribute('id')).toEqual(expect.stringContaining('ts-selection-list-'));
     });
-
   });
 
   test(`should show error immediately if validating on change`, function() {
@@ -599,7 +581,6 @@ describe(`TsSelectionListComponent`, function() {
   });
 
   describe(`option`, function() {
-
     test(`should throw error if template is used but no option is passed in`, () => {
       const create = () => {
         const fixture = createComponent(testComponents.OptionError);
@@ -609,9 +590,7 @@ describe(`TsSelectionListComponent`, function() {
       expect(create).toThrowError(`TsOptionComponent: The full 'option' object must be passed in when using a custom template.`);
     });
 
-
     describe(`id`, function() {
-
       test(`should support custom IDs`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
@@ -619,7 +598,6 @@ describe(`TsSelectionListComponent`, function() {
 
         expect(option.id).toEqual('Alabama');
       });
-
 
       test(`should fall back to UID`, () => {
         const fixture = createComponent(testComponents.OptionId);
@@ -631,12 +609,9 @@ describe(`TsSelectionListComponent`, function() {
 
         expect(option.id).toEqual(expect.stringContaining('ts-option-'));
       });
-
     });
 
-
     describe(`getLabel`, function() {
-
       test(`should return the viewValue`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
@@ -644,12 +619,9 @@ describe(`TsSelectionListComponent`, function() {
 
         expect(option.getLabel()).toEqual('Alabama');
       });
-
     });
 
-
     describe(`option`, function() {
-
       test(`should retrieve the option object`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
@@ -657,32 +629,27 @@ describe(`TsSelectionListComponent`, function() {
 
         expect(option.option).toEqual(expect.objectContaining({ name: 'Alabama' }));
       });
-
     });
 
-
     describe(`deselect`, function() {
-
       test(`should emit event not from user interaction`, () => {
         const fixture = createComponent(testComponents.OptionId);
         fixture.detectChanges();
         const option = getOptionInstance(fixture, 0, 2);
         option.select();
         fixture.detectChanges();
-        option.emitSelectionChangeEvent = jest.fn();
+        option['emitSelectionChangeEvent'] = jest.fn();
 
         option.deselect();
         fixture.detectChanges();
 
-        expect(option.emitSelectionChangeEvent.mock.calls.length).toEqual(1);
+        expect(option['emitSelectionChangeEvent'].mock.calls.length).toEqual(1);
         // Verify it was not called with the boolean
-        expect(option.emitSelectionChangeEvent.mock.calls[0]).toEqual([]);
+        expect(option['emitSelectionChangeEvent'].mock.calls[0]).toEqual([]);
       });
-
     });
 
     describe(`checkbox`, function() {
-
       test(`should not have checkbox in front of an item list`, fakeAsync(() => {
         const fixture = createComponent(testComponents.AllowMultipleNoReopen);
         fixture.detectChanges();
@@ -694,14 +661,11 @@ describe(`TsSelectionListComponent`, function() {
         const opt = getOptionElement(fixture, 0, 1);
         fixture.detectChanges();
         expect(opt.querySelectorAll('ts-checkbox')).toHaveLength(0);
-
       }));
     });
-
   });
 
   describe(`when clicking the container`, () => {
-
     test('should focus the input', () => {
       const fixture = createComponent(testComponents.Seeded);
       const instance = getSelectionListInstance(fixture);
@@ -709,22 +673,18 @@ describe(`TsSelectionListComponent`, function() {
       instance.onContainerClick();
       expect(instance.focusInput).toHaveBeenCalled();
     });
-
   });
 
   describe(`value getter/setter`, () => {
-
     test('should set and retrieve the value', () => {
       const fixture = createComponent(testComponents.Seeded);
       const instance = getSelectionListInstance(fixture);
       instance.value = 'testing';
       expect(instance.value).toEqual('testing');
     });
-
   });
 
   describe(`displayFormatter`, () => {
-
     test(`should default to returning the value as a string`, () => {
       const fixture = createComponent(testComponents.Basic);
       const instance = getSelectionListInstance(fixture);
@@ -743,7 +703,6 @@ describe(`TsSelectionListComponent`, function() {
       expect(instance.displayFormatter).toEqual(expect.any(Function));
       expect(chipElement.textContent).toEqual(expect.stringContaining('ARKANSAS'));
     });
-
   });
 
   test.todo(`should reset optionSelections stream if no options were initially found`);
@@ -751,21 +710,16 @@ describe(`TsSelectionListComponent`, function() {
   test.todo(`should do nothing if tabOut happens but the overlay is not attached`);
 
   describe(`tsSelectionListTriggerDisabled`, () => {
-
     test.todo(`should set the disabled value`);
-
   });
 
   describe(`handleFocus`, () => {
-
     test.todo(`should set a flag`);
-
   });
 
   test.todo(`should correctly parse a number value`);
 
   describe(`handleKeydown`, () => {
-
     test.todo(`should prevent default when ESCAPE is clicked`);
 
     test.todo(`should select an item when ENTER is pressed`);
@@ -773,11 +727,9 @@ describe(`TsSelectionListComponent`, function() {
     test.todo(`should pass keydown event to the key manager`);
 
     test.todo(`should open the panel if an arrow key is used`);
-
   });
 
   describe(`setDisabledState`, () => {
-
     test(`should disable the DOM element`, () => {
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
@@ -789,11 +741,9 @@ describe(`TsSelectionListComponent`, function() {
       trigger.setDisabledState(true);
       expect(trigger.elementRef.nativeElement.disabled).toEqual(true);
     });
-
   });
 
   describe(`attachOverlay`, () => {
-
     test(`should throw an error if no panel exists`, () => {
       const fixture = createComponent(testComponents.Basic);
       const instance = getSelectionListInstance(fixture);
@@ -821,15 +771,14 @@ describe(`TsSelectionListComponent`, function() {
       instance.focusInput();
       triggerInstance.openPanel();
       fixture.detectChanges();
-      const triggerElement = getSelectionListTriggerElement(fixture);
-      triggerInstance.resetActiveItem = jest.fn();
-      triggerInstance.closeKeyEventStream.next = jest.fn();
+      triggerInstance['resetActiveItem'] = jest.fn();
+      triggerInstance['closeKeyEventStream'].next = jest.fn();
       const overlayElement = triggerInstance.overlayRef!.overlayElement;
       overlayElement.dispatchEvent(event);
       fixture.detectChanges();
 
-      expect(triggerInstance.resetActiveItem).toHaveBeenCalled();
-      expect(triggerInstance.closeKeyEventStream.next).toHaveBeenCalled();
+      expect(triggerInstance['resetActiveItem']).toHaveBeenCalled();
+      expect(triggerInstance['closeKeyEventStream'].next).toHaveBeenCalled();
     });
 
     test(`should trigger an overlayRef resize when the viewport size changes`, fakeAsync(() => {
@@ -899,7 +848,7 @@ describe(`TsSelectionListComponent`, function() {
       let selected = getAllOptionInstances(fixture).filter(o => o.selected);
       expect(selected.length).toEqual(2);
 
-      trigger.clearPreviousSelectedOption(options[2]);
+      trigger['clearPreviousSelectedOption'](options[2]);
       selected = getAllOptionInstances(fixture).filter(o => o.selected);
 
       expect(selected.length).toEqual(0);
@@ -909,44 +858,34 @@ describe(`TsSelectionListComponent`, function() {
       let selected = getAllOptionInstances(fixture).filter(o => o.selected);
       expect(selected.length).toEqual(2);
 
-      trigger.clearPreviousSelectedOption(options[1]);
+      trigger['clearPreviousSelectedOption'](options[1]);
       selected = getAllOptionInstances(fixture).filter(o => o.selected);
 
       expect(selected.length).toEqual(1);
     });
-
   });
 
   describe(`getConnectedElement`, () => {
-
     test(`should fall back to the elementRef if getConnectedOverlayOrigin returns nothing`, () => {
       const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
       const instance = getSelectionListInstance(fixture);
       const trigger = instance.trigger;
-      trigger.formField = undefined as any;
+      trigger['formField'] = undefined as any;
 
-      expect(trigger.getConnectedElement().nativeElement.classList).toContain('ts-selection-list-trigger');
+      expect(trigger['getConnectedElement']().nativeElement.classList).toContain('ts-selection-list-trigger');
     });
-
   });
 
   describe(`select and deselect should fall back to empty arrays if the control value isn't set`, () => {
-    let fixture: ComponentFixture<testComponents.Basic>;
-    let instance: TsSelectionListComponent;
-    let item: any;
-
-    beforeEach(() => {
-      fixture = createComponent(testComponents.Basic);
+    test(`should fallback to an array when selecting`, () => {
+      const fixture = createComponent(testComponents.Basic);
       fixture.detectChanges();
-      instance = getSelectionListInstance(fixture);
-      item = {
+      const instance = getSelectionListInstance(fixture);
+      const item = {
         source: {} as any,
         option: { value: 'apple' } as any,
       };
-    });
-
-    test(`should fallback to an array when selecting`, () => {
       instance.selectionListFormControl.setValue(null);
       const actual = () => {
         instance.selectItem(item);
@@ -955,13 +894,19 @@ describe(`TsSelectionListComponent`, function() {
     });
 
     test(`should fallback to an array when deselecting`, () => {
+      const fixture = createComponent(testComponents.Basic);
+      fixture.detectChanges();
+      const instance = getSelectionListInstance(fixture);
+      const item = {
+        source: {} as any,
+        option: { value: 'apple' } as any,
+      } as any;
       instance.selectionListFormControl.setValue(null);
       const actual = () => {
         instance.deselectItem(item);
       };
       expect(actual).not.toThrowError();
     });
-
   });
 
   test(`should emit on backdrop clicks`, fakeAsync(() => {
@@ -1001,21 +946,16 @@ describe(`TsSelectionListComponent`, function() {
   }));
 
   // TODO: Not currently supported by Jest
-  //   Waiting for https://github.com/jsdom/jsdom/issues/317 to land
+  // Waiting for https://github.com/jsdom/jsdom/issues/317 to land
   test.todo(`should select all existing text when the input is focused`);
 
   describe(`should scroll populated item into view`, () => {
-    let fixture: ComponentFixture<testComponents.SeededSingleSelect>;
-    let instance: TsSelectionListComponent;
-
-    beforeEach(() => {
-      fixture = createComponent(testComponents.SeededSingleSelect);
-      fixture.detectChanges();
-      instance = getSelectionListInstance(fixture);
-    });
     test(`should have panel open with the preset value`, fakeAsync(() => {
+      const fixture = createComponent(testComponents.SeededSingleSelect);
+      fixture.detectChanges();
+      const instance = getSelectionListInstance(fixture);
       instance.trigger.handleFocus();
-      tick(100);
+      tick(1000);
       expect(instance.panel.keyManager.activeItemIndex).toEqual(6);
     }));
   });
@@ -1029,5 +969,4 @@ describe(`TsSelectionListComponent`, function() {
       expect(validationBlock).toBeFalsy();
     });
   });
-
 });

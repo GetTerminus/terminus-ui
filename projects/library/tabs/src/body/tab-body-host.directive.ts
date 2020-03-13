@@ -9,7 +9,6 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
-import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
 import { TsTabBodyComponent } from './tab-body.component';
@@ -34,16 +33,6 @@ export class TsTabBodyHostDirective extends CdkPortalOutlet implements OnInit, O
    */
   protected id: number = nextUniqueId++;
 
-  /**
-   * Subscription to events for when the tab body begins centering
-   */
-  private centeringSub = Subscription.EMPTY;
-
-  /**
-   * Subscription to events for when the tab body finishes leaving from center position
-   */
-  private leavingSub = Subscription.EMPTY;
-
 
   constructor(
     componentFactoryResolver: ComponentFactoryResolver,
@@ -60,8 +49,9 @@ export class TsTabBodyHostDirective extends CdkPortalOutlet implements OnInit, O
   public ngOnInit(): void {
     super.ngOnInit();
 
-    this.centeringSub = this.host.beforeCentering
+    this.host.beforeCentering
       .pipe(
+        // eslint-disable-next-line deprecation/deprecation
         startWith(this.host.isCenterPosition(this.host.positionState)),
         untilComponentDestroyed(this),
       )
@@ -71,11 +61,10 @@ export class TsTabBodyHostDirective extends CdkPortalOutlet implements OnInit, O
         }
       });
 
-    this.leavingSub = this.host.afterLeavingCenter.pipe(untilComponentDestroyed(this)).subscribe(() => {
+    this.host.afterLeavingCenter.pipe(untilComponentDestroyed(this)).subscribe(() => {
       this.detach();
     });
   }
-
 
   /**
    * Trigger ngOnDestroy in the parent class
@@ -83,5 +72,4 @@ export class TsTabBodyHostDirective extends CdkPortalOutlet implements OnInit, O
   public ngOnDestroy(): void {
     super.ngOnDestroy();
   }
-
 }

@@ -91,11 +91,14 @@ export class TsLogoComponent implements OnInit {
 
   /**
    * Name of the logo types
+   *
+   * @param value
    */
   @Input()
   public set type(value: TS_LOGO_TYPE) {
     // If an unsupported value is passed in
     if (value && TS_LOGO_TYPES.indexOf(value) < 0 && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsLogoComponent: "${value}" is not a supported logo type. `
       + `See TS_LOGO_TYPE for available options.`);
       return;
@@ -110,11 +113,14 @@ export class TsLogoComponent implements OnInit {
 
   /**
    * Name of the logo colors
+   *
+   * @param value
    */
   @Input()
   public set logoColor(value: TS_LOGO_COLOR) {
     // If an unsupported value is passed in
     if (value && TS_LOGO_COLORS.indexOf(value) < 0 && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsLogoComponent: "${value}" is not a supported logo color. `
       + `See TS_LOGO_COLOR for available options.`);
       return;
@@ -135,7 +141,6 @@ export class TsLogoComponent implements OnInit {
   public ngOnInit(): void {
     this.setType();
   }
-
 
   /**
    * sets the svg based on the type selected; resets logoColor for logo types with gradient

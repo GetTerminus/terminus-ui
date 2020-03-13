@@ -17,12 +17,11 @@ import { TsValidatorsService } from '@terminus/ui/validators';
   templateUrl: './validation.component.html',
 })
 export class ValidationComponent implements OnInit {
-  // tslint:disable: member-ordering
   flexGap: string = TS_SPACING.default[0];
   minDate: string = new Date(2018, 0, 5).toISOString();
   maxDate: string = new Date(2018, 0, 25).toISOString();
-  myCollectionFn = (a) => a.name;
   myCollection = ['foo', 'bar', 'baz', 'bing', 'bang', 'boom'];
+  myCollectionFn = a => a.name;
   myDeepCollection = [
     {
       name: 'foo',
@@ -117,6 +116,7 @@ export class ValidationComponent implements OnInit {
     ],
   });
 
+
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
@@ -153,10 +153,5 @@ export class ValidationComponent implements OnInit {
   log(v: any) {
     console.log('DEMO: form value: ', v);
   }
-
 }
 
-
-function isControl(x: any): x is AbstractControl {
-  return x.pristine !== undefined;
-}

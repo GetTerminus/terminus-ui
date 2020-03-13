@@ -71,7 +71,7 @@ export class SelectionListComponent implements OnInit, OnDestroy {
       );
   }
 
-  public ngOnDestroy(): void {};
+  public ngOnDestroy(): void {}
 
   public seedSelections(ctrl: FormControl, selections: State[] = STATES.slice(0, 8)): void {
     ctrl.setValue(selections);
@@ -84,10 +84,10 @@ export class SelectionListComponent implements OnInit, OnDestroy {
       const letters = query.split('').map(l => `${l}.*`).join('');
       const regex = new RegExp(letters, 'ig');
       return this.states.filter(s => !!s.name.match(regex));
-    } else {
-      // if no query, return first 10 states
-      return STATES.slice(0, 10);
     }
+    // if no query, return first 10 states
+    return STATES.slice(0, 10);
+
   }
 
   public queryHasChanged(query: string, demo: DEMOS): void {

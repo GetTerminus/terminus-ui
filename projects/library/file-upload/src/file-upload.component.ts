@@ -67,7 +67,7 @@ export type TsFileUploadDragEvent = DragEvent;
  *
  * NOTE: Currently nginx has a hard limit of 10mb
  */
-// eslint-disable-next-line no-magic-numbers
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 const MAXIMUM_KILOBYTES_PER_FILE = 10 * 1024;
 
 /**
@@ -144,7 +144,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Provide access to the file preview element
    */
-  @ViewChild('preview', { static: false })
+  @ViewChild('preview')
   public preview!: ElementRef;
 
   /**
@@ -157,7 +157,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Compose and expose all hints to the template
    *
-   * @return An array of hints
+   * @returns An array of hints
    */
   public get hints(): string[] {
     const hints: string[] = [];
@@ -183,7 +183,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Compose supported image dimensions as a string
    *
-   * @return A string containing all allowed image dimensions
+   * @returns A string containing all allowed image dimensions
    */
   private get supportedImageDimensions(): string {
     let myString = '';
@@ -220,6 +220,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define the accepted mime types
+   *
+   * @param value
    */
   @Input()
   public set accept(value: TsFileAcceptedMimeTypes | TsFileAcceptedMimeTypes[] | undefined) {
@@ -237,6 +239,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define maximum and minimum pixel dimensions for images
+   *
+   * @param value
    */
   @Input()
   public set dimensionConstraints(value: TsFileImageDimensionConstraints | undefined) {
@@ -249,6 +253,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Create a form control to manage validation messages
+   *
+   * @param ctrl
    */
   @Input()
   public set formControl(ctrl: FormControl) {
@@ -267,6 +273,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -285,6 +293,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define the maximum file size in kilobytes
+   *
+   * @param value
    */
   @Input()
   public set maximumKilobytesPerFile(value: number) {
@@ -303,6 +313,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define the upload progress
+   *
+   * @param value
    */
   @Input()
   public set progress(value: number) {
@@ -315,6 +327,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Define supported ratio for images
+   *
+   * @param values
    */
   @Input()
   public set ratioConstraints(values: Array<string> | undefined) {
@@ -336,6 +350,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Seed an existing file (used for multiple upload hack)
+   *
+   * @param file
    */
   @Input()
   public set seedFile(file: File | undefined) {
@@ -404,6 +420,8 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * HostListeners
+   *
+   * @param event
    */
   @HostListener('dragover', ['$event'])
   public handleDragover(event: TsFileUploadDragEvent) {
@@ -444,7 +462,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   }
 
 
-  public constructor(
+  constructor(
     private documentService: TsDocumentService,
     private elementRef: ElementRef,
     private changeDetectorRef: ChangeDetectorRef,
@@ -468,7 +486,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
     if (!this.changeDetectorRef['destroyed']) {
       this.changeDetectorRef.detectChanges();
     }
-  }
+  };
 
 
   /**
@@ -565,9 +583,10 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
   /**
    * Create a virtual file input
    *
-   * @return The HTMLInputElement for file collection
+   * @returns The HTMLInputElement for file collection
    */
   private createFileInput(): HTMLInputElement {
+    // eslint-disable-next-line deprecation/deprecation
     const input: HTMLInputElement = this.documentService.document.createElement('input');
     input.setAttribute('type', 'file');
     input.style.display = 'none';
@@ -613,7 +632,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
         this.dimensionConstraints,
         this.acceptedTypes,
         this.maximumKilobytesPerFile,
-        this._ratioConstraints
+        this._ratioConstraints,
       );
 
       newFile.fileLoaded$.pipe(
@@ -742,6 +761,7 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
     const validations = Object.keys(file.validations);
 
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < validations.length; i += 1) {
       const key: string = validations[i];
       if (!file.validations[key]) {
@@ -758,7 +778,6 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
     this.changeDetectorRef.markForCheck();
   }
 
-
   /**
    * Clear all validation messages
    */
@@ -769,8 +788,9 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Parse ratio from Array of string to Array of ImageRatio
+   *
    * @param ratios - Array of string
-   * @return - Array of ImageRatio
+   * @returns - Array of ImageRatio
    */
   private parseRatioStringToObject(ratios: Array<string> | undefined): Array<ImageRatio> | undefined {
     if (!ratios) {
@@ -786,10 +806,10 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
 
   /**
    * Parse ratio from Array of ImageRatio to Array of string
+   *
    * @param ratios - Array of ImageRatio
-   * @return - Array of string
+   * @returns - Array of string
    */
-
   private parseRatioToString(ratios: Array<ImageRatio> | undefined): Array<string> | undefined {
     if (!ratios) {
       return undefined;
@@ -799,15 +819,13 @@ export class TsFileUploadComponent extends TsReactiveFormBaseComponent implement
     return parsedRatio;
   }
 
-
   /**
    * Function for tracking for-loops changes
    *
    * @param index - The item index
-   * @return The unique ID
+   * @returns The unique ID
    */
   public trackByFn(index): number {
     return index;
   }
-
 }

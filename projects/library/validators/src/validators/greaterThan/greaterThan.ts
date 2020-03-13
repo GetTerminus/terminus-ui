@@ -13,11 +13,11 @@ import {
 /**
  * Return a validator function to verify the value is above a minimum value
  *
- * @param greaterThan - The minimum value
- * @return The validator function
+ * @param minimum
+ * @returns The validator function
  */
-export function greaterThanValidator(minimum: number | AbstractControl = 0): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+export const greaterThanValidator =
+  (minimum: number | AbstractControl = 0): ValidatorFn => (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
     if (!control || isNaN(control.value)) {
       return null;
@@ -27,17 +27,14 @@ export function greaterThanValidator(minimum: number | AbstractControl = 0): Val
       return getValidationResult(minimum.value, control);
     }
     return getValidationResult(minimum, control);
-
   };
-}
-
 
 /**
  * Return the validation result
  *
  * @param minimum - The minimum value
  * @param control - The control containing the current value
- * @return The difference in time
+ * @returns The difference in time
  */
 function getValidationResult(minimum: number | undefined, control: AbstractControl): ValidationErrors | null {
   minimum = coerceNumberProperty(minimum);

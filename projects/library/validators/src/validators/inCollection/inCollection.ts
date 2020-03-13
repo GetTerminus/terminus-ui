@@ -10,10 +10,10 @@ import {
  *
  * @param collection - The collection to check for the value
  * @param valueFn - A function that pulls the value to compare from the collection objects
- * @return The validator function
+ * @returns The validator function
  */
-export function inCollectionValidator<T>(collection: T[], valueFn?: (a: T) => string): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+export const inCollectionValidator =
+  <T>(collection: T[], valueFn?: (a: T) => string): ValidatorFn => (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
     if (!control || !control.value || !collection || collection.length < 1) {
       return null;
@@ -31,10 +31,8 @@ export function inCollectionValidator<T>(collection: T[], valueFn?: (a: T) => st
       // Determine the correct value to compare
       const collectionValue = valueFn ? valueFn(v) : v;
       const controlValue = valueFn ? valueFn(control.value) : control.value;
-
       return collectionValue === controlValue;
     });
 
     return found ? null : invalidResponse;
   };
-}

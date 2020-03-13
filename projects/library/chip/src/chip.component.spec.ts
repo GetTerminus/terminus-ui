@@ -22,13 +22,17 @@ import {
   TsChipSelectionChange,
 } from './chip.module';
 
-
 describe('Chips', () => {
   let fixture: ComponentFixture<TsChipTestComponent>;
   let chipDebugElement: DebugElement;
   let chipNativeElement: HTMLElement;
   let chipInstance: TsChipComponent;
 
+  /**
+   * Create test host component
+   *
+   * @param component
+   */
   function createComponent<T>(component: Type<T>): ComponentFixture<T> {
     const moduleImports = [
       TsChipModule,
@@ -39,8 +43,13 @@ describe('Chips', () => {
 
   describe('TsChip', () => {
     let testComponent;
+    /**
+     * Set up for tests
+     *
+     * @param component
+     */
     function setup(component: TsChipTestComponent = testComponents.SingleChip) {
-      fixture = createComponent(component);
+      fixture = createComponent(component as any);
       fixture.detectChanges();
 
       chipDebugElement = fixture.debugElement.query(By.directive(TsChipComponent));
@@ -50,7 +59,6 @@ describe('Chips', () => {
     }
 
     describe(`basic behaviors`, () => {
-
       test('should add the `ts-chip` class', () => {
         setup();
         expect(chipNativeElement.classList).toContain('ts-chip');
@@ -195,12 +203,8 @@ describe('Chips', () => {
       });
     });
 
-
-
     describe(`keyboard events`, () => {
-
       describe(`when not disabled`, () => {
-
         beforeEach(() => {
           setup();
           chipInstance.isDisabled = false;
@@ -273,11 +277,9 @@ describe('Chips', () => {
           expect(chipInstance.toggleSelected).not.toHaveBeenCalled();
           expect(A_EVENT.preventDefault).toHaveBeenCalled();
         });
-
       });
 
       describe(`when disabled`, () => {
-
         test(`should do nothing`, () => {
           setup();
           chipInstance.isDisabled = true;
@@ -288,13 +290,10 @@ describe('Chips', () => {
 
           expect(event.preventDefault).not.toHaveBeenCalled();
         });
-
       });
-
     });
 
     describe(`handle click`, () => {
-
       test(`should prevent default if is disabled`, () => {
         setup();
         chipInstance.isDisabled = true;
@@ -316,11 +315,9 @@ describe('Chips', () => {
         expect(event.defaultPrevented).toBe(false);
         expect(event.stopPropagation).toHaveBeenCalled();
       });
-
     });
 
     describe(`tsChipBadge`, () => {
-
       test(`should disable interactions`, () => {
         setup(testComponents.ChipBadge);
 
@@ -329,9 +326,6 @@ describe('Chips', () => {
         expect(chipInstance.isRemovable).toEqual(false);
         expect(chipNativeElement.classList).toContain('ts-chip--badge');
       });
-
     });
-
   });
-
 });

@@ -19,7 +19,6 @@ import { TsTabContentDirective } from './../body/tab-content.directive';
 import { TsTabLabelDirective } from './../label/tab-label.directive';
 
 
-
 // Unique ID for each instance
 let nextUniqueId = 0;
 
@@ -50,7 +49,7 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
   /**
    * Define a unique ID for every instance
    */
-  private id: number = nextUniqueId++;
+  public id: number = nextUniqueId++;
 
   /**
    * Portal that will be the hosted content of the tab
@@ -92,20 +91,20 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
     read: TemplateRef,
     static: true,
   })
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public explicitContent: TemplateRef<any> | undefined;
 
   /**
    * Template inside the TsTabComponent view that contains an `<ng-content>`
    */
   @ViewChild(TemplateRef, { static: true })
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public implicitContent!: TemplateRef<any>;
 
   /**
    * Content for the tab label given by `<ng-template tsTabLabel>`
    */
-  @ContentChild(TsTabLabelDirective, { static: false })
+  @ContentChild(TsTabLabelDirective)
   public templateLabel!: TsTabLabelDirective;
 
   /**
@@ -147,9 +146,10 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
     this.contentPortal = new TemplatePortal(this.explicitContent || this.implicitContent, this.viewContainerRef);
   }
 
-
   /**
    * Trigger event emitter for property changes
+   *
+   * @param changes
    */
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.hasOwnProperty('label') || changes.hasOwnProperty('isDisabled')) {
@@ -157,12 +157,10 @@ export class TsTabComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-
   /**
    * Clean up any subscriptions
    */
   public ngOnDestroy(): void {
     this.stateChanges.complete();
   }
-
 }

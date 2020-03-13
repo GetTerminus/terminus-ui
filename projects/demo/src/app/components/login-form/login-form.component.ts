@@ -1,10 +1,10 @@
 import {
- Component,
+  Component,
   ViewChild,
 } from '@angular/core';
 import {
- TsLoginFormResponse,
- TsLoginFormComponent,
+  TsLoginFormResponse,
+  TsLoginFormComponent,
 } from '@terminus/ui/login-form';
 
 

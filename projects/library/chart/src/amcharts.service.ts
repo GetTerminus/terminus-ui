@@ -5,14 +5,14 @@ import {
 } from '@angular/core';
 
 
-// tslint:disable no-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface TsAmChartsToken {
   core: any;
   charts: any;
   maps?: any;
   themes?: any[];
 }
-// tslint:enable no-any
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
  * Create an injection token that the consumer can override with their version of amCharts

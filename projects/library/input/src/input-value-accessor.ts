@@ -7,5 +7,5 @@ import { InjectionToken } from '@angular/core';
  * themselves for this token, in order to make `TsInputComponent` delegate the getting and setting of the
  * value to them.
  */
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const TS_INPUT_VALUE_ACCESSOR = new InjectionToken<{value: any}>('TS_INPUT_VALUE_ACCESSOR');

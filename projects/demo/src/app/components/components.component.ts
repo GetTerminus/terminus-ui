@@ -25,6 +25,7 @@ import {
 import { map } from 'rxjs/operators';
 
 import { orderArrayByProperty } from '../utilities/orderArrayByProperty';
+
 import { componentsList } from './components.constant';
 
 
@@ -73,6 +74,8 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
   /**
    * Pass the query change to our search
+   *
+   * @param query
    */
   public queryHasChanged(query: string): void {
     this.query$.next(query);
@@ -96,6 +99,8 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
   /**
    * Navigate to the selected page
+   *
+   * @param page
    */
   public pageSelected(page: TsSelectionListChange): void {
     this.router.navigate(['/', 'components', (page.value as Routes)[0].path]);
@@ -103,6 +108,8 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
   /**
    * Query for components from the primary list
+   *
+   * @param query
    */
   private queryComponents(query: string): Route[] {
     if (query) {

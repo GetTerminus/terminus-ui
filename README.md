@@ -1,6 +1,5 @@
 # Terminus UI Library
 
-
 The library of UI components used for Terminus applications.
 
 [![CircleCI][circle-badge]][circle-link]
@@ -225,6 +224,8 @@ $ yarn add @angular/cdk @angular/material @angular/flex-layout@8.0.0-beta.26 dat
 # Optional dependencies (needed if using the TsChartComponent):
 $ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
 ```
+
+> NOTE: Angular `9.0.0` or greater is required.
 
 
 ### Fonts and Typefaces

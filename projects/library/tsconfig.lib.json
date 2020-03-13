@@ -1,18 +1,26 @@
 {
   "extends": "../../tsconfig.json",
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "enableResourceInlining": true,
+    "flatModuleId": "@terminus/ui",
+    "preserveWhitespaces": false,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true
+  },
   "compilerOptions": {
-    "outDir": "../../out-tsc/app",
+    "declaration": true,
+    "experimentalDecorators": true,
+    "outDir": "../../out-tsc/lib",
+    "strictNullChecks": true,
+    "target": "es2015",
     "types": []
   },
-  "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
-  ],
-  "include": [
-    "src/**/*.ts"
-  ],
   "exclude": [
-    "src/test.ts",
-    "src/**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/testing/*",
+    "**/test-sass.js",
+    "**/!(demo)/**/*",
+    "**/!(visual-regression)/**/*"
   ]
 }

@@ -2,12 +2,11 @@ import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TsInputComponent } from '@terminus/ui/input';
 
-
 /**
  * Get all TsInputComponent instances
  *
  * @param fixture - The component fixture
- * @return The array of TsInputComponent instances
+ * @returns The array of TsInputComponent instances
  */
 export function getAllInputInstances(fixture: ComponentFixture<any>): TsInputComponent[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-input'));
@@ -22,7 +21,7 @@ export function getAllInputInstances(fixture: ComponentFixture<any>): TsInputCom
  *
  * @param fixture - The component fixture
  * @param index - The index of the input to return
- * @return The TsInputComponent instance
+ * @returns The TsInputComponent instance
  */
 export function getInputInstance(fixture: ComponentFixture<any>, index = 0): TsInputComponent {
   const all = getAllInputInstances(fixture);
@@ -37,7 +36,7 @@ export function getInputInstance(fixture: ComponentFixture<any>, index = 0): TsI
  *
  * @param fixture - The component fixture
  * @param index - The index of the input to query
- * @return The HTMLInputElement
+ * @returns The HTMLInputElement
  */
 export function getInputElement(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
   const instance = getInputInstance(fixture, index);
@@ -53,7 +52,7 @@ export function getInputElement(fixture: ComponentFixture<any>, index = 0): HTML
  * @param fixture - The component fixture
  * @param text - The value to set
  * @param index - The index of the input to set
- * @return The Promise from fixture.whenStable
+ * @returns The Promise from fixture.whenStable
  */
 export function sendInput(fixture: ComponentFixture<any>, text: string, index = 0): Promise<any> {
   const inputElement = getInputElement(fixture, index);

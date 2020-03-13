@@ -92,11 +92,10 @@ export interface TsNavigationActionItem extends NavigationItemBase {
  * Determine if a navigation item is a {@link TsNavigationLinkItem}
  *
  * @param x - The item to check
- * @return True if the item is a TsNavigationLinkItem
+ * @returns True if the item is a TsNavigationLinkItem
  */
-export function isLinkItem(x: TsNavigationLinkItem | TsNavigationActionItem): x is TsNavigationLinkItem {
-  return !!(x as TsNavigationLinkItem).destination;
-}
+export const isLinkItem =
+  (x: TsNavigationLinkItem | TsNavigationActionItem): x is TsNavigationLinkItem => !!(x as TsNavigationLinkItem).destination;
 
 
 /**
@@ -159,7 +158,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Getter to return the available navigation width
    *
-   * @return The available navigation space
+   * @returns The available navigation space
    */
   private get availableSpace(): number {
     const NAV_WIDTH_BUFFER = 10;
@@ -180,7 +179,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Getter to return the user's full name if it exists
    *
-   * @return The user's full name
+   * @returns The user's full name
    */
   public get usersFullName(): string | null {
     const userExists = !!this.user;
@@ -197,7 +196,7 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   /**
    * Getter to return the count of visible items
    *
-   * @return The number of visible items
+   * @returns The number of visible items
    */
   public get visibleItemsLength(): number {
     return this.visibleItems.getValue().length;
@@ -205,13 +204,13 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
   /**
    * Accept the array of navigation items and trigger setup
+   *
+   * @param value
    */
   @Input()
   public set items(value: TsNavigationItem[]) {
     // Filter out disabled items
-    const enabledItems = value.filter((item: TsNavigationItem) => !item.isDisabled);
-
-    this.pristineItems = enabledItems;
+    this.pristineItems = value.filter((item: TsNavigationItem) => !item.isDisabled);
     this.setUpInitialArrays(this.pristineItems);
     this.generateBreakWidths();
     this.updateLists();
@@ -268,9 +267,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
   }
 
 
-  /**
-   * Inject services
-   */
   constructor(
    private changeDetectorRef: ChangeDetectorRef,
   ) {}
@@ -283,7 +279,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     this.setUpInitialArrays(this.pristineItems);
   }
 
-
   /**
    * Trigger initial layout update after the view initializes
    */
@@ -292,7 +287,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     this.updateLists();
     this.changeDetectorRef.detectChanges();
   }
-
 
   /**
    * Generate the array of breakWidths
@@ -310,7 +304,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
       this.breakWidths.push(totalSpace);
     });
   }
-
 
   /**
    * Clone the nav items and split into the initially visible/hidden lists
@@ -336,7 +329,6 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
 
     this.changeDetectorRef.detectChanges();
   }
-
 
   /**
    * Move items between the two lists as required by the available space
@@ -383,26 +375,23 @@ export class TsNavigationComponent implements OnInit, AfterViewInit {
     this.changeDetectorRef.detectChanges();
   }
 
-
   /**
    * If the destination is a string and begins with `http`
    *
    * @param destination - The destination to check
-   * @return Boolean determining if the link is external
+   * @returns Boolean determining if the link is external
    */
   public isExternalLink(destination: string | string[]): boolean {
     return destination.indexOf('http') >= 0;
   }
 
-
   /**
    * Function for tracking for-loops changes
    *
    * @param index - The item index
-   * @return The unique ID
+   * @returns The unique ID
    */
   public trackByFn(index): number {
     return index;
   }
-
 }

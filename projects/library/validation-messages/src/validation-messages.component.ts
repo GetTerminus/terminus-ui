@@ -1,12 +1,13 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
   OnDestroy,
   ViewEncapsulation,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import {
+  FormControl, ValidationErrors,
+} from '@angular/forms';
 import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 
 import { TsValidationMessagesService } from './validation-messages.service';
@@ -30,7 +31,7 @@ let nextUniqueId = 0;
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/validation</example-url>
  */
-// tslint:disable: prefer-on-push-component-change-detection
+// eslint-disable-next-line @angular-eslint/prefer-on-push-component-change-detection
 @Component({
   selector: 'ts-validation-messages',
   templateUrl: './validation-messages.component.html',
@@ -48,23 +49,21 @@ export class TsValidationMessagesComponent implements OnDestroy {
   /**
    * Define the error message
    *
-   * @return The error message or null if no error
+   * @returns The error message or null if no error
    */
   public get validationMessage(): string | null | undefined {
     if (this.control && this.control.errors) {
       for (const propertyName in this.control.errors) {
-
         // istanbul ignore else
         if (propertyName) {
           // Only show after 'touched' if we are NOT validating on every change
           const immediatelyOrOnChange = this.validateImmediately || this.validateOnChange;
           if (immediatelyOrOnChange || (!this.validateOnChange && this.control.touched)) {
-            const errors = this.control.errors[propertyName];
+            const errors = this.control.errors[propertyName] as ValidationErrors;
 
             return this.validationMessageService.getValidatorErrorMessage(propertyName, errors);
           }
         }
-
       }
     }
     return null;
@@ -72,6 +71,8 @@ export class TsValidationMessagesComponent implements OnDestroy {
 
   /**
    * Define the associated form control
+   *
+   * @param value
    */
   @Input()
   public set control(value: FormControl | undefined) {
@@ -92,6 +93,8 @@ export class TsValidationMessagesComponent implements OnDestroy {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -125,5 +128,4 @@ export class TsValidationMessagesComponent implements OnDestroy {
    * Needed for untilComponentDestroyed
    */
   public ngOnDestroy(): void {}
-
 }

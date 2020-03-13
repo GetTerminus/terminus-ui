@@ -3,12 +3,11 @@ import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TsTabCollectionComponent } from '@terminus/ui/tabs';
 
-
 /**
  * Get an array of all DebugElements for TsTabCollectionComponents
  *
  * @param fixture - The component fixture
- * @return An array of DebugElements
+ * @returns An array of DebugElements
  */
 export function getAllTabCollectionDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-tab-collection'));
@@ -23,7 +22,7 @@ export function getAllTabCollectionDebugElements(fixture: ComponentFixture<any>)
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsTabCollectionComponent
- * @return The DebugElement
+ * @returns The DebugElement
  */
 export function getTabCollectionDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllTabCollectionDebugElements(fixture);
@@ -38,7 +37,7 @@ export function getTabCollectionDebugElement(fixture: ComponentFixture<any>, ind
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsTabCollectionComponent
- * @return The component instance
+ * @returns The component instance
  */
 export function getTabCollectionInstance(fixture: ComponentFixture<any>, index = 0): TsTabCollectionComponent {
   const debugElement = getTabCollectionDebugElement(fixture, index);
@@ -50,7 +49,7 @@ export function getTabCollectionInstance(fixture: ComponentFixture<any>, index =
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsTabCollectionComponent
- * @return An array of debug elements
+ * @returns An array of debug elements
  */
 export function getAllTabLabelDebugElements(fixture: ComponentFixture<any>, index = 0): DebugElement[] {
   const debugElement = getTabCollectionDebugElement(fixture, index);
@@ -62,7 +61,7 @@ export function getAllTabLabelDebugElements(fixture: ComponentFixture<any>, inde
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsTabCollectionComponent
- * @return The array of elements
+ * @returns The array of elements
  */
 export function getAllTabLabelElements(fixture: ComponentFixture<any>, index = 0): HTMLElement[] {
   const debugElements = getAllTabLabelDebugElements(fixture, index);
@@ -78,7 +77,7 @@ export function getAllTabLabelElements(fixture: ComponentFixture<any>, index = 0
  * @param fixture - The component fixture
  * @param collectionIndex - The index of the desired TsTabCollectionComponent
  * @param labelIndex - The index of the desired label element
- * @return The element
+ * @returns The element
  */
 export function getTabLabelElement(fixture: ComponentFixture<any>, collectionIndex = 0, labelIndex = 0): HTMLElement {
   const debugElements = getAllTabLabelDebugElements(fixture, collectionIndex);
@@ -94,7 +93,7 @@ export function getTabLabelElement(fixture: ComponentFixture<any>, collectionInd
  * @param fixture - The component fixture
  * @param collectionIndex - The index of the desired TsTabCollectionComponent
  * @param tabIndex - The index of the desired tab element
- * @return The element
+ * @returns The element
  */
 export function getTabBodyWrapperElement(fixture: ComponentFixture<any>, collectionIndex = 0, tabIndex = 0): HTMLElement {
   const debugElement = fixture.debugElement.query(By.css('.ts-tab-collection__body-wrapper'));
@@ -108,40 +107,16 @@ export function getTabBodyWrapperElement(fixture: ComponentFixture<any>, collect
  * Get the selected label element
  *
  * @param fixture - The component fixture
- * @return The selected label element
+ * @returns The selected label element
  */
-export function getSelectedLabelElement(fixture: ComponentFixture<any>): HTMLElement {
-  return fixture.nativeElement.querySelector('.ts-tab-label--active');
-}
+export const getSelectedLabelElement =
+  (fixture: ComponentFixture<any>): HTMLElement => fixture.nativeElement.querySelector('.ts-tab-label--active');
 
 /**
  * Get the selected content element
  *
  * @param fixture - The component fixture
- * @return The selected tab content element
+ * @returns The selected tab content element
  */
-export function getSelectedContentElement(fixture: ComponentFixture<any>): HTMLElement {
-  return fixture.nativeElement.querySelector('.ts-tab-body--active');
-}
-
-
-/**
- * Checks that:
- * a) The `selectedIndex` has been updated
- * b) The label and body have their respective `active` classes
- *
- * @param fixture - The component fixture
- * @param expectedIndex - The index to use in the expect statement
- */
-export function checkSelectedIndex(fixture: ComponentFixture<any>, expectedIndex: number): void {
-  fixture.detectChanges();
-
-  const collection: TsTabCollectionComponent = getTabCollectionDebugElement(fixture).componentInstance;
-  expect(collection.selectedIndex).toEqual(expectedIndex);
-
-  const tabLabelElement = fixture.debugElement.query(By.css(`.ts-tab-label:nth-of-type(${expectedIndex + 1})`)).nativeElement;
-  expect(tabLabelElement.classList.contains('ts-tab-label--active')).toEqual(true);
-
-  const tabContentElement = fixture.debugElement.query(By.css(`ts-tab-body:nth-of-type(${expectedIndex + 1})`)).nativeElement;
-  expect(tabContentElement.classList.contains('ts-tab-body--active')).toEqual(true);
-}
+export const getSelectedContentElement =
+  (fixture: ComponentFixture<any>): HTMLElement => fixture.nativeElement.querySelector('.ts-tab-body--active');

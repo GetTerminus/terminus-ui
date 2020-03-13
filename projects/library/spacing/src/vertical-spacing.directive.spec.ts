@@ -13,17 +13,12 @@ import {
   TsVerticalSpacingTypes,
 } from './vertical-spacing.directive';
 
-
-@Component({
-  template: `
-    <div [tsVerticalSpacing]="verticalSpacing">Vertical Spacing Content</div>
-  `,
-})
+@Component({ template: `<div [tsVerticalSpacing]="verticalSpacing">Vertical Spacing Content</div>` })
 class TestHostComponent {
-  verticalSpacing: TsVerticalSpacingTypes;
+  verticalSpacing!: TsVerticalSpacingTypes;
 
   @ViewChild(TsVerticalSpacingDirective, { static: true })
-  verticalSpacingDirective: TsVerticalSpacingDirective;
+  verticalSpacingDirective!: TsVerticalSpacingDirective;
 }
 
 @Component({
@@ -35,12 +30,10 @@ class TestHostComponent {
 })
 class TestHostBasicComponent {
   @ViewChild(TsVerticalSpacingDirective, { static: true })
-  verticalSpacingDirective: TsVerticalSpacingDirective;
+  verticalSpacingDirective!: TsVerticalSpacingDirective;
 }
 
-
 describe(`TsVerticalSpacingDirective`, function() {
-
   describe(`set tsVerticalSpacing()`, () => {
     let component: TestHostComponent;
     let fixture: ComponentFixture<TestHostComponent>;
@@ -55,36 +48,31 @@ describe(`TsVerticalSpacingDirective`, function() {
       spacingDiv = fixture.debugElement.query(By.directive(TsVerticalSpacingDirective)).nativeElement as HTMLElement;
     });
 
-
     test(`should exist`, () => {
       expect(fixture).toBeTruthy();
       expect(spacingDiv).toBeTruthy();
     });
 
-
     test(`should set the default margin if no value is passed in`, () => {
       directive.tsVerticalSpacing = '' as any;
 
-      expect(directive.elementRef.nativeElement.style.marginBottom)
+      expect(directive['elementRef'].nativeElement.style.marginBottom)
         .toEqual(TS_SPACING.default[0]);
     });
-
 
     test(`should add the expected spacing class`, () => {
       directive.tsVerticalSpacing = 'large--2';
 
-      expect(directive.elementRef.nativeElement.style.marginBottom)
+      expect(directive['elementRef'].nativeElement.style.marginBottom)
         .toEqual(TS_SPACING.large[2]);
     });
-
 
     test(`should add the expected spacing class for 'none'`, () => {
       directive.tsVerticalSpacing = 'none';
 
-      expect(directive.elementRef.nativeElement.style.marginBottom)
+      expect(directive['elementRef'].nativeElement.style.marginBottom)
         .toEqual('0px');
     });
-
 
     test(`should throw an error if an unexpected value is passed in`, () => {
       expect(() => {
@@ -95,7 +83,6 @@ describe(`TsVerticalSpacingDirective`, function() {
         }
       }).toThrowError();
     });
-
   });
 
   describe(`default TsVerticalSpacing`, () => {
@@ -109,5 +96,4 @@ describe(`TsVerticalSpacingDirective`, function() {
       expect(spacingDiv.nativeElement.style.marginBottom).toEqual('16px');
     });
   });
-
 });

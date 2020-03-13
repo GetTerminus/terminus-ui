@@ -5,25 +5,25 @@ import {
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
-import { TsStyleThemeTypes } from '../../utilities/src/public-api';
+import { TsStyleThemeTypes } from '@terminus/ui/utilities';
+
 import {
   TsCardBorderOptions,
   TsCardComponent,
 } from './card.component';
 import { TsCardModule } from './card.module';
 
-
 @Component({
   template: `
-  <ts-card
-    [isDisabled]="isDisabled"
-    [flat]="flat"
-    [supportsInteraction]="supportsInteraction"
-    [theme]="theme"
-    [border]="border"
-  >
-  Here is my card!
-  </ts-card>
+    <ts-card
+      [isDisabled]="isDisabled"
+      [flat]="flat"
+      [supportsInteraction]="supportsInteraction"
+      [theme]="theme"
+      [border]="border"
+    >
+      Here is my card!
+    </ts-card>
   `,
 })
 class TestHostComponent {
@@ -36,7 +36,6 @@ class TestHostComponent {
   @ViewChild(TsCardComponent, { static: true })
   public cardComponent!: TsCardComponent;
 }
-
 
 describe(`TsCardComponent`, function() {
   let component: TestHostComponent;
@@ -123,8 +122,7 @@ describe(`TsCardComponent`, function() {
   });
 
   describe(`id`, function() {
-
-    test(`should set a unique ID and be overwritable and default to UUID if no value is passed in`, () => {
+    test(`should set a unique ID and be overridable and default to UUID if no value is passed in`, () => {
       expect(cardComponent.id).toBeTruthy();
       expect(cardComponent2.id).toBeTruthy();
       expect(cardComponent.id).not.toEqual(cardComponent2.id);
@@ -133,13 +131,11 @@ describe(`TsCardComponent`, function() {
       expect(cardComponent.id).toEqual('foo');
 
       cardComponent.id = null as any;
-      expect(cardComponent.id).toEqual(cardComponent.uid);
+      expect(cardComponent.id).toEqual(cardComponent['uid']);
     });
-
   });
 
   describe(`theme`, function() {
-
     test(`should set a default and allow overrides`, () => {
       expect(cardComponent.theme).toEqual('primary');
       component.theme = 'warn';
@@ -148,30 +144,23 @@ describe(`TsCardComponent`, function() {
       expect(card.classList).toContain('c-card--warn');
     });
 
-
     test(`should do nothing if no value is passed in`, () => {
       cardComponent.theme = '' as any;
       expect(cardComponent.theme).toEqual('primary');
       expect(card.classList).toContain('c-card--primary');
     });
-
   });
 
-
   describe(`border`, function() {
-
     test(`should do nothing if no value is passed in`, () => {
       cardComponent.border = '' as any;
       fixture.detectChanges();
       expect(cardComponent.border).toEqual('none');
       expect(card.classList).not.toContain('c-card--border');
     });
-
   });
 
-
   describe(`get borderClass`, function() {
-
     test(`should return a string representation of the needed class`, () => {
       expect(cardComponent.borderClass).toEqual('');
       component.border = 'top';
@@ -179,7 +168,5 @@ describe(`TsCardComponent`, function() {
       expect(cardComponent.borderClass).toEqual('c-card--border-top');
       expect(card.classList).toContain('c-card--border-top');
     });
-
   });
-
 });

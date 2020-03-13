@@ -10,22 +10,19 @@ import { createComponent } from '@terminus/ngx-tools/testing';
 import { TsIconButtonComponent } from './icon-button.component';
 import { TsIconButtonModule } from './icon-button.module';
 
-
 @Component({
   template: `
-  <ts-icon-button
-    actionName="Menu"
-    buttonType="button"
-    [isDisabled]="false"
-    (clicked)="clicked($event)"
-  >delete_forever</ts-icon-button>
+    <ts-icon-button
+      actionName="Menu"
+      buttonType="button"
+      [isDisabled]="false"
+    >delete_forever</ts-icon-button>
   `,
 })
 class TestHostComponent {
   @ViewChild(TsIconButtonComponent, { static: true })
-  iconButtonComponent: TsIconButtonComponent;
+  iconButtonComponent!: TsIconButtonComponent;
 }
-
 
 describe(`TsIconButtonComponent`, function() {
   let component: TestHostComponent;
@@ -39,7 +36,6 @@ describe(`TsIconButtonComponent`, function() {
     iconButton = fixture.debugElement.query(By.css('.c-icon-button ')).nativeElement as HTMLElement;
   });
 
-
   test(`should exist`, () => {
     expect(component).toBeTruthy();
     expect(iconButton).toBeTruthy();
@@ -48,5 +44,4 @@ describe(`TsIconButtonComponent`, function() {
   test(`should contain icon`, () => {
     expect(iconButton.children[0].textContent).toContain('delete_forever');
   });
-
 });

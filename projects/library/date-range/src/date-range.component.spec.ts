@@ -14,17 +14,13 @@ import { getRangeInputInstances } from '@terminus/ui/date-range/testing';
 
 import { TsDateRangeModule } from './date-range.module';
 
-
 /**
  * NOTE (B$): The ideal test would be to actually check the DOM to verify that specific dates are disabled etc. I was not having any luck
  * querying that deeply into the generated DOM. So, for now, we are simply testing the class as fully as possible.
  */
 
-
 describe(`TsDateRangeComponent`, function() {
-
   describe(`date constraints`, function() {
-
     test(`should set the END min date according to the start date`, function() {
       const fixture = createComponent(testComponents.SeededDates);
       fixture.detectChanges();
@@ -33,7 +29,6 @@ describe(`TsDateRangeComponent`, function() {
       expect(endInputInstance.minDate).toEqual(new Date(2018, 1, 1));
     });
 
-
     test(`should set the START max date according to the end date`, function() {
       const fixture = createComponent(testComponents.SeededDates);
       fixture.detectChanges();
@@ -41,7 +36,6 @@ describe(`TsDateRangeComponent`, function() {
 
       expect(startInputInstance.maxDate).toEqual(new Date(2018, 1, 12));
     });
-
 
     test(`should set the START max date according to the end date on BLUR`, function() {
       const fixture = createComponent(testComponents.Basic);
@@ -54,14 +48,10 @@ describe(`TsDateRangeComponent`, function() {
 
       expect(startInputInstance.maxDate).toEqual(new Date('3-4-2019'));
     });
-
   });
 
-
   describe(`control syncing`, function() {
-
     describe(`internal controls`, function() {
-
       test(`should update their VALUE when the external control value changes`, function() {
         const fixture = createComponent(testComponents.Basic);
         fixture.detectChanges();
@@ -79,7 +69,6 @@ describe(`TsDateRangeComponent`, function() {
         expect(fixture.componentInstance.dateRangeComponent.internalEndControl.value).toEqual(date);
         expect.assertions(4);
       });
-
 
       // internal status/error updated by external ctrl
       test(`should update their STATUS when the external control changes`, function() {
@@ -105,7 +94,6 @@ describe(`TsDateRangeComponent`, function() {
         expect.assertions(4);
       });
 
-
       test(`should do nothing if no controls exist`, function() {
         jest.useFakeTimers();
         const fixture = createComponent(testComponents.NoControls);
@@ -128,12 +116,9 @@ describe(`TsDateRangeComponent`, function() {
         jest.runAllTimers();
         expect.assertions(4);
       });
-
     });
 
-
     describe(`external controls`, function() {
-
       test(`should update their VALUE when the internal control changes`, function() {
         const fixture = createComponent(testComponents.Basic);
         fixture.detectChanges();
@@ -152,17 +137,21 @@ describe(`TsDateRangeComponent`, function() {
         expect(fixture.componentInstance.dateRangeComponent.internalEndControl.value).toEqual(new Date('3-8-2019'));
         expect.assertions(4);
       });
-
     });
-
   });
 
-
   describe(`emitters`, function() {
+    let fixture: ComponentFixture<testComponents.Emitters>;
+
+    beforeEach(() => {
+      fixture = createComponent(testComponents.Emitters);
+      fixture.componentInstance.dateRangeChange = jest.fn();
+      fixture.componentInstance.startSelected = jest.fn();
+      fixture.componentInstance.endSelected = jest.fn();
+      fixture.detectChanges();
+    });
 
     test(`should pass correct values when fired`, function() {
-      const fixture = createComponent(testComponents.Emitters);
-      fixture.detectChanges();
       const [startInputInstance, endInputInstance] = getRangeInputInstances(fixture);
 
       typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
@@ -195,12 +184,9 @@ describe(`TsDateRangeComponent`, function() {
 
       expect.assertions(5);
     });
-
   });
 
-
   describe(`input component`, function() {
-
     test(`should receive all needed parameters from the date range component`, function() {
       const fixture = createComponent(testComponents.Params);
       const hostInstance = fixture.componentInstance;
@@ -224,12 +210,11 @@ describe(`TsDateRangeComponent`, function() {
 
       expect.assertions(10);
     });
-
   });
-
 
   test(`should work without a form group`, function() {
     const fixture = createComponent(testComponents.NoFormGroup);
+    fixture.componentInstance.startSelected = jest.fn();
     fixture.detectChanges();
     const startInputInstance = getRangeInputInstances(fixture)[0];
     typeInElement('3-4-2019', startInputInstance.inputElement.nativeElement);
@@ -238,22 +223,20 @@ describe(`TsDateRangeComponent`, function() {
 
     expect(fixture.componentInstance.startSelected).toHaveBeenCalled();
   });
-
 });
 
-
-
-
 /**
- * HELPERS
+ * Create component
+ *
+ * @param component
+ * @param providers
+ * @param imports
  */
-
-export function createComponent<T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> {
-  return createComponentInner<T>(component,
+const createComponent =
+  <T>(component: Type<T>, providers: Provider[] = [], imports: any[] = []): ComponentFixture<T> => createComponentInner<T>(component,
     providers,
     [
       ReactiveFormsModule,
       TsDateRangeModule,
       ...imports,
     ]);
-}

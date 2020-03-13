@@ -1,43 +1,71 @@
+const SEVERITY = 'error';
+const DISABLED = 'off';
+
+
 module.exports = {
-  "extends": ["@terminus/eslint-config-frontend/development"],
-  "parserOptions": {
-    "ecmaVersion": 6,
-    "project": "./tsconfig.json",
-    "sourceType": "module",
+  root: true,
+  extends: ['@terminus/eslint-config-frontend'],
+  rules: {
+    'jsdoc/require-jsdoc': SEVERITY,
   },
-  "root": true,
-  "rules": {
-    // TODO: Remove once all `console.warn`s have been converted to JS errors.
-    "no-console": [
-      "error",
-      {
-        "allow": [
-          "warn",
-        ],
-      },
-    ],
-  },
-  "overrides": [
-    // Spec files:
+  overrides: [
+    // TypeScript and Angular specific rules
     {
-      "files": [
-        "*.spec.ts",
-        "*.mock.ts",
-        // Sass test file:
-        "test-sass.js",
-        // Test helper files:
-        "test-*.ts",
-      ],
-      "env": {
-        "jest": true,
+      files: ['*.ts'],
+      rules: {
+        // TODO: Do I need to redefine the entire rule here? Or can I just add the prefix array?
+        '@angular-eslint/component-selector': [
+          SEVERITY,
+          {
+            type: 'element',
+            // TODO: change 'app' to 'vr'
+            prefix: ['ts', 'app', 'demo'],
+            style: 'kebab-case',
+          },
+        ],
+        '@angular-eslint/directive-selector': [
+          SEVERITY,
+          {
+            type: 'attribute',
+            // TODO: change 'app' to 'vr'
+            prefix: ['ts', 'app', 'demo'],
+            style: 'camelCase',
+          },
+        ],
+        // For performance, prefer OnPush
+        '@angular-eslint/prefer-on-push-component-change-detection': SEVERITY,
       },
-      "rules": {
-        "dot-notation": "off",
-        "guard-for-in": "off",
-        "line-comment-position": "off",
-        "no-console": "off",
-        "no-magic-numbers": "off",
-        "no-underscore-dangle": "off",
+    },
+
+
+    // Test helper files
+    {
+      'files': [
+        '**/*.spec.ts',
+        '**/*.mock.ts',
+        '**/test-helpers.ts',
+        '**/test-components.ts',
+      ],
+      'rules': {
+        '@angular-eslint/prefer-on-push-component-change-detection': DISABLED,
+      },
+    },
+
+    // Demo project
+    {
+      files: [
+        'projects/demo/**/*.ts',
+        'projects/visual-regression/**/*.ts',
+      ],
+      rules: {
+        '@angular-eslint/prefer-on-push-component-change-detection': DISABLED,
+        '@typescript-eslint/explicit-member-accessibility': DISABLED,
+        '@typescript-eslint/member-ordering': DISABLED,
+        '@typescript-eslint/no-explicit-any': DISABLED,
+        '@typescript-eslint/no-magic-numbers': DISABLED,
+        '@typescript-eslint/no-non-null-assertion': DISABLED,
+        'no-console': DISABLED,
+        'jsdoc/require-jsdoc': DISABLED,
       },
     },
   ],

@@ -19,6 +19,7 @@ import {
   tsStyleThemeTypesArray,
 } from '@terminus/ui/utilities';
 
+
 // Unique ID for each instance
 let nextUniqueId = 0;
 
@@ -129,7 +130,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    *
    * Used by {@link TsConfirmationDirective}
    */
-  public originalClickEvent!: MouseEvent;
+  public originalClickEvent!:MouseEvent;
 
   /**
    * Define the default component ID
@@ -163,6 +164,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
   /**
    * Define the collapsed value and trigger the delay if needed
+   *
+   * @param value
    */
   @Input()
   public set collapsed(value: boolean) {
@@ -177,6 +180,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
   /**
    * Define the button format. {@link TsButtonFormatTypes}
+   *
+   * @param value
    */
   @Input()
   public set format(value: TsButtonFormatTypes) {
@@ -186,11 +191,13 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
     // Verify the value is allowed
     if (tsButtonFormatTypesArray.indexOf(value) < 0 && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsButtonComponent: "${value}" is not an allowed format. See TsButtonFormatTypes for available options.`);
       return;
     }
 
     if (value === 'collapsable' && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsButtonComponent: "collapsable" has been deprecated. Please use "collapsible" instead.`);
     }
 
@@ -226,6 +233,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -250,6 +259,8 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
   /**
    * Define the theme
+   *
+   * @param value
    */
   @Input()
   public set theme(value: TsStyleThemeTypes) {
@@ -259,6 +270,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
 
     // Verify the value is allowed
     if (tsStyleThemeTypesArray.indexOf(value) < 0 && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsButtonComponent: "${value}" is not an allowed theme. See TsStyleThemeTypes for available options.`);
       return;
     }
@@ -352,7 +364,7 @@ export class TsButtonComponent implements OnInit, OnDestroy {
    * NOTE: I'm not entirely sure why this `detectChanges` is needed. Supposedly zone.js should be patching setTimeout automatically.
    *
    * @param delay - The time to delay before collapsing the button
-   * @return The ID of the timeout
+   * @returns The ID of the timeout
    */
   private collapseWithDelay(delay: number): number {
     return this.windowService.nativeWindow.setTimeout(() => {
@@ -373,12 +385,10 @@ export class TsButtonComponent implements OnInit, OnDestroy {
     const isTheme = themeOptions.indexOf(classname) >= 0;
     const isFormat = formatOptions.indexOf(classname) >= 0;
     // NOTE: Underscore dangle name controlled by Material
-    /* eslint-disable no-underscore-dangle */
     // NOTE: This 'any' is needed since the `mat-raised-button` directive overwrites elementRef
     // NOTE: Need to check if button is already available (could be undefined during initialization)
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-underscore-dangle
     const buttonEl = this.button ? (this.button as any)._elementRef.nativeElement : null;
-    /* eslint-enable no-underscore-dangle */
     const themeClasses = themeOptions.map(theme => `c-button--${theme}`);
     const formatClasses = formatOptions.map(format => `c-button--${format}`);
 

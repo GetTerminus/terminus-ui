@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
+
 import { TsCardTitleDirective } from './card-title.directive';
 import { TsCardModule } from './card.module';
-
 
 @Component({
   template: `
@@ -30,9 +30,7 @@ class TestHostAccentBorderComponent {}
 })
 class TestHostErrorComponent {}
 
-
 describe(`TsCardTitleDirective`, () => {
-
   test(`should add the title class`, () => {
     const fixture = createComponent(TestHostComponent, [], [TsCardModule]);
     fixture.detectChanges();
@@ -40,7 +38,6 @@ describe(`TsCardTitleDirective`, () => {
 
     expect(classElement.properties.className).toEqual('c-card__title');
   });
-
 
   test(`should add the accent border class`, () => {
     const fixture = createComponent(TestHostAccentBorderComponent, [], [TsCardModule]);
@@ -50,7 +47,6 @@ describe(`TsCardTitleDirective`, () => {
     expect(classElement.properties.className).toEqual('c-card__title c-card__title-accent-border');
   });
 
-
   test(`should throw an error if not nested within a TsCardComponent`, () => {
     const create = () => {
       const fixture = createComponent(TestHostErrorComponent, [], [TsCardModule]);
@@ -59,5 +55,4 @@ describe(`TsCardTitleDirective`, () => {
 
     expect(create).toThrow();
   });
-
 });

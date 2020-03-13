@@ -86,8 +86,8 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Access the template. Used by {@link TsAutocompleteTriggerDirective}
    */
-  @ViewChild(TemplateRef, { static: false })
-  // tslint:disable-next-line no-any
+  @ViewChild(TemplateRef)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public template!: TemplateRef<any>;
 
   /**
@@ -105,11 +105,13 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
    * Function that maps an option's control value to its display value in the trigger
    */
   @Input()
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public displayWith: ((value: any) => string) | null = null;
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -177,6 +179,8 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
 
   /**
    * Emit the `select` event
+   *
+   * @param option
    */
   public emitSelectEvent(option: TsOptionComponent): void {
     const event = new TsAutocompletePanelSelectedEvent(this, option);
@@ -187,7 +191,7 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
   /**
    * Return the panel's scrollTop
    *
-   * @return The scrolltop number
+   * @returns The scrolltop number
    */
   public getScrollTop(): number {
     return this.panel ? this.panel.nativeElement.scrollTop : 0;
@@ -216,5 +220,4 @@ export class TsAutocompletePanelComponent implements AfterContentInit {
     this.showPanel = !!this.options.length;
     this.changeDetectorRef.markForCheck();
   }
-
 }

@@ -1,6 +1,3 @@
-// NOTE: In this case, we want an actual selector (so content can be nested inside) for our directive. So we are disabling the
-// `directive-selector` rule
-// tslint:disable: directive-selector
 import {
   CdkCell,
   CdkCellDef,
@@ -15,13 +12,11 @@ import {
   isDevMode,
   NgZone,
   OnDestroy,
+  OnInit,
   Output,
   Renderer2,
 } from '@angular/core';
-import {
-  TsDocumentService,
-  TsWindowService,
-} from '@terminus/ngx-tools/browser';
+import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 import {
@@ -39,6 +34,9 @@ import {
 } from './column';
 
 
+/**
+ * The minimum width for columns
+ */
 export const TS_TABLE_MIN_COLUMN_WIDTH = 70;
 
 // Unique ID for each instance
@@ -59,11 +57,9 @@ export function setColumnAlignment(column: TsColumnDefDirective, renderer: Rende
       throw new TsUILibraryError(`TsCellDirective: "${column.alignment}" is not an allowed alignment.`
         + `See "TsTableColumnAlignment" type for available options.`);
     }
-
     renderer.addClass(elementRef.nativeElement, `ts-cell--align-${column.alignment}`);
   }
 }
-
 
 /**
  * Cell definition for the {@link TsTableComponent}.
@@ -79,7 +75,6 @@ export function setColumnAlignment(column: TsColumnDefDirective, renderer: Rende
 })
 export class TsCellDefDirective extends CdkCellDef {}
 
-
 /**
  * Header cell definition for the {@link TsTableComponent}.
  *
@@ -94,7 +89,6 @@ export class TsCellDefDirective extends CdkCellDef {}
 })
 export class TsHeaderCellDefDirective extends CdkHeaderCellDef {}
 
-
 /**
  * Define the event object for header cell resize events
  */
@@ -107,11 +101,11 @@ export class TsHeaderCellResizeEvent {
   ) {}
 }
 
-
 /**
  * Header cell template container that adds the right classes and role.
  */
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'ts-header-cell, th[ts-header-cell]',
   host: {
     'class': 'ts-header-cell',
@@ -120,27 +114,16 @@ export class TsHeaderCellResizeEvent {
   },
   exportAs: 'tsHeaderCell',
 })
-export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
+export class TsHeaderCellDirective extends CdkHeaderCell implements OnInit, OnDestroy {
   /**
    * Store a reference to the column
    */
-  public column: TsColumnDefDirective;
-
-  /**
-   * Store reference to the document
-   */
-  private document: Document;
+  public column!: TsColumnDefDirective;
 
   /**
    * Stream used inside takeUntil pipes
    */
   private killStream$ = new Subject<void>();
-
-  /**
-   * Stub in listener storage
-   */
-  private resizableMousemove: () => void;
-  private resizableMouseup: () => void;
 
   /**
    * Define the class for the resizable element
@@ -168,11 +151,6 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
   public width = 'auto';
 
   /**
-   * Store reference to the window
-   */
-  private window: Window;
-
-  /**
    * Return the current set width
    */
   public get cellWidth(): number {
@@ -198,25 +176,28 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
     public elementRef: ElementRef,
     private renderer: Renderer2,
     private documentService: TsDocumentService,
-    private windowService: TsWindowService,
     private ngZone: NgZone,
   ) {
     super(columnDef, elementRef);
-    this.column = columnDef as TsColumnDefDirective;
-    this.document = documentService.document;
-    this.window = windowService.nativeWindow;
-    elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
+  }
+
+  /**
+   * Initial setup
+   */
+  public ngOnInit(): void {
+    this.column = this.columnDef as TsColumnDefDirective;
+    this.elementRef.nativeElement.classList.add(`ts-column-${this.column.cssClassFriendlyName}`);
 
     // eslint-disable-next-line no-underscore-dangle
-    if (columnDef._stickyEnd) {
-      elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
+    if (this.column._stickyEnd) {
+      this.elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
     }
 
-    if (columnDef.sticky) {
-      elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
+    if (this.column.sticky) {
+      this.elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
     }
 
-    setColumnAlignment(this.column, renderer, elementRef);
+    setColumnAlignment(this.column, this.renderer, this.elementRef);
   }
 
   /**
@@ -244,18 +225,26 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
     this.renderer.appendChild(this.elementRef.nativeElement, resizeElement);
 
     this.ngZone.runOutsideAngular(() => {
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       fromEvent<MouseEvent>(resizeElement, 'mousedown')
         .pipe(untilComponentDestroyed<MouseEvent>(this))
         .subscribe(e => this.onResizeColumn(e));
 
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       fromEvent<MouseEvent>(resizeElement, 'click')
         .pipe(untilComponentDestroyed<MouseEvent>(this))
         .subscribe(e => e.stopPropagation());
 
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       fromEvent<MouseEvent>(resizeElement, 'mouseenter')
         .pipe(untilComponentDestroyed<MouseEvent>(this))
         .subscribe(() => this.syncHoverClass(true));
 
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       fromEvent<MouseEvent>(resizeElement, 'mouseleave')
         .pipe(untilComponentDestroyed<MouseEvent>(this))
         .subscribe(() => this.syncHoverClass(false));
@@ -267,7 +256,7 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
    *
    * @param start - The starting width
    * @param difference - The amount moved
-   * @return The final column width
+   * @returns The final column width
    */
   private static determineWidth(start: number, difference: number): number {
     const total = start + difference;
@@ -283,7 +272,9 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
     this.startOffsetX = event.clientX;
     this.startWidth = this.cellWidth;
 
-    fromEvent<MouseEvent>(document, 'mousemove')
+    // TODO: Refactor deprecation
+    // eslint-disable-next-line deprecation/deprecation
+    fromEvent<MouseEvent>(this.documentService.document, 'mousemove')
       .pipe(
         untilComponentDestroyed(this),
         takeUntil(this.killStream$),
@@ -297,7 +288,9 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
         }
       });
 
-    fromEvent<MouseEvent>(document, 'mouseup')
+    // TODO: Refactor deprecation
+    // eslint-disable-next-line deprecation/deprecation
+    fromEvent<MouseEvent>(this.documentService.document, 'mouseup')
       .pipe(
         untilComponentDestroyed(this),
         take(1),
@@ -329,7 +322,6 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
       ? this.renderer.addClass(this.elementRef.nativeElement, 'ts-cell--resizing')
       : this.renderer.removeClass(this.elementRef.nativeElement, 'ts-cell--resizing');
   }
-
 }
 
 
@@ -337,17 +329,18 @@ export class TsHeaderCellDirective extends CdkHeaderCell implements OnDestroy {
  * Cell template container that adds the right classes and role.
  */
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: 'ts-cell, td[ts-cell]',
   host: {
     class: 'ts-cell',
     role: 'gridcell',
   },
 })
-export class TsCellDirective extends CdkCell {
+export class TsCellDirective extends CdkCell implements OnInit {
   /**
    * Store a reference to the column
    */
-  public column: TsColumnDefDirective;
+  public column!: TsColumnDefDirective;
 
   /**
    * Define the default component ID
@@ -361,23 +354,28 @@ export class TsCellDirective extends CdkCell {
     private renderer: Renderer2,
   ) {
     super(columnDef, elementRef);
-    // NOTE: Changing the type in the constructor from `CdkColumnDef` to `TsColumnDefDirective` doesn't seem to play well with the CDK.
-    // Coercing the type here is a hack, but allows us to reference properties that do not exist on the underlying `CdkColumnDef`.
-    this.column = columnDef as TsColumnDefDirective;
-
-    // Set a custom class for each column
-    elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
-
-    setColumnAlignment(this.column, renderer, elementRef);
-
-    // eslint-disable-next-line no-underscore-dangle
-    if (columnDef._stickyEnd) {
-      elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
-    }
-
-    if (columnDef.sticky) {
-      elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
-    }
   }
 
+  /**
+   * Initial setup
+   */
+  public ngOnInit(): void {
+    // HACK: Changing the type in the constructor from `CdkColumnDef` to `TsColumnDefDirective` doesn't seem to play well with the CDK.
+    // Coercing the type here is a hack, but allows us to reference properties that do not exist on the underlying `CdkColumnDef`.
+    this.column = this.columnDef as TsColumnDefDirective;
+
+    // Set a custom class for each column
+    this.elementRef.nativeElement.classList.add(`ts-column-${this.column.cssClassFriendlyName}`);
+
+    setColumnAlignment(this.column, this.renderer, this.elementRef);
+
+    // eslint-disable-next-line no-underscore-dangle
+    if (this.column._stickyEnd) {
+      this.elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
+    }
+
+    if (this.column.sticky) {
+      this.elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
+    }
+  }
 }

@@ -12,6 +12,7 @@ import {
   ChangeDetectorRef,
   Directive,
   ElementRef,
+  forwardRef,
   Host,
   Inject,
   InjectionToken,
@@ -22,7 +23,10 @@ import {
   Optional,
   ViewContainerRef,
 } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import { coerceBooleanProperty } from '@terminus/ngx-tools/coercion';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
@@ -37,13 +41,9 @@ import {
   TsOptionComponent,
   TsOptionSelectionChange,
 } from '@terminus/ui/option';
-import {
-  ControlValueAccessorProviderFactory,
-  TsUILibraryError,
-} from '@terminus/ui/utilities';
+import { TsUILibraryError } from '@terminus/ui/utilities';
 import {
   defer,
-  fromEvent,
   merge,
   Observable,
   of,
@@ -76,9 +76,13 @@ export const AUTOCOMPLETE_PANEL_HEIGHT = 256;
 // Injection token that determines the scroll handling while the autocomplete panel is open
 export const TS_AUTOCOMPLETE_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>('mat-autocomplete-scroll-strategy');
 
-export function TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.reposition();
-}
+/**
+ * Define a scroll strategy factory
+ *
+ * @param overlay
+ */
+export const TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY =
+  (overlay: Overlay): () => ScrollStrategy => () => overlay.scrollStrategies.reposition();
 
 export const TS_AUTOCOMPLETE_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: TS_AUTOCOMPLETE_SCROLL_STRATEGY,
@@ -119,11 +123,14 @@ let nextUniqueId = 0;
     '(keydown)': 'handleKeydown($event)',
   },
   providers: [
-    ControlValueAccessorProviderFactory<TsAutocompleteTriggerDirective>(TsAutocompleteTriggerDirective),
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => TsAutocompleteTriggerDirective),
+      multi: true,
+    },
   ],
   exportAs: 'tsAutocompleteTrigger',
 })
-// tslint:disable-next-line no-any
 export class TsAutocompleteTriggerDirective<ValueType = string> implements ControlValueAccessor, OnDestroy {
   /**
    * Whether the autocomplete can open the next time it is focused. Used to prevent a focused, closed autocomplete from being reopened if
@@ -160,8 +167,9 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Stream of autocomplete option selections
    */
-  public readonly optionSelections: Observable<TsOptionSelectionChange> | Observable<{}> = defer(() => {
+  public readonly optionSelections: Observable<TsOptionSelectionChange> | Observable<unknown> = defer(() => {
     if (this.autocompletePanel && this.autocompletePanel.options) {
+      // eslint-disable-next-line deprecation/deprecation
       return merge(...this.autocompletePanel.options.map(option => option.selectionChange));
     }
 
@@ -169,6 +177,8 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
     // In that case, return a stream that we'll replace with the real one once everything is in place.
     return this.ngZone.onStable
       .asObservable()
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
@@ -229,13 +239,14 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    * A stream of actions that should close the autocomplete panel, including when an option is selected, on blur, and when TAB is pressed.
    */
   public get panelClosingActions(): Observable<TsOptionSelectionChange | null> {
+    // eslint-disable-next-line deprecation/deprecation
     return merge(
       this.optionSelections,
       this.autocompletePanel.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
       this.closeKeyEventStream,
-      this.overlayRef.backdropClick(),
+      // eslint-disable-next-line deprecation/deprecation
+      this.overlayRef?.backdropClick() || of<string>(''),
     ).pipe(
-      // Normalize the output so we return a consistent type.
       map(event => (event instanceof TsOptionSelectionChange ? event : null)),
     );
   }
@@ -252,14 +263,17 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    *
    * NOTE: Input has specific naming since it is accepting a standard HTML data attribute.
    */
-  // tslint:disable: no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('autocomplete')
   public autocompleteAttribute = 'off';
 
   /**
    * Whether the autocomplete is disabled. When disabled, the element will act as a regular input and the user won't be able to open the
    * panel.
+   *
+   * @param value
    */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tsAutocompleteDisabled')
   public set autocompleteDisabled(value: boolean) {
     this._autocompleteDisabled = coerceBooleanProperty(value);
@@ -273,13 +287,14 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    * The autocomplete panel to be attached to this trigger
    */
   // Note: Renaming as prefixed name does not add clarity
-  // tslint:disable: no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tsAutocompleteTrigger')
   public autocompletePanel!: TsAutocompletePanelComponent;
-  // tslint:enable: no-input-rename
 
   /**
    * Define if the autocomplete panel should reopen after a selection is made
+   *
+   * @param value
    */
   @Input()
   public set reopenAfterSelection(value: boolean) {
@@ -299,7 +314,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
     private changeDetectorRef: ChangeDetectorRef,
     private documentService: TsDocumentService,
     private viewportRuler: ViewportRuler,
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(TS_AUTOCOMPLETE_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Host() private formField: TsFormFieldComponent,
   ) {
@@ -451,7 +466,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * View -> model callback called when value changes
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public onChange: (value: any) => void = () => {};
 
 
@@ -580,6 +595,8 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
 
   /**
    * Clear any previous selected option and emit a selection change event for this option
+   *
+   * @param skip
    */
   private clearPreviousSelectedOption(skip: TsOptionComponent): void {
     this.autocompletePanel.options.forEach(option => {
@@ -628,7 +645,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Return the connected element
    *
-   * @return The ElementRef
+   * @returns The ElementRef
    */
   private getConnectedElement(): ElementRef {
     return this.formField ? this.formField.getConnectedOverlayOrigin() : this.elementRef;
@@ -646,7 +663,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Create a config for an overlay
    *
-   * @return The overlay config
+   * @returns The overlay config
    */
   private getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
@@ -663,7 +680,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Get the overlay position strategy
    *
-   * @return The position strategy
+   * @returns The position strategy
    */
   private getOverlayPosition(): PositionStrategy {
     this.positionStrategy = this.overlay.position()
@@ -692,7 +709,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * Return the panel width
    *
-   * @return The width
+   * @returns The width
    */
   private getPanelWidth(): number | string {
     return this.getHostWidth();
@@ -749,7 +766,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
    *
    * @param value - The value to set
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private setTriggerValue(value: any): void {
     const displayFn = this.autocompletePanel && this.autocompletePanel.displayWith;
     const toDisplay = displayFn ? displayFn(value) : value;
@@ -787,21 +804,26 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   /**
    * This method listens to a stream of panel closing actions and resets the stream every time the option list changes
    *
-   * @return The subscription
+   * @returns The subscription
    */
   public subscribeToClosingActions(): Subscription {
     const firstStable = this.ngZone.onStable.asObservable().pipe(take(1));
     const optionChanges = this.autocompletePanel.options.changes.pipe(
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       tap(() => this.positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing bindings in here will cause "changed after checked" errors.
       delay(0),
     );
 
     // When the zone is stable initially, and when the option list changes...
+    // eslint-disable-next-line deprecation/deprecation
     return merge(firstStable, optionChanges)
       .pipe(
         // Create a new stream of panelClosingActions, replacing any previous streams that were created, and flatten it so our stream only
         // emits closing events...
+        // TODO: Refactor deprecation
+        // eslint-disable-next-line deprecation/deprecation
         switchMap(() => {
           this.resetActiveItem();
           this.autocompletePanel.setVisibility();
@@ -829,6 +851,5 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
     // refocused when they come back. In this case we want to skip the first focus event, if the
     // pane was closed, in order to avoid reopening it unintentionally.
     this.canOpenOnNextFocus = this.document.activeElement !== this.elementRef.nativeElement || this.panelOpen;
-  }
-
+  };
 }

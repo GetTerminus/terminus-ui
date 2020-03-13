@@ -20,7 +20,7 @@ export class TabsComponent implements OnInit {
   alignmentControl = new FormControl('start');
   dynamicTabs = ['First', 'Second', 'Third'];
 
-  @ViewChild('tabCollection', {static: true})
+  @ViewChild('tabCollection', { static: true })
   public tabCollection!: TsTabCollectionComponent;
 
 
@@ -34,7 +34,6 @@ export class TabsComponent implements OnInit {
     });
   }
 
-
   /**
    * Helpers for dynamic tabs demo
    */
@@ -46,12 +45,11 @@ export class TabsComponent implements OnInit {
     this.dynamicTabs.splice(index, 0, 'New New!');
   }
 
-
   /**
    * Helpers for events demo
    */
   updateIndex() {
-    this.eventsIndex = !(this.eventsIndex) ? 1 : 0;
+    this.eventsIndex = this.eventsIndex ? 0 : 1;
   }
 
   animationFinished() {

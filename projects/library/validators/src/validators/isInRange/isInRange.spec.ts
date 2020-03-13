@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   FormControl,
   ValidatorFn,
@@ -6,9 +5,7 @@ import {
 
 import { isInRangeValidator } from './isInRange';
 
-
 describe(`isInRangeValidator`, function() {
-
   describe(`value input`, () => {
     let validatorFn: ValidatorFn;
     let validatorFnNoNumber: ValidatorFn;
@@ -17,7 +14,6 @@ describe(`isInRangeValidator`, function() {
       validatorFn = isInRangeValidator(10, 100);
       validatorFnNoNumber = isInRangeValidator();
     });
-
 
     test(`should return null if the control is invalid`, () => {
       const values = [undefined, {}];
@@ -49,9 +45,7 @@ describe(`isInRangeValidator`, function() {
     test(`should default to 0 if no number is passed in`, () => {
       expect(validatorFnNoNumber(new FormControl(0))).toEqual(null);
     });
-
   });
-
 
   describe(`control input`, () => {
     let validatorFn: ValidatorFn;
@@ -62,7 +56,6 @@ describe(`isInRangeValidator`, function() {
       validatorFn = isInRangeValidator(new FormControl(10), new FormControl(100));
       validatorFnNoNumber = isInRangeValidator(new FormControl());
     });
-
 
     test(`should return null if control is null`, () => {
       validatorFn2 = isInRangeValidator(null as any);
@@ -92,11 +85,8 @@ describe(`isInRangeValidator`, function() {
       }
     });
 
-
     test(`should default to 0 if no number is passed in`, () => {
       expect(validatorFnNoNumber(new FormControl(0))).toEqual(null);
     });
-
   });
-
 });

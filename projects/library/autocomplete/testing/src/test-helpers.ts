@@ -13,7 +13,7 @@ import {
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAutocompleteComponent
- * @return The DebugElement
+ * @returns The DebugElement
  */
 export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllAutocompleteDebugElements(fixture);
@@ -28,7 +28,7 @@ export function getAutocompleteDebugElement(fixture: ComponentFixture<any>, inde
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAutocompleteComponent
- * @return The input element
+ * @returns The input element
  *
  */
 export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
@@ -44,7 +44,7 @@ export function getAutocompleteInput(fixture: ComponentFixture<any>, index = 0):
  * Get an array of all DebugElements for TsAutocompleteComponent
  *
  * @param fixture - The component fixture
- * @return An array of DebugElements
+ * @returns An array of DebugElements
  */
 export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-autocomplete'));
@@ -58,18 +58,17 @@ export function getAllAutocompleteDebugElements(fixture: ComponentFixture<any>):
  * Get an array of all component instances for TsAutocompleteComponent
  *
  * @param fixture - The component fixture
- * @return An array of TsAutocompleteComponent
+ * @returns An array of TsAutocompleteComponent
  */
-export function getAllAutocompleteInstances(fixture: ComponentFixture<any>): TsAutocompleteComponent[] {
-  return getAllAutocompleteDebugElements(fixture).map(v => v.componentInstance);
-}
+export const getAllAutocompleteInstances =
+  (fixture: ComponentFixture<any>): TsAutocompleteComponent[] => getAllAutocompleteDebugElements(fixture).map(v => v.componentInstance);
 
 /**
  * Get a component instances for TsAutocompleteComponent
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAutocompleteComponent
- * @return The instance
+ * @returns The instance
  */
 export function getAutocompleteInstance(fixture: ComponentFixture<any>, index = 0): TsAutocompleteComponent {
   const instances = getAllAutocompleteInstances(fixture);
@@ -84,7 +83,7 @@ export function getAutocompleteInstance(fixture: ComponentFixture<any>, index = 
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectComponent
- * @return The element
+ * @returns The element
  */
 export function getAutocompleteElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const instance = getAutocompleteInstance(fixture, index);
@@ -96,7 +95,7 @@ export function getAutocompleteElement(fixture: ComponentFixture<any>, index = 0
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectComponent
- * @return An array of chip instances
+ * @returns An array of chip instances
  */
 export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): TsChipComponent[] {
   const instance = getAutocompleteInstance(fixture, index);
@@ -112,7 +111,7 @@ export function getAllChipInstances(fixture: ComponentFixture<any>, index = 0): 
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param chipIndex - The index of the desired chip
- * @return A chip instances
+ * @returns A chip instances
  */
 export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): TsChipComponent {
   const chips = getAllChipInstances(fixture, selectIndex);
@@ -128,7 +127,7 @@ export function getChipInstance(fixture: ComponentFixture<any>, selectIndex = 0,
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param chipIndex - The index of the desired chip
- * @return The chip element
+ * @returns The chip element
  */
 export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): HTMLElement {
   const chip = getChipInstance(fixture, selectIndex, chipIndex);
@@ -141,7 +140,7 @@ export function getChipElement(fixture: ComponentFixture<any>, selectIndex = 0, 
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param chipIndex - The index of the desired chip
- * @return The chip element
+ * @returns The chip element
  */
 export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selectIndex = 0, chipIndex = 0): string | null {
   const chipElement = getChipElement(fixture, selectIndex, chipIndex);
@@ -158,7 +157,7 @@ export function getChipElementDisplayValue(fixture: ComponentFixture<any>, selec
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAutocompleteComponent
- * @return The element
+ * @returns The element
  */
 export function getAutocompleteTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getAutocompleteDebugElement(fixture, index);
@@ -170,7 +169,7 @@ export function getAutocompleteTriggerElement(fixture: ComponentFixture<any>, in
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectComponent
- * @return An array of TsOptionComponent
+ * @returns An array of TsOptionComponent
  */
 export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0): TsOptionComponent[] {
   const instance = getAutocompleteInstance(fixture, index);
@@ -187,7 +186,7 @@ export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0)
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param optionIndex - The index of the desired TsOptionComponent
- * @return A TsOptionComponent
+ * @returns A TsOptionComponent
  */
 export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): TsOptionComponent {
   const options = getAllOptionInstances(fixture, selectIndex);
@@ -203,7 +202,7 @@ export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param optionIndex - The index of the desired TsOptionComponent
- * @return The TsOptionComponent element
+ * @returns The TsOptionComponent element
  */
 export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): HTMLElement {
   const option = getOptionInstance(fixture, selectIndex, optionIndex);
@@ -215,7 +214,7 @@ export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectComponent
- * @return An array of TsOptionComponent
+ * @returns An array of TsOptionComponent
  */
 export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsOptgroupComponent[] {
   const debugElement = getAutocompleteDebugElement(fixture, index);
@@ -232,7 +231,7 @@ export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsOp
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param groupIndex - The index of the desired TsOptgroupComponent
- * @return A TsOptgroupComponent
+ * @returns A TsOptgroupComponent
  */
 export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): TsOptgroupComponent {
   const groups = getAllOptgroups(fixture, selectIndex);
@@ -248,7 +247,7 @@ export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, gro
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectComponent
  * @param groupIndex - The index of the desired TsOptgroupComponent
- * @return The optgroup element
+ * @returns The optgroup element
  */
 export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
   const group = getOptgroup(fixture, selectIndex, groupIndex);

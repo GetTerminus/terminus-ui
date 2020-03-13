@@ -5,15 +5,14 @@ import {
   Validators,
 } from '@angular/forms';
 import {
-  Observable,
-  of,
-} from 'rxjs';
-
-import {
   TsRadioChange,
   TsRadioFormatFn,
   TsRadioOption,
 } from '@terminus/ui/radio-group';
+import {
+  Observable,
+  of,
+} from 'rxjs';
 
 
 const DEMO_ITEMS: TsRadioOption[] = [
@@ -34,6 +33,7 @@ const DEMO_ITEMS: TsRadioOption[] = [
     bing: 'Some helper text for my item',
   },
 ];
+// @ts-ignore - Optional demo data
 const DEMO_ITEMS2: TsRadioOption[] = [
   {
     foo: 'foo2_value',
@@ -49,6 +49,7 @@ const DEMO_ITEMS2: TsRadioOption[] = [
     bar: 'Baz2 Display',
   },
 ];
+/* eslint-disable max-len */
 const SVG = `
   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="20" viewBox="0 0 18 20">
     <g>
@@ -57,6 +58,7 @@ const SVG = `
     </g>
   </svg>
 `;
+/* eslint-enable max-len */
 
 
 @Component({
@@ -65,7 +67,7 @@ const SVG = `
 })
 export class RadioComponent {
   items$: Observable<TsRadioOption[]> = of(DEMO_ITEMS);
-  // tslint:disable: max-line-length
+  // eslint:disable: max-len
   items2$: Observable<TsRadioOption[]> = of([
     {
       foo: 'foo2_value',
@@ -74,9 +76,7 @@ export class RadioComponent {
        *template: `<strong>Custom</strong> template!`,
        */
       template: SVG,
-      /*
-       *template: `<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/20322G0V3H2j3n2M2o3l/nice%20laptop%3Ascreen%20elevation.png"> <a href="http://google.com">Links are cool</a>`,
-       */
+      // template: `<img src="https://d3vv6lp55qjaqc.cloudfront.net/items/20322G0V3H2j3n2M2o3l/nice%20laptop%3Ascreen%20elevation.png"> <a href="http://google.com">Links are cool</a>`,
     },
     {
       foo: 'bar2_value',
@@ -90,7 +90,7 @@ export class RadioComponent {
       bing: 'Some helper text. Some helper text for my item. Some helper text. And even more text.',
     },
   ]);
-  // tslint:enable: max-line-length
+  // eslint:enable: max-len
   myForm: FormGroup = this.formBuilder.group({
     isSmall: false,
     isCentered: true,
@@ -112,7 +112,6 @@ export class RadioComponent {
   uiFormatter: TsRadioFormatFn = v => v.bar;
   uiSubFormatter: TsRadioFormatFn = v => v.bing;
   modelFormatter: TsRadioFormatFn = v => v.foo;
-
 
 
   constructor(
@@ -137,5 +136,4 @@ export class RadioComponent {
   log(v: any): void {
     console.log('DEMO: form submission: ', v);
   }
-
 }

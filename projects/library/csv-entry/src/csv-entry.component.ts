@@ -1,7 +1,5 @@
 // NOTE: Moving items like `getHeaderCellName` into the template would add too much logic to the template
-// tslint:disable: template-no-call-expression
 // NOTE: Using trackBy on form groups actually changes the output since there is no static ID to reference
-// tslint:disable template-use-track-by-function
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -181,6 +179,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
   /**
    * Set the number of columns
+   *
+   * @param value
    */
   @Input()
   public set columnCount(value: number) {
@@ -193,6 +193,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
   /**
    * Allow static headers to be set
+   *
+   * @param value
    */
   @Input()
   public set columnHeaders(value: string[] | undefined) {
@@ -207,6 +209,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
   /**
    * Define any column validators
+   *
+   * @param value
    */
   @Input()
   public set columnValidators(value: ValidatorFn | null[]) {
@@ -235,6 +239,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -247,6 +253,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
   /**
    * Set the maximum number of allowed rows
+   *
+   * @param value
    */
   @Input()
   public set maxRows(value: number) {
@@ -265,6 +273,8 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
   /**
    * Define the number of rows
+   *
+   * @param value
    */
   @Input()
   public set rowCount(value: number) {
@@ -290,6 +300,58 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
 
   /**
+   * Add columns to existing rows + header
+   *
+   * @param rows - The existing body rows
+   * @param headerCells - The array of header cells
+   * @param columnsToAdd - The number of columns to add
+   */
+  private static addColumnsToRows(rows: FormArray, headerCells: FormArray, columnsToAdd: number): void {
+    // Add columns to body rows
+    for (let i = 0; i < rows.length; i += 1) {
+      const row: FormGroup = rows.controls[i] as FormGroup;
+      // istanbul ignore else
+      if (row) {
+        const columns = row.controls.columns as FormArray;
+
+        for (let j = 0; j < columnsToAdd; j += 1) {
+          columns.controls.push(new FormControl());
+        }
+      }
+    }
+
+    // Add columns to header
+    for (let k = 0; k < columnsToAdd; k += 1) {
+      headerCells.controls.push(new FormControl());
+    }
+  }
+
+  /**
+   * Split pasted data into headers, rows, and columns
+   *
+   * @param content - The event content
+   * @param hasHeaders - Whether the content has a header row
+   * @returns An object containing all data
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private static splitContent(content: string, hasHeaders: boolean): Record<string, any> {
+    const result: {headers: undefined|string[]; rows: undefined|string[]|string[][]} = {
+      headers: undefined,
+      rows: undefined,
+    };
+    const rows = content.split('\n');
+
+    if (hasHeaders) {
+      result.headers = rows[0].split('\t');
+      result.rows = rows.slice(1, rows.length).map(r => r.split('\t'));
+    } else {
+      result.rows = rows.slice(0, rows.length).map(r => r.split('\t'));
+    }
+
+    return result;
+  }
+
+  /**
    * Initialize empty rows
    */
   public ngOnInit(): void {
@@ -307,12 +369,10 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     });
   }
 
-
   /**
    * Needed for `untilComponentDestroyed`
    */
   public ngOnDestroy(): void {}
-
 
   /**
    * Add rows to the form
@@ -324,7 +384,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    */
   public addRows(rowCount = 1, columnCount: number = this.columnCount, content?: string[][], index?: number): void {
     if ((this.rows.length + rowCount) > this.maxRows) {
-      // eslint-disable-next-line no-magic-numbers
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       const rowsThatDontFit = (rowCount === 1 ? 2 : rowCount) - ((this.rows.length + rowCount) - this.maxRows);
       this.tooManyRowsMessage =
         `Adding ${rowsThatDontFit} row${rowsThatDontFit > 1 ? 's' : ''} would exceed the maximum rows allowed (${this.maxRows}).`;
@@ -348,17 +408,15 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Get the columns of a row
    *
    * @param row - The row
-   * @return The array of columns
+   * @returns The array of columns
    */
   public getColumns(row: FormGroup): FormArray {
     return row.get('columns') as FormArray;
   }
-
 
   /**
    * Update the form control for recordId on each row according to index.
@@ -373,7 +431,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Handle paste event for standard content cell
    *
@@ -381,7 +438,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * @param hasHeader - Whether the content has a header row
    */
   public onPaste(event: ClipboardEvent, hasHeader?: boolean): void {
-    const eventContent = event.clipboardData.getData('Text');
+    const eventContent = event.clipboardData?.getData('Text');
     if (!eventContent) {
       return;
     }
@@ -423,7 +480,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.detectChanges();
   }
 
-
   /**
    * Expose ability to trigger error updates from the DOM
    */
@@ -431,12 +487,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.allErrors = this.collectErrors();
   }
 
-
   /**
    * Helper to get the name (content) of a header cell for the title attribute
    *
    * @param index - The column index
-   * @return The header cell content
+   * @returns The header cell content
    */
   public getHeaderCellName(index: number): string {
     if (!this.headerCells || !this.headerCells.controls[index]) {
@@ -444,7 +499,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
     return this.headerCells.controls[index].value;
   }
-
 
   /**
    * Stop accidental page navigation when scrolling to the edges of the CSV form
@@ -457,7 +511,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
     const dir: string = (event.deltaX < 0) ? 'right' : 'left';
     // NOTE: TypeScript doesn't believe `form` exists on `EventTarget`
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const targetEl: any = event.target;
 
     if (!targetEl) {
@@ -476,7 +530,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       event.preventDefault();
     }
   }
-
 
   /**
    * Change focus to the cell below the current cell
@@ -503,7 +556,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
       this.selectCellInNextRow(currentCellId);
     }
   }
-
 
   /**
    * Select the next cell or previous cell
@@ -548,18 +600,16 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Create an ID for a cell. Format: `ts-csv-entry-{number}_r_7Xc_2` would be the 2nd cell in the 7th row.
    *
    * @param recordIndex - The index of the record/row
    * @param cellIndex - The index of the cell within the row
-   * @return The ID
+   * @returns The ID
    */
   public createId(recordIndex: number, cellIndex: number): string {
     return `${this.uid}_r_${recordIndex}Xc_${cellIndex}`;
   }
-
 
   /**
    * Collect all errors from the recordsForm and set to allErrors
@@ -580,12 +630,9 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
         }));
       }
       return null;
-
     }
     return null;
-
   }
-
 
   /**
    * Get all validation messages
@@ -593,7 +640,7 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
    * NOTE: Currently this only supports a custom error message for URL validation. Other messages can be added when the need arises.
    * FIXME: Find a way to use the existing ValidationMessagesService
    *
-   * @return The array of validation messages
+   * @returns The array of validation messages
    */
   public get validationMessages(): string[] | undefined {
     if (!this.allErrors) {
@@ -632,7 +679,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     return messages.length > 0 ? messages : undefined;
   }
 
-
   /**
    * Delete a row
    *
@@ -648,7 +694,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.updateErrors();
   }
 
-
   /**
    * Reset the table to it's initial state
    */
@@ -661,14 +706,13 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.allErrors = null;
   }
 
-
   /**
    * Get all form errors from a FormGroup or FormArray
    *
    * NOTE: This external function and `result` object is needed since `getAllErrors` may be recursive
    *
    * @param form - The form
-   * @return An object containing all errors
+   * @returns An object containing all errors
    */
   private getFormErrors(form: FormGroup | FormArray): {required?: TsCSVRequiredError; url?: TsCSVUrlError} {
     const result: {required?: TsCSVRequiredError; url?: TsCSVUrlError} = {};
@@ -676,17 +720,17 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     return result;
   }
 
-
   /**
    * Get all errors for the form
    *
    * @param form - The primary form group
    * @param result - The collection of errors
-   * @return An object containing all errors
+   * @returns An object containing all errors
    */
   private getAllErrors(form: FormGroup | FormArray, result: {required?: TsCSVRequiredError; url?: TsCSVUrlError}): void {
     const keys = Object.keys(form.controls);
 
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < keys.length; i += 1) {
       const ctrl = form.get(keys[i]);
 
@@ -697,15 +741,16 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
         // istanbul ignore else
         if (errors) {
           // Get the record ID from the grandparent control
-          // tslint:disable-next-line no-any
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const grandparentControls: any = ctrl.parent.parent.controls;
           const rowId: number | undefined = grandparentControls.recordId
             ? grandparentControls.recordId.value /* istanbul ignore next - Unreachable */ : undefined;
           const errorKeys = Object.keys(errors);
 
+          // eslint-disable-next-line @typescript-eslint/prefer-for-of
           for (let j = 0; j < errorKeys.length; j += 1) {
             const errorKey: string = errorKeys[j];
-            // tslint:disable-next-line no-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             let error: Record<string, any> = errors[errorKeys[j]];
 
             // Angular built in required validator only returns a boolean
@@ -731,33 +776,6 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
   }
 
-
-  /**
-   * Split pasted data into headers, rows, and columns
-   *
-   * @param content - The event content
-   * @param hasHeaders - Whether the content has a header row
-   * @return An object containing all data
-   */
-  // tslint:disable-next-line no-any
-  private static splitContent(content: string, hasHeaders: boolean): Record<string, any> {
-    const result: {headers: undefined|string[]; rows: undefined|string[]|string[][]} = {
-      headers: undefined,
-      rows: undefined,
-    };
-    const rows = content.split('\n');
-
-    if (hasHeaders) {
-      result.headers = rows[0].split('\t');
-      result.rows = rows.slice(1, rows.length).map(r => r.split('\t'));
-    } else {
-      result.rows = rows.slice(0, rows.length).map(r => r.split('\t'));
-    }
-
-    return result;
-  }
-
-
   /**
    * Clear all rows
    */
@@ -765,14 +783,12 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     this.recordsForm.setControl('records', this.formBuilder.array([]));
   }
 
-
   /**
    * Clear header cells
    */
   private clearHeaderCells(): void {
     this.recordsForm.setControl('headers', this.formBuilder.array([]));
   }
-
 
   /**
    * Add header content to the form
@@ -788,13 +804,12 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Create a row
    *
    * @param id - The row's ID
    * @param content - The column's content
-   * @return The FormGroup
+   * @returns The FormGroup
    */
   private createRow(id: number, content?: string[] | null): FormGroup {
     return this.formBuilder.group({
@@ -803,13 +818,12 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     });
   }
 
-
   /**
    * Create an array of columns
    *
    * @param count - The number of columns to create
    * @param content - An array of content to seed the columns with
-   * @return The array of form controls
+   * @returns The array of form controls
    */
   private createColumns(count: number, content?: string[] | null): FormControl[] {
     const columns: FormControl[] = [];
@@ -830,41 +844,11 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
     return columns;
   }
 
-
-  /**
-   * Add columns to existing rows + header
-   *
-   * @param rows - The existing body rows
-   * @param headerCells - The array of header cells
-   * @param columnsToAdd - The number of columns to add
-   */
-  private static addColumnsToRows(rows: FormArray, headerCells: FormArray, columnsToAdd: number): void {
-    // Add columns to body rows
-    for (let i = 0; i < rows.length; i += 1) {
-      const row: FormGroup = rows.controls[i] as FormGroup;
-      // istanbul ignore else
-      if (row) {
-        const columns = row.controls.columns as FormArray;
-
-        for (let j = 0; j < columnsToAdd; j += 1) {
-          columns.controls.push(new FormControl());
-        }
-      }
-
-    }
-
-    // Add columns to header
-    for (let k = 0; k < columnsToAdd; k += 1) {
-      headerCells.controls.push(new FormControl());
-    }
-  }
-
-
   /**
    * Generate a File blob from the form contents
    *
    * @param content - The recordForm content
-   * @return The File blob
+   * @returns The File blob
    */
   private generateBlob(content: TsCSVFormContents): Blob {
     const prefix = 'data:text/csv;charset=utf-8,';
@@ -881,5 +865,4 @@ export class TsCSVEntryComponent implements OnInit, OnDestroy {
 
     return new Blob([joined], { type: 'text/csv' });
   }
-
 }

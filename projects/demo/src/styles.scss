@@ -18,7 +18,7 @@ hr {
 }
 
 
-// stylelint-disable selector-type-no-unknown
+// stylelint-disable-next-line selector-type-no-unknown, scss/selector-nest-combinators
 router-outlet + * {
   display: flex;
   flex-direction: column;
@@ -28,4 +28,3 @@ router-outlet + * {
     padding: 2rem;
   }
 }
-// stylelint-enable selector-type-no-unknown

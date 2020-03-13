@@ -7,22 +7,20 @@ import {
   TsExpansionPanelTriggerComponent,
 } from '@terminus/ui/expansion-panel';
 
-
 /**
  * Get an array of all DebugElements for TsExpansionPanelComponents
  *
  * @param fixture - The component fixture
- * @return An array of DebugElements
+ * @returns An array of DebugElements
  */
-export function getAllPanelDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
-  return fixture.debugElement.queryAll(By.css('ts-expansion-panel'));
-}
+export const getAllPanelDebugElements =
+  (fixture: ComponentFixture<any>): DebugElement[] => fixture.debugElement.queryAll(By.css('ts-expansion-panel'));
 
 /**
  * Get an array of all TsExpansionPanelComponent instances
  *
  * @param fixture - The component fixture
- * @return An array of TsExpansionPanelComponent
+ * @returns An array of TsExpansionPanelComponent
  */
 export function getAllPanelInstances(fixture: ComponentFixture<any>): TsExpansionPanelComponent[] {
   const debugElements = getAllPanelDebugElements(fixture);
@@ -37,7 +35,7 @@ export function getAllPanelInstances(fixture: ComponentFixture<any>): TsExpansio
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsExpansionPanelComponent
- * @return The DebugElement
+ * @returns The DebugElement
  */
 export function getPanelDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const all = getAllPanelDebugElements(fixture);
@@ -52,7 +50,7 @@ export function getPanelDebugElement(fixture: ComponentFixture<any>, index = 0):
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsExpansionPanelComponent
- * @return The instance
+ * @returns The instance
  */
 export function getPanelInstance(fixture: ComponentFixture<any>, index = 0): TsExpansionPanelComponent {
   const debugElement = getPanelDebugElement(fixture, index);
@@ -64,7 +62,7 @@ export function getPanelInstance(fixture: ComponentFixture<any>, index = 0): TsE
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @returns The element
  */
 export function getPanelElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getPanelDebugElement(fixture, index);
@@ -76,7 +74,7 @@ export function getPanelElement(fixture: ComponentFixture<any>, index = 0): HTML
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @returns The element
  */
 export function getPanelBodyElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const instance = getPanelInstance(fixture, index);
@@ -88,7 +86,7 @@ export function getPanelBodyElement(fixture: ComponentFixture<any>, index = 0): 
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @returns The element
  */
 export function getPanelBodyContentElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getPanelDebugElement(fixture, index);
@@ -100,17 +98,16 @@ export function getPanelBodyContentElement(fixture: ComponentFixture<any>, index
  * Get an array of all DebugElements for TsAccordionComponents
  *
  * @param fixture - The component fixture
- * @return An array of DebugElements
+ * @returns An array of DebugElements
  */
-export function getAllAccordionDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
-  return fixture.debugElement.queryAll(By.css('ts-accordion'));
-}
+export const getAllAccordionDebugElements =
+  (fixture: ComponentFixture<any>): DebugElement[] => fixture.debugElement.queryAll(By.css('ts-accordion'));
 
 /**
  * Get an array of all TsAccordionComponent instances
  *
  * @param fixture - The component fixture
- * @return An array of TsAccordionComponent
+ * @returns An array of TsAccordionComponent
  */
 export function getAllAccordionInstances(fixture: ComponentFixture<any>): TsAccordionComponent[] {
   const debugElements = getAllAccordionDebugElements(fixture);
@@ -125,7 +122,7 @@ export function getAllAccordionInstances(fixture: ComponentFixture<any>): TsAcco
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAccordionComponent
- * @return The instance
+ * @returns The instance
  */
 export function getAccordionInstance(fixture: ComponentFixture<any>, index = 0): TsAccordionComponent {
   const all = getAllAccordionInstances(fixture);
@@ -140,7 +137,7 @@ export function getAccordionInstance(fixture: ComponentFixture<any>, index = 0):
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAccordionComponent
- * @return The DebugElement
+ * @returns The DebugElement
  */
 export function getAccordionDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const all = getAllAccordionDebugElements(fixture);
@@ -155,7 +152,7 @@ export function getAccordionDebugElement(fixture: ComponentFixture<any>, index =
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsAccordionComponent
- * @return The element
+ * @returns The element
  */
 export function getAccordionElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getAccordionDebugElement(fixture, index);
@@ -166,8 +163,8 @@ export function getAccordionElement(fixture: ComponentFixture<any>, index = 0): 
  * Get the element for a TsExpansionPanelTriggerComponent
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @param panelIndex - The index of the desired TsExpansionPanelComponent
+ * @returns The element
  */
 export function getTriggerDebugElement(fixture: ComponentFixture<any>, panelIndex = 0): DebugElement {
   const panelDebugElement = getPanelDebugElement(fixture, panelIndex);
@@ -182,8 +179,8 @@ export function getTriggerDebugElement(fixture: ComponentFixture<any>, panelInde
  * Get the instance for a TsExpansionPanelTriggerComponent
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsExpansionPanelComponent
- * @return The instance
+ * @param panelIndex - The index of the desired TsExpansionPanelComponent
+ * @returns The instance
  */
 export function getTriggerInstance(fixture: ComponentFixture<any>, panelIndex = 0): TsExpansionPanelTriggerComponent {
   const triggerDebugElement = getTriggerDebugElement(fixture, panelIndex);
@@ -194,8 +191,8 @@ export function getTriggerInstance(fixture: ComponentFixture<any>, panelIndex = 
  * Get the element for a TsExpansionPanelTriggerComponent
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @param panelIndex - The index of the desired TsExpansionPanelComponent
+ * @returns The element
  */
 export function getTriggerElement(fixture: ComponentFixture<any>, panelIndex = 0): HTMLElement {
   const triggerDebugElement = getTriggerDebugElement(fixture, panelIndex);
@@ -206,8 +203,8 @@ export function getTriggerElement(fixture: ComponentFixture<any>, panelIndex = 0
  * Get the element for a TsExpansionPanelTriggerTitleComponent
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @param panelIndex - The index of the desired TsExpansionPanelComponent
+ * @returns The element
  */
 export function getTriggerTitleElement(fixture: ComponentFixture<any>, panelIndex = 0): HTMLElement {
   const triggerDebugElement = getTriggerDebugElement(fixture, panelIndex);
@@ -222,8 +219,8 @@ export function getTriggerTitleElement(fixture: ComponentFixture<any>, panelInde
  * Get the element for a TsExpansionPanelTriggerDescriptionComponent
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @param panelIndex - The index of the desired TsExpansionPanelComponent
+ * @returns The element
  */
 export function getTriggerDescriptionElement(fixture: ComponentFixture<any>, panelIndex = 0): HTMLElement {
   const triggerDebugElement = getTriggerDebugElement(fixture, panelIndex);
@@ -239,7 +236,7 @@ export function getTriggerDescriptionElement(fixture: ComponentFixture<any>, pan
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsExpansionPanelComponent
- * @return The element
+ * @returns The element
  */
 export function getPanelActionRow(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getPanelDebugElement(fixture, index);
@@ -251,8 +248,8 @@ export function getPanelActionRow(fixture: ComponentFixture<any>, index = 0): HT
  * Return the difference in time in words
  *
  * @param fixture - The component fixture
- * @param index - The index of the desired TsExpansionPanelComponent
- * @return The whenStable promise
+ * @param panelIndex - The index of the desired TsExpansionPanelComponent
+ * @returns The whenStable promise
  */
 export function togglePanel(fixture: ComponentFixture<any>, panelIndex = 0): Promise<any> {
   const triggerElement = getTriggerElement(fixture, panelIndex);

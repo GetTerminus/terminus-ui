@@ -89,12 +89,13 @@ export class TsCardComponent {
     const percentageMultiplier = 100;
     const percentage: number = (y / x) * percentageMultiplier;
     const percentageMaxLength = 2;
-
     this.aspectRatioPadding = `${percentage.toFixed(percentageMaxLength)}%`;
   }
 
   /**
    * Define if a border should be present on the card. {@link TsCardBorderOptions}
+   *
+   * @param value
    */
   @Input()
   public set border(value: TsCardBorderOptions) {
@@ -125,6 +126,8 @@ export class TsCardComponent {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -145,6 +148,8 @@ export class TsCardComponent {
 
   /**
    * Define the card theme
+   *
+   * @param value
    */
   @Input()
   public set theme(value: TsStyleThemeTypes) {

@@ -23,7 +23,6 @@ export const tsSortAnimations: {
   readonly rightPointer: AnimationTriggerMetadata;
   readonly indicatorToggle: AnimationTriggerMetadata;
 } = {
-
   /**
    * Animation that moves the sort indicator
    */
@@ -34,7 +33,6 @@ export const tsSortAnimations: {
     transition('asc <=> desc', animate(SORT_ANIMATION_TRANSITION)),
   ]),
 
-
   /**
    * Animation that rotates the left pointer of the indicator based on the sorting direction
    */
@@ -44,7 +42,6 @@ export const tsSortAnimations: {
     transition('asc <=> desc', animate(SORT_ANIMATION_TRANSITION)),
   ]),
 
-
   /**
    * Animation that rotates the right pointer of the indicator based on the sorting direction
    */
@@ -53,7 +50,6 @@ export const tsSortAnimations: {
     state('desc', style({ transform: 'rotate(-45deg)' })),
     transition('asc <=> desc', animate(SORT_ANIMATION_TRANSITION)),
   ]),
-
 
   /**
    * Animation that moves the indicator in and out of view when sorting is enabled/disabled
@@ -100,5 +96,4 @@ export const tsSortAnimations: {
       }),
     ]))),
   ]),
-
 };

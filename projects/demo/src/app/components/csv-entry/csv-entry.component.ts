@@ -35,6 +35,10 @@ export class CSVEntryComponent {
 
 
 // Helper function to generate a file download for testing purposes
+/**
+ * @param blob
+ * @param filename
+ */
 function saveFile(blob: Blob, filename: string) {
   if (window.navigator.msSaveOrOpenBlob) {
     window.navigator.msSaveOrOpenBlob(blob, filename);

@@ -79,7 +79,7 @@ jobs:
       - *attach_workspace
       - run:
           name: Lint
-          command: yarn run lint:ci
+          command: yarn run library:lint
   test:
     <<: *defaults
     steps:
@@ -98,7 +98,7 @@ jobs:
       - *attach_workspace
       - run:
           name: Build Project
-          command: yarn run build
+          command: yarn run library:build:prod
       - run:
           name: Rename Primary Typings File
           command: tooling/ci/rename-typings-index.sh

@@ -11,11 +11,6 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 /**
  * This is the link UI Component
  *
- * #### QA CSS CLASSES
- * - `qa-link`: Placed on the link element
- * - `qa-link-internal`: Placed on the link element if the link is internal
- * - `qa-link-external`: Placed on the link element if the link is external
- *
  * @example
  * <ts-link
  *              [destination]="['your/', 'path/']"
@@ -64,6 +59,8 @@ export class TsLinkComponent {
 
   /**
    * Define the link's destination
+   *
+   * @param value
    */
   @Input()
   public set destination(value: string | string[] | undefined) {

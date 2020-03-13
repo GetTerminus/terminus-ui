@@ -8,14 +8,14 @@ module.exports = {
   coverageDirectory: '<rootDir>/coverage/',
   globals: {
     'ts-jest': {
-      tsConfig: './projects/library/tsconfig.spec.json',
+      tsConfig: 'projects/library/tsconfig.spec.json',
       ignoreCoverageForAllDecorators: true,
       diagnostics: false,
       stringifyContentPathRegex: '\\.html$',
       astTransformers: [
         'jest-preset-angular/build/InlineFilesTransformer',
-        'jest-preset-angular/build/StripStylesTransformer'
-      ]
+        'jest-preset-angular/build/StripStylesTransformer',
+      ],
     },
   },
   moduleFileExtensions: [
@@ -51,7 +51,7 @@ module.exports = {
     '<rootDir>/**/?(*.)spec.ts?(x)',
     '<rootDir>/**/?(*.)test-sass.js?(x)',
   ],
-  transform: {'^.+\\.(ts|js|html)$': 'ts-jest'},
+  transform: { '^.+\\.(ts|js|html)$': 'ts-jest' },
   transformIgnorePatterns: [
     '<rootDir>/node_modules/(?!@ngrx|popper)',
   ],

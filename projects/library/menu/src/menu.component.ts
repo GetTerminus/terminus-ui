@@ -101,7 +101,7 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   /**
    * Provide access to the trigger
    */
-  @ViewChild(MatMenuTrigger, { static: false })
+  @ViewChild(MatMenuTrigger)
   public trigger!: MatMenuTrigger;
 
   /**
@@ -155,7 +155,6 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
   @Input()
   public triggerType: TsMenuTriggerTypes = 'default';
 
-
   /**
    * Set the triggerIcon based on the triggerType
    */
@@ -163,7 +162,6 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
     this.triggerIcon = (this.triggerType === 'default')
       ? this.TRIGGER_ICON_DEFAULT : this.TRIGGER_ICON_UTILITY;
   }
-
 
   /**
    * After the view has initialized, open the menu if it is defaulted to 'open'
@@ -173,5 +171,4 @@ export class TsMenuComponent implements AfterViewInit, OnInit {
       this.trigger.openMenu();
     }
   }
-
 }

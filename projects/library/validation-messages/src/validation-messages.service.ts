@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { ValidationErrors } from '@angular/forms';
 import { TsDatePipe } from '@terminus/ui/pipes';
 
 
@@ -32,26 +33,25 @@ export class TsValidationMessagesService {
 
   constructor(private datePipe: TsDatePipe) {}
 
-
   /**
    * Return the correct error message for a validator
    *
    * @param validatorName - The name of the validator
    * @param validatorValue - The value of the validator
-   * @return The error message
+   * @returns The error message
    */
-  // tslint:disable-next-line no-any
-  public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  public getValidatorErrorMessage(validatorName: string, validatorValue?: ValidationErrors): string {
     const config: { [key: string]: string } = {
       // Standard responses:
       required: `Required`,
       requiredTrue: `${validatorName} must be checked.`,
-      minLength: `Must be at least ${validatorValue.requiredLength} characters.`,
-      maxLength: `Must be less than ${validatorValue.requiredLength} characters.`,
+      minLength: `Must be at least ${validatorValue?.requiredLength} characters.`,
+      maxLength: `Must be less than ${validatorValue?.requiredLength} characters.`,
       // Custom responses:
       creditCard: creditCardMessage,
       email: emailMessage,
-      isInRange: `Must be between ${validatorValue.minimum} and ${validatorValue.maximum}`,
+      isInRange: `Must be between ${validatorValue?.minimum} and ${validatorValue?.maximum}`,
       password: passwordMessage,
       // TODO: Figure out how to abstract pattern messages out so they can be customized per
       // pattern. (showing a regex pattern to an end user isn't helpful) and we need the ability to
@@ -59,45 +59,44 @@ export class TsValidationMessagesService {
       pattern: `Must contain only letters, numbers or spaces`,
       maxDate: '',
       minDate: '',
-      min: `${validatorValue.actual} must be greater than ${validatorValue.min}.`,
-      greaterThan: `${validatorValue.actual} must be less than ${validatorValue.greaterThan}`,
-      numbers: `Must contain at least ${validatorValue.numbers} numbers`,
-      max: `${validatorValue.actual} must be less than ${validatorValue.max}.`,
-      lessThan: `${validatorValue.actual} must be less than ${validatorValue.lessThan}.`,
-      notUnique: `${validatorValue.actual} has already been selected.`,
+      min: `${validatorValue?.actual} must be greater than ${validatorValue?.min}.`,
+      greaterThan: `${validatorValue?.actual} must be less than ${validatorValue?.greaterThan}`,
+      numbers: `Must contain at least ${validatorValue?.numbers} numbers`,
+      max: `${validatorValue?.actual} must be less than ${validatorValue?.max}.`,
+      lessThan: `${validatorValue?.actual} must be less than ${validatorValue?.lessThan}.`,
+      notUnique: `${validatorValue?.actual} has already been selected.`,
       noResults: `No results found.`,
-      url: `'${validatorValue.actual}' must be a valid URL.`,
-      domain: `'${validatorValue.actual}' must be a valid domain`,
-      equalToControl: `'${validatorValue.actual}' must be equal to '${validatorValue.compareValue}'`,
-      lowercase: `Must contain at least ${validatorValue.lowercase} lowercase letters`,
-      uppercase: `Must contain at least ${validatorValue.uppercase} uppercase letters`,
-      fileSize: `Must be smaller than ${validatorValue.max}kb`,
-      fileType: `${validatorValue.actual} is not an accepted MIME type.`,
+      url: `'${validatorValue?.actual}' must be a valid URL.`,
+      domain: `'${validatorValue?.actual}' must be a valid domain`,
+      equalToControl: `'${validatorValue?.actual}' must be equal to '${validatorValue?.compareValue}'`,
+      lowercase: `Must contain at least ${validatorValue?.lowercase} lowercase letters`,
+      uppercase: `Must contain at least ${validatorValue?.uppercase} uppercase letters`,
+      fileSize: `Must be smaller than ${validatorValue?.max}kb`,
+      fileType: `${validatorValue?.actual} is not an accepted MIME type.`,
       imageDimensions: ``,
       imageRatio: ``,
       nullValidator: 'Unknown error.',
       compose: 'Unknown error.',
       composeAsync: 'Unknown error.',
-      inCollection: `${validatorValue.actual} is not an accepted item.`,
+      inCollection: `${validatorValue?.actual} is not an accepted item.`,
     };
 
     if (validatorName === 'maxDate') {
-      config.maxDate = `Date must be before ${this.datePipe.transform(validatorValue.maxDate, 'short')}`;
+      config.maxDate = `Date must be before ${this.datePipe.transform(validatorValue?.maxDate, 'short') as string}`;
     }
 
     if (validatorName === 'minDate') {
-      config.minDate = `Date must be after ${this.datePipe.transform(validatorValue.minDate, 'short')}`;
+      config.minDate = `Date must be after ${this.datePipe.transform(validatorValue?.minDate, 'short') as string}`;
     }
 
     if (validatorName === 'imageDimensions') {
-      config.imageDimensions = `${validatorValue.actual.width}x${validatorValue.actual.height} is not an allowed image dimension.`;
+      config.imageDimensions = `${validatorValue?.actual.width}x${validatorValue?.actual.height} is not an allowed image dimension.`;
     }
 
     if (validatorName === 'imageRatio') {
-      config.imageRatio = `${validatorValue.actual} is not an allowed image ratio.`;
+      config.imageRatio = `${validatorValue?.actual} is not an allowed image ratio.`;
     }
 
     return config[validatorName];
   }
-
 }

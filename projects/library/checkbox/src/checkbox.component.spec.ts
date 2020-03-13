@@ -17,7 +17,6 @@ import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import { TsCheckboxComponent } from './checkbox.component';
 import { TsCheckboxModule } from './checkbox.module';
 
-
 @Component({
   template: `
   <ts-checkbox
@@ -38,7 +37,6 @@ class TestHostComponent {
   required!: boolean;
   indeterminate!: boolean | undefined;
 
-
   @ViewChild(TsCheckboxComponent, { static: true })
   component!: TsCheckboxComponent;
 
@@ -47,9 +45,7 @@ class TestHostComponent {
 }
 
 describe(`TsCheckboxComponent`, function() {
-
   describe(`CheckboxComponent with DOM`, () => {
-
     let fixture: ComponentFixture<TestHostComponent>;
     let hostComponent: TestHostComponent;
     let component: TsCheckboxComponent;
@@ -82,9 +78,7 @@ describe(`TsCheckboxComponent`, function() {
       fixture.detectChanges();
     });
 
-
     describe(`isChecked`, () => {
-
       test(`checkbox is checked`, () => {
         hostComponent.checked = true;
         fixture.detectChanges();
@@ -93,7 +87,6 @@ describe(`TsCheckboxComponent`, function() {
         expect(checkbox.nativeElement.checked).toEqual(true);
       });
 
-
       test(`checkbox is unchecked`, () => {
         hostComponent.checked = false;
         fixture.detectChanges();
@@ -101,12 +94,9 @@ describe(`TsCheckboxComponent`, function() {
         const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-2-input'));
         expect(checkbox.nativeElement.checked).toEqual(false);
       });
-
     });
 
-
     describe(`isIndeterminate`, () => {
-
       test(`checkbox changes to indeterminate:`, () => {
         hostComponent.checked = false;
         hostComponent.indeterminate = true;
@@ -115,12 +105,9 @@ describe(`TsCheckboxComponent`, function() {
         const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-3-input'));
         expect(checkbox.nativeElement.indeterminate).toEqual(true);
       });
-
     });
 
-
     describe(`isDisabled`, () => {
-
       test(`checkbox is disabled`, () => {
         hostComponent.disabled = true;
         fixture.detectChanges();
@@ -129,7 +116,6 @@ describe(`TsCheckboxComponent`, function() {
         expect(checkbox.nativeElement.disabled).toEqual(true);
       });
 
-
       test(`checkbox is not disabled`, () => {
         hostComponent.disabled = false;
         fixture.detectChanges();
@@ -137,12 +123,9 @@ describe(`TsCheckboxComponent`, function() {
         const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-5-input'));
         expect(checkbox.nativeElement.disabled).toEqual(false);
       });
-
     });
 
-
     describe(`isRequired`, () => {
-
       test(`checkbox is required`, () => {
         hostComponent.required = true;
         fixture.detectChanges();
@@ -151,7 +134,6 @@ describe(`TsCheckboxComponent`, function() {
         expect(checkbox.nativeElement.required).toEqual(true);
       });
 
-
       test(`checkbox is required`, () => {
         hostComponent.required = false;
         fixture.detectChanges();
@@ -159,11 +141,8 @@ describe(`TsCheckboxComponent`, function() {
         const checkbox = fixture.debugElement.query(By.css('#mat-checkbox-7-input'));
         expect(checkbox.nativeElement.required).toEqual(false);
       });
-
     });
-
   });
-
 
   describe(`TsCheckboxComponent no DOM`, () => {
     let component: TsCheckboxComponent;
@@ -180,14 +159,11 @@ describe(`TsCheckboxComponent`, function() {
       } as any;
     });
 
-
     it(`should exist`, () => {
       expect(component).toBeTruthy();
     });
 
-
     describe(`id`, () => {
-
       test(`should have a default ID and allow a custom ID`, () => {
         expect(component.id.indexOf('ts-checkbox') >= 0).toEqual(true);
         component.id = 'foo';
@@ -201,12 +177,9 @@ describe(`TsCheckboxComponent`, function() {
         component.id = undefined as any;
         expect(component.id.indexOf('ts-checkbox') >= 0).toEqual(true);
       });
-
     });
 
-
     describe(`isChecked`, () => {
-
       test(`should set/get checked value`, () => {
         expect(component.isChecked).toEqual(false);
 
@@ -214,12 +187,9 @@ describe(`TsCheckboxComponent`, function() {
 
         expect(component.value).toEqual(true);
       });
-
     });
 
-
     describe(`set ngModel`, () => {
-
       test(`should set the private variable`, () => {
         expect(component['_isChecked']).toEqual(false);
 
@@ -227,9 +197,6 @@ describe(`TsCheckboxComponent`, function() {
 
         expect(component['_isChecked']).toEqual(true);
       });
-
     });
-
   });
-
 });

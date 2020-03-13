@@ -30,18 +30,16 @@ import {
 } from './csv-entry.component';
 import { TsCSVEntryModule } from './csv-entry.module';
 
-
-
-
 /**
  * Helper to turn JSON form into stringified content
+ *
+ * @param content
  */
 function stringifyForm(content: TsCSVFormContents): string {
   const headers = `${content.headers.join('\t')  }\r\n`;
   const rows = `${content.records.map(v => v.columns.join('\t')).join('\r\n')  }\r\n`;
   return headers + rows;
 }
-
 
 @Component({
   template: `
@@ -52,7 +50,6 @@ function stringifyForm(content: TsCSVFormContents): string {
        [rowCount]="rowCount"
        [columnValidators]="columnValidators"
        [columnHeaders]="columnHeaders"
-       [fullWidth]="fullWidth"
        [outputFormat]="outputFormat"
        (blobGenerated)="gotFile($event)"
     ></ts-csv-entry>
@@ -65,7 +62,6 @@ class TestHostComponent {
   public rowCount: number | undefined;
   public columnValidators: undefined | (ValidatorFn | null)[];
   public columnHeaders: undefined | string[];
-  public fullWidth: boolean;
   public outputFormat = 'csv';
   public gotFile = jest.fn();
 
@@ -74,10 +70,8 @@ class TestHostComponent {
 
   constructor(
     public validatorsService: TsValidatorsService,
-  ) {
-  }
+  ) {}
 }
-
 
 describe(`TsCSVEntryComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -286,16 +280,12 @@ describe(`TsCSVEntryComponent`, function() {
     columnCount = fixture.nativeElement.querySelectorAll('.c-csv-entry__input--header').length;
   });
 
-
   describe(`initialization`, () => {
-
     test(`should create the default set of columns and rows`, () => {
       expect(rowCount).toEqual(component.rowCount);
       expect(columnCount).toEqual(component.columnCount);
     });
-
   });
-
 
   test(`should support a custom ID`, () => {
     component.id = 'foo';
@@ -305,9 +295,7 @@ describe(`TsCSVEntryComponent`, function() {
     expect(el.nativeElement.getAttribute('id')).toEqual('foo');
   });
 
-
   describe(`pasting content`, () => {
-
     test(`should inject cell contents`, () => {
       expect(firstHeaderCell.value).toEqual('');
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
@@ -316,7 +304,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(component.columnCount).toEqual(2);
       expect(component.rows.length).toEqual(4);
     });
-
 
     test(`should update column and row counts`, () => {
       expect(firstHeaderCell.value).toEqual('');
@@ -327,7 +314,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(component.columnCount).toEqual(3);
       expect(component.rows.length).toEqual(5);
     });
-
 
     test(`should correctly inject content into existing content`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
@@ -348,36 +334,32 @@ describe(`TsCSVEntryComponent`, function() {
       expect(row4Cell1.value).toEqual('foo3');
     });
 
-
     test(`should not create new rows when pasting content to a single cell`, () => {
       const event = createFakeEvent('paste') as ClipboardEvent;
       (event.clipboardData as any) = { getData: jest.fn().mockReturnValue('new') };
-      component.splitContent = jest.fn();
+      component['splitContent'] = jest.fn();
       component.onPaste(event);
 
-      expect(component.splitContent).not.toHaveBeenCalled();
+      expect(component['splitContent']).not.toHaveBeenCalled();
     });
-
 
     test(`should do nothing if the paste event has no content`, () => {
       const event = createFakeEvent('paste') as ClipboardEvent;
       (event.clipboardData as any) = { getData: jest.fn().mockReturnValue('') };
-      component.splitContent = jest.fn();
+      component['splitContent'] = jest.fn();
       component.onPaste(event);
 
-      expect(component.splitContent).not.toHaveBeenCalled();
+      expect(component['splitContent']).not.toHaveBeenCalled();
     });
-
 
     test(`should consider a header paste to be a body paste if columnHeaders are set`, () => {
       hostComponent.columnHeaders = ['one', 'two'];
-      component.clearAllRows = jest.fn();
+      component['clearAllRows'] = jest.fn();
       fixture.detectChanges();
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
       fixture.detectChanges();
-      expect(component.clearAllRows).not.toHaveBeenCalled();
+      expect(component['clearAllRows']).not.toHaveBeenCalled();
     });
-
 
     test(`should allow for fullWidth table`, () => {
       expect(component.fullWidth).toBeFalsy();
@@ -387,12 +369,9 @@ describe(`TsCSVEntryComponent`, function() {
       expect(component.fullWidth).toBeTruthy();
       expect(document.querySelector('.c-csv-entry--full-width')).not.toBeNull();
     });
-
   });
 
-
   describe(`keyboard navigation`, () => {
-
     test(`should navigate rows with enter & shift+enter`, () => {
       const cell1: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_0Xc_0`)).nativeElement;
       const cell2: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_0`)).nativeElement;
@@ -410,7 +389,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(document.activeElement).toEqual(cell1);
     });
 
-
     test(`should navigate columns with tab & tab+enter`, () => {
       const cell1: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_0`)).nativeElement;
       const cell2: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_1`)).nativeElement;
@@ -425,7 +403,6 @@ describe(`TsCSVEntryComponent`, function() {
       cell2.dispatchEvent(SHIFT_TAB_EVENT);
       expect(document.activeElement).toEqual(cell1);
     });
-
 
     test(`should change row if the column isn't found`, () => {
       const lastCell: HTMLInputElement = fixture.debugElement.query(By.css(`#${instancePrefix}_r_1Xc_1`)).nativeElement;
@@ -442,7 +419,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(document.activeElement).toEqual(lastCell);
     });
 
-
     test(`should create a new row if moving down and one doesn't exist`, () => {
       const lastRowId = `#${instancePrefix}_r_${component.rows.length - 1}Xc_0`;
       const lastRowCell: HTMLInputElement = fixture.debugElement.query(By.css(lastRowId)).nativeElement;
@@ -452,38 +428,30 @@ describe(`TsCSVEntryComponent`, function() {
       fixture.detectChanges();
       expect(component.rows.length).toEqual(5);
     });
-
   });
-
 
   describe(`selectCellInNextRow()`, () => {
     let mock;
 
     beforeEach(() => {
-      mock = jest.spyOn(component.documentService.document, 'querySelector');
+      mock = jest.spyOn(component['documentService'].document, 'querySelector');
     });
-
 
     test(`should do nothing if no valid ID was passed in`, () => {
       component.selectCellInNextRow(null as any);
       expect(mock).not.toHaveBeenCalled();
     });
 
-
     afterEach(() => {
       mock.mockRestore();
     });
-
   });
 
-
   describe(`columnValidators`, () => {
-
     beforeEach(() => {
       hostComponent.columnValidators = [null, hostComponent.validatorsService.url()];
       fixture.detectChanges();
     });
-
 
     test(`should set valid/invalid status on form controls and rows`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentThreeCol));
@@ -493,7 +461,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(idRow.classList).toContain('c-csv-entry__column-id--invalid');
     });
 
-
     test(`should show validation messages`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentThreeCol));
       expect(firstHeaderCell.value).toEqual('bing');
@@ -501,7 +468,6 @@ describe(`TsCSVEntryComponent`, function() {
 
       expect(validations.length).toBeGreaterThan(0);
     });
-
 
     test(`should truncate if more than the max amount of messages exist`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentManyErrors));
@@ -512,7 +478,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(validations[validations.length - 1].nativeElement.textContent).toEqual(expect.stringContaining('more errors'));
     });
 
-
     test(`should truncate error item if it is too long`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentManyErrors));
       expect(firstHeaderCell.value).toEqual('bing');
@@ -520,7 +485,6 @@ describe(`TsCSVEntryComponent`, function() {
 
       expect(validations[3].nativeElement.innerHTML).toEqual(expect.stringContaining('..." is not a valid URL'));
     });
-
 
     test(`should output required error`, () => {
       hostComponent.columnValidators = [Validators.required, hostComponent.validatorsService.url()];
@@ -531,17 +495,13 @@ describe(`TsCSVEntryComponent`, function() {
 
       expect(validations[1].nativeElement.innerHTML).toEqual(expect.stringContaining('Content is required'));
     });
-
   });
 
-
   describe(`a validation message for too many rows`, () => {
-
     beforeEach(() => {
       hostComponent.maxRows = 5;
       fixture.detectChanges();
     });
-
 
     test(`should be visible when pasting too many rows`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
@@ -555,7 +515,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(message.textContent).toEqual(expect.stringContaining('rows would exceed the maximum rows allowed (5).'));
     });
 
-
     test(`should be visible when clicking 'add row' too many times`, () => {
       firstHeaderCell.dispatchEvent(createPasteEvent(formContentTwoCol));
       fixture.detectChanges();
@@ -568,12 +527,9 @@ describe(`TsCSVEntryComponent`, function() {
 
       expect(message.textContent).toEqual('Adding 1 row would exceed the maximum rows allowed (5).');
     });
-
   });
 
-
   describe(`resetTable()`, () => {
-
     test(`should restore the table to the default settings`, () => {
       hostComponent.maxRows = 5;
       const initialColumnCount = 3;
@@ -603,9 +559,7 @@ describe(`TsCSVEntryComponent`, function() {
       expect(component.rows.length).toEqual(component.rowCount);
       expect(message).toBeFalsy();
     });
-
   });
-
 
   describe(`deleteRow()`, () => {
     let mock;
@@ -614,29 +568,23 @@ describe(`TsCSVEntryComponent`, function() {
       mock = jest.spyOn(component, 'updateAllRowIds');
     });
 
-
     test(`should do nothing if called with no valid index`, () => {
       component.deleteRow(undefined as any);
       component.deleteRow(null as any);
       expect(mock).not.toHaveBeenCalled();
     });
 
-
     test(`should do nothing if no valid index was passed in`, () => {
       component.deleteRow(-1);
       expect(mock).not.toHaveBeenCalled();
     });
 
-
     afterEach(() => {
       mock.mockRestore();
     });
-
   });
 
-
   describe(`a file blob`, () => {
-
     test(`should be generated and emitted when the form changes`, () => {
       jest.useFakeTimers();
       expect(firstHeaderCell.value).toEqual('');
@@ -646,7 +594,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(hostComponent.gotFile).toHaveBeenLastCalledWith(expect.any(Blob));
       jest.runAllTimers();
     });
-
 
     test(`should respect output format of tsv`, fakeAsync(done => {
       jest.useFakeTimers();
@@ -663,9 +610,7 @@ describe(`TsCSVEntryComponent`, function() {
         jest.clearAllTimers();
       };
       reader.readAsText(content);
-
     }));
-
 
     test(`should respect output format of csv`, fakeAsync(done => {
       jest.useFakeTimers();
@@ -684,9 +629,7 @@ describe(`TsCSVEntryComponent`, function() {
       };
       reader.readAsText(content);
     }));
-
   });
-
 
   describe(`onScroll()`, () => {
     let event: WheelEvent;
@@ -709,16 +652,13 @@ describe(`TsCSVEntryComponent`, function() {
       });
     });
 
-
     test(`should do nothing if no event is received`, () => {
       expect(component.onScroll(null as any)).toEqual(undefined);
     });
 
-
     test(`should do nothing if the event has no target`, () => {
       expect(component.onScroll({} as any)).toEqual(undefined);
     });
-
 
     test(`should prevent the default event when reaching the left edge`, () => {
       component.onScroll(event);
@@ -730,7 +670,6 @@ describe(`TsCSVEntryComponent`, function() {
       expect(event.preventDefault).toHaveBeenCalled();
     });
 
-
     test(`should prevent the default event when reaching the right edge`, () => {
       Object.defineProperties(event, { deltaX: { value: 1 } });
       component.onScroll(event);
@@ -741,21 +680,15 @@ describe(`TsCSVEntryComponent`, function() {
       component.onScroll(event);
       expect(event.preventDefault).toHaveBeenCalled();
     });
-
   });
 
-
   describe(`getHeaderCellName()`, () => {
-
     test(`should return an empty string if the header isn't found`, () => {
       expect(component.getHeaderCellName(20)).toEqual('');
     });
-
   });
 
-
   describe(`columnHeaders`, () => {
-
     test(`should set the header content and not allow changes`, () => {
       jest.useFakeTimers();
       hostComponent.columnHeaders = ['one', 'two'];
@@ -774,9 +707,7 @@ describe(`TsCSVEntryComponent`, function() {
       expect(component.columnCount).toEqual(2);
       jest.runAllTimers();
     });
-
   });
-
 
   test(`should correctly handle commas and quotes`, fakeAsync(done => {
     jest.useFakeTimers();
@@ -797,20 +728,15 @@ describe(`TsCSVEntryComponent`, function() {
     reader.readAsText(content);
   }));
 
-
   describe(`collectErrors`, function() {
-
     test(`should return null if the form group is not found`, function() {
       component.recordsForm = new FormGroup({});
       expect(component.collectErrors()).toEqual(null);
     });
 
-
     test(`should return null if no errors exist`, function() {
-      component.getFormErrors = jest.fn(() => null);
+      component['getFormErrors'] = jest.fn(() => null) as any;
       expect(component.collectErrors()).toEqual(null);
     });
-
   });
-
 });

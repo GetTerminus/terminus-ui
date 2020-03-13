@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
-  FormControl,
   FormGroup,
 } from '@angular/forms';
 import { TsButtonFormatTypes } from '@terminus/ui/button';
@@ -25,9 +24,7 @@ export class MenuComponent {
     'Budget',
     'Enabled',
   ];
-  myForm: FormGroup = this.formBuilder.group({
-    showColumns: this.formBuilder.array([true, true, true, true]),
-  });
+  myForm: FormGroup = this.formBuilder.group({ showColumns: this.formBuilder.array([true, true, true, true]) });
 
   get columnControls(): FormArray {
     return this.myForm.get('showColumns') as FormArray;
@@ -45,5 +42,4 @@ export class MenuComponent {
   log(v: any): void {
     console.log('DEMO: form submission: ', v);
   }
-
 }

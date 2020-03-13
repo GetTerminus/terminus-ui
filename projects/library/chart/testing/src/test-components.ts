@@ -13,7 +13,7 @@ import {
 @Component({ template: `<ts-chart></ts-chart>` })
 export class SimpleHost {
   @ViewChild(TsChartComponent, { static: true })
-  public component: TsChartComponent;
+  public component!: TsChartComponent;
 }
 
 @Component({ template: `<ts-chart [visualization]="visualization"></ts-chart>` })
@@ -21,7 +21,7 @@ export class VisualizationsHost {
   public visualization: TsChartVisualizationOptions | undefined;
 
   @ViewChild(TsChartComponent, { static: true })
-  public component: TsChartComponent;
+  public component!: TsChartComponent;
 }
 
 @Component({
@@ -42,8 +42,6 @@ export class TypeChecking {
     this.chart = chart;
   }
 }
-
-
 
 export type TsChartTestComponent
   = SimpleHost

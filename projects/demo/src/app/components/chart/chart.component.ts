@@ -1,3 +1,4 @@
+// eslint-disable-next-line camelcase
 import am4geodata_worldLow from '@amcharts/amcharts4-geodata/worldLow';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import * as am4core from '@amcharts/amcharts4/core';
@@ -6,7 +7,6 @@ import { Component } from '@angular/core';
 import {
   TsChart,
   tsChartChordTypeCheck,
-  TsChartComponent,
   tsChartMapTypeCheck,
   tsChartPieTypeCheck,
   tsChartRadarTypeCheck,
@@ -39,8 +39,6 @@ const MAP_DATA: Record<string, any>[] = [{
   longitude: -123.120738,
   title: 'Vancouver',
 }];
-
-
 
 
 @Component({
@@ -81,7 +79,7 @@ export class ChartComponent {
       }
       valueAxis.renderer.minWidth = 35;
 
-      const series = chart.series.push(new am4charts.LineSeries() as any);
+      const series = (chart.series as any).push(new am4charts.LineSeries() as any);
       series.dataFields.dateX = 'date';
       series.dataFields.valueY = 'value';
 
@@ -149,6 +147,7 @@ export class ChartComponent {
       polygonTemplate.propertyFields.fill = 'fill';
 
       chart.series.push(polygonSeries as any);
+      // eslint-disable-next-line camelcase
       chart.geodata = am4geodata_worldLow;
 
       // Create hover state and set alternative fill color
@@ -657,9 +656,6 @@ export class ChartComponent {
       chart.dataFields.value = 'value';
       chart.dataFields.color = 'nodeColor';
 
-      // Configure ribbon appearance
-      const slice = chart.nodes.template.slice;
-
       // Configure links
       const link = chart.links.template;
       link.fillOpacity = 0.1;
@@ -667,6 +663,5 @@ export class ChartComponent {
       link.propertyFields.fill = 'linkColor';
       link.propertyFields.fillOpacity = 'linkOpacity';
     }
-
   }
 }

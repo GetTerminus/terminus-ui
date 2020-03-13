@@ -3,13 +3,11 @@ import {
   NgModule,
   ViewChild,
 } from '@angular/core';
-
 import {
   TsTooltipComponent,
   TsTooltipModule,
   TsTooltipPositionTypes,
 } from '@terminus/ui/tooltip';
-
 
 @Component({
   template: `
@@ -17,10 +15,9 @@ import {
   `,
 })
 export class Basic {
-  @ViewChild(TsTooltipComponent, { static: false })
+  @ViewChild(TsTooltipComponent)
   public tooltipComponent!: TsTooltipComponent;
 }
-
 
 @Component({
   template: `
@@ -31,13 +28,12 @@ export class Basic {
   `,
 })
 export class TestHostComponent {
-  public hasUnderline: boolean;
-  public tooltipPosition: TsTooltipPositionTypes;
+  public hasUnderline!: boolean;
+  public tooltipPosition!: TsTooltipPositionTypes;
 
-  @ViewChild(TsTooltipComponent, { static: false })
+  @ViewChild(TsTooltipComponent)
   public tooltipComponent!: TsTooltipComponent;
 }
-
 
 @Component({
   template: `
@@ -47,12 +43,11 @@ export class TestHostComponent {
   `,
 })
 export class TooltipValue {
-  public tooltipValue: string;
+  public tooltipValue!: string;
 
-  @ViewChild(TsTooltipComponent, { static: false })
+  @ViewChild(TsTooltipComponent)
   public tooltipComponent!: TsTooltipComponent;
 }
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.

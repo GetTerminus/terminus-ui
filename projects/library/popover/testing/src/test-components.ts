@@ -11,23 +11,24 @@ import {
 
 @Component({
   template: `
-      <div class="outside"></div>
-      <button
-        tsPopoverTrigger="popper1"
-        [position]="position"
-        [popover]="popper1"
-        [defaultOpened]="defaultOpened"
-        [hideOnBlur]="hideOnBlur"
-        style="margin: 200px 250px;"
-        [id]="id"
-        (popoverOnShown)="popoverOnShown()"
-        (popoverOnHidden)="popoverOnHidden()"
-        class="popover-button"
-      >Click me!</button>
-      <ts-popover #popper1>
-          <h1>My Title</h1>
-          <p>Other random content.</p>
-      </ts-popover>
+    <div class="outside"></div>
+    <button
+      tsPopoverTrigger="popper1"
+      [position]="position"
+      [popover]="popper1"
+      [defaultOpened]="defaultOpened"
+      [hideOnBlur]="hideOnBlur"
+      style="margin: 200px 250px;"
+      [id]="id"
+      (popoverOnShown)="popoverOnShown()"
+      (popoverOnHidden)="popoverOnHidden()"
+      class="popover-button"
+    >Click me!
+    </button>
+    <ts-popover #popper1>
+      <h1>My Title</h1>
+      <p>Other random content.</p>
+    </ts-popover>
   `,
 })
 export class Basic {
@@ -36,6 +37,7 @@ export class Basic {
   public hideOnBlur = false;
   public defaultOpened = false;
   public position: TsPopoverPosition = 'right';
+  foo = 'bar';
   public popoverOnShown() { }
   public popoverOnHidden() { }
 }
@@ -53,8 +55,8 @@ export class Basic {
         class="popover-button"
       >Click me!</button>
       <ts-popover #popper1>
-          <h1>My Title</h1>
-          <p>Other random content.</p>
+        <h1>My Title</h1>
+        <p>Other random content.</p>
       </ts-popover>
   `,
 })

@@ -34,8 +34,8 @@ import {
 } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { TsTabInkBarComponent } from './../ink-bar/ink-bar.component';
-import { TsTabLabelWrapperDirective } from './../label/tab-label-wrapper.directive';
+import { TsTabInkBarComponent } from '../ink-bar/ink-bar.component';
+import { TsTabLabelWrapperDirective } from '../label/tab-label-wrapper.directive';
 
 
 /**
@@ -105,12 +105,13 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
 
   /**
    * Manually set the focus to the correct label
+   *
+   * @param value
    */
   public set focusIndex(value: number) {
     if (!this.isValidIndex(value) || this.focusIndex === value || !this.keyManager) {
       return;
     }
-
     this.keyManager.setActiveItem(value);
   }
 
@@ -121,7 +122,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     if (this.keyManager && isNumber(this.keyManager.activeItemIndex)) {
       return this.keyManager.activeItemIndex;
     }
-
     return 0;
   }
 
@@ -132,6 +132,8 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
 
   /**
    * Sets the distance in pixels that the tab header should be transformed in the X-axis
+   *
+   * @param value
    */
   public set scrollDistance(value: number) {
     this.scrollTo(value);
@@ -209,6 +211,8 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
 
   /**
    * The index of the active tab
+   *
+   * @param value
    */
   @Input()
   public set selectedIndex(value: number) {
@@ -238,7 +242,7 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
   public readonly selectFocusedIndex: EventEmitter<number> = new EventEmitter<number>();
 
 
-  public constructor(
+  constructor(
     private elementRef: ElementRef,
     private changeDetectorRef: ChangeDetectorRef,
     private viewportRuler: ViewportRuler,
@@ -246,13 +250,13 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     private platform: Platform,
   ) {
     const bindEvent = () => {
+      // eslint-disable-next-line deprecation/deprecation
       fromEvent(elementRef.nativeElement, 'mouseleave')
         .pipe(untilComponentDestroyed(this))
         .subscribe(() => {
           this.stopInterval();
         });
     };
-
     // Bind the `mouseleave` event on the outside since it doesn't change anything in the view.
     ngZone.runOutsideAngular(bindEvent);
   }
@@ -288,7 +292,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     }
   }
 
-
   /**
    * Align the {@link TsTabInkBarComponent} to the selected tab on load
    */
@@ -323,18 +326,19 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     });
   }
 
-
   /**
    * Wire up listeners for pagination clicks
    * NOTE: We need to handle these events manually because we want to bind passive event listeners.
    */
   public ngAfterViewInit(): void {
+    // eslint-disable-next-line deprecation/deprecation
     fromEvent(this.previousPaginator.nativeElement, 'touchstart', passiveEventListenerOptions)
       .pipe(untilComponentDestroyed(this))
       .subscribe(() => {
         this.handlePaginatorPress('before');
       });
 
+    // eslint-disable-next-line deprecation/deprecation
     fromEvent(this.nextPaginator.nativeElement, 'touchstart', passiveEventListenerOptions)
       .pipe(untilComponentDestroyed(this))
       .subscribe(() => {
@@ -342,11 +346,10 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
       });
   }
 
-
-  public ngOnDestroy(): void {
-    // Needed for untilComponentDestroyed
-  }
-
+  /**
+   * Needed for untilComponentDestroyed
+   */
+  public ngOnDestroy(): void {}
 
   /**
    * Handle keyboard events on the header
@@ -378,7 +381,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     }
   }
 
-
   /**
    * Callback for when the MutationObserver detects that the content has changed.
    */
@@ -402,7 +404,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     }
   }
 
-
   /**
    * Handle click events on the pagination arrows
    *
@@ -412,7 +413,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     this.stopInterval();
     this.scrollHeader(direction);
   }
-
 
   /**
    * Tell the {@link TsInkBarComponent} to align itself to the current label wrapper
@@ -424,7 +424,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     this.inkBar.alignToElement(selectedLabelWrapper);
   }
 
-
   /**
    * Stop the currently-running paginator interval
    */
@@ -432,9 +431,9 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     this.stopScrolling.next();
   }
 
-
   /**
    * Handles the user pressing down on one of the paginators.
+   *
    * Starts scrolling the header after a certain amount of time.
    *
    * @param direction - The direction to scroll
@@ -460,7 +459,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
       });
   }
 
-
   /**
    * Updates the view whether pagination should be enabled or not
    *
@@ -473,7 +471,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     this.updateTabScrollPosition();
   }
 
-
   /**
    * Determines if an index is valid
    *
@@ -485,11 +482,9 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     if (!this.labelWrappers) {
       return true;
     }
-
     const tab = this.labelWrappers.toArray()[index] || null;
     return !!tab && !tab.isDisabled;
   }
-
 
   /**
    * Sets focus on the HTML element for the label wrapper and scrolls it into the view if scrolling is enabled
@@ -509,7 +504,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     }
   }
 
-
   /**
    * Perform the CSS transformation on the tab list that will cause the list to scroll
    */
@@ -517,7 +511,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     const scrollDistance = this.scrollDistance;
     const platform = this.platform;
     const translateX = -scrollDistance;
-
     // Don't use `translate3d` here because we don't want to create a new layer. A new layer seems to cause flickering and overflow in
     // Internet Explorer. For example, the ink bar and ripples will exceed the boundaries of the visible tab bar.
     // See https://github.com/angular/material2/issues/10276
@@ -535,7 +528,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     }
   }
 
-
   /**
    * Move the tab list in the 'before' or 'after' direction (towards the beginning of the list or the end of the list, respectively).
    * The distance to scroll is computed to be a third of the length of the tab list view window.
@@ -543,18 +535,15 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
    * NOTE: This is an expensive call that forces a layout reflow to compute box and scroll metrics and should be called sparingly.
    *
    * @param direction - The scroll direction
-   * @return An object defining scroll limitations
+   * @returns An object defining scroll limitations
    */
   private scrollHeader(direction: TsScrollDirection): {'maxScrollDistance': number; distance: number} {
     const viewLength = this.tabListContainer.nativeElement.offsetWidth;
-
     // Move the scroll distance one-third the length of the tab list's viewport.
-    // eslint-disable-next-line no-magic-numbers
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const scrollAmount = (direction === 'before' ? -1 : 1) * viewLength / 3;
-
     return this.scrollTo(this._scrollDistance + scrollAmount);
   }
-
 
   /**
    * Move the tab list such that the desired tab label (marked by index) is moved into view
@@ -565,7 +554,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
    */
   private scrollToLabel(labelIndex: number): void {
     const selectedLabel = this.labelWrappers ? this.labelWrappers.toArray()[labelIndex] : null;
-
     if (!selectedLabel) {
       return;
     }
@@ -584,7 +572,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
       this.scrollDistance += labelAfterPosition - afterVisiblePosition + EXAGGERATED_OVERSCROLL;
     }
   }
-
 
   /**
    * Evaluate whether the pagination controls should be displayed
@@ -607,7 +594,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     this.showPaginationControls = isEnabled;
   }
 
-
   /**
    * Evaluate whether the before and after controls should be enabled or disabled.
    *
@@ -622,7 +608,6 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
     this.changeDetectorRef.markForCheck();
   }
 
-
   /**
    * Determine what is the maximum length in pixels that can be set for the scroll distance
    *
@@ -630,14 +615,13 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
    *
    * NOTE: This is an expensive call that forces a layout reflow to compute box and scroll metrics and should be called sparingly.
    *
-   * @return The maximum scroll distance
+   * @returns The maximum scroll distance
    */
   private getMaxScrollDistance(): number {
     const lengthOfTabList = this.tabList.nativeElement.scrollWidth;
     const viewLength = this.tabListContainer.nativeElement.offsetWidth;
     return (lengthOfTabList - viewLength) || 0;
   }
-
 
   /**
    * Scroll the header to a given position
@@ -658,5 +642,4 @@ export class TsTabHeaderComponent implements AfterContentChecked, AfterContentIn
       distance: this._scrollDistance,
     };
   }
-
 }

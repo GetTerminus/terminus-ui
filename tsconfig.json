@@ -1,44 +1,43 @@
 {
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
-    "preserveWhitespaces": false
+    "strictInjectionParameters": true
   },
   "compileOnSave": false,
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": "projects/demo",
+    "baseUrl": "./",
     "declaration": false,
+    "downlevelIteration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "incremental": true,
+    "importHelpers": true,
     "lib": [
-      "es2016",
-      "es2015",
+      "es2018",
       "dom"
     ],
+    "module": "esnext",
     "moduleResolution": "node",
     "noImplicitAny": false,
-    "outDir": "./dist/out-tsc",
-    "plugins": [
-      {
-        "name": "typescript-tslint-plugin"
-      }
-    ],
+    "noUnusedLocals": true,
+    "outDir": "dist/out-tsc",
+    "paths": {
+      "@terminus/ui": [
+        "dist/library"
+      ],
+      "@terminus/ui/*": [
+        "dist/library/*"
+      ]
+    },
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "strictNullChecks": true,
-    "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "paths": {
-      "library": [
-        "dist/library"
-      ],
-      "library/*": [
-        "dist/library/*"
-      ]
-    }
+    "target": "es2015",
+    "types": [
+      "jest"
+    ]
   }
 }

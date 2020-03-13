@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   FormControl,
   ValidatorFn,
@@ -6,9 +5,7 @@ import {
 
 import { greaterThanValidator } from './greaterThan';
 
-
 describe(`greaterThanValidator`, function() {
-
   describe(`value input`, () => {
     let validatorFn: ValidatorFn;
     let validatorFnNoNumber: ValidatorFn;
@@ -18,7 +15,6 @@ describe(`greaterThanValidator`, function() {
       validatorFnNoNumber = greaterThanValidator();
     });
 
-
     test(`should return null  the control is invalid`, () => {
       const values = [undefined, {}];
 
@@ -27,7 +23,6 @@ describe(`greaterThanValidator`, function() {
       }
     });
 
-
     test(`should return null if the number is valid`, () => {
       const values = [12, 98.6, 9999];
 
@@ -35,7 +30,6 @@ describe(`greaterThanValidator`, function() {
         expect(validatorFn(new FormControl(val))).toEqual(null);
       }
     });
-
 
     test(`should return the invalid response if the number is NOT valid`, () => {
       const values = [9, 10, -10, 0];
@@ -48,16 +42,13 @@ describe(`greaterThanValidator`, function() {
       }
     });
 
-
     test(`should default to 0 if no number is passed in`, () => {
       const result = validatorFnNoNumber(new FormControl(0));
 
       expect(result!.greaterThan.valid).toEqual(false);
       expect(result!.greaterThan.actual).toEqual(0);
     });
-
   });
-
 
   describe(`control input`, () => {
     let validatorFn: ValidatorFn;
@@ -69,14 +60,12 @@ describe(`greaterThanValidator`, function() {
       validatorFnNoNumber = greaterThanValidator(new FormControl());
     });
 
-
     test(`should return null if control is null`, () => {
-      validatorFn2 = greaterThanValidator(null);
+      validatorFn2 = greaterThanValidator(null as any);
       const result = validatorFn2(new FormControl('a'));
 
       expect(result).toEqual(null);
     });
-
 
     test(`should return null if the number is valid`, () => {
       const values = [12, 98.6, 9999];
@@ -86,7 +75,6 @@ describe(`greaterThanValidator`, function() {
         expect(validatorFn(c)).toEqual(null);
       }
     });
-
 
     test(`should return the invalid response if the number is NOT valid`, () => {
       const values = [9, 10, -10, 0];
@@ -100,14 +88,11 @@ describe(`greaterThanValidator`, function() {
       }
     });
 
-
     test(`should default to 0 if no number is passed in`, () => {
       const result = validatorFnNoNumber(new FormControl(0));
 
       expect(result!.greaterThan.valid).toEqual(false);
       expect(result!.greaterThan.actual).toEqual(0);
     });
-
   });
-
 });

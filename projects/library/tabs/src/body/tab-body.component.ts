@@ -117,6 +117,8 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
 
   /**
    * The shifted index position of the tab body, where zero represents the active center tab.
+   *
+   * @param position
    */
   @Input()
   public set position(position: number) {
@@ -189,11 +191,9 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
     }
   }
 
-
   public ngOnDestroy(): void {
     // Needed for untilComponentDestroyed
   }
-
 
   /**
    * Emit events when a tab translation begins
@@ -209,15 +209,13 @@ export class TsTabBodyComponent implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Determine whether the provided position state is considered center (regardless of origin)
    *
    * @param position - The toState of the animation
-   * @return True if in a center position
+   * @returns True if in a center position
    */
   public isCenterPosition(position: TsTabBodyPositionState | string): boolean {
     return position === 'center' || position === 'left-origin-center' || position === 'right-origin-center';
   }
-
 }

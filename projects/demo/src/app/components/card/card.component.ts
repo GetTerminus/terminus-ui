@@ -1,6 +1,9 @@
-// tslint:disable: no-non-null-assertion
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { TsCardBorderOptions, TsCardComponent } from '@terminus/ui/card';
+import {
+  AfterViewInit, Component, ViewChild,
+} from '@angular/core';
+import {
+  TsCardBorderOptions, TsCardComponent,
+} from '@terminus/ui/card';
 
 
 @Component({
@@ -14,7 +17,7 @@ export class CardComponent implements AfterViewInit {
   theme = 'primary';
   border: TsCardBorderOptions = 'none';
 
-  @ViewChild('transitionCard', {static: true})
+  @ViewChild('transitionCard', { static: true })
   transitionCard!: TsCardComponent;
 
   ngAfterViewInit() {

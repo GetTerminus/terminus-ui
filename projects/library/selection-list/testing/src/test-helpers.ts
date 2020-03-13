@@ -11,13 +11,12 @@ import {
 } from '@terminus/ui/selection-list';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 
-
 /**
  * Get the DebugElement for a TsSelectionListComponent
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired
- * @return The DebugElement
+ * @returns The DebugElement
  */
 export function getSelectionListDebugElement(fixture: ComponentFixture<any>, index = 0): DebugElement {
   const debugElements = getAllSelectionListDebugElements(fixture);
@@ -32,7 +31,7 @@ export function getSelectionListDebugElement(fixture: ComponentFixture<any>, ind
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return The input element
+ * @returns The input element
  */
 export function getSelectionListInput(fixture: ComponentFixture<any>, index = 0): HTMLInputElement {
   const debugElement = getSelectionListDebugElement(fixture, index);
@@ -47,7 +46,7 @@ export function getSelectionListInput(fixture: ComponentFixture<any>, index = 0)
  * Get an array of all DebugElements for TsSelectionListComponent
  *
  * @param fixture - The component fixture
- * @return An array of DebugElements
+ * @returns An array of DebugElements
  */
 export function getAllSelectionListDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-selection-list'));
@@ -63,11 +62,10 @@ export function getAllSelectionListDebugElements(fixture: ComponentFixture<any>)
  * NOTE: Importing TsSelectionListComponent into this file was causing ng-packagr build to fail. Casting to any for now.
  *
  * @param fixture - The component fixture
- * @return An array of TsSelectionListComponent
+ * @returns An array of TsSelectionListComponent
  */
-export function getAllSelectionListInstances(fixture: ComponentFixture<any>): TsSelectionListComponent[] {
-  return getAllSelectionListDebugElements(fixture).map(v => v.componentInstance);
-}
+export const getAllSelectionListInstances =
+  (fixture: ComponentFixture<any>): TsSelectionListComponent[] => getAllSelectionListDebugElements(fixture).map(v => v.componentInstance);
 
 /**
  * Get a component instances for TsSelectionListComponent
@@ -76,7 +74,7 @@ export function getAllSelectionListInstances(fixture: ComponentFixture<any>): Ts
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return The instance
+ * @returns The instance
  */
 export function getSelectionListInstance(fixture: ComponentFixture<any>, index = 0): TsSelectionListComponent {
   const instances = getAllSelectionListInstances(fixture);
@@ -91,7 +89,7 @@ export function getSelectionListInstance(fixture: ComponentFixture<any>, index =
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return The element
+ * @returns The element
  */
 export function getSelectionListElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const instance = getSelectionListInstance(fixture, index);
@@ -103,7 +101,7 @@ export function getSelectionListElement(fixture: ComponentFixture<any>, index = 
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return The element
+ * @returns The element
  */
 export function getSelectionListTriggerElement(fixture: ComponentFixture<any>, index = 0): HTMLElement {
   const debugElement = getSelectionListDebugElement(fixture, index);
@@ -115,7 +113,7 @@ export function getSelectionListTriggerElement(fixture: ComponentFixture<any>, i
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return An array of TsOptionComponent
+ * @returns An array of TsOptionComponent
  */
 export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0): TsOptionComponent[] {
   const instance = getSelectionListInstance(fixture, index);
@@ -132,7 +130,7 @@ export function getAllOptionInstances(fixture: ComponentFixture<any>, index = 0)
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectionListComponent
  * @param optionIndex - The index of the desired TsOptionComponent
- * @return A TsOptionComponent
+ * @returns A TsOptionComponent
  */
 export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): TsOptionComponent {
   const options = getAllOptionInstances(fixture, selectIndex);
@@ -149,7 +147,7 @@ export function getOptionInstance(fixture: ComponentFixture<any>, selectIndex = 
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectionListComponent
  * @param optionIndex - The index of the desired TsOptionComponent
- * @return The TsOptionComponent element
+ * @returns The TsOptionComponent element
  */
 export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0, optionIndex = 0): HTMLElement {
   const option = getOptionInstance(fixture, selectIndex, optionIndex);
@@ -161,7 +159,7 @@ export function getOptionElement(fixture: ComponentFixture<any>, selectIndex = 0
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return An array of TsOptionComponent
+ * @returns An array of TsOptionComponent
  */
 export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsOptgroupComponent[] {
   const debugElement = getSelectionListDebugElement(fixture, index);
@@ -178,7 +176,7 @@ export function getAllOptgroups(fixture: ComponentFixture<any>, index = 0): TsOp
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectionListComponent
  * @param groupIndex - The index of the desired TsOptgroupComponent
- * @return A TsOptgroupComponent
+ * @returns A TsOptgroupComponent
  */
 export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): TsOptgroupComponent {
   const groups = getAllOptgroups(fixture, selectIndex);
@@ -194,7 +192,7 @@ export function getOptgroup(fixture: ComponentFixture<any>, selectIndex = 0, gro
  * @param fixture - The component fixture
  * @param selectIndex - The index of the desired TsSelectionListComponent
  * @param groupIndex - The index of the desired TsOptgroupComponent
- * @return The optgroup element
+ * @returns The optgroup element
  */
 export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex = 0, groupIndex = 0): HTMLElement {
   const group = getOptgroup(fixture, selectIndex, groupIndex);
@@ -206,9 +204,8 @@ export function getOptgroupElement(fixture: ComponentFixture<any>, selectIndex =
  *
  * @param fixture - The component fixture
  * @param index - The index of the desired TsSelectionListComponent
- * @return The whenStable promise
+ * @returns The whenStable promise
  */
-// tslint:disable-next-line no-any
 export function openSelectionList(fixture: ComponentFixture<any>, index = 0): Promise<any> {
   const trigger = getSelectionListTriggerElement(fixture, index);
   trigger.click();

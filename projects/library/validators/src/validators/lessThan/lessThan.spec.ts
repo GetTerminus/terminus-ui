@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   FormControl,
   ValidatorFn,
@@ -6,9 +5,7 @@ import {
 
 import { lessThanValidator } from './lessThan';
 
-
 describe(`lessThanValidator`, function() {
-
   describe(`value input`, () => {
     let validatorFn: ValidatorFn;
     let validatorFnNoNumber: ValidatorFn;
@@ -18,7 +15,6 @@ describe(`lessThanValidator`, function() {
       validatorFnNoNumber = lessThanValidator();
     });
 
-
     test(`should return null if the control is invalid`, () => {
       const values = [undefined, {}];
 
@@ -27,7 +23,6 @@ describe(`lessThanValidator`, function() {
       }
     });
 
-
     test(`should return null if the number is valid`, () => {
       const values = [9, 0, -1];
 
@@ -35,7 +30,6 @@ describe(`lessThanValidator`, function() {
         expect(validatorFn(new FormControl(val))).toEqual(null);
       }
     });
-
 
     test(`should return the invalid response if the number is NOT valid`, () => {
       const values = [10, 11, 98.6, 9999];
@@ -48,16 +42,13 @@ describe(`lessThanValidator`, function() {
       }
     });
 
-
     test(`should default to 0 if no number is passed in`, () => {
       const result = validatorFnNoNumber(new FormControl(1));
 
       expect(result!.lessThan.valid).toEqual(false);
       expect(result!.lessThan.actual).toEqual(1);
     });
-
   });
-
 
   describe(`control input`, () => {
     let validatorFn: ValidatorFn;
@@ -68,7 +59,6 @@ describe(`lessThanValidator`, function() {
       validatorFnNoNumber = lessThanValidator(new FormControl());
     });
 
-
     test(`should return null if the control is invalid`, () => {
       const values = [undefined, {}];
 
@@ -77,7 +67,6 @@ describe(`lessThanValidator`, function() {
       }
     });
 
-
     test(`should return null if the number is valid`, () => {
       const values = [9, 0, -1];
 
@@ -85,7 +74,6 @@ describe(`lessThanValidator`, function() {
         expect(validatorFn(new FormControl(val))).toEqual(null);
       }
     });
-
 
     test(`should return the invalid response if the number is NOT valid`, () => {
       const values = [10, 11, 98.6, 9999];
@@ -98,14 +86,11 @@ describe(`lessThanValidator`, function() {
       }
     });
 
-
     test(`should default to 0 if no number is passed in`, () => {
       const result = validatorFnNoNumber(new FormControl(1));
 
       expect(result!.lessThan.valid).toEqual(false);
       expect(result!.lessThan.actual).toEqual(1);
     });
-
   });
-
 });

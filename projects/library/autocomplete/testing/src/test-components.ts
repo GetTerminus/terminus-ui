@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -12,7 +11,6 @@ import {
 } from '@angular/forms';
 import { TsAutocompleteModule } from '@terminus/ui/autocomplete';
 import { TsOptionModule } from '@terminus/ui/option';
-
 
 interface State {
   name: string;
@@ -108,7 +106,6 @@ export const STATES: State[] = [
   },
 ];
 
-
 interface GroupedStates {
   name: string;
   children: State[];
@@ -154,7 +151,6 @@ const STATES_GROUPED: GroupedStates[] = [
   },
 ];
 
-
 @Component({
   template: `
     <ts-autocomplete
@@ -170,7 +166,7 @@ const STATES_GROUPED: GroupedStates[] = [
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-autocomplete>
   `,
@@ -204,7 +200,7 @@ export class Autocomplete {
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-autocomplete>
 
@@ -221,7 +217,7 @@ export class Autocomplete {
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-autocomplete>
   `,
@@ -252,7 +248,7 @@ export class MultipleAutocomplete {
         [value]="option"
         [option]="option"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-autocomplete>
   `,
@@ -419,7 +415,6 @@ export class Disabled {
 
   public wasOpened = v => { };
 }
-
 
 @Component({
   template: `
@@ -680,7 +675,6 @@ export class Label {
   public options = STATES.slice();
 }
 
-
 @Component({
   template: `
     <ts-autocomplete
@@ -821,7 +815,6 @@ export class OptgroupBadIDs {
   public myCtrl = new FormControl([STATES[4]]);
   public groups = STATES_GROUPED.slice();
 }
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.

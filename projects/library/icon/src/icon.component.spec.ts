@@ -13,7 +13,6 @@ import { configureTestBedWithoutReset } from '@terminus/ngx-tools/testing';
 import { TsIconComponent } from './icon.component';
 import { TsIconModule } from './icon.module';
 
-
 @Component({
   template: `
     <ts-icon id="one" #one [background]="hasBackground">home</ts-icon>
@@ -30,8 +29,6 @@ class TestHostComponent {
   @ViewChild('two', { static: true })
   two!: TsIconComponent;
 }
-
-
 
 describe(`TsIconComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
@@ -62,15 +59,12 @@ describe(`TsIconComponent`, function() {
     icon2 = hostComponent.two;
   });
 
-
   test(`should exist`, () => {
     expect(icon1).toBeTruthy();
     expect(icon2).toBeTruthy();
   });
 
-
   describe(`svgIcon`, () => {
-
     test(`should log a warning if an invalid value was passed in`, () => {
       window.console.warn = jest.fn();
       hostComponent.customIcon = 'foo' as any;
@@ -80,7 +74,6 @@ describe(`TsIconComponent`, function() {
       expect(icon2.svgIcon).toBeUndefined();
     });
 
-
     test(`should inject the custom icon`, () => {
       hostComponent.customIcon = 'csv';
       fixture.detectChanges();
@@ -88,19 +81,14 @@ describe(`TsIconComponent`, function() {
 
       expect(svg).toBeTruthy();
     });
-
   });
 
-
   describe(`background`, () => {
-
     test(`should get/set the background flag`, () => {
       expect(icon1.background).toEqual(false);
       hostComponent.hasBackground = true;
       fixture.detectChanges();
       expect(icon1.background).toEqual(true);
     });
-
   });
-
 });

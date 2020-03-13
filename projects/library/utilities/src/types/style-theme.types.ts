@@ -7,7 +7,6 @@ export type TsStyleThemeTypes
   | 'warn'
 ;
 
-
 /**
  * An array of the allowed {@link TsStyleThemeTypes} for checking values
  */

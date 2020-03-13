@@ -8,18 +8,20 @@ import {
   ContentChildren,
   ElementRef,
   Input,
-  NgZone,
+  NgZone, OnDestroy,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 import {
+  asapScheduler,
   EMPTY,
   fromEvent,
-  merge,
+  scheduled,
 } from 'rxjs';
 import {
   startWith,
@@ -43,17 +45,6 @@ const OUTLINE_GAP_PADDING = 5;
  * The form-field UI Component.
  *
  * Used to wrap input components with form field functionality (hints, errors, labels etc)
- *
- * #### QA CSS CLASSES
- * - `qa-form-field`: Placed on the primary container
- * - `qa-form-field-container`: Placed on the click-container
- * - `qa-form-field-outline`: Placed on the field outline
- * - `qa-form-field-prefix`: Placed on the control prefix
- * - `qa-form-field-control-container`: Placed on the control container
- * - `qa-form-field-label`: Placed on the label
- * - `qa-form-field-required-marker`: Placed on the required marker if it exists
- * - `qa-form-field-suffix`: Placed on the control suffix
- * - `qa-form-field-hint`: Placed on the hint
  *
  * @example
  * <ts-form-field
@@ -92,7 +83,7 @@ const OUTLINE_GAP_PADDING = 5;
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsFormField',
 })
-export class TsFormFieldComponent implements AfterContentInit, AfterContentChecked, AfterViewInit {
+export class TsFormFieldComponent implements AfterContentInit, AfterContentChecked, AfterViewInit, OnDestroy {
   /**
    * Store a reference to the document object
    */
@@ -175,11 +166,13 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
    * NOTE: Using non-null-assertion as since the existence is verified by `confirmControlExists()`
    */
   @Input()
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public control!: TsFormFieldControl<any>;
 
   /**
    * Whether the label should always float or float as the user types
+   *
+   * @param value
    */
   @Input()
   public set floatLabel(value: 'always' | 'auto') {
@@ -202,6 +195,8 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
 
   /**
    * Define a hint for the input
+   *
+   * @param value
    */
   @Input()
   public set hint(value: string | undefined) {
@@ -214,6 +209,8 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -260,33 +257,32 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     this.confirmControlExists();
 
     // Subscribe to changes in the child control state in order to update the form field UI.
-    // NOTE: non-null-assertion needed to pass `null` to `startWith`
-    // tslint:disable: no-non-null-assertion
-    this.control.stateChanges.pipe(startWith<void, null>(null!)).subscribe(() => {
+    // TODO: Refactor deprecation
+    // eslint-disable-next-line deprecation/deprecation
+    this.control.stateChanges.pipe(startWith<void, null>(null)).subscribe(() => {
       this.changeDetectorRef.markForCheck();
     });
-    // tslint:enable: no-non-null-assertion
 
     // Subscribe to changes in the child control state in order to update the form field UI.
     // istanbul ignore else
     if (this.control.labelChanges) {
-      // NOTE: non-null-assertion needed to pass `null` to `startWith`
-      // tslint:disable: no-non-null-assertion
-      this.control.labelChanges.pipe(startWith<void, null>(null!)).subscribe(() => {
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
+      this.control.labelChanges.pipe(startWith<void, null>(null)).subscribe(() => {
         this.updateOutlineGap();
       });
-      // tslint:enable: no-non-null-assertion
     }
 
     // Run change detection if the value, prefix, or suffix changes.
     const valueChanges = (this.control.ngControl && this.control.ngControl.valueChanges) || EMPTY;
-    merge(valueChanges, this.prefixChildren.changes, this.suffixChildren.changes).subscribe(() => this.changeDetectorRef.markForCheck());
+    scheduled([valueChanges, this.prefixChildren.changes, this.suffixChildren.changes], asapScheduler)
+      .pipe(untilComponentDestroyed(this))
+      .subscribe(() => this.changeDetectorRef.markForCheck());
 
     this.ngZone.onStable.pipe(take(1)).subscribe(() => {
       this.ngZone.runOutsideAngular(() => this.updateOutlineGap());
     });
   }
-
 
   /**
    * Verify control existence and trigger outline gap update if needed
@@ -299,7 +295,6 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     }
   }
 
-
   /**
    * Enable animations
    */
@@ -307,7 +302,10 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     this.changeDetectorRef.detectChanges();
   }
 
-
+  /**
+   * Needed for `untilComponentDestroyed`
+   */
+  public ngOnDestroy(): void {}
 
   /**
    * Throw an error if the form field's control is missing
@@ -319,14 +317,12 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     }
   }
 
-
   /**
    * Whether the floating label should always float or not
    */
   public get shouldAlwaysFloat(): boolean {
     return this.floatLabel === 'always' && !this.showAlwaysAnimate;
   }
-
 
   /**
    * Gets an ElementRef for the element that a overlay attached to the form-field should be
@@ -338,15 +334,15 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     return this.containerElement || this.elementRef;
   }
 
-
   /**
    * Determines whether a class from the NgControl should be forwarded to the host element
+   *
+   * @param prop
    */
   public shouldForward(prop: string): boolean {
     const ngControl = this.control ? this.control.ngControl /* istanbul ignore next - Unreachable */ : null;
     return ngControl && ngControl[prop];
   }
-
 
   /**
    * Determine if the label should float from the control's setting
@@ -354,7 +350,6 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
   public shouldLabelFloat(): boolean {
     return this.control.shouldLabelFloat;
   }
-
 
   /**
    * Animate the placeholder up and lock it in position
@@ -364,6 +359,7 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
   public animateAndLockLabel(): void {
     this.showAlwaysAnimate = true;
 
+    // eslint-disable-next-line deprecation/deprecation
     fromEvent(this.labelElement.nativeElement, 'transitionend').pipe(take(1)).subscribe(() => {
       this.showAlwaysAnimate = false;
     });
@@ -371,7 +367,6 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
     this.floatLabel = 'always';
     this.changeDetectorRef.markForCheck();
   }
-
 
   /**
    * Updates the width and position of the gap in the outline
@@ -417,5 +412,4 @@ export class TsFormFieldComponent implements AfterContentInit, AfterContentCheck
 
     this.outlineGapCalculationNeeded = false;
   }
-
 }

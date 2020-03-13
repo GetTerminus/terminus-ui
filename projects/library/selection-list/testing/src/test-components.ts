@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -10,15 +9,17 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { TsOptionModule } from '@terminus/ui/option';
+import {
+  TsOption,
+  TsOptionModule,
+} from '@terminus/ui/option';
 import {
   TsSelectionListChange,
   TsSelectionListFormatter,
   TsSelectionListModule,
 } from '@terminus/ui/selection-list';
 
-
-interface State {
+interface State extends TsOption {
   name: string;
   population: string;
   disabled?: boolean;
@@ -112,7 +113,6 @@ export const STATES: State[] = [
   },
 ];
 
-
 interface GroupedStates {
   name: string;
   children: State[];
@@ -158,7 +158,6 @@ const STATES_GROUPED: GroupedStates[] = [
   },
 ];
 
-
 @Component({
   template: `
     <ts-selection-list
@@ -174,7 +173,7 @@ const STATES_GROUPED: GroupedStates[] = [
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-selection-list>
   `,
@@ -208,7 +207,7 @@ export class Basic {
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-selection-list>
 
@@ -225,7 +224,7 @@ export class Basic {
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-selection-list>
   `,
@@ -256,7 +255,7 @@ export class Multiple {
         [value]="option"
         [option]="option"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-selection-list>
   `,
@@ -482,7 +481,6 @@ export class Disabled {
   public wasOpened = v => { };
 }
 
-
 @Component({
   template: `
     <ts-selection-list
@@ -517,9 +515,8 @@ export class SelectOptionChange {
       <ts-option
         [value]="option"
         [option]="option"
-        [isDisabled]="option?.disabled"
         *ngFor="let option of foods"
-      >{{ option.name }}</ts-option>
+      >{{ option.viewValue }}</ts-option>
     </ts-selection-list>
   `,
 })
@@ -742,7 +739,6 @@ export class Label {
   public options = STATES.slice();
 }
 
-
 @Component({
   template: `
     <ts-selection-list
@@ -865,7 +861,7 @@ export class OptgroupIDs {
     <ts-selection-list [formControl]="myCtrl">
       <ts-select-optgroup
         *ngFor="let group of groups"
-        [id]="group.foo"
+        [id]="group.name"
         [label]="group.name"
       >
         <ts-option
@@ -897,7 +893,7 @@ export class OptgroupBadIDs {
         [option]="option"
         [isDisabled]="option?.disabled"
       >
-        {{ option.foo }}
+        {{ option.name }}
       </ts-option>
     </ts-selection-list>
   `,
@@ -922,7 +918,6 @@ export class Formatter {
         *ngFor="let option of options"
         [value]="option"
         [option]="option"
-        [isDisabled]="option?.disabled"
       >
         {{ option }}
       </ts-option>
@@ -937,20 +932,19 @@ export class SimpleArray {
 
 @Component({
   template: `
-      <ts-selection-list
-              [formControl]="myCtrl"
-              [allowMultiple]="allowMultiple"
-              (selectionChange)="mySelection($event)"
-      >
-          <ts-option
-                  *ngFor="let option of options"
-                  [value]="option"
-                  [option]="option"
-                  [isDisabled]="option?.disabled"
-          >
-              {{ option }}
-          </ts-option>
-      </ts-selection-list>
+    <ts-selection-list
+      [formControl]="myCtrl"
+      [allowMultiple]="allowMultiple"
+      (selectionChange)="mySelection($event)"
+    >
+        <ts-option
+          *ngFor="let option of options"
+          [value]="option"
+          [option]="option"
+        >
+          {{ option }}
+        </ts-option>
+    </ts-selection-list>
   `,
 })
 export class SelectionEvent {
@@ -998,8 +992,6 @@ export class NoValidationOrHint {
   public myCtrl = new FormControl();
   public validationFlag = true;
 }
-
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.

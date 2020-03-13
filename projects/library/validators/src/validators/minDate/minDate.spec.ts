@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   AbstractControl,
   FormControl,
@@ -7,9 +6,7 @@ import {
 
 import { minDateValidator } from './minDate';
 
-
 describe(`minDateValidator`, function() {
-
   describe(`date input`, () => {
     let minDate: string;
     let validDate: string;
@@ -19,7 +16,6 @@ describe(`minDateValidator`, function() {
     let stringControl: AbstractControl;
     let validDateControl: AbstractControl;
     let invalidDateControl: AbstractControl;
-
 
     beforeEach(() => {
       minDate = new Date(2017, 4, 1).toISOString();
@@ -34,16 +30,13 @@ describe(`minDateValidator`, function() {
       invalidDateControl = new FormControl(invalidDate);
     });
 
-
     test(`should return null if the control doesn't exist`, () => {
       expect(validatorFn(nullControl)).toEqual(null);
     });
 
-
     test(`should return null if the control has no value`, () => {
       expect(validatorFn({} as any)).toEqual(null);
     });
-
 
     test(`should return the invalid response if the control value is not a valid date`, () => {
       const actual = validatorFn(stringControl)!.minDate;
@@ -56,11 +49,9 @@ describe(`minDateValidator`, function() {
       expect(actual).toEqual(expected);
     });
 
-
     test(`should return null if the control value is after the minDate`, () => {
       expect(validatorFn(validDateControl)).toEqual(null);
     });
-
 
     test(`should return the invalid response if the control value is before the minDate`, () => {
       const actual = validatorFn(invalidDateControl)!.minDate;
@@ -72,9 +63,7 @@ describe(`minDateValidator`, function() {
 
       expect(actual).toEqual(expected);
     });
-
   });
-
 
   describe(`control input`, () => {
     let minDate: string;
@@ -85,7 +74,6 @@ describe(`minDateValidator`, function() {
     let stringControl: AbstractControl;
     let validDateControl: AbstractControl;
     let invalidDateControl: AbstractControl;
-
 
     beforeEach(() => {
       minDate = new Date(2017, 4, 1).toISOString();
@@ -100,16 +88,13 @@ describe(`minDateValidator`, function() {
       invalidDateControl = new FormControl(invalidDate);
     });
 
-
     test(`should return null if the control doesn't exist`, () => {
       expect(validatorFn(nullControl)).toEqual(null);
     });
 
-
     test(`should return null if the control has no value`, () => {
       expect(validatorFn({} as any)).toEqual(null);
     });
-
 
     test(`should return the invalid response if the control value is not a valid date`, () => {
       const actual = validatorFn(stringControl)!.minDate;
@@ -122,11 +107,9 @@ describe(`minDateValidator`, function() {
       expect(actual).toEqual(expected);
     });
 
-
     test(`should return null if the control value is after the minDate`, () => {
       expect(validatorFn(validDateControl)).toEqual(null);
     });
-
 
     test(`should return the invalid response if the control value is before the minDate`, () => {
       const actual = validatorFn(invalidDateControl)!.minDate;
@@ -138,7 +121,5 @@ describe(`minDateValidator`, function() {
 
       expect(actual).toEqual(expected);
     });
-
   });
-
 });

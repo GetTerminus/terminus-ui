@@ -6,7 +6,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-
+import { MatTooltip } from '@angular/material/tooltip';
 
 
 /**
@@ -59,10 +59,13 @@ export class TsTooltipComponent {
 
   /**
    * Define the position of the tooltip
+   *
+   * @param value
    */
   @Input()
   public set tooltipPosition(value: TsTooltipPositionTypes) {
     if (value && isDevMode() && (allowedTooltipTypes.indexOf(value) < 0)) {
+      // eslint-disable-next-line no-console
       console.warn(`TsTooltipComponent: "${value}" is not an allowed position. Allowed positions defined by "TsTooltipPositionTypes".`);
     }
     this._tooltipPosition = value;
@@ -82,7 +85,7 @@ export class TsTooltipComponent {
    * Access Material Tooltip Directive
    */
   @ViewChild('tooltip', { static: true })
-  public matTooltip;
+  public matTooltip!: MatTooltip;
 
   /**
    * Call Material Tooltip's show() method

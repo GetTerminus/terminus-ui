@@ -10,22 +10,20 @@ import { emailRegex } from '@terminus/ngx-tools/regex';
 /**
  * Return a validator function to verify that an email address is valid
  *
- * @return The validator function
+ * @returns The validator function
  */
-export function emailValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
-    // Allow optional controls by not validating empty values
-    if (!control || !control.value) {
-      return null;
-    }
+export const emailValidator = (): ValidatorFn => (control: AbstractControl): ValidationErrors | null => {
+  // Allow optional controls by not validating empty values
+  if (!control || !control.value) {
+    return null;
+  }
 
-    const invalidResponse: ValidationErrors = {
-      email: {
-        valid: false,
-        actual: control.value,
-      },
-    };
-
-    return emailRegex.test(control.value) ? null : invalidResponse;
+  const invalidResponse: ValidationErrors = {
+    email: {
+      valid: false,
+      actual: control.value,
+    },
   };
-}
+
+  return emailRegex.test(control.value) ? null : invalidResponse;
+};

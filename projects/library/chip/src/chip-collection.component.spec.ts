@@ -33,6 +33,9 @@ import {
 } from '@terminus/ui/chip/testing';
 import { TsOptionModule } from '@terminus/ui/option';
 
+/**
+ * @param component
+ */
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
   const moduleImports = [
     FormsModule,
@@ -64,6 +67,11 @@ describe(`TsChipCollection`, function() {
   let BACKSPACE_EVENT: KeyboardEvent;
   let BACKSPACE_EVENT_CHIP: KeyboardEvent;
 
+  /**
+   * Set up for test.
+   *
+   * @param component
+   */
   function setupStandardCollection(component) {
     fixture = createComponent(component);
     fixture.detectChanges();
@@ -134,7 +142,6 @@ describe(`TsChipCollection`, function() {
   });
 
   describe(`empty`, () => {
-
     test(`should check the number of chips if the collection exists`, () => {
       fixture = createComponent(testComponents.NoChip);
       chipCollectionInstance = getChipCollectionInstance(fixture);
@@ -142,7 +149,6 @@ describe(`TsChipCollection`, function() {
 
       expect(chipCollectionInstance.empty).toEqual(true);
     });
-
   });
 
   test(`should be able to set isSelectable from chip collection and populate to chips`, fakeAsync(function() {
@@ -207,11 +213,9 @@ describe(`TsChipCollection`, function() {
     allChips[1].selected = true;
     fixture.detectChanges();
     expect(allChips[0].selected).toBeFalsy();
-
   });
 
   describe(`focus`, function() {
-
     test(`should return undefined if isDisabled`, function() {
       setupStandardCollection(testComponents.DisabledChip);
       expect(chipCollectionInstance.focus()).toEqual(undefined);
@@ -242,7 +246,6 @@ describe(`TsChipCollection`, function() {
 
       expect(chipCollectionInstance.blur).toHaveBeenCalled();
     }));
-
   });
 
   describe(`tabIndex`, () => {
@@ -300,12 +303,10 @@ describe(`TsChipCollection`, function() {
       fixture.detectChanges();
       expect(chipCollectionInstance.id).toEqual(1);
     });
-
   });
 
   // TODO: Move autocomplete tests to the autocomplete spec file(s)
   describe(`used in autocomplete component`, function() {
-
     beforeEach(() => {
       setupStandardCollection(testComponents.Autocomplete);
       nativeInput = fixture.nativeElement.querySelector('input');
@@ -345,11 +346,9 @@ describe(`TsChipCollection`, function() {
       const nodeName = document.activeElement ? document.activeElement.nodeName : '';
       expect(nodeName).toBe('INPUT');
     });
-
   });
 
   describe(`keydown`, function() {
-
     beforeEach(() => {
       setupStandardCollection(testComponents.StandardChipCollection);
     });
@@ -392,7 +391,6 @@ describe(`TsChipCollection`, function() {
   });
 
   describe(`updateFocus`, () => {
-
     beforeEach(() => {
       setupStandardCollection(testComponents.StandardChipCollection);
     });
@@ -486,5 +484,4 @@ describe(`TsChipCollection`, function() {
       expect(firstChip.selected).toBeFalsy();
     }));
   });
-
 });

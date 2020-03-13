@@ -24,7 +24,7 @@ export class PaginatorComponent {
   zeroBased = true;
   simpleMode = false;
 
-  @ViewChild(TsPaginatorComponent, {static: true})
+  @ViewChild(TsPaginatorComponent, { static: true })
   paginator!: TsPaginatorComponent;
 
 

@@ -33,10 +33,6 @@ let nextUniqueId = 0;
 /**
  * Component that is used to group instances of {@link TsOptionComponent}s
  *
- * #### QA CSS CLASSES
- * - `qa-optgroup-label`: The group label
- * - `qa-optgroup-checkbox`: The group checkbox
- *
  * @example
  * <ts-select-optgroup
  *              id="my-id"
@@ -90,13 +86,9 @@ export class TsOptgroupComponent {
   protected uid = `ts-select-optgroup-${nextUniqueId++}`;
 
   /**
-   * VIEW ACCESS
-   */
-
-  /**
    * Access the checkbox instance
    */
-  @ViewChild(TsCheckboxComponent, { static: false })
+  @ViewChild(TsCheckboxComponent)
   public checkbox!: TsCheckboxComponent;
 
   /**
@@ -106,11 +98,9 @@ export class TsOptgroupComponent {
   public optgroupOptions!: QueryList<TsOptionComponent>;
 
   /**
-   * INPUTS
-   */
-
-  /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -137,11 +127,9 @@ export class TsOptgroupComponent {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     // NOTE: Useful for testing but not used in this file
-    // tslint:disable-next-line no-unused-variable
     public elementRef: ElementRef,
     @Optional() @Inject(TS_OPTION_PARENT_COMPONENT) public parent: TsOptionParentComponent,
   ) {}
-
 
   /**
    * Toggle all options
@@ -153,7 +141,6 @@ export class TsOptgroupComponent {
     }
   }
 
-
   /**
    * Allow others to trigger count updates and CDR detection
    */
@@ -162,5 +149,4 @@ export class TsOptgroupComponent {
     this.someSelected = someOptionsAreSelected(this.optgroupOptions);
     this.changeDetectorRef.detectChanges();
   }
-
 }

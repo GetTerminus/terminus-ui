@@ -17,7 +17,6 @@ import {
 } from '@terminus/ui/chip';
 import { TsOptionModule } from '@terminus/ui/option';
 
-
 @Component({
   template: `
     <ts-chip-collection>
@@ -224,7 +223,7 @@ export class Events {
   public tabbed = () => { };
   public remove = (v: TsChipComponent) => {
     this.options = this.options.filter(option => v.value === option);
-  }
+  };
 }
 
 @Component({
@@ -244,7 +243,6 @@ export class ChipNoValue {
   `,
 })
 export class ChipBadge {}
-
 
 export type TsChipTestComponent
   = Autocomplete

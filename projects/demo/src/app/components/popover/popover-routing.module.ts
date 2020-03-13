@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+} from '@angular/router';
 
 import { PopoverComponent } from './popover.component';
 

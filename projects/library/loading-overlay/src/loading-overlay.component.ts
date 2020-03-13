@@ -8,9 +8,6 @@ import {
 /**
  * The loading overlay component. Implemented by {@link TsLoadingOverlayDirective}
  *
- * #### QA CSS CLASSES
- * - `qa-loading-overlay`: Placed on the div overlay containing the loading spinner
- *
  * @example
  * See {@link TsLoadingOverlayDirective}
  */
