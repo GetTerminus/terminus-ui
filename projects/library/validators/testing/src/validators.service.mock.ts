@@ -1,121 +1,165 @@
 import { Injectable } from '@angular/core';
 
-
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class TsValidatorsServiceMock {
   public isValid = true;
 
-  public creditCard = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    creditCard: {
-      valid: false,
-      actual: '1234',
-    },
-  })
+  public creditCard = () => {
+    const response = {
+      creditCard: {
+        valid: false,
+        actual: '1234',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public domain = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    domain: {
-      valid: false,
-      actual: 'foo',
-    },
-  })
+  public domain = () => {
+    const response = {
+      domain: {
+        valid: false,
+        actual: 'foo',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public email = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    email: {
-      valid: false,
-      actual: 'foo',
-    },
-  })
+  public email = () => {
+    const response = {
+      email: {
+        valid: false,
+        actual: 'foo',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public equalToControl = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    equalToControl: {
-      valid: false,
-      compareValue: 'foo',
-      actual: 'bar',
-    },
-  })
+  public equalToControl = () => {
+    const response = {
+      equalToControl: {
+        valid: false,
+        compareValue: 'foo',
+        actual: 'bar',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public greaterThan = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    greaterThan: {
-      valid: false,
-      greaterThan: 10,
-      actual: 5,
-    },
-  })
+  public greaterThan = () => {
+    const response = {
+      greaterThan: {
+        valid: false,
+        greaterThan: 10,
+        actual: 5,
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public inCollection = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    inCollection: {
-      valid: false,
-      actual: 'fo',
-      collection: ['foo', 'bar', 'baz'],
-    },
-  })
+  public inCollection = () => {
+    const response = {
+      inCollection: {
+        valid: false,
+        actual: 'fo',
+        collection: ['foo', 'bar', 'baz'],
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public isInRange = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    isInRange: {
-      valid: false,
-      isInRange: [10, 100],
-      actual: 5,
-    },
-  })
+  public isInRange = () => {
+    const response = {
+      isInRange: {
+        valid: false,
+        isInRange: [10, 100],
+        actual: 5,
+      },
+    };
 
-  public lessThan = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    lessThan: {
-      valid: false,
-      lessThan: 10,
-      actual: 15,
-    },
-  })
+    return this.isValid ? null : response;
+  };
 
-  public lowercase = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    lowercase: {
-      valid: false,
-      lowercaseMin: 4,
-      actual: 'abcDE',
-    },
-  })
+  public lessThan = () => {
+    const response = {
+      lessThan: {
+        valid: false,
+        lessThan: 10,
+        actual: 15,
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public maxDate = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    maxDate: {
-      valid: false,
-      actual: new Date(2020, 1, 1),
-    },
-  })
+  public lowercase = () => {
+    const response = {
+      lowercase: {
+        valid: false,
+        lowercaseMin: 4,
+        actual: 'abcDE',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public minDate = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    minDate: {
-      valid: false,
-      actual: new Date(2017, 1, 1),
-    },
-  })
+  public maxDate = () => {
+    const response = {
+      maxDate: {
+        valid: false,
+        actual: new Date(2020, 1, 1),
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public numbers = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    numbers: {
-      valid: false,
-      numbersMin: 4,
-      actual: '123',
-    },
-  })
+  public minDate = () => {
+    const response = {
+      minDate: {
+        valid: false,
+        actual: new Date(2017, 1, 1),
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public password = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    password: {
-      valid: false,
-      actual: 'foo',
-    },
-  })
+  public numbers = () => {
+    const response = {
+      numbers: {
+        valid: false,
+        numbersMin: 4,
+        actual: '123',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public uppercase = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    uppercase: {
-      valid: false,
-      uppercaseMin: 4,
-      actual: 'ABCde',
-    },
-  })
+  public password = () => {
+    const response = {
+      password: {
+        valid: false,
+        actual: 'foo',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
-  public url = () => jest.fn().mockReturnValue(this.isValid ? null : {
-    lessThan: {
-      valid: false,
-      actual: 'http://foo',
-    },
-  })
+  public uppercase = () => {
+    const response = {
+      uppercase: {
+        valid: false,
+        uppercaseMin: 4,
+        actual: 'ABCde',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 
+  public url = () => {
+    const response = {
+      lessThan: {
+        valid: false,
+        actual: 'http://foo',
+      },
+    };
+    return this.isValid ? null : response;
+  };
 }
