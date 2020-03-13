@@ -32,15 +32,17 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   /**
    * A reference to the portal
    */
-  private loadingOverlayPortal: ComponentPortal<TsLoadingOverlayComponent>;
+  private readonly loadingOverlayPortal: ComponentPortal<TsLoadingOverlayComponent>;
 
   /**
    * Reference to our portal host
    */
-  private bodyPortalHost: DomPortalOutlet;
+  private readonly bodyPortalHost: DomPortalOutlet;
 
   /**
    * Define a setter to show/hide the loading overlay
+   *
+   * @param value
    */
   @Input()
   public set tsLoadingOverlay(value: boolean) {
@@ -60,9 +62,6 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
   public position!: string;
 
 
-  /**
-   * Inject services
-   */
   constructor(
     private elementRef: ElementRef,
     private windowService: TsWindowService,
@@ -88,13 +87,9 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
    */
   public ngOnInit(): void {
     // Determine the CSS position of the element
-    const position = this.windowService.nativeWindow
-      .getComputedStyle(this.elementRef.nativeElement).getPropertyValue('position');
-
-    // Set the position
+    const position = this.windowService.nativeWindow.getComputedStyle(this.elementRef.nativeElement).getPropertyValue('position');
     this.position = this.determinePosition(position);
   }
-
 
   /**
    * Destroy the portal host if it exists
@@ -105,12 +100,11 @@ export class TsLoadingOverlayDirective implements OnInit, OnDestroy {
     }
   }
 
-
   /**
    * Return the correct position
    *
-   * @param position The current position value
-   * @return The correct position value
+   * @param position - The current position value
+   * @returns The correct position value
    */
   private determinePosition(position: string): string {
     return (position === 'relative' || position === 'absolute') ? position : 'relative';

@@ -1,4 +1,3 @@
-// tslint:disable: template-no-call-expression
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -37,7 +36,7 @@ import { TsDrawerComponent } from './drawer.component';
 /**
  * Throws an exception when two TsDrawer are matching the same position with same mode.
  *
- * @params - drawer's position
+ * @param position - drawer's position
  */
 export function throwTsDuplicatedDrawerError(position: string): void {
   throw new TsUILibraryError(`TsDrawerContainer: Only one drawer can be in push mode on '"${position}" position'.`);
@@ -80,7 +79,6 @@ const MARGIN_SIZE_CONVERSION = 16;
   exportAs: 'tsDrawerContainer',
 })
 export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, OnDestroy {
-
   /**
    * The drawer at the start/end position.
    */
@@ -118,7 +116,7 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
   /**
    * Access the child content {@link TsDrawerContentComponent}
    */
-  @ContentChild(TsDrawerContentComponent, { static: false })
+  @ContentChild(TsDrawerContentComponent)
   public content!: TsDrawerContentComponent;
 
   /**
@@ -165,6 +163,7 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
   public ngAfterContentInit(): void {
     const contentEle = this.content ? this.content.getElementRef().nativeElement : null;
     this.drawers.changes.pipe(
+      // eslint-disable-next-line deprecation/deprecation
       startWith<void, null>(null),
       untilComponentDestroyed(this),
     ).subscribe(() => {
@@ -186,7 +185,7 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
     // Arbitrary debounce time, less than a frame at 60fps
     this.doCheckSubject.pipe(
       debounceTime(1),
-      untilComponentDestroyed(this)
+      untilComponentDestroyed(this),
     ).subscribe(() => this.updateContentMargins());
 
     this.contentMarginChanges.subscribe(e => {
@@ -263,10 +262,10 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
    * left margin (for left drawer) or right margin (for right the drawer).
    * If the content margin has already been set and there are more than 1 opening windows on the same size, do not update.
    *
-   * @param drawer: drawer component,
-   * @param side: left of right side where the drawer expands
-   * @param margin: margin on that side of drawer
-   * @return - calculated margin on the specific side.
+   * @param drawer - drawer component,
+   * @param side - left of right side where the drawer expands
+   * @param margin - margin on that side of drawer
+   * @returns - calculated margin on the specific side.
    */
   private marginCalculation(drawer: TsDrawerComponent | null, side: string, margin: number): number {
     let sideMargin;
@@ -293,7 +292,7 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
    * drawer is open and the backdrop is visible. This ensures any overflow on the container element
    * is properly hidden.
    *
-   * @params drawer - TsDrawerComponent
+   * @param drawer - TsDrawerComponent
    */
   private adjustDrawerOnChange(drawer: TsDrawerComponent): void {
     drawer.animationStarted.pipe(
@@ -322,7 +321,7 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
   /**
    * Subscribes to drawer positionChanged event in order to re-validate drawers when the position changes.
    *
-   * @params drawer - TsDrawerComponent
+   * @param drawer - TsDrawerComponent
    */
   private drawerPositionOnChange(drawer: TsDrawerComponent): void {
     // NOTE: We need to wait for the microtask queue to be empty before validating,
@@ -336,6 +335,8 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
 
   /**
    * Subscribes to changes in drawer mode so we can run change detection.
+   *
+   * @param drawer
    */
   private drawerModeOnChange(drawer: TsDrawerComponent): void {
     // istanbul ignore else
@@ -356,7 +357,7 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
   /**
    * Toggles the 'ts-drawer--expanded' class on the main 'ts-drawer-container' element.
    *
-   * @params isAdd: whether drawer is expanding
+   * @param isAdd - whether drawer is expanding
    */
   private setContainerClass(isAdd: boolean): void {
     if (isAdd) {
@@ -384,9 +385,8 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
 
     // Ensure that we have at most one start and one end drawer with push mode.
     const seen = new Set();
-    const hasDuplicates = this.drawers.filter(d => d.mode === 'push').some(function(currentObject) {
-      return seen.size === seen.add(currentObject.position).size;
-    });
+    const hasDuplicates =
+      this.drawers.filter(d => d.mode === 'push').some(currentObject => seen.size === seen.add(currentObject.position).size);
     if (hasDuplicates) {
       throwTsDuplicatedDrawerError(seen.values().next().value);
     }
@@ -416,10 +416,9 @@ export class TsDrawerContainerComponent implements AfterContentInit, DoCheck, On
    * Whether drawer is currently expanded
    *
    * @param drawer
-   * @return boolean
+   * @returns boolean
    */
   private static isDrawerOpen(drawer: TsDrawerComponent | null): drawer is TsDrawerComponent {
     return drawer != null && drawer.isExpanded;
   }
-
 }

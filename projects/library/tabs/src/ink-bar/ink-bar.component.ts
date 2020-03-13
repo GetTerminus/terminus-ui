@@ -23,7 +23,7 @@ import {
 })
 export class TsTabInkBarComponent {
 
-  public constructor(
+  constructor(
     private elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
   ) {}
@@ -45,7 +45,6 @@ export class TsTabInkBarComponent {
     }
   }
 
-
   /**
    * Sets the proper styles to the ink bar element.
    *
@@ -54,17 +53,15 @@ export class TsTabInkBarComponent {
   private setStyles(element: HTMLElement): void {
     const positions = this.determineInkBarPositions(element);
     const inkBar: HTMLElement = this.elementRef.nativeElement;
-
     inkBar.style.left = positions.left;
     inkBar.style.width = positions.width;
   }
-
 
   /**
    * Return an object representing the correct ink bar positions
    *
    * @param element - The element to align the ink bar to
-   * @return The object of positions
+   * @returns The object of positions
    */
   private determineInkBarPositions(element: HTMLElement): {left: string; width: string} {
     return {
@@ -72,5 +69,4 @@ export class TsTabInkBarComponent {
       width: element ? `${(element.offsetWidth || 0)}px` : '0',
     };
   }
-
 }

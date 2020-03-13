@@ -9,7 +9,7 @@ import { ComponentsComponent } from './components/components.component';
 import { componentsList } from './components/components.constant';
 
 
-const routerOptions: ExtraOptions = {anchorScrolling: 'enabled'};
+const routerOptions: ExtraOptions = { anchorScrolling: 'enabled' };
 
 const routes: Routes = [
   {

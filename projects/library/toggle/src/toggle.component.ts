@@ -56,6 +56,8 @@ export class TsToggleComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Allow the checked state to be set
+   *
+   * @param value
    */
   @Input()
   public set isChecked(value: boolean) {

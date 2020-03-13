@@ -89,11 +89,14 @@ export class TsIconComponent {
 
   /**
    * Name of the custom icon
+   *
+   * @param value
    */
   @Input()
   public set svgIcon(value: TS_CUSTOM_ICON | undefined) {
     // If an unsupported value is passed in
     if (value && TS_CUSTOM_ICONS.indexOf(value) < 0 && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsIconComponent: "${value}" is not a supported custom icon. `
       + `See TS_CUSTOM_ICON for available options.`);
       return;

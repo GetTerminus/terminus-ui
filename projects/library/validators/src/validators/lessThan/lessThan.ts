@@ -14,10 +14,10 @@ import {
  * Return a validator function to verify the number is below a specific number
  *
  * @param max - The maximum value
- * @return The validator function
+ * @returns The validator function
  */
-export function lessThanValidator(max: number | AbstractControl = 0): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+export const lessThanValidator =
+  (max: number | AbstractControl = 0): ValidatorFn => (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
     if (!control || isNaN(control.value)) {
       return null;
@@ -29,15 +29,13 @@ export function lessThanValidator(max: number | AbstractControl = 0): ValidatorF
     return getValidationResult(max, control);
 
   };
-}
-
 
 /**
  * Return the validation result
  *
  * @param max - The minimum value
  * @param control - The control containing the current value
- * @return The difference in time
+ * @returns The difference in time
  */
 function getValidationResult(max: number | undefined, control: AbstractControl): ValidationErrors | null {
   max = coerceNumberProperty(max);
@@ -48,6 +46,5 @@ function getValidationResult(max: number | undefined, control: AbstractControl):
       actual: control.value,
     },
   };
-
   return (control.value < max) ? null : invalidResponse;
 }

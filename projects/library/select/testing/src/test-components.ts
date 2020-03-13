@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -8,7 +7,6 @@ import {
   FormControl,
   FormsModule,
   ReactiveFormsModule,
-  Validator,
   Validators,
 } from '@angular/forms';
 import {
@@ -19,7 +17,6 @@ import {
   TsSelectModule,
   TsSelectSortComparatorFunction,
 } from '@terminus/ui/select';
-
 
 interface State {
   name: string;
@@ -115,7 +112,6 @@ const STATES: State[] = [
   },
 ];
 
-
 interface GroupedStates {
   name: string;
   children: State[];
@@ -160,9 +156,6 @@ const STATES_GROUPED: GroupedStates[] = [
     ],
   },
 ];
-
-
-
 
 @Component({
   template: `
@@ -315,11 +308,11 @@ export class CustomBlankOption {
       >
         <ts-option
           *ngFor="let option of group.children"
-          [value]="option.slug"
+          [value]="option.name"
           [option]="option"
           [isDisabled]="option?.disabled"
         >
-          {{ option.foo }}
+          {{ option.name }}
         </ts-option>
       </ts-select-optgroup>
     </ts-select>
@@ -379,7 +372,6 @@ export class NoGroupsMultiple {
   public myCtrl = new FormControl();
   public items = STATES.slice();
 }
-
 
 @Component({
   template: `
@@ -446,9 +438,7 @@ export class CustomDelimiter {
 export class SelectOptionChange {
   public myCtrl = new FormControl(['Texas', 'Florida']);
   public options: State[] = STATES.slice(0, 10);
-  // tslint:disable: max-line-length
   public myComparator: TsSelectSortComparatorFunction = (a: TsOptionComponent, b: TsOptionComponent, options: TsOptionComponent[]) => {
-    // tslint:enable: max-line-length
     const one = a.viewValue.toLowerCase();
     const two = b.viewValue.toLowerCase();
 
@@ -459,7 +449,7 @@ export class SelectOptionChange {
       return 1;
     }
     return 0;
-  }
+  };
 
   public updateOptions() {
     const otherStates: State[] = STATES.slice(10, 14);
@@ -475,11 +465,10 @@ export class SelectOptionChange {
       [compareWith]="comparator"
     >
       <ts-option
+        *ngFor="let option of foods"
         [value]="option"
         [option]="option"
-        [isDisabled]="option?.disabled"
-        *ngFor="let option of foods"
-      >{{ option.name }}</ts-option>
+      >{{ option.viewValue }}</ts-option>
     </ts-select>
   `,
 })
@@ -882,7 +871,6 @@ export class TriggerRefresh {
   }
 }
 
-
 @Component({
   template: `
     <ts-select
@@ -918,8 +906,6 @@ export class NoValidationOrHint {
   public myCtrl = new FormControl();
   public validationFlag = true;
 }
-
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.

@@ -1,8 +1,3 @@
-/**
- * Column definition for the {@link TsTableComponent}.
- *
- * Defines a set of cells available for a table column.
- */
 import { CdkColumnDef } from '@angular/cdk/table';
 import {
   Directive,
@@ -30,6 +25,11 @@ export const tsTableColumnAlignmentTypesArray: TsTableColumnAlignment[] = [
 ];
 
 
+/**
+ * Column definition for the {@link TsTableComponent}.
+ *
+ * Defines a set of cells available for a table column.
+ */
 @Directive({
   selector: '[tsColumnDef]',
   providers: [
@@ -48,10 +48,8 @@ export class TsColumnDefDirective extends CdkColumnDef {
    * Define a unique name for this column
    */
   // NOTE: We must rename here so that the property matches the extended CdkColumnDef class
-  // tslint:disable: no-input-rename
   @Input('tsColumnDef')
   public name!: string;
-  // tslint:enable: no-input-rename
 
   /**
    * Define an alignment type for the cell.

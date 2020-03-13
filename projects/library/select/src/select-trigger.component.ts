@@ -32,6 +32,8 @@ export class TsSelectTriggerComponent {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -41,5 +43,4 @@ export class TsSelectTriggerComponent {
     return this._id;
   }
   protected _id: string = this.uid;
-
 }

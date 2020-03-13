@@ -18,7 +18,6 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewContainerRef,
   ViewEncapsulation,
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
@@ -46,7 +45,6 @@ export class TsOptionSelectionChange {
   ) {}
 }
 
-
 /**
  * Describes a parent component that manages a list of options.
  *
@@ -59,15 +57,13 @@ export interface TsOptionParentComponent {
   ngControl?: NgModel;
 }
 
-
 /**
  * Injection token used to provide the parent component to options. Used by {@link TsOptionComponent}
  *
- * Since TsSelectComponent imports TsOptionComponent, importing TsSelectComponent here will cause a circular dependency. Injecting via
- * an InjectionToken helps us circumvent that limitation.
+ * Since TsSelectionListComponent imports TsOptionComponent, importing TsSelectionListComponent here will cause a circular dependency.
+ * Injecting via an InjectionToken helps us circumvent that limitation.
  */
 export const TS_OPTION_PARENT_COMPONENT = new InjectionToken<TsOptionParentComponent>('TS_OPTION_PARENT_COMPONENT');
-
 
 /**
  * Describes a parent optgroup component. Used by {@link TS_OPTGROUP_PARENT_COMPONENT}
@@ -78,19 +74,17 @@ export interface TsOptgroupParentComponent {
   triggerChangeDetection: Function;
 }
 
-
 /**
  * Injection token used to provide the parent optgroup to options. Used by {@link TsOptgroupComponent}
  */
 export const TS_OPTGROUP_PARENT_COMPONENT = new InjectionToken<TsOptgroupParentComponent>('TS_OPTGROUP_PARENT_COMPONENT');
-
 
 // Unique ID for each instance
 let nextUniqueId = 0;
 
 
 /**
- * Single option inside of a {@link TsSelectComponent}
+ * Single option inside of a {@link TsSelectionListComponent}
  *
  * @example
  * <ts-option
@@ -101,7 +95,7 @@ let nextUniqueId = 0;
  *              (selectionChange)="selectedStateChanged($event)"
  * ></ts-option>
  *
- * <example-url>https://goo.gl/ieUPaG</example-url>
+ * <example-url>https://getterminus.github.io/ui-demos-release/components/selection-list</example-url>
  */
 @Component({
   selector: 'ts-option',
@@ -203,18 +197,20 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   /**
    * Optional template passed in by the consumer
    */
-  @ContentChild(TemplateRef, { static: false })
-  // tslint:disable-next-line no-any
+  @ContentChild(TemplateRef)
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public optionTemplate: TemplateRef<any> | undefined;
 
   /**
    * Access the user-defined text content
    */
-  @ContentChild(TsOptionDisplayDirective, { static: false })
+  @ContentChild(TsOptionDisplayDirective)
   public displayElementRef: TsOptionDisplayDirective | undefined;
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -227,6 +223,8 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
 
   /**
    * Whether the option is disabled
+   *
+   * @param value
    */
   @Input()
   public set isDisabled(value: boolean) {
@@ -239,6 +237,8 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
 
   /**
    * Define the option data object (needed for template support)
+   *
+   * @param value
    */
   @Input()
   public set option(value: TsOption | undefined) {
@@ -253,7 +253,7 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
    * The form value of the option
    */
   @Input()
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public value: any;
 
   /**
@@ -294,7 +294,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     });
   }
 
-
   /**
    * Trigger state changes if the view value has changed
    */
@@ -316,14 +315,12 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     }
   }
 
-
   /**
    * Complete observables
    */
   public ngOnDestroy(): void {
     this.stateChanges.complete();
   }
-
 
   /**
    * Return the view value
@@ -333,7 +330,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
   public getLabel(): string {
     return this.viewValue;
   }
-
 
   /**
    * Deselect the option
@@ -352,9 +348,10 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     }
   }
 
-
   /**
    * Ensure the option is selected when activated from the keyboard
+   *
+   * @param event
    */
   public handleKeydown(event: KeyboardEvent): void {
     // istanbul ignore else
@@ -365,7 +362,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
       event.preventDefault();
     }
   }
-
 
   /**
    * Select the option
@@ -384,7 +380,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     }
   }
 
-
   /**
    * Selects the option while indicating the selection came from the user.
    *
@@ -399,7 +394,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     }
   }
 
-
   /**
    * This method sets display styles on the option to make it appear active. This is used by the ActiveDescendantKeyManager so key events
    * will display the proper options as active on arrow key events.
@@ -411,7 +405,6 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
       this.changeDetectorRef.markForCheck();
     }
   }
-
 
   /**
    * This method removes display styles on the option that made it appear active. This is used by the ActiveDescendantKeyManager so key
@@ -428,12 +421,12 @@ export class TsOptionComponent implements Highlightable, AfterContentInit, After
     }
   }
 
-
   /**
    * Emit the selection change event
+   *
+   * @param isUserInput
    */
   private emitSelectionChangeEvent(isUserInput = false): void {
     this.selectionChange.emit(new TsOptionSelectionChange(this, isUserInput));
   }
-
 }

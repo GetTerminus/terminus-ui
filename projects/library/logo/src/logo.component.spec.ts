@@ -8,7 +8,6 @@ import { createComponent } from '@terminus/ngx-tools/testing';
 import { TsLogoComponent } from './logo.component';
 import { TsLogoModule } from './logo.module';
 
-
  @Component({
    template: `
     <ts-logo id="one" #one></ts-logo>
@@ -26,8 +25,6 @@ class TestHostComponent {
   public two!: TsLogoComponent;
  }
 
-
-
 describe(`TsLogoComponent`, function() {
   let fixture: ComponentFixture<TestHostComponent>;
   let hostComponent: TestHostComponent;
@@ -41,15 +38,12 @@ describe(`TsLogoComponent`, function() {
     logo2 = hostComponent.two;
   });
 
-
   test(`should exist`, () => {
     expect(logo1).toBeTruthy();
     expect(logo2).toBeTruthy();
   });
 
-
   describe(`logo type`, () => {
-
     test(`should default to full-gradient without input`, () => {
       expect(logo1.type).toEqual('full-gradient');
     });
@@ -103,9 +97,7 @@ describe(`TsLogoComponent`, function() {
     });
   });
 
-
   describe(`logo color`, () => {
-
     test(`should default to white without input`, () => {
       expect(logo1.logoColor).toEqual('white');
     });

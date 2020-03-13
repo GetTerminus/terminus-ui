@@ -3,10 +3,8 @@ import {
   ElementRef,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {
-  TsPopoverComponent,
-  TsPopoverPosition,
-} from '@terminus/ui/popover';
+import { TsPopoverPosition } from '@terminus/ui/popover';
+
 
 @Component({
   selector: 'demo-popover',
@@ -16,7 +14,7 @@ export class PopoverComponent {
   public myform = new FormControl('bottom');
   public positions = ['bottom', 'top', 'left', 'right'];
   public myId = 'custom-id';
-  example1select: TsPopoverPosition = 'right';
+  public example1select: TsPopoverPosition = 'right';
   public popoverOnShown(event) {
     console.log('popper on shown emitted event: ', event);
   }
@@ -31,6 +29,5 @@ export class PopoverComponent {
     setTimeout(() => {
       this.elem.nativeElement.querySelector('.ts-popover-trigger').dispatchEvent(new Event('click'));
     }, 100);
-
   }
 }

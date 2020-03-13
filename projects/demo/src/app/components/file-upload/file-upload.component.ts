@@ -162,7 +162,17 @@ export class FileUploadComponent {
   multiple = true;
   hideButton = false;
   maxKb: number | undefined;
-  mimeTypeOptions = ['image/png', 'image/jpg', 'image/jpeg', 'text/csv', 'video/mp4', 'video/x-flv', 'video/webm', 'video/quicktime', 'video/mpeg'];
+  mimeTypeOptions = [
+    'image/png',
+    'image/jpg',
+    'image/jpeg',
+    'text/csv',
+    'video/mp4',
+    'video/x-flv',
+    'video/webm',
+    'video/quicktime',
+    'video/mpeg',
+  ];
   ratioConstraints = ['1:2', '1.9:1', '5:1'];
   disabled = false;
 
@@ -196,7 +206,7 @@ export class FileUploadComponent {
     console.log('DEMO: selected multiple: ', e);
     let index = -1;
 
-    this.files = e.map((f) => {
+    this.files = e.map(f => {
       index = index + 1;
       return {
         id: index,
@@ -211,9 +221,7 @@ export class FileUploadComponent {
       return;
     }
 
-    this.files = this.files.filter((obj) => {
-      return obj.id !== id;
-    });
+    this.files = this.files.filter(obj => obj.id !== id);
   }
 
 
@@ -221,11 +229,9 @@ export class FileUploadComponent {
     if (!this.files || this.files.length < 1) {
       return false;
     }
-    const found = this.files.find((v) => {
-      return v.id === id;
-    });
+    const found = this.files.find(v => v.id === id);
 
-    return found ? true : false;
+    return !!found;
   }
 
 }

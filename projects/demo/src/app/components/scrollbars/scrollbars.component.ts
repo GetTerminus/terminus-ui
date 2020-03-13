@@ -1,7 +1,6 @@
 import {
   AfterContentChecked,
   Component,
-  ElementRef,
   ViewChild,
 } from '@angular/core';
 import { TsScrollbarsComponent } from '@terminus/ui/scrollbars';
@@ -13,13 +12,13 @@ import { TsScrollbarsComponent } from '@terminus/ui/scrollbars';
   styleUrls: ['./scrollbars.component.scss'],
 })
 export class ScrollbarsComponent implements AfterContentChecked {
-  @ViewChild(TsScrollbarsComponent, {static: true})
+  @ViewChild(TsScrollbarsComponent, { static: true })
   public scrollbars!: TsScrollbarsComponent;
 
   isDisabled = false;
   nowrap = false;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor() {}
 
   ngAfterContentChecked() {
     console.log('DEMO: geometry: ', this.scrollbars.geometry);
@@ -48,9 +47,16 @@ export class ScrollbarsComponent implements AfterContentChecked {
     this.scrollbars.scrollToElement('.p1');
   }
 
-  myScrollDown(e) { console.log('DEMO: scrollDown: ', e); }
-  myScrollLeft(e) { console.log('DEMO: scrollLeft: ', e); }
-  myScrollRight(e) { console.log('DEMO: scrollRight: ', e); }
-  myScrollUp(e) { console.log('DEMO: scrollUp: ', e); }
-
+  myScrollDown(e) {
+    console.log('DEMO: scrollDown: ', e);
+  }
+  myScrollLeft(e) {
+    console.log('DEMO: scrollLeft: ', e);
+  }
+  myScrollRight(e) {
+    console.log('DEMO: scrollRight: ', e);
+  }
+  myScrollUp(e) {
+    console.log('DEMO: scrollUp: ', e);
+  }
 }

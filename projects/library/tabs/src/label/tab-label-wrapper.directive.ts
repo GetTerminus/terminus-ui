@@ -20,6 +20,7 @@ import {
 export class TsTabLabelWrapperDirective {
   // This is needed by the CdkListKeyManager - they are checking for `disabled` rather than `isDisabled`
   public disabled = false;
+
   /**
    * Determine the left offset
    */
@@ -36,6 +37,8 @@ export class TsTabLabelWrapperDirective {
 
   /**
    * Define if the label is disabled
+   *
+   * @param value
    */
   @Input()
   public set isDisabled(value: boolean) {
@@ -59,5 +62,4 @@ export class TsTabLabelWrapperDirective {
   public focus(): void {
     this.elementRef.nativeElement.focus();
   }
-
 }

@@ -3,7 +3,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { Type } from '@angular/core';
 import {
-  async,
   ComponentFixture,
   fakeAsync,
   flush,
@@ -26,6 +25,8 @@ import {
   TsDrawerHeaderComponent,
 } from '@terminus/ui/drawer';
 import * as testComponents from '@terminus/ui/drawer/testing';
+// eslint-disable-next-line no-duplicate-imports
+import { TsDrawerTestComponents } from '@terminus/ui/drawer/testing';
 
 import {
   TsDrawerComponent,
@@ -35,6 +36,11 @@ import {
 describe(`drawer`, () => {
   let fixture: ComponentFixture<any>;
 
+  /**
+   * Create test host component
+   *
+   * @param component
+   */
   function createComponent<T>(component: Type<T>): ComponentFixture<T> {
     const moduleImports = [
       BrowserAnimationsModule,
@@ -54,16 +60,19 @@ describe(`drawer`, () => {
     let testComponent;
     let drawerNativeElement;
     let drawerDebugElement;
-    let drawerInstance;
     let drawer;
 
-    function setup(component = testComponents.SimpleDrawer) {
+    /**
+     * Set up test env
+     *
+     * @param component
+     */
+    function setup(component: TsDrawerTestComponents = testComponents.SimpleDrawer) {
       fixture = createComponent(component);
       fixture.detectChanges();
       testComponent = fixture.debugElement.componentInstance;
       drawerDebugElement = fixture.debugElement.query(By.directive(TsDrawerComponent));
       drawerNativeElement = drawerDebugElement.nativeElement;
-      drawerInstance = drawerDebugElement.componentIntance;
       drawer = fixture.debugElement.query(By.directive(TsDrawerComponent)).componentInstance;
     }
 
@@ -135,9 +144,7 @@ describe(`drawer`, () => {
     }));
 
     describe(`header and footer`, () => {
-
       test(`should have header and footer set`, fakeAsync(() => {
-
         setup(testComponents.DrawerWithHeaderAndFooter);
         fixture.detectChanges();
         const drawerElement = fixture.debugElement.query(By.directive(TsDrawerComponent));
@@ -150,6 +157,5 @@ describe(`drawer`, () => {
         expect(footerElement.nativeElement.textContent.trim()).toEqual('FOOTER');
       }));
     });
-
   });
 });

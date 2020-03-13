@@ -5,7 +5,6 @@ import {
 import { isNumber } from '@terminus/ngx-tools/type-guards';
 
 
-
 /**
  * Define the accepted string values for the {@link TsTruncateAtPipe} position
  */
@@ -44,6 +43,7 @@ export class TsTruncateAtPipe implements PipeTransform {
 
     // Insure the correct type
     if (!isNumber(charCount)) {
+      // eslint-disable-next-line no-console
       console.warn(`${charCount} is not a number.`);
     }
 

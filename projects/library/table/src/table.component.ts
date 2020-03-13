@@ -62,7 +62,7 @@ export interface TsColumn {
   // The desired pixel width as an integer (eg '200')
   width: number;
   // Allow any other data properties the consumer may need
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 
@@ -150,19 +150,20 @@ let nextUniqueId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush,
   exportAs: 'tsTable',
 })
-// tslint:disable-next-line no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class TsTableComponent<T = any> extends CdkTable<T> implements
   OnInit,
   AfterViewChecked,
   AfterContentInit,
   AfterContentChecked,
   OnDestroy {
-
   /**
    * Combined stream of all of the columns resized events
    */
   public readonly columnResizeChanges$: Observable<TsHeaderCellDirective> = defer(() => {
     if (this.headerCells && this.headerCells.length) {
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       return merge<TsHeaderCellResizeEvent>(...this.headerCells.map(cell => cell.resized)).pipe(
         pluck('instance'),
         untilComponentDestroyed(this),
@@ -173,6 +174,8 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
     // In that case, return a stream that we'll replace with the real one once everything is in place.
     return this.ngZone.onStable
       .asObservable()
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       .pipe(take(1), switchMap(() => this.columnResizeChanges$));
   });
 
@@ -184,7 +187,7 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
   /**
    * Store the header cell subscription
    */
-  private headerCellSubscription: Subscription;
+  private headerCellSubscription!: Subscription;
 
   /**
    * Store a mutable array of internal column definitions
@@ -199,17 +202,12 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
   /**
    * Store the stream of viewport changes
    */
-  private viewportChange$: Observable<Event>;
+  private viewportChange$!: Observable<Event>;
 
   /**
    * Define the default component ID
    */
   public readonly uid = `ts-table-${nextUniqueId++}`;
-
-  /**
-   * Store a reference to the window object
-   */
-  private window: Window;
 
   /**
    * Return a simple array of column names
@@ -288,16 +286,18 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
    * Access header cells
    */
   @ContentChildren(TsHeaderCellDirective, { descendants: true })
-  public headerCells: QueryList<TsHeaderCellDirective>;
+  public headerCells!: QueryList<TsHeaderCellDirective>;
 
   /**
    * Access child rows
    */
   @ContentChildren(TsRowComponent)
-  public rows: QueryList<TsRowComponent>;
+  public rows!: QueryList<TsRowComponent>;
 
   /**
    * Define the array of columns
+   *
+   * @param value
    */
   @Input()
   public set columns(value: ReadonlyArray<TsColumn>) {
@@ -320,6 +320,8 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
 
   /**
    * Define a custom ID
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -340,22 +342,20 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
 
 
   constructor(
-    // tslint:disable-next-line no-attribute-decorator
-    @Attribute('role') role: string,
-    // tslint:disable-next-line no-any
-    @Inject(DOCUMENT) public document: any,
-    private platform: Platform,
+    protected platform: Platform,
+    protected renderer: Renderer2,
     protected readonly differs: IterableDiffers,
     protected readonly changeDetectorRef: ChangeDetectorRef,
+    @Attribute('role') role: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    @Inject(DOCUMENT) public document: any,
     @Optional() protected readonly dir: Directionality,
     public readonly elementRef: ElementRef,
-    private renderer: Renderer2,
     private ngZone: NgZone,
     private windowService: TsWindowService,
     private viewportRuler: ViewportRuler,
   ) {
     super(differs, changeDetectorRef, elementRef, role, dir, document, platform);
-    this.window = windowService.nativeWindow;
   }
 
 
@@ -367,7 +367,7 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
 
     this.viewportChange$ = this.viewportRuler.change(VIEWPORT_DEBOUNCE).pipe(untilComponentDestroyed(this));
     this.viewportChange$.pipe(untilComponentDestroyed(this)).subscribe(() => {
-      this.window.requestAnimationFrame(() => {
+      this.windowService.nativeWindow.requestAnimationFrame(() => {
         this.updateInternalColumns(this.getFreshColumnsCopy());
         this.columnsChange.emit(new TsTableColumnsChangeEvent(this, this.columnsToSendToConsumer));
       });
@@ -389,7 +389,11 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
       .subscribe(v => {
         this.updateLastColumnWidth();
         // Update the recorded width for the changed column
-        this.columnsInternal.find(column => column.name === v.columnDef.name).width = v.cellWidth;
+        const found = this.columnsInternal.find(column => column.name === v.columnDef.name);
+        // istanbul ignore else
+        if (found) {
+          found.width = v.cellWidth;
+        }
         this.columnsChange.emit(new TsTableColumnsChangeEvent(this, this.columnsToSendToConsumer));
       });
   }
@@ -408,7 +412,7 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
    *
    * @param columns - The array of columns to adjust
    * @param remainingWidth - The remaining table width to be added to the last column
-   * @return The adjusted array of columns
+   * @returns The adjusted array of columns
    */
   private addRemainingSpaceToLastColumn(columns: TsColumn[], remainingWidth: number): TsColumn[] {
     const lastColumn = columns[columns.length - 1];
@@ -420,7 +424,7 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
    * Return a fresh clone of the passed in array of columns
    *
    * @param columns - The array of columns to clone
-   * @return The array of fresh columns
+   * @returns The array of fresh columns
    */
   private getFreshColumnsCopy(columns: ReadonlyArray<TsColumn> = this.columns): TsColumn[] {
     return columns.slice().map(c => ({ ...c }));
@@ -531,5 +535,4 @@ export class TsTableComponent<T = any> extends CdkTable<T> implements
       this.debouncedStickyColumnUpdate();
     }
   }
-
 }

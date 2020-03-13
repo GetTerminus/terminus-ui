@@ -22,23 +22,28 @@ export class TsSortHeaderIntl {
 
   /**
    * ARIA label for the sorting button
+   *
+   * @param id
    */
   public sortButtonLabel = (id: string) => `Change sorting for ${id}`;
 
   /**
    * A label to describe the current sort (visible only to screenreaders)
+   *
+   * @param id
+   * @param direction
    */
   public sortDescriptionLabel =
-    (id: string, direction: TsSortDirection) => `Sorted by ${id} ${direction === 'asc' ? 'ascending' : 'descending'}`
+    (id: string, direction: TsSortDirection) => `Sorted by ${id} ${direction === 'asc' ? 'ascending' : 'descending'}`;
 }
 
 
 /**
  * Factory to return an instance of TsSortHeaderIntl
+ *
+ * @param parentIntl
  */
-export function TS_SORT_HEADER_INTL_PROVIDER_FACTORY(parentIntl: TsSortHeaderIntl) {
-  return parentIntl || new TsSortHeaderIntl();
-}
+export const TS_SORT_HEADER_INTL_PROVIDER_FACTORY = (parentIntl: TsSortHeaderIntl) => parentIntl || new TsSortHeaderIntl();
 
 
 /**

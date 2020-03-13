@@ -6,9 +6,10 @@
  *
  * @param obj1 - The first object to merge
  * @param obj2 - The second object to merge
- * @return A new object
+ * @returns A new object
  */
-export function merge(obj1: object, obj2: object): object {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function merge(obj1: Record<string, any>, obj2: Record<string, any>): Record<string, any> {
   const freshObject: object = { ...obj1 };
 
   for (const n in obj2) {

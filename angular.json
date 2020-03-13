@@ -1,8 +1,48 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "yarn"
+  },
   "newProjectRoot": "projects",
   "projects": {
+    "library": {
+      "projectType": "library",
+      "root": "projects/library",
+      "sourceRoot": "projects/library",
+      "prefix": "ts",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "sourceMap": true,
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/library/tsconfig.lib.prod.json"
+            }
+          },
+          "options": {
+            "tsConfig": "projects/library/tsconfig.lib.json",
+            "project": "projects/library/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "eslintConfig": "./.eslintrc.js",
+            "tsConfig": [
+              "projects/library/tsconfig.lib.json",
+              "projects/library/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
     "demo": {
       "projectType": "application",
       "schematics": {
@@ -23,7 +63,7 @@
             "main": "projects/demo/src/main.ts",
             "polyfills": "projects/demo/src/polyfills.ts",
             "tsConfig": "projects/demo/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/demo/src/favicon.ico",
               "projects/demo/src/assets"
@@ -41,15 +81,15 @@
                   "with": "projects/demo/src/environments/environment.prod.ts"
                 }
               ],
+              "aot": true,
+              "buildOptimizer": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -68,7 +108,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "demo:build"
+            "browserTarget": "demo:build",
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "vendor": true
+            }
           },
           "configurations": {
             "production": {
@@ -111,16 +156,14 @@
             ]
           }
         },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "lint-styles": {
+          "builder": "@speedy/build-angular:stylelint",
+          "fix": true,
           "options": {
-            "protractorConfig": "projects/demo/e2e/protractor.conf.js",
-            "devServerTarget": "demo:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "demo:serve:production"
-            }
+            "stylelintConfig": ".stylelintrc",
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
@@ -145,7 +188,7 @@
             "main": "projects/visual-regression/src/main.ts",
             "polyfills": "projects/visual-regression/src/polyfills.ts",
             "tsConfig": "projects/visual-regression/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/visual-regression/src/favicon.ico",
               "projects/visual-regression/src/assets"
@@ -168,9 +211,9 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
+              "aot": true,
               "buildOptimizer": true,
               "budgets": [
                 {
@@ -246,40 +289,13 @@
           }
         }
       }
-    },
-    "library": {
-      "projectType": "library",
-      "root": "projects/library",
-      "sourceRoot": "projects/library/src",
-      "prefix": "ts",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "outputPath": "dist/library",
-            "tsConfig": "projects/library/tsconfig.lib.json",
-            "project": "projects/library/ng-package.json"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/library/src/test.ts",
-            "tsConfig": "projects/library/tsconfig.spec.json"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/library/tsconfig.lib.json",
-              "projects/library/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    }}
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush",
+      "displayBlock": true,
+      "viewEncapsulation": "None"
+    }
+  }
 }

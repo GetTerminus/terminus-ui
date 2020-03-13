@@ -1,5 +1,3 @@
-// NOTE: A method must be used to dynamically format values for the UI
-// tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
@@ -166,6 +164,7 @@ export class TsAutocompleteComponent implements OnInit,
    * Subject used to alert the parent {@link TsFormFieldComponent} when the label gap should be recalculated
    *
    * Implemented as part of TsFormFieldControl.
+   *
    * @internal
    */
   public readonly labelChanges = new Subject<void>();
@@ -234,19 +233,19 @@ export class TsAutocompleteComponent implements OnInit,
   /**
    * Access the trigger
    */
-  @ViewChild(TsAutocompleteTriggerDirective, { static: false })
+  @ViewChild(TsAutocompleteTriggerDirective)
   public autocompleteTrigger!: TsAutocompleteTriggerDirective;
 
   /**
    * Access the chip list
    */
-  @ViewChild('chipCollection', { static: false })
+  @ViewChild('chipCollection')
   public chipCollection: TsChipCollectionComponent | undefined;
 
   /**
    * Access the actual HTML element
    */
-  @ViewChild('input', { static: false })
+  @ViewChild('input')
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
@@ -305,6 +304,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Define a debounce delay for the query stream
+   *
+   * @param value
    */
   @Input()
   public set debounceDelay(value: number) {
@@ -323,6 +324,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Define a hint for the input
+   *
+   * @param value
    */
   @Input()
   public set hint(value: string | undefined) {
@@ -335,6 +338,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -353,6 +358,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Define if the control is required
+   *
+   * @param value
    */
   @Input()
   public set isRequired(value: boolean) {
@@ -367,6 +374,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Define a minimum character count for queries
+   *
+   * @param value
    */
   @Input()
   public set minimumCharacters(value: number) {
@@ -397,6 +406,8 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Value of the select control
+   *
+   * @param newValue
    */
   @Input()
   public set value(newValue: string | undefined) {
@@ -423,15 +434,20 @@ export class TsAutocompleteComponent implements OnInit,
 
   /**
    * Define the formatter for the selected items.
+   *
+   * @param v
    */
   @Input()
-  public displayFormatter: TsAutocompleteFormatter = v => v as string
+  public displayFormatter: TsAutocompleteFormatter = v => v as string;
 
   /**
    * Define the comparator for the values of the options
+   *
+   * @param a
+   * @param b
    */
   @Input()
-  public valueComparator: TsAutocompleteComparator = (a: unknown, b: unknown) => a === b
+  public valueComparator: TsAutocompleteComparator = (a: unknown, b: unknown) => a === b;
 
 
   /**
@@ -572,6 +588,7 @@ export class TsAutocompleteComponent implements OnInit,
       // Debounce the query changes
       debounceTime(this.debounceDelay),
       // If the query is shorter than allowed, convert to an empty string
+      // eslint-disable-next-line deprecation/deprecation
       switchMap(query => of((query && (query.length >= this.minimumCharacters)) ? query : '')),
       // Only allow a query through if it is different from the previous query
       distinctUntilChanged(),
@@ -916,7 +933,7 @@ export class TsAutocompleteComponent implements OnInit,
    * @internal
    *
    * @param index - The item index
-   * @return The unique ID
+   * @returns The unique ID
    */
   public trackByFn(index): number {
     return index;

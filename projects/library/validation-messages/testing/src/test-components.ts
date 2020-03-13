@@ -11,39 +11,38 @@ import {
 
 @Component({
   template: `
-  <ts-validation-messages
-    [control]="controlForm"
-    [validateOnChange]="validateOnChange"
-  ></ts-validation-messages>
+    <ts-validation-messages
+      [control]="controlForm"
+      [validateOnChange]="validateOnChange"
+    ></ts-validation-messages>
   `,
 })
 export class Basic {
   public controlForm: FormControl | undefined;
-  public validateOnChange: boolean;
+  public validateOnChange = false;
 
   @ViewChild(TsValidationMessagesComponent, { static: true })
-  public validationMessagesComponent: TsValidationMessagesComponent;
+  public validationMessagesComponent!: TsValidationMessagesComponent;
 }
-
 
 @Component({
   template: `
-  <ts-validation-messages
-    [control]="controlForm"
-    [id]="id"
-    [validateImmediately]="validateImmediately"
-    [validateOnChange]="validateOnChange"
-  ></ts-validation-messages>
+    <ts-validation-messages
+      [control]="controlForm"
+      [id]="id"
+      [validateImmediately]="validateImmediately"
+      [validateOnChange]="validateOnChange"
+    ></ts-validation-messages>
   `,
 })
 export class TestHostComponent {
   public controlForm: FormControl | undefined;
-  public id: string;
-  public validateImmediately: boolean;
-  public validateOnChange: boolean;
+  public id!: string;
+  public validateImmediately = false;
+  public validateOnChange = false;
 
   @ViewChild(TsValidationMessagesComponent, { static: true })
-  public validationMessagesComponent: TsValidationMessagesComponent;
+  public validationMessagesComponent!: TsValidationMessagesComponent;
 }
 
 /**

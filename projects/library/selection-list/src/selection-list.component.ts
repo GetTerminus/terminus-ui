@@ -1,5 +1,3 @@
-// NOTE: A method must be used to dynamically format values for the UI
-// tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
@@ -220,19 +218,19 @@ export class TsSelectionListComponent implements
   /**
    * Access the trigger
    */
-  @ViewChild(TsSelectionListTriggerDirective, { static: false })
+  @ViewChild(TsSelectionListTriggerDirective)
   public trigger!: TsSelectionListTriggerDirective;
 
   /**
    * Access the chip list
    */
-  @ViewChild('chipList', { static: false })
+  @ViewChild('chipList')
   public chipList: TsChipCollectionComponent | undefined;
 
   /**
    * Access the actual HTML <input> element
    */
-  @ViewChild('input', { static: false })
+  @ViewChild('input')
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
@@ -316,6 +314,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Define a debounce delay for the query stream
+   *
+   * @param value
    */
   @Input()
   public set debounceDelay(value: number) {
@@ -334,6 +334,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Define a hint for the input
+   *
+   * @param value
    */
   @Input()
   public set hint(value: string | undefined) {
@@ -346,6 +348,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -364,6 +368,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Define if the control is required
+   *
+   * @param value
    */
   @Input()
   public set isRequired(value: boolean) {
@@ -378,6 +384,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Define a minimum character count for queries
+   *
+   * @param value
    */
   @Input()
   public set minimumCharacters(value: number) {
@@ -422,6 +430,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Value of the select control
+   *
+   * @param newValue
    */
   @Input()
   public set value(newValue: string | undefined) {
@@ -449,6 +459,8 @@ export class TsSelectionListComponent implements
 
   /**
    * Define the formatter for the selected items.
+   *
+   * @param value
    */
   @Input()
   public set displayFormatter(value: TsSelectionListFormatter) {
@@ -461,9 +473,12 @@ export class TsSelectionListComponent implements
 
   /**
    * Define the comparator for the values of the options
+   *
+   * @param a
+   * @param b
    */
   @Input()
-  public valueComparator: TsSelectionListComparator = (a: unknown, b: unknown) => a === b
+  public valueComparator: TsSelectionListComparator = (a: unknown, b: unknown) => a === b;
 
   /**
    * Emit when the backdrop is clicked
@@ -636,6 +651,7 @@ export class TsSelectionListComponent implements
       untilComponentDestroyed(this),
       debounceTime(this.debounceDelay),
       // If the query is shorter than allowed, convert to an empty string
+      // eslint-disable-next-line deprecation/deprecation
       switchMap(query => ((query.length >= this.minimumCharacters) ? of(query) : of(''))),
       distinctUntilChanged(),
     ).subscribe((query: string) => {
@@ -890,7 +906,7 @@ export class TsSelectionListComponent implements
    * Function for tracking for-loops changes
    *
    * @param index - The item index
-   * @return The unique ID
+   * @returns The unique ID
    */
   public trackByFn(index): number {
     return index;

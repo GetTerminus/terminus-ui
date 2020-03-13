@@ -9,12 +9,11 @@ import { By } from '@angular/platform-browser';
 import { TsDateRangeComponent } from '@terminus/ui/date-range';
 import { TsInputComponent } from '@terminus/ui/input';
 
-
 /**
  * Get an array of all TsDateRangeComponent debug elements
  *
  * @param fixture - The component fixture
- * @return The array of DebugElements
+ * @returns The array of DebugElements
  */
 export function getAllDateRangeDebugElements(fixture: ComponentFixture<any>): DebugElement[] {
   const debugElements = fixture.debugElement.queryAll(By.css('ts-date-range'));
@@ -28,18 +27,17 @@ export function getAllDateRangeDebugElements(fixture: ComponentFixture<any>): De
  * Get all TsDateRangeComponent instances
  *
  * @param fixture - The component fixture
- * @return The array of TsDateRangeComponent instances
+ * @returns The array of TsDateRangeComponent instances
  */
-export function getAllDateRangeInstances(fixture: ComponentFixture<any>): TsDateRangeComponent[] {
-  return getAllDateRangeDebugElements(fixture).map(i => i.componentInstance);
-}
+export const getAllDateRangeInstances =
+  (fixture: ComponentFixture<any>): TsDateRangeComponent[] => getAllDateRangeDebugElements(fixture).map(i => i.componentInstance);
 
 /**
  * Get an array of debug elements for TsInputComponents within a single TsDateRangeComponent
  *
  * @param fixture - The component fixture
  * @param index - The index of the TsDateRangeComponent
- * @return The array of DebugElements
+ * @returns The array of DebugElements
  */
 export function getDateRangeInputDebugElements(fixture: ComponentFixture<any>, index = 0): DebugElement[] {
   const debugElement = getAllDateRangeDebugElements(fixture)[index];
@@ -54,33 +52,34 @@ export function getDateRangeInputDebugElements(fixture: ComponentFixture<any>, i
  *
  * @param fixture - The component fixture
  * @param index - The index of the TsDateRangeComponent
- * @return The array of TsInputComponent instances
+ * @returns The array of TsInputComponent instances
  */
-export function getRangeInputInstances(fixture: ComponentFixture<any>, index = 0): TsInputComponent[] {
-  return getDateRangeInputDebugElements(fixture, index).map(v => v.componentInstance);
-}
+export const getRangeInputInstances = (
+  fixture: ComponentFixture<any>,
+  index = 0,
+): TsInputComponent[] => getDateRangeInputDebugElements(fixture, index).map(v => v.componentInstance);
 
 /**
  * Get an array of HTMLInputElements for a single TsDateRangeComponent
  *
  * @param fixture - The component fixture
  * @param index - The index of the TsDateRangeComponent
- * @return The array of TsInputComponent instances
+ * @returns The array of TsInputComponent instances
  */
-export function getRangeInputElements(fixture: ComponentFixture<any>, index = 0): HTMLInputElement[] {
-  return getDateRangeInputDebugElements(fixture, index).map(v => v.componentInstance.inputElement.nativeElement);
-}
+export const getRangeInputElements = (
+  fixture: ComponentFixture<any>,
+  index = 0,
+): HTMLInputElement[] => getDateRangeInputDebugElements(fixture, index).map(v => v.componentInstance.inputElement.nativeElement);
 
 /**
  * Create a date range form group with required controls
  *
  * @param startDate - The initial start date
  * @param endDate - The initial end date
- * @return The FormGroup
+ * @returns The FormGroup
  */
 export function createDateRangeGroup(startDate: null | Date = null, endDate: null | Date = null): FormGroup {
   const formBuilder = new FormBuilder();
-
   return formBuilder.group({
     startDate: [
       startDate,
@@ -93,7 +92,6 @@ export function createDateRangeGroup(startDate: null | Date = null, endDate: nul
   });
 }
 
-
 /**
  * Set values for both date range inputs
  *
@@ -101,7 +99,7 @@ export function createDateRangeGroup(startDate: null | Date = null, endDate: nul
  * @param startDate - The date to set the start input
  * @param endDate - The date to set the end input
  * @param index - The select instance
- * @return The whenStable promise
+ * @returns The whenStable promise
  */
 export function setDateRangeValues(fixture: ComponentFixture<any>, startDate: Date, endDate: Date, index = 0): Promise<any> {
   const [startElement, endElement] = getRangeInputElements(fixture, index);

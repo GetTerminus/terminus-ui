@@ -74,7 +74,7 @@ yarn upgrade @terminus/ui
 # Compile the library
 #
 npx chalk blue bold "Compiling library.."
-yarn run build
+yarn run library:build:prod
 
 #
 # Remove Yarn link and reinstall dependencies
@@ -100,7 +100,7 @@ cp -r dist/library/* node_modules/@terminus/ui/
 # Compile the demo app with AoT
 #
 npx chalk blue bold "Building the demo app with AoT.."
-yarn run build:app:ci --base-href "https://getterminus.github.io/ui-demos-release/"
+yarn run demo:build:ci --base-href "https://getterminus.github.io/ui-demos-release/"
 
 #
 # Inject the correct library version number into the demo app

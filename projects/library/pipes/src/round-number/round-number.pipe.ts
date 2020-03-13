@@ -21,7 +21,6 @@ export class TsRoundNumberPipe implements PipeTransform {
     if (!value) {
       return undefined;
     }
-
     return roundNumber(value, precision);
   }
 }

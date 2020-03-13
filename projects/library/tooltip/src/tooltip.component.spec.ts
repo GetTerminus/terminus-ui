@@ -2,16 +2,14 @@ import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { createComponent } from '@terminus/ngx-tools/testing';
+import * as testComponents from '@terminus/ui/tooltip/testing';
+// eslint-disable-next-line no-duplicate-imports
+import { getTooltipText } from '@terminus/ui/tooltip/testing';
 
 import { TsTooltipComponent } from './tooltip.component';
 import { TsTooltipModule } from './tooltip.module';
 
-import * as testComponents from '../testing/src/test-components';
-import { getTooltipText } from '../testing/src/test-helpers';
-
-
 describe(`TsTooltipComponent`, function() {
-
   describe(`Defaults`, () => {
     let component: testComponents.Basic;
     let fixture: ComponentFixture<testComponents.Basic>;
@@ -40,7 +38,6 @@ describe(`TsTooltipComponent`, function() {
       expect(tooltipComponent.hasUnderline).toEqual(false);
       expect(tooltipEl.classList).not.toContain('c-tooltip--underline');
     });
-
   });
 
   describe('Customized', () => {

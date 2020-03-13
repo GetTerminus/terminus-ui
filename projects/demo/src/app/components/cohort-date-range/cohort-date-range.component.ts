@@ -85,7 +85,6 @@ export class CohortDateRangeComponent {
   ) {}
 
 
-
   public printRange(value: TsCohortDateRangeChanged): void {
     // console.log('DEMO: formValue: ', value);
     this.lastRange = value;

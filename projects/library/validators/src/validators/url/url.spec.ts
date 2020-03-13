@@ -1,4 +1,3 @@
-// tslint:disable: no-non-null-assertion
 import {
   AbstractControl,
   FormControl,
@@ -6,7 +5,6 @@ import {
 } from '@angular/forms';
 
 import { urlValidator } from './url';
-
 
 describe(`urlValidator`, function() {
   let validatorFn: ValidatorFn;
@@ -17,38 +15,27 @@ describe(`urlValidator`, function() {
     nullControl = new FormControl(null);
   });
 
-
   describe(`if the control doesn't exist`, () => {
-
     test(`should return null`, () => {
       expect(validatorFn(nullControl)).toEqual(null);
     });
-
   });
 
-
   describe(`if the control has no value`, () => {
-
     test(`should return null`, () => {
       expect(validatorFn({} as any)).toEqual(null);
     });
-
   });
 
-
   describe(`if the URL is valid`, () => {
-
     test(`should return null`, () => {
       const control = new FormControl('http://foo.com/blah_blah');
 
       expect(validatorFn(control)).toEqual(null);
     });
-
   });
 
-
   describe(`if the URL is NOT valid`, () => {
-
     test(`should return the invalid response`, () => {
       const control = new FormControl('http:// shouldfail.com');
       const expected = {
@@ -58,7 +45,5 @@ describe(`urlValidator`, function() {
 
       expect(validatorFn(control)!.url).toEqual(expected);
     });
-
   });
-
 });

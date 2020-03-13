@@ -6,17 +6,9 @@ import {
   TestBed,
 } from '@angular/core/testing';
 import { MatRippleModule } from '@angular/material/core';
-import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  TsTabBodyComponent,
-  TsTabBodyHostDirective,
-  TsTabsModule,
-} from '@terminus/ui/tabs';
+import { TsTabsModule } from '@terminus/ui/tabs';
 import * as testComponents from '@terminus/ui/tabs/testing';
-
-
-
 
 describe(`TsTabBodyComponent`, function() {
   let fixture: ComponentFixture<testComponents.TabBody>;
@@ -38,13 +30,10 @@ describe(`TsTabBodyComponent`, function() {
     TestBed.compileComponents();
   }));
 
-
   describe(`when initialized as center`, () => {
-
     beforeEach(() => {
       fixture = TestBed.createComponent(testComponents.TabBody);
     });
-
 
     test(`should be center position if origin is unchanged`, () => {
       fixture.detectChanges();
@@ -53,7 +42,6 @@ describe(`TsTabBodyComponent`, function() {
 
       expect(fixture.componentInstance.tabBody.positionState).toEqual('center');
     });
-
 
     test(`should be center position if origin is explicitly set to null`, () => {
       fixture.componentInstance.position = 0;
@@ -67,7 +55,6 @@ describe(`TsTabBodyComponent`, function() {
       expect(fixture.componentInstance.tabBody.positionState).toEqual('center');
     });
 
-
     test(`should be left-origin-center position with negative or zero origin`, () => {
       fixture.componentInstance.position = 0;
       fixture.componentInstance.origin = 0;
@@ -75,7 +62,6 @@ describe(`TsTabBodyComponent`, function() {
 
       expect(fixture.componentInstance.tabBody.positionState).toEqual('left-origin-center');
     });
-
 
     test(`should be right-origin-center position with positive nonzero origin`, () => {
       fixture.componentInstance.position = 0;
@@ -85,7 +71,6 @@ describe(`TsTabBodyComponent`, function() {
       expect(fixture.componentInstance.tabBody.positionState).toEqual('right-origin-center');
     });
 
-
     test(`should be left position with negative position`, () => {
       fixture.detectChanges();
       fixture.componentInstance.position = -1;
@@ -93,7 +78,6 @@ describe(`TsTabBodyComponent`, function() {
 
       expect(fixture.componentInstance.tabBody.positionState).toEqual('left');
     });
-
 
     test(`should be center position with zero position`, () => {
       fixture.detectChanges();
@@ -103,7 +87,6 @@ describe(`TsTabBodyComponent`, function() {
       expect(fixture.componentInstance.tabBody.positionState).toEqual('center');
     });
 
-
     test(`should be left position with positive position`, () => {
       fixture.detectChanges();
       fixture.componentInstance.position = 1;
@@ -111,9 +94,5 @@ describe(`TsTabBodyComponent`, function() {
 
       expect(fixture.componentInstance.tabBody.positionState).toEqual('right');
     });
-
   });
-
-
-
 });

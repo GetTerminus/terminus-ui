@@ -92,7 +92,7 @@ ts-button {
     transition: var(--button-color-transition), var(--button-background-transition), var(--button-shadow-transition);
   }
 
-  // TODO: Sass area of possible themes should be available to all components from a global location
+  // TODO: Sass array of possible themes should be available to all components from a global location
   // Define all possible themes
   $themes: primary accent warn;
   // Loop through using each theme name to create styles

@@ -1,4 +1,3 @@
-// tslint:disable: template-no-call-expression
 import { AnimationEvent } from '@angular/animations';
 import { hasModifierKey } from '@angular/cdk/keycodes';
 import { Platform } from '@angular/cdk/platform';
@@ -132,6 +131,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
 
   /**
    * Collapsed drawer width
+   *
+   * @param value
    */
   @Input()
   public set collapsedSize(value: string) {
@@ -144,6 +145,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
 
   /**
    * Expanded drawer width
+   *
+   * @param value
    */
   @Input()
   public set expandedSize(value: string) {
@@ -156,6 +159,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
 
   /**
    * Define whether the drawer is open
+   *
+   * @param value
    */
   @Input()
   public set isExpanded(value: boolean) {
@@ -168,6 +173,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
 
   /**
    * Mode of the drawer, overlay or push
+   *
+   * @param value
    */
   @Input()
   public set mode(value: TsDrawerModes) {
@@ -181,6 +188,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
 
   /**
    * The side that the drawer is attached to.
+   *
+   * @param value
    */
   @Input()
   public set position(value: TsDrawerPosition) {
@@ -226,7 +235,7 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
     return this.animationStarted.pipe(
       filter(e => e.fromState !== e.toState && e.toState.indexOf('open') === 0),
       untilComponentDestroyed(this),
-      map(() => {})
+      map(() => {}),
     );
   }
 
@@ -246,15 +255,14 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
     return this.animationStarted.pipe(
       filter(e => e.fromState !== e.toState && e.toState === 'void'),
       untilComponentDestroyed(this),
-      map(() => {})
+      map(() => {}),
     );
   }
 
   /**
    * Event emitted when the drawer's position changes.
    */
-  // tslint:disable-next-line:no-output-on-prefix
-  // tslint:disable-next-line:no-output-rename
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('positionChanged')
   public readonly positionChanged = new EventEmitter<void>();
 
@@ -264,16 +272,17 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
     private ngZone: NgZone,
     public renderer: Renderer2,
   ) {
-
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
      * time a key is pressed. Re-enter the zone only if the `ESC` key is pressed
      */
     this.ngZone.runOutsideAngular(() => {
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       (fromEvent(this.elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>)
         .pipe(
           filter(event => event.code === KEYS.ESCAPE.code && !hasModifierKey(event)),
-          untilComponentDestroyed(this)
+          untilComponentDestroyed(this),
         ).subscribe(event => this.ngZone.run(() => {
           this.collapse();
           event.stopPropagation();
@@ -316,7 +325,7 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
   /**
    * Expand the drawer.
    *
-   * @return Promise<TsDrawerToggleResult>
+   * @returns Promise<TsDrawerToggleResult>
    */
   public expand(): Promise<TsDrawerToggleResult> {
     return this.toggle(true);
@@ -325,7 +334,7 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
   /**
    * Collapse the drawer.
    *
-   * @return Promise<TsDrawerToggleResult>
+   * @returns Promise<TsDrawerToggleResult>
    */
   public collapse(): Promise<TsDrawerToggleResult> {
     return this.toggle(false);
@@ -335,9 +344,9 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
    * Toggle this drawer.
    *
    * @param isOpen - whether the drawer should be open.
-   * @return  Promise<TsDrawerToggleResult>
+   * @returns  Promise<TsDrawerToggleResult>
    */
-  public toggle(isOpen: boolean = !this.isExpanded): Promise<TsDrawerToggleResult> {
+  public toggle(isOpen = !this.isExpanded): Promise<TsDrawerToggleResult> {
     this._isExpanded = isOpen;
     if (isOpen) {
       this.animationState = this.enableAnimations ? 'open' : 'open-instant';
@@ -355,6 +364,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
    * In Ivy the `host` bindings will be merged when this class is extended, whereas in
    * ViewEngine they're overwritten.
    * TODO: we move this back into `host` once Ivy is turned on by default.
+   *
+   * @param event
    */
   @HostListener('@transform.start', ['$event'])
   public animationStartListener(event: AnimationEvent) {
@@ -366,6 +377,8 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
    * In Ivy the `host` bindings will be merged when this class is extended, whereas in
    * ViewEngine they're overwritten.
    * TODO: move this back into `host` once Ivy is turned on by default.
+   *
+   * @param event
    */
   @HostListener('@transform.done', ['$event'])
   public animationDoneListener(event: AnimationEvent) {

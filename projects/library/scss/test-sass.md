@@ -9,7 +9,7 @@
 - [Yarn](#yarn)
 - [Types of tests](#types-of-tests)
   - [Test to Fail](#test-to-fail)
-- [Issues, idiosyncracies, etc](#issues-idiosyncracies-etc)
+- [Issues, idiosyncrasies, etc](#issues-idiosyncrasies-etc)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -25,15 +25,17 @@ Each helper file has a .spec.scss file that imports both `true` and the correspo
 
 ## Yarn
 
-If you simply run `yarn run test`, the test doesn’t run, saying there are no changes. Essentially the _watch functionality doesn’t work_.
+If you simply run `yarn run library:test`, the test doesn't run, saying there are no changes. Essentially the _watch
+functionality doesn't work_.
 
 Workaround (recommended):
 1. Select ‘p’ to run by regex of file name
 1. Type 'sass' and hit enter
 1. Every time you need to run the test again, go to the terminal and hit enter
 
-If you run `yarn run test` and select ‘a’ to run all tests, or if you run `yarn run test:ci:local` it will test the scss and catch errors
-and display them in the terminal. However, it does not show up in the istanbul report.
+If you run `yarn run library:test` and select ‘a’ to run all tests, or if you run `yarn run library:test:ci:local` it
+will test the scss and catch errors and display them in the terminal. However, it does not show up in the istanbul
+report.
 
 
 ## Types of tests
@@ -82,8 +84,8 @@ It's highly recommended to write your tests to fail, to insure the test is runni
 false-positives. Once you know the test is running correctly, then change the expect value to be the correct one.
 
 
-## Issues, idiosyncracies, etc
+## Issues, idiosyncrasies, etc
 
 1. Not quite sure how to navigate large blocks of rendered scss (reference `color.spec.scss`s commented-out test. Currently investigating
    how `true` adds classes in the tests so we can better mitigate this critical functionality.
-1. It doesn’t care for ticks, so use single quotes in describe and test statements
+1. It doesn't care for ticks, so use single quotes in describe and test statements

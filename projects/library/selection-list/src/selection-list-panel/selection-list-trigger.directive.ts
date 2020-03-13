@@ -44,6 +44,7 @@ import {
   defer,
   merge,
   Observable,
+  of,
   Subject,
   Subscription,
 } from 'rxjs';
@@ -62,9 +63,11 @@ import { TsSelectionListPanelComponent } from './selection-list-panel.component'
 // Injection token that determines the scroll handling while the panel is open
 export const TS_SELECTION_LIST_SCROLL_STRATEGY = new InjectionToken<() => ScrollStrategy>('ts-selection-list-scroll-strategy');
 
-export function TS_SELECTION_LIST_SCROLL_STRATEGY_FACTORY(overlay: Overlay): () => ScrollStrategy {
-  return () => overlay.scrollStrategies.reposition();
-}
+/**
+ * @param overlay
+ */
+export const TS_SELECTION_LIST_SCROLL_STRATEGY_FACTORY =
+  (overlay: Overlay): () => ScrollStrategy => () => overlay.scrollStrategies.reposition();
 
 export const TS_SELECTION_LIST_SCROLL_STRATEGY_FACTORY_PROVIDER = {
   provide: TS_SELECTION_LIST_SCROLL_STRATEGY,
@@ -121,11 +124,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
   private canOpenOnNextFocus = true;
 
   /**
-   * The subscription for closing actions (some are bound to document)
-   */
-  private closingActionsSubscription!: Subscription;
-
-  /**
    * Stream of keyboard events that can close the panel
    */
   private readonly closeKeyEventStream = new Subject<void>();
@@ -149,8 +147,10 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
   /**
    * Stream of option selections
    */
-  public readonly optionSelections: Observable<TsOptionSelectionChange> | Observable<{}> = defer(() => {
+  public readonly optionSelections: Observable<TsOptionSelectionChange> | Observable<unknown> = defer(() => {
     if (this.selectionListPanel && this.selectionListPanel.options) {
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       return merge(...this.selectionListPanel.options.map(option => option.selectionChange));
     }
 
@@ -158,6 +158,8 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     // Return a stream that we'll replace with the real one once everything is in place.
     return this.ngZone.onStable
       .asObservable()
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       .pipe(take(1), switchMap(() => this.optionSelections));
   });
 
@@ -230,15 +232,18 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
    * A stream of actions that should close the panel, including when an option is selected, on blur, and when TAB is pressed.
    */
   public get panelClosingActions(): Observable<TsOptionSelectionChange | null> {
+    // eslint-disable-next-line deprecation/deprecation
     return merge(
       this.optionSelections,
       this.selectionListPanel.keyManager.tabOut.pipe(filter(() => this.overlayAttached)),
       this.closeKeyEventStream,
-      this.overlayRef.backdropClick(),
-    ).pipe(
-      // Normalize the output so we return a consistent type.
-      map(event => (event instanceof TsOptionSelectionChange ? event : null)),
-    );
+      // eslint-disable-next-line deprecation/deprecation
+      this.overlayRef?.backdropClick() || of<string>(''),
+    )
+      .pipe(
+        // Normalize the output so we return a consistent type.
+        map(event => (event instanceof TsOptionSelectionChange ? event : null)),
+      );
   }
 
   /**
@@ -258,13 +263,16 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
    * The `autocomplete` attribute to be set on the input element.
    */
   // NOTE: Input has specific naming since it is accepting a standard HTML data attribute.
-  // tslint:disable: no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('autocomplete')
   public autocompleteAttribute = 'off';
 
   /**
    * Whether the trigger is disabled. When disabled, the element will act as a regular input and the user won't be able to open the panel.
+   *
+   * @param value
    */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tsSelectionListTriggerDisabled')
   public set selectionListDisabled(value: boolean) {
     this._selectionListDisabled = coerceBooleanProperty(value);
@@ -278,13 +286,13 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
    * The panel to be attached to this trigger
    */
   // Note: Renaming as prefixed name does not add clarity
-  // tslint:disable: no-input-rename
   @Input('tsSelectionListTrigger')
   public selectionListPanel!: TsSelectionListPanelComponent;
-  // tslint:enable: no-input-rename
 
   /**
    * Define if the panel should reopen after a selection is made
+   *
+   * @param value
    */
   @Input()
   public set reopenAfterSelection(value: boolean) {
@@ -310,7 +318,7 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     private changeDetectorRef: ChangeDetectorRef,
     private documentService: TsDocumentService,
     private viewportRuler: ViewportRuler,
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Inject(TS_SELECTION_LIST_SCROLL_STRATEGY) scrollStrategy: any,
     @Optional() @Host() private formField: TsFormFieldComponent,
   ) {
@@ -334,13 +342,11 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     if (typeof window !== 'undefined') {
       window.removeEventListener('blur', this.windowBlurHandler);
     }
-
     this.viewportSubscription.unsubscribe();
     this.componentDestroyed = true;
     this.destroyPanel();
     this.closeKeyEventStream.complete();
   }
-
 
   /**
    * Close the panel
@@ -382,7 +388,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     }
   }
 
-
   /**
    * Handle the focus event
    */
@@ -395,7 +400,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       this.floatLabel(true);
     }
   }
-
 
   /**
    * Handle input into the trigger
@@ -425,7 +429,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       }
     }
   }
-
 
   /**
    * Handle keydown events
@@ -462,19 +465,16 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     }
   }
 
-
   /**
    * View -> model callback called when value changes
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public onChange: (value: any) => void = () => {};
-
 
   /**
    * View -> model callback called when the DOM has been touched
    */
   public onTouched = () => {};
-
 
   /**
    * Open the panel
@@ -483,7 +483,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     this.attachOverlay();
     this.floatLabel();
   }
-
 
   /**
    * Register the onChange function
@@ -496,7 +495,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     this.onChange = fn;
   }
 
-
   /**
    * Register the onTouched function
    *
@@ -507,7 +505,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
   public registerOnTouched(fn: () => {}) {
     this.onTouched = fn;
   }
-
 
   /**
    * Set the disabled state
@@ -520,7 +517,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     this.elementRef.nativeElement.disabled = isDisabled;
   }
 
-
   /**
    * Function used to write the value by the model
    *
@@ -530,7 +526,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
    * @param value - The value to write
    */
   public writeValue(value: string): void {}
-
 
   /**
    * Attach the overlay
@@ -566,7 +561,7 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     // istanbul ignore else
     if (this.overlayRef && !this.overlayRef.hasAttached()) {
       this.overlayRef.attach(this.portal);
-      this.closingActionsSubscription = this.subscribeToClosingActions();
+      this.subscribeToClosingActions();
       this.overlayRef.backdropClick().pipe(untilComponentDestroyed(this)).subscribe(() => {
         this.backdropClicked.emit();
       });
@@ -582,7 +577,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       this.selectionListPanel.opened.emit();
     }
   }
-
 
   /**
    * Determine whether the panel can be opened
@@ -600,9 +594,10 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     return !isDisabled;
   }
 
-
   /**
    * Clear any previous selected option and emit a selection change event for this option
+   *
+   * @param skip
    */
   private clearPreviousSelectedOption(skip: TsOptionComponent): void {
     this.selectionListPanel.options.forEach(option => {
@@ -615,7 +610,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     });
   }
 
-
   /**
    * Destroy the panel
    */
@@ -627,7 +621,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       this.overlayRef = null;
     }
   }
-
 
   /**
    * In 'auto' mode, the label will animate down as soon as focus is lost.  This causes the value to jump when selecting an option with the
@@ -643,21 +636,18 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       } else {
         this.formField.floatLabel = 'always';
       }
-
       this.manuallyFloatingLabel = true;
     }
   }
 
-
   /**
    * Return the connected element
    *
-   * @return The ElementRef
+   * @returns The ElementRef
    */
   private getConnectedElement(): ElementRef {
     return this.formField ? this.formField.getConnectedOverlayOrigin() : this.elementRef;
   }
-
 
   /**
    * Returns the width of the input element, so the panel width can match it
@@ -666,11 +656,10 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     return this.getConnectedElement().nativeElement.getBoundingClientRect().width;
   }
 
-
   /**
    * Create a config for an overlay
    *
-   * @return The overlay config
+   * @returns The overlay config
    */
   private getOverlayConfig(): OverlayConfig {
     return new OverlayConfig({
@@ -683,11 +672,10 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     });
   }
 
-
   /**
    * Get the overlay position strategy
    *
-   * @return The position strategy
+   * @returns The position strategy
    */
   private getOverlayPositionStrategy(): PositionStrategy {
     this.positionStrategy = this.overlay.position()
@@ -712,16 +700,14 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     return this.positionStrategy;
   }
 
-
   /**
    * Return the panel width
    *
-   * @return The width
+   * @returns The width
    */
   private getPanelWidth(): number | string {
     return this.getHostWidth();
   }
-
 
   /**
    * Resets the active item to -1 so arrow events will activate the correct options, or to 0 if the consumer opted into it
@@ -729,7 +715,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
   private resetActiveItem(): void {
     this.selectionListPanel.keyManager.setActiveItem(-1);
   }
-
 
   /**
    * If the label has been manually elevated, return it to its normal state
@@ -741,7 +726,6 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       this.manuallyFloatingLabel = false;
     }
   }
-
 
   /**
    * This method closes the panel, and if a value is specified, also sets the associated control to that value.
@@ -756,29 +740,35 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       this.elementRef.nativeElement.focus();
       this.selectionListPanel.emitSelectEvent(event.source);
     }
-
     this.closePanel();
   }
-
 
   /**
    * This method listens to a stream of panel closing actions and resets the stream every time the option list changes
    *
-   * @return The subscription
+   * @returns The subscription
    */
   private subscribeToClosingActions(): Subscription {
     const firstStable = this.ngZone.onStable.asObservable().pipe(take(1));
     const optionChanges = this.selectionListPanel.options.changes.pipe(
+      // TODO: Refactor deprecation
+      // eslint-disable-next-line deprecation/deprecation
       tap(() => this.positionStrategy.reapplyLastPosition()),
       // Defer emitting to the stream until the next tick, because changing bindings in here will cause "changed after checked" errors.
       delay(0),
     );
 
     // When the zone is stable initially, and when the option list changes...
-    return merge(firstStable, optionChanges)
+    // eslint-disable-next-line deprecation/deprecation
+    return merge(
+      firstStable,
+      optionChanges,
+    )
       .pipe(
         // Create a new stream of panelClosingActions, replacing any previous streams that were created, and flatten it so our stream only
         // emits closing events...
+        // TODO: Refactor deprecation
+        // eslint-disable-next-line deprecation/deprecation
         switchMap(() => {
           // Focus the first option when options change
           this.selectionListPanel.keyManager.setActiveItem(0);
@@ -809,8 +799,7 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
     // If the user blurred the window while the selection list is focused, it means that it'll be refocused when they come back. In this
     // case we want to skip the first focus event, if the pane was closed, in order to avoid reopening it unintentionally.
     this.canOpenOnNextFocus = this.document.activeElement !== this.elementRef.nativeElement || this.panelOpen;
-  }
-
+  };
 
   /**
    * Scroll to an option
@@ -839,5 +828,4 @@ export class TsSelectionListTriggerDirective<ValueType = string> implements Cont
       );
     }
   }
-
 }

@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+} from '@angular/router';
 
-import {CohortDateRangeComponent} from "./cohort-date-range.component";
+import { CohortDateRangeComponent } from './cohort-date-range.component';
 
 
 const routes: Routes = [

@@ -77,6 +77,8 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -89,6 +91,8 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Toggle the underlying checkbox if the isChecked property changes
+   *
+   * @param value
    */
   @Input()
   public set isChecked(value: boolean) {
@@ -122,6 +126,8 @@ export class TsCheckboxComponent extends TsReactiveFormBaseComponent {
 
   /**
    * Toggle the underlying checkbox if the ngModel changes
+   *
+   * @param v
    */
   @Input()
   public set ngModel(v: boolean) {

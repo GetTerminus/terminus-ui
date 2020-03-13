@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import {
   Component,
   NgModule,
@@ -16,6 +15,7 @@ import {
 
 import { createDateRangeGroup } from './test-helpers';
 
+const noopParam = v => {};
 
 @Component({
   template: `
@@ -65,9 +65,9 @@ export class SeededDates {
 })
 export class Emitters {
   dateGroup = createDateRangeGroup();
-  dateRangeChange = jest.fn();
-  endSelected = jest.fn();
-  startSelected = jest.fn();
+  dateRangeChange = noopParam;
+  endSelected = noopParam;
+  startSelected = noopParam;
 
   @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
@@ -110,7 +110,7 @@ export class Params {
   ></ts-date-range>`,
 })
 export class NoFormGroup {
-  startSelected = jest.fn();
+  startSelected = noopParam;
 
   @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
@@ -121,23 +121,18 @@ export class NoFormGroup {
   <form [formGroup]="dateGroup" novalidate>
     <ts-date-range
       [dateFormGroup]="dateGroup"
-      (startSelected)="startSelected($event)"
     ></ts-date-range>
   </form>
   `,
 })
 export class NoControls {
   dateGroup = this.formBuilder.group({});
-  startSelected = jest.fn();
 
   @ViewChild(TsDateRangeComponent, { static: true })
   dateRangeComponent!: TsDateRangeComponent;
 
   constructor(private formBuilder: FormBuilder) {}
 }
-
-
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.

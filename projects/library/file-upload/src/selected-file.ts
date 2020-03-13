@@ -96,7 +96,7 @@ export class TsSelectedFile {
   /**
    * Get the image width
    *
-   * @return The width of the image if it exists
+   * @returns The width of the image if it exists
    */
   public get width(): number {
     return this.dimensions ? this.dimensions.width : 0;
@@ -105,7 +105,7 @@ export class TsSelectedFile {
   /**
    * Get the image height
    *
-   * @return The height of the image if it exists
+   * @returns The height of the image if it exists
    */
   public get height(): number {
     return this.dimensions ? this.dimensions.height : 0;
@@ -114,7 +114,7 @@ export class TsSelectedFile {
   /**
    * Get a boolean representing if the file is a CSV
    *
-   * @return Is a CSV
+   * @returns Is a CSV
    */
   public get isCSV(): boolean {
     return this.mimeType.includes('csv');
@@ -123,7 +123,7 @@ export class TsSelectedFile {
   /**
    * Get a boolean representing if the file is an image
    *
-   * @return Is an image
+   * @returns Is an image
    */
   public get isImage(): boolean {
     return this.mimeType.includes('image');
@@ -132,7 +132,7 @@ export class TsSelectedFile {
   /**
    * Get a boolean representing if the file is a video
    *
-   * @return Is a video
+   * @returns Is a video
    */
   public get isVideo(): boolean {
     return this.mimeType.includes('video');
@@ -141,12 +141,13 @@ export class TsSelectedFile {
   /**
    * Get the file contents
    *
-   * @return The FileReader results
+   * @returns The FileReader results
    */
   public get fileContents(): string {
     if (isString(this.fileReader.result)) {
       return this.fileReader.result;
-    } else if (isDevMode) {
+    } else if (isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`${this.fileReader.result} is not returning a string.`);
     }
     return '';
@@ -155,12 +156,11 @@ export class TsSelectedFile {
   /**
    * Get the validation status
    *
-   * @return Is valid
+   * @returns Is valid
    */
   public get isValid(): boolean {
     return (this.validations.fileType && this.validations.fileSize && this.validations.imageDimensions && this.validations.imageRatio);
   }
-
 
   /**
    * Determine the dimensions and ratio of an image
@@ -179,7 +179,8 @@ export class TsSelectedFile {
         if (img) {
           if (isString(this.fileReader.result)) {
             img.src = this.fileReader.result;
-          } else if (isDevMode) {
+          } else if (isDevMode()) {
+            // eslint-disable-next-line no-console
             console.warn(`${img} is not returning a string.`);
           }
         }
@@ -219,7 +220,7 @@ export class TsSelectedFile {
    * Validate the image dimensions
    *
    * @param constraints - The constraints this the image dimensions must fit
-   * @return The validation result
+   * @returns The validation result
    */
   private validateImageDimensions(constraints: TsFileImageDimensionConstraints | undefined): boolean {
     if (!constraints || constraints.length < 1) {
@@ -245,9 +246,8 @@ export class TsSelectedFile {
    * Validate the image ratios
    *
    * @param constraints - The constrains that the image ratio must fit
-   * @return The validation result
+   * @returns The validation result
    */
-
   private validateImageRatio(constraints: Array<ImageRatio> | undefined): boolean {
     if (!constraints) {
       return true;
@@ -269,13 +269,12 @@ export class TsSelectedFile {
    *
    * @param number1 - one number
    * @param number2 - another number
-   * @return Whether these two numbers are the same
+   * @returns Whether these two numbers are the same
    */
   private isSame(number1: number, number2: number): boolean {
     const minimumAmountToConsiderMatch = .001;
     return Math.abs((number1 - number2) / number1) < minimumAmountToConsiderMatch;
   }
-
 }
 
 
@@ -283,7 +282,7 @@ export class TsSelectedFile {
  * Determine if the passed in type needs dimension validation
  *
  * @param type - The file type
- * @return If it needs dimension validation
+ * @returns If it needs dimension validation
  */
 function typeNeedsDimensionValidation(type: TsFileAcceptedMimeTypes): boolean {
   const allTypes = TS_ACCEPTED_MIME_TYPES.slice();

@@ -9,7 +9,6 @@ import {
 import * as testComponents from '@terminus/ui/expansion-panel/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
-  getAccordionElement,
   getAccordionInstance,
   getPanelInstance,
   getTriggerElement,
@@ -18,15 +17,15 @@ import {
 
 import { TsExpansionPanelModule } from '../expansion-panel.module';
 
-
-function createComponent<T>(component: Type<T>): ComponentFixture<T> {
-  return createComponentInner<T>(component, undefined, [TsExpansionPanelModule, NoopAnimationsModule]);
-}
-
-
+/**
+ * Create test host component
+ *
+ * @param component
+ */
+// eslint-disable-next-line max-len
+const createComponent = <T>(component: Type<T>): ComponentFixture<T> => createComponentInner<T>(component, undefined, [TsExpansionPanelModule, NoopAnimationsModule]);
 
 describe(`TsAccordionComponent`, function() {
-
   test(`should be able to enforce a single panel open at a time`, function() {
     const fixture = createComponent<testComponents.Accordion>(testComponents.Accordion);
     fixture.detectChanges();
@@ -47,7 +46,6 @@ describe(`TsAccordionComponent`, function() {
     expect.assertions(6);
   });
 
-
   test(`should allow multiple panels to be open`, function() {
     const fixture = createComponent<testComponents.AccordionMulti>(testComponents.AccordionMulti);
     fixture.detectChanges();
@@ -67,7 +65,6 @@ describe(`TsAccordionComponent`, function() {
 
     expect.assertions(6);
   });
-
 
   test(`should be able to open or close all panels when multi is true`, function() {
     const fixture = createComponent<testComponents.AccordionMulti>(testComponents.AccordionMulti);
@@ -90,13 +87,11 @@ describe(`TsAccordionComponent`, function() {
     expect.assertions(6);
   });
 
-
   test(`should be able to hide all toggle icons`, function() {
     const fixture = createComponent<testComponents.HideToggleAccordion>(testComponents.HideToggleAccordion);
     fixture.detectChanges();
     const triggerElement1: HTMLElement = getTriggerElement(fixture);
     const toggleIcon1 = triggerElement1.querySelector('.ts-expansion-panel__indicator');
-
     const triggerElement2: HTMLElement = getTriggerElement(fixture);
     const toggleIcon2 = triggerElement2.querySelector('.ts-expansion-panel__indicator');
 
@@ -104,13 +99,10 @@ describe(`TsAccordionComponent`, function() {
     expect(toggleIcon2).toBeNull();
   });
 
-
   describe(`Keyboard controls`, function() {
-
     test(`should focus first trigger when HOME is used and the last when END is used`, function() {
       const fixture = createComponent<testComponents.Accordion>(testComponents.Accordion);
       fixture.detectChanges();
-      const accordion = getAccordionElement(fixture);
       const trigger1 = getTriggerElement(fixture);
       const trigger2 = getTriggerElement(fixture, 1);
 
@@ -137,17 +129,13 @@ describe(`TsAccordionComponent`, function() {
       expect(document.activeElement === trigger2).toEqual(true);
     });
 
-
     // NOTE: ngx-tools `createKeyboardEvent` function seems to generate an event
     // where `event.metaKey` is true which does not work for this test.
     test(`should toggle a panel when SPACE or ENTER is used`, function() {
       const fixture = createComponent<testComponents.Accordion>(testComponents.Accordion);
       fixture.detectChanges();
-      const accordion = getAccordionElement(fixture);
-
       const panel1 = getPanelInstance(fixture);
       const trigger1 = getTriggerElement(fixture);
-
       const panel2 = getPanelInstance(fixture, 1);
       const trigger2 = getTriggerElement(fixture, 1);
 
@@ -176,12 +164,9 @@ describe(`TsAccordionComponent`, function() {
       expect(panel1.expanded).toEqual(false);
       expect(panel2.expanded).toEqual(true);
     });
-
   });
 
-
   describe(`Events`, function() {
-
     test(`should emit when destroyed`, function() {
       const fixture = createComponent<testComponents.AccordionDestroyed>(testComponents.AccordionDestroyed);
       fixture.detectChanges();
@@ -192,7 +177,5 @@ describe(`TsAccordionComponent`, function() {
 
       expect(host.destroyed).toHaveBeenCalledTimes(1);
     });
-
   });
-
 });

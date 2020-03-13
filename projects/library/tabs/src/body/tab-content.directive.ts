@@ -19,7 +19,7 @@ import {
 @Directive({ selector: '[tsTabContent]' })
 export class TsTabContentDirective {
   constructor(
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public template: TemplateRef<any>,
   ) {}
 }

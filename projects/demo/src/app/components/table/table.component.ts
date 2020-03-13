@@ -52,6 +52,10 @@ export interface CustomColumn extends TsColumn {
   display: string;
   // The associated FormControl
   control: FormControl;
+  // The column name
+  name: string;
+  // The column width
+  width: number;
 }
 
 export interface GithubApi {
@@ -239,7 +243,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
         }),
         map(data => {
           // console.log('Demo: fetched data: ', data);
-          this.savedResponse = data as GithubApi;
+          this.savedResponse = data;
           this.resultsLength = data.total_count;
 
           return data.items;
@@ -261,7 +265,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
    * Sanitize HTML content before injecting it
    *
    * @param content - The HTML to sanitize
-   * @return The safe HTML
+   * @returns The safe HTML
    */
   public sanitize(content): SafeHtml {
     return this.domSanitizer.bypassSecurityTrustHtml(content);

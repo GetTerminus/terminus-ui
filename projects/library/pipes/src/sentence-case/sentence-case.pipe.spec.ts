@@ -1,6 +1,5 @@
 import { TsSentenceCasePipe } from './sentence-case.pipe';
 
-
 describe(`TsSentenceCasePipe`, function() {
   let pipeClass: TsSentenceCasePipe;
   let pipe: Function;
@@ -10,12 +9,10 @@ describe(`TsSentenceCasePipe`, function() {
     pipe = pipeClass.transform;
   });
 
-
   test(`should return undefined if no value is passed in`, () => {
     expect(pipe(null)).toEqual(undefined);
     expect(pipe('')).toEqual(undefined);
   });
-
 
   test(`should format a string`, () => {
     const strings: string[] = [
@@ -28,5 +25,4 @@ describe(`TsSentenceCasePipe`, function() {
     expect(pipe(strings[1])).toEqual('Hi there friend');
     expect(pipe(strings[2])).toEqual('I am a hacker');
   });
-
 });

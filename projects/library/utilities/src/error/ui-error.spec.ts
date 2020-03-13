@@ -1,6 +1,5 @@
 import { TsUILibraryError } from './ui-error';
 
-
 describe(`TsUILibraryError`, () => {
   let error: TsUILibraryError;
 
@@ -14,5 +13,4 @@ describe(`TsUILibraryError`, () => {
     expect(error.stack).toEqual(expect.stringContaining('Error: Foo bar baz'));
     expect(error.stack).toEqual(expect.stringContaining('at new TsUILibraryError'));
   });
-
 });

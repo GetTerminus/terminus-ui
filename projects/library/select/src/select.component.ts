@@ -1,4 +1,3 @@
-// tslint:disable: template-no-call-expression
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { SelectionModel } from '@angular/cdk/collections';
 import {
@@ -29,7 +28,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-import { MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
+import { MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
 import {
   coerceArray,
@@ -89,7 +88,7 @@ export const SELECT_PANEL_PADDING_X = 16;
 const SELECT_ITEM_HEIGHT = 3;
 
 // The panel's x axis padding if it is indented (e.g. there is an option group)
-// eslint-disable-next-line no-magic-numbers
+// eslint-disable-next-line @typescript-eslint/no-magic-numbers
 export const SELECT_PANEL_INDENT_PADDING_X = SELECT_PANEL_PADDING_X * 2;
 
 // The height of the select items in `em` units
@@ -135,6 +134,9 @@ export type TsSelectOptionCompareWith = (o1: unknown, o2: unknown) => boolean;
 
 /**
  * The default compare with function used when the consumer does not define one
+ *
+ * @param o1
+ * @param o2
  */
 export const DEFAULT_COMPARE_WITH: TsSelectOptionCompareWith = (o1: unknown, o2: unknown) => o1 === o2;
 
@@ -242,8 +244,8 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
     },
     // Since we handle all option selection/deselection functionality we tell the underlying MatCheckbox to do nothing on click.
     {
-      provide: MAT_CHECKBOX_CLICK_ACTION,
-      useValue: 'noop',
+      provide: MAT_CHECKBOX_DEFAULT_OPTIONS,
+      useValue: { clickAction: 'noop' },
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -296,15 +298,11 @@ export class TsSelectComponent implements
    */
   public optionIds = '';
 
-  /*
-   * Store the dimensions of the option
-   */
-  private optionRect: ClientRect | undefined;
-
   /**
    * Combined stream of all of the child options' change events
    */
   public readonly optionSelectionChanges: Observable<TsOptionSelectionChange> =
+    // eslint-disable-next-line deprecation/deprecation
     defer(() => merge<TsOptionSelectionChange>(...this.options.map(option => option.selectionChange)));
 
   /**
@@ -468,37 +466,37 @@ export class TsSelectComponent implements
   /**
    * Access the user-supplied override of the trigger element
    */
-  @ContentChild(TsSelectTriggerComponent, { static: false })
+  @ContentChild(TsSelectTriggerComponent)
   public customTrigger: TsSelectTriggerComponent | undefined;
 
   /**
    * Access to the actual HTML element
    */
-  @ViewChild('input', { static: false })
+  @ViewChild('input')
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
    * Access the label element
    */
-  @ViewChild('labelElement', { static: false })
+  @ViewChild('labelElement')
   public labelElement!: ElementRef;
 
   /**
    * Access the trigger that opens the select
    */
-  @ViewChild('trigger', { static: false })
+  @ViewChild('trigger')
   public trigger!: ElementRef;
 
   /**
    * Access the overlay pane containing the options
    */
-  @ViewChild(CdkConnectedOverlay, { static: false })
+  @ViewChild(CdkConnectedOverlay)
   public overlayDir!: CdkConnectedOverlay;
 
   /**
    * Access the panel containing the select options
    */
-  @ViewChild('panel', { static: false })
+  @ViewChild('panel')
   public panel!: ElementRef;
 
   /**
@@ -526,10 +524,13 @@ export class TsSelectComponent implements
    *
    * Learn more about `compareWith` in the Angular docs:
    * https://angular.io/api/forms/SelectControlValueAccessor#customizing-option-selection
+   *
+   * @param fn
    */
   @Input()
   public set compareWith(fn: TsSelectOptionCompareWith) {
     if (typeof fn !== 'function' && isDevMode()) {
+      // eslint-disable-next-line no-console
       console.warn(`TsSelectComponent: "compareWith" must be a function. Falling back to the default.`);
       this._compareWith = DEFAULT_COMPARE_WITH;
     }
@@ -548,6 +549,8 @@ export class TsSelectComponent implements
 
   /**
    * Define the delimiter used in the list of selected options
+   *
+   * @param value
    */
   @Input()
   public set delimiter(value: string) {
@@ -566,6 +569,8 @@ export class TsSelectComponent implements
 
   /**
    * Define a hint for the input
+   *
+   * @param value
    */
   @Input()
   public set hint(value: string | undefined) {
@@ -578,6 +583,8 @@ export class TsSelectComponent implements
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -602,6 +609,8 @@ export class TsSelectComponent implements
 
   /**
    * Define if the control is required
+   *
+   * @param value
    */
   @Input()
   public set isRequired(value: boolean) {
@@ -616,6 +625,8 @@ export class TsSelectComponent implements
 
   /**
    * Define the label text
+   *
+   * @param value
    */
   @Input()
   public set label(value: string | undefined) {
@@ -635,6 +646,8 @@ export class TsSelectComponent implements
 
   /**
    * Placeholder to be shown if no value has been selected
+   *
+   * @param value
    */
   @Input()
   public set placeholder(value: string | undefined) {
@@ -676,6 +689,8 @@ export class TsSelectComponent implements
 
   /**
    * Define the tab index for the component
+   *
+   * @param value
    */
   @Input()
   public set tabIndex(value: string | number) {
@@ -706,6 +721,8 @@ export class TsSelectComponent implements
 
   /**
    * Value of the select control
+   *
+   * @param newValue
    */
   @Input()
   public set value(newValue: unknown) {
@@ -794,7 +811,6 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Trigger change detection when the underlying form changes
    */
@@ -823,7 +839,6 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Initialize the key manager and set up change listeners
    */
@@ -848,7 +863,8 @@ export class TsSelectComponent implements
 
     // If the array changes, reset options
     this.options.changes.pipe(
-      startWith(null),
+      // eslint-disable-next-line deprecation/deprecation
+      startWith<void, null>(null),
       untilComponentDestroyed(this),
     ).subscribe(() => {
       this.resetOptions();
@@ -856,9 +872,10 @@ export class TsSelectComponent implements
     });
   }
 
-
   /**
    * Trigger updates when the label is dynamically changed
+   *
+   * @param changes
    */
   public ngOnChanges(changes: SimpleChanges): void {
     // Let the parent FormField know that it should update the ouline gap for the new label
@@ -870,14 +887,12 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Cleanup
    */
   public ngOnDestroy(): void {
     this.stateChanges.complete();
   }
-
 
   /**
    * Stub in onChange
@@ -887,7 +902,6 @@ export class TsSelectComponent implements
   // istanbul ignore next
   public onChange: (value: unknown) => void = () => {};
 
-
   /**
    * Stub in onTouched
    *
@@ -895,7 +909,6 @@ export class TsSelectComponent implements
    */
   // istanbul ignore next
   public onTouched = () => {};
-
 
   /**
    * Toggles the overlay panel open or closed.
@@ -906,7 +919,6 @@ export class TsSelectComponent implements
       this.panelOpen ? this.close() : this.open();
     }
   }
-
 
   /**
    * Open the overlay panel
@@ -933,14 +945,13 @@ export class TsSelectComponent implements
         this.overlayDir.overlayRef.overlayElement.style.fontSize = `${this.triggerFontSize}px`;
       }
 
-      this.optionRect = this.options.first.elementRef.nativeElement.getBoundingClientRect();
+      this.options.first.elementRef.nativeElement.getBoundingClientRect();
       this.calculateOverlayPosition();
     });
 
     // Alert the consumer
     this.opened.emit();
   }
-
 
   /**
    * Close the overlay panel
@@ -957,7 +968,6 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Callback that is invoked when the overlay panel has been attached
    */
@@ -967,7 +977,6 @@ export class TsSelectComponent implements
       this.setPanelScrollTop(this.scrollTop);
     });
   }
-
 
   /**
    * Handles all keydown events on the select
@@ -981,7 +990,6 @@ export class TsSelectComponent implements
 
     this.panelOpen ? this.handleOpenKeydown(event) : this.handleClosedKeydown(event);
   }
-
 
   /**
    * Handle keyboard events when the select panel is closed
@@ -1077,6 +1085,7 @@ export class TsSelectComponent implements
 
     // Listen to changes in the internal state of the options and react accordingly.
     // Handles cases like the labels of the selected options changing.
+    // eslint-disable-next-line deprecation/deprecation
     merge(...this.options.map(option => option.stateChanges))
       .pipe(untilComponentDestroyed(this))
       .subscribe(() => {
@@ -1123,14 +1132,13 @@ export class TsSelectComponent implements
       }
     }
 
-    // Only propogate if the selected option is not already in the selectionModel
+    // Only propagate if the selected option is not already in the selectionModel
     if (wasSelected !== this.selectionModel.isSelected(option)) {
       this.propagateChanges();
     }
 
     this.stateChanges.next();
   }
-
 
   /**
    * Records option IDs to pass to the aria-owns property
@@ -1139,12 +1147,10 @@ export class TsSelectComponent implements
     this.optionIds = this.options.map(option => option.id).join(' ');
   }
 
-
   /**
    * Set up a key manager to listen to keyboard events on the overlay panel
    */
   private initKeyManager(): void {
-
     this.keyManager = new ActiveDescendantKeyManager<TsOptionComponent>(this.options)
       .withTypeAhead()
       .withVerticalOrientation()
@@ -1169,7 +1175,6 @@ export class TsSelectComponent implements
     });
   }
 
-
   /**
    * Focus the correct element
    *
@@ -1178,7 +1183,6 @@ export class TsSelectComponent implements
   public focus(): void {
     this.elementRef.nativeElement.focus();
   }
-
 
   /**
    * Sort the selected values in the selectedModel based on their order in the panel
@@ -1199,7 +1203,6 @@ export class TsSelectComponent implements
       this.stateChanges.next();
     }
   }
-
 
   /**
    * Emit a change event to set the model value
@@ -1225,13 +1228,11 @@ export class TsSelectComponent implements
   /**
    * Call FormControl updateValueAndValidity function to ensure value and valid status get updated.
    */
-
   private updateValueAndValidity() {
     if (this.ngControl && this.ngControl.control) {
       this.ngControl.control.updateValueAndValidity();
     }
   }
-
 
   /**
    * Sets the select's value. Part of the ControlValueAccessor interface required to integrate with Angular's core forms API.
@@ -1241,7 +1242,6 @@ export class TsSelectComponent implements
    * @param value - New value to be written to the model
    */
   public writeValue(value: unknown): void {}
-
 
   /**
    * Save a callback function to be invoked when the select's value changes from user input.
@@ -1253,7 +1253,6 @@ export class TsSelectComponent implements
     this.onChange = fn;
   }
 
-
   /**
    * Save a callback function to be invoked when the select is blurred by the user.
    * Part of the ControlValueAccessor interface required to integrate with Angular's core forms API.
@@ -1263,7 +1262,6 @@ export class TsSelectComponent implements
   public registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
-
 
   /**
    * Disables the select.
@@ -1277,7 +1275,6 @@ export class TsSelectComponent implements
     this.stateChanges.next();
   }
 
-
   /**
    * Initialize any existing selections into the selectionModel
    */
@@ -1288,7 +1285,6 @@ export class TsSelectComponent implements
       this.setSelectionByValue(this.ngControl ? this.ngControl.value : this.value);
     });
   }
-
 
   /**
    * Sets the selected option based on a value.
@@ -1316,12 +1312,11 @@ export class TsSelectComponent implements
     this.changeDetectorRef.markForCheck();
   }
 
-
   /**
    * Find and select an option based on its value
    *
    * @param value - The value to use when searching for a matching option
-   * @return Option that has the corresponding value
+   * @returns Option that has the corresponding value
    */
   private selectOptionByValue(value: string | string[]): TsOptionComponent | undefined {
     const correspondingOption = this.options.find((option: TsOptionComponent) => {
@@ -1332,6 +1327,7 @@ export class TsSelectComponent implements
         // istanbul ignore else
         if (isDevMode()) {
           // Notify developers of errors in their comparator.
+          // eslint-disable-next-line no-console
           console.warn(error);
         }
         return false;
@@ -1344,7 +1340,6 @@ export class TsSelectComponent implements
 
     return correspondingOption;
   }
-
 
   /**
    * Scroll the active option into view
@@ -1362,7 +1357,6 @@ export class TsSelectComponent implements
     this.setPanelScrollTop(total);
   }
 
-
   /**
    * Calculate the scroll position and x- and y- offsets of the overlay panel
    */
@@ -1377,23 +1371,21 @@ export class TsSelectComponent implements
 
     // If no value is selected we open the popup to the first item.
     // NOTE: Since we are checking the `empty` value first, we know that the selection model is not empty
-    // tslint:disable: no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     let selectedOptionOffset = this.empty ? 0 : this.getOptionIndex(this.selectionModel.selected[0])!;
-    // tslint:enable: no-non-null-assertion
 
     // Make sure we take into account optgroups also
     selectedOptionOffset += countGroupLabelsBeforeOption(selectedOptionOffset, this.options, this.optionGroups);
 
     // We must maintain a scroll buffer so the selected option will be scrolled to the
     // center of the overlay panel rather than the top.
-    // eslint-disable-next-line no-magic-numbers
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const scrollBuffer = panelHeight / 2;
     this.scrollTop = this.calculateOverlayScroll(selectedOptionOffset, scrollBuffer, maxScroll);
     this.offsetY = this.calculateOverlayOffsetY(selectedOptionOffset, scrollBuffer, maxScroll);
 
     this.checkOverlayWithinViewport(maxScroll);
   }
-
 
   /**
    * Calculate the scroll position of the select's overlay panel
@@ -1408,7 +1400,7 @@ export class TsSelectComponent implements
   private calculateOverlayScroll(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
     const itemHeight = this.itemHeight;
     const optionOffsetFromScrollTop = itemHeight * selectedIndex;
-    // eslint-disable-next-line no-magic-numbers
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const halfOptionHeight = itemHeight / 2;
 
     // Starts at the optionOffsetFromScrollTop, which scrolls the option to the top of the scroll container, then subtracts the scroll
@@ -1418,7 +1410,6 @@ export class TsSelectComponent implements
     return Math.min(Math.max(0, optimalScrollPosition), maxScroll);
   }
 
-
   /**
    * Calculates the y-offset of the select's overlay panel in relation to the top start corner of the trigger.
    * It has to be adjusted in order for the selected option to be aligned over the trigger when the panel opens.
@@ -1426,13 +1417,13 @@ export class TsSelectComponent implements
    * @param selectedIndex - The index of the selected item
    * @param scrollBuffer - The number of pixels to buffer the scroll by
    * @param maxScroll - The farthest the panel can scroll
-   * @return The overlay's Y offset
+   * @returns The overlay's Y offset
    */
   private calculateOverlayOffsetY(selectedIndex: number, scrollBuffer: number, maxScroll: number): number {
     // NOTE: scrollBuffer is half of the panel height - which is really half of SELECT_PANEL_MAX_HEIGHT (when many options exist)
     // NOTE: maxScroll is the height of all options minus the height of the panel
     const itemHeight = this.itemHeight;
-    // eslint-disable-next-line no-magic-numbers
+    // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     const optionHeightAdjustment = (itemHeight - (this.triggerRect ? this.triggerRect.height : 0)) / 2;
     const maxOptionsDisplayed = Math.floor(SELECT_PANEL_MAX_HEIGHT / itemHeight);
 
@@ -1458,7 +1449,7 @@ export class TsSelectComponent implements
       // If the option was scrolled to the middle of the panel using a scroll buffer,
       // its offset will be the scroll buffer minus the half height that was added to
       // center it.
-      // eslint-disable-next-line no-magic-numbers
+      // eslint-disable-next-line @typescript-eslint/no-magic-numbers
       optionOffsetFromPanelTop = scrollBuffer - (itemHeight / 2);
     }
 
@@ -1467,7 +1458,6 @@ export class TsSelectComponent implements
     // The value is rounded to prevent some browsers from blurring the content.
     return Math.round((optionOffsetFromPanelTop * -1) - optionHeightAdjustment);
   }
-
 
   /**
    * Check that the attempted overlay position will fit within the viewport.
@@ -1499,7 +1489,6 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Adjust the overlay panel up to fit in the viewport
    *
@@ -1526,7 +1515,6 @@ export class TsSelectComponent implements
       this.transformOrigin = `50% bottom 0px`;
     }
   }
-
 
   /**
    * Adjusts the overlay panel down to fit in the viewport
@@ -1558,28 +1546,25 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Set the transform origin point based on the selected option
    *
-   * @return The transform origin CSS string
+   * @returns The transform origin CSS string
    */
   private getOriginBasedOnOption(): string {
     const itemHeight = this.itemHeight;
-    /* eslint-disable no-magic-numbers */
+    /* eslint-disable @typescript-eslint/no-magic-numbers */
     const optionHeightAdjustment = (itemHeight - (this.triggerRect ? this.triggerRect.height : 0)) / 2;
     const originY = Math.abs(this.offsetY) - optionHeightAdjustment + (itemHeight / 2);
-    /* eslint-enable no-magic-numbers */
-
+    /* eslint-enable @typescript-eslint/no-magic-numbers */
     return `50% ${originY}px 0px`;
   }
-
 
   /**
    * Get the index of the provided option in the option list
    *
    * @param option - The option whose index should be found
-   * @return The index of the option
+   * @returns The index of the option
    */
   private getOptionIndex(option: TsOptionComponent): number | undefined {
     return this.options.reduce((result: number | undefined, current: TsOptionComponent, index: number) => {
@@ -1589,7 +1574,6 @@ export class TsSelectComponent implements
       // eslint-disable-next-line no-undefined
     }, undefined);
   }
-
 
   /**
    * Highlight the selected item.
@@ -1607,7 +1591,6 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Toggle the selection all options
    *
@@ -1616,7 +1599,6 @@ export class TsSelectComponent implements
   public toggleAllOptions(): void {
     toggleAllOptions(this.options);
   }
-
 
   /**
    * Ensure the correct element gets focus when the primary container is clicked.
@@ -1632,16 +1614,14 @@ export class TsSelectComponent implements
     }
   }
 
-
   /**
    * Get the panel's scrollTop
    *
-   * @return The scrollTop number
+   * @returns The scrollTop number
    */
   private getPanelScrollTop(): number {
     return this.panel ? this.panel.nativeElement.scrollTop : 0;
   }
-
 
   /**
    * Set the panel's scrollTop
@@ -1657,5 +1637,4 @@ export class TsSelectComponent implements
       this.panel.nativeElement.scrollTop = scrollTop;
     }
   }
-
 }

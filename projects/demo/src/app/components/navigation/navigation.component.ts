@@ -27,9 +27,7 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   },
   {
     name: '4 Action',
-    action: {
-      type: 'Do:thing',
-    },
+    action: { type: 'Do:thing' },
     alwaysHidden: false,
   },
   {
@@ -44,18 +42,14 @@ const NAV_ITEMS_MOCK: TsNavigationItem[] = [
   },
   {
     name: '8 Hidden',
-    action: {
-      type: 'Do:another:thing',
-    },
+    action: { type: 'Do:another:thing' },
     alwaysHidden: true,
   },
 ];
 
 const NEW_NAV_ITEM: TsNavigationItem = {
   name: '0 Foo',
-  action: {
-    type: 'my:action',
-  },
+  action: { type: 'my:action' },
   alwaysHidden: false,
 };
 
@@ -76,11 +70,10 @@ export class NavigationComponent {
   public navigationItems$: Observable<any> = of(NAV_ITEMS_MOCK);
   public myMessage = 'Hello, this message is 37 characters.';
 
-
   /**
    * Trigger the action defined for the navigation item
    *
-   * @param {Object} item The navigation item
+   * @param payload - The navigation item
    */
   public triggerAction(payload: TsNavigationPayload): void {
     console.log('DEMO: triggerAction: ', payload);
@@ -92,7 +85,6 @@ export class NavigationComponent {
       // redirect in app
       console.log('DEMO: meta key was NOT used');
     }
-
   }
 
   public updateNav(): void {

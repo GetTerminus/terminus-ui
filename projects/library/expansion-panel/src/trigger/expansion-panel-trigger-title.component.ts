@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 
 
-
 @Component({
   selector: 'ts-expansion-panel-trigger-title',
   template: `<ng-content></ng-content>`,

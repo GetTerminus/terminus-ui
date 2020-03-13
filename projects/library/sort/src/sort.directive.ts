@@ -1,5 +1,3 @@
-// NOTE(B$): Disabling input/output renaming to provide a more natural API
-// tslint:disable: use-input-property-decorator no-input-rename no-output-rename
 import {
   Directive,
   EventEmitter,
@@ -9,10 +7,6 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import {
-  CanDisable,
-  mixinDisabled,
-} from '@angular/material/core';
 import {
   isNull,
   isUndefined,
@@ -27,14 +21,13 @@ import {
 
 
 /**
- * Define the allowed sort directions for {@link TsSort}
+ * Define the allowed sort directions for {@link TsSortDirective}
  */
 export type TsSortDirection
   = 'asc'
   | 'desc'
   | ''
 ;
-
 
 /**
  * Interface for a directive that holds sorting state consumed by `TsSortHeaderComponent`
@@ -44,18 +37,15 @@ export interface TsSortableItem {
    * The id of the column being sorted
    */
   id: string;
-
   /**
    * Starting sort direction
    */
   start: 'asc' | 'desc';
-
   /**
    * Whether to disable clearing the sorting state
    */
   disableClear: boolean;
 }
-
 
 /**
  * The current sort state
@@ -65,7 +55,6 @@ export interface TsSortState {
    * The id of the column being sorted
    */
   active: string;
-
   /**
    * The sort direction
    */
@@ -88,10 +77,13 @@ export interface TsSortState {
   selector: '[tsSort]',
   exportAs: 'tsSort',
   // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
-  // tslint:disable-next-line:no-inputs-metadata-property
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['disabled: tsSortDisabled'],
 })
 export class TsSortDirective implements OnChanges, OnDestroy {
+  /**
+   * Store the disabled flag
+   */
   public disabled = false;
 
   /**
@@ -120,6 +112,8 @@ export class TsSortDirective implements OnChanges, OnDestroy {
 
   /**
    * The sort direction of the currently active TsSortable
+   *
+   * @param direction
    */
   @Input('tsSortDirection')
   public set direction(direction: TsSortDirection) {
@@ -144,6 +138,7 @@ export class TsSortDirective implements OnChanges, OnDestroy {
   /**
    * Event emitted when the user changes either the active sort or sort direction
    */
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('tsSortChange')
   public readonly sortChange = new EventEmitter<TsSortState>();
 
@@ -155,7 +150,6 @@ export class TsSortDirective implements OnChanges, OnDestroy {
     this._stateChanges.next();
   }
 
-
   /**
    * Complete the observable on destroy
    */
@@ -163,10 +157,11 @@ export class TsSortDirective implements OnChanges, OnDestroy {
     this._stateChanges.complete();
   }
 
-
   /**
    * Register function to be used by the contained TsSortables. Adds the TsSortable to the
    * collection of TsSortables.
+   *
+   * @param sortable
    */
   public register(sortable: TsSortableItem): void {
     if (!sortable.id && isDevMode()) {
@@ -176,22 +171,23 @@ export class TsSortDirective implements OnChanges, OnDestroy {
     if (this.sortables.has(sortable.id) && isDevMode()) {
       throw getSortDuplicateSortableIdError(sortable.id);
     }
-
     this.sortables.set(sortable.id, sortable);
   }
-
 
   /**
    * Unregister function to be used by the contained TsSortables. Removes the TsSortable from the
    * collection of contained TsSortables.
+   *
+   * @param sortable
    */
   public deregister(sortable: TsSortableItem): void {
     this.sortables.delete(sortable.id);
   }
 
-
   /**
    * Sets the active sort id and determines the new sort direction
+   *
+   * @param sortable
    */
   public sort(sortable: TsSortableItem): void {
     if (this.active === sortable.id) {
@@ -207,15 +203,15 @@ export class TsSortDirective implements OnChanges, OnDestroy {
     });
   }
 
-
   /**
    * Returns the next sort direction of the active sortable, checking for potential overrides
+   *
+   * @param sortable
    */
   public getNextSortDirection(sortable: TsSortableItem): TsSortDirection {
     if (!sortable) {
       return '';
     }
-
     // Get the sort direction cycle with the potential sortable overrides.
     const disableClearDoesntExist = isNull(sortable.disableClear) || isUndefined(sortable.disableClear);
     const disableClear = disableClearDoesntExist ? this.disableClear : sortable.disableClear;
@@ -226,19 +222,18 @@ export class TsSortDirective implements OnChanges, OnDestroy {
     if (nextDirectionIndex >= sortDirectionCycle.length) {
       nextDirectionIndex = 0;
     }
-
     return sortDirectionCycle[nextDirectionIndex];
   }
-
 }
-
 
 /**
  * Returns the sort direction cycle to use given the provided parameters of order and clear
+ *
+ * @param start
+ * @param disableClear
  */
 function getSortDirectionCycle(start: 'asc' | 'desc', disableClear: boolean): TsSortDirection[] {
   const sortOrder: TsSortDirection[] = ['asc', 'desc'];
-
   if (start === 'desc') {
     sortOrder.reverse();
   }
@@ -246,6 +241,5 @@ function getSortDirectionCycle(start: 'asc' | 'desc', disableClear: boolean): Ts
   if (!disableClear) {
     sortOrder.push('');
   }
-
   return sortOrder;
 }

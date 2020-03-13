@@ -21,7 +21,6 @@ export class TsAbbreviateNumberPipe implements PipeTransform {
     if (!value) {
       return '';
     }
-
     return abbreviateNumber(value, decimalPlace);
   }
 }

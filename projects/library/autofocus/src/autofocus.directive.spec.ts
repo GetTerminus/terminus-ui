@@ -5,7 +5,6 @@ import {
 
 import { TsAutofocusDirective } from './autofocus.directive';
 
-
 describe(`TsAutofocusDirective`, function() {
   let directive: TsAutofocusDirective;
   const validValues = [
@@ -42,9 +41,7 @@ describe(`TsAutofocusDirective`, function() {
     teardown();
   });
 
-
   test(`should autofocus with valid values`, () => {
-
     for (const value of validValues) {
       if (!directive) {
         setup();
@@ -52,16 +49,13 @@ describe(`TsAutofocusDirective`, function() {
       directive.tsAutofocus = value as any;
       directive.ngAfterViewInit();
 
-      expect(directive.elementRef.nativeElement.focus).toHaveBeenCalled();
-      expect(directive.changeDetectorRef.detectChanges).toHaveBeenCalled();
+      expect(directive['elementRef'].nativeElement.focus).toHaveBeenCalled();
+      expect(directive['changeDetectorRef'].detectChanges).toHaveBeenCalled();
       teardown();
     }
-
   });
 
-
   test(`should NOT autofocus with invalid values`, () => {
-
     for (const value of invalidValues) {
       if (!directive) {
         setup();
@@ -72,9 +66,7 @@ describe(`TsAutofocusDirective`, function() {
       expect(directive['elementRef'].nativeElement.focus).not.toHaveBeenCalled();
       teardown();
     }
-
   });
-
 
   test(`should autofocus with string`, () => {
     directive.tsAutofocus = 'my string';
@@ -82,7 +74,6 @@ describe(`TsAutofocusDirective`, function() {
 
     expect(directive['elementRef'].nativeElement.focus).toHaveBeenCalled();
   });
-
 
   test(`should throw an error if in dev mode and the element is not focusable`, () => {
     directive['elementRef'].nativeElement.focus = undefined;
@@ -92,12 +83,10 @@ describe(`TsAutofocusDirective`, function() {
     }).toThrowError(`TsAutofocusDirective must be used on an element that has a .focus() method.`);
   });
 
-
   test(`should not autofocus with falsy value`, () => {
     directive.tsAutofocus = null as any;
     directive.ngAfterViewInit();
 
     expect(directive['elementRef'].nativeElement.focus).not.toHaveBeenCalled();
   });
-
 });

@@ -24,12 +24,12 @@ import {
 } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { tsExpansionPanelAnimations } from './../expansion-animations';
+import { tsExpansionPanelAnimations } from '../expansion-animations';
 import {
   TS_EXPANSION_PANEL_DEFAULT_OPTIONS,
   TsExpansionPanelComponent,
   TsExpansionPanelDefaultOptions,
-} from './../expansion-panel.component';
+} from '../expansion-panel.component';
 
 
 /**
@@ -137,6 +137,7 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
         : EMPTY;
 
     // Since the toggle state depends on an @Input on the panel, we need to subscribe and trigger change detection manually.
+    // eslint-disable-next-line deprecation/deprecation
     merge(
       panel.opened, panel.closed, accordionHideToggleChange,
       panel.inputChanges.pipe(filter(changes => !!(changes.hideToggle || changes.disabled))),
@@ -165,14 +166,12 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
     }
   }
 
-
   /**
    * Stop monitoring focus events
    */
   public ngOnDestroy(): void {
     this.focusMonitor.stopMonitoring(this.elementRef);
   }
-
 
   /**
    * Focuses the panel trigger.
@@ -192,9 +191,10 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
     this.panel.toggle();
   }
 
-
   /**
    * Handle keydown event calling to toggle() if appropriate
+   *
+   * @param event
    */
   public keydown(event: KeyboardEvent): void {
     const { code } = event;
@@ -210,5 +210,4 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
       this.panel.accordion.handleTriggerKeydown(event);
     }
   }
-
 }

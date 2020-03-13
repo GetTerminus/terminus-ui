@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import { TemplatePortal } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import {
@@ -17,9 +16,6 @@ import {
   TsTabsModule,
 } from '@terminus/ui/tabs';
 import { Observable } from 'rxjs';
-
-
-
 
 @Component({
   template: `
@@ -60,13 +56,13 @@ export class Basic {
   public animationFinished() {}
 }
 
- @Component({
-   template: `
+@Component({
+  template: `
     <ts-tab-collection>
       <ts-tab [ariaLabel]="ariaLabel" [ariaLabelledby]="ariaLabelledby"></ts-tab>
     </ts-tab-collection>
   `,
- })
+})
 export class CollectionWithAriaInputs {
   public ariaLabel: string | undefined;
   public ariaLabelledby: string | undefined;
@@ -76,7 +72,7 @@ export class CollectionWithAriaInputs {
   template: `
     <ts-tab-collection>
       <ts-tab>
-        <ng-template mat-tab-label>Tab One</ng-template>
+        <ng-template tsTabLabel>Tab One</ng-template>
         Tab one content
       </ts-tab>
       <ts-tab [isDisabled]="isDisabled">
@@ -179,7 +175,8 @@ export class AsyncTabs implements OnInit {
 export class SimpleLabels {
   public otherLabel = 'Bar';
   public otherContent = 'bar content';
-  @ViewChild('test', { static: true }) public testSelector: any;
+  @ViewChild('test', { static: true })
+  public testSelector!: any;
 }
 
 @Component({
@@ -216,7 +213,6 @@ export class TemplateTabs {}
 })
 export class DynamicHeight {}
 
-
 interface Tab {
   label: string;
   disabled?: boolean;
@@ -224,23 +220,23 @@ interface Tab {
 
 @Component({
   template: `
-  <div>
-    <ts-tab-header
-      [selectedIndex]="selectedIndex"
-      (indexFocused)="focusedIndex = $event"
-      (selectFocusedIndex)="selectedIndex = $event"
-    >
-      <div
-        tsTabLabelWrapper
-        class="label-content"
-        *ngFor="let tab of tabs; let i = index"
-        [isDisabled]="!!tab.disabled"
-        (click)="selectedIndex = i"
+    <div>
+      <ts-tab-header
+        [selectedIndex]="selectedIndex"
+        (indexFocused)="focusedIndex = $event"
+        (selectFocusedIndex)="selectedIndex = $event"
       >
-       {{ tab.label }}
-      </div>
-    </ts-tab-header>
-  </div>
+        <div
+          tsTabLabelWrapper
+          class="label-content"
+          *ngFor="let tab of tabs; let i = index"
+          [isDisabled]="!!tab.disabled"
+          (click)="selectedIndex = i"
+        >
+         {{ tab.label }}
+        </div>
+      </ts-tab-header>
+    </div>
   `,
 })
 export class TabHeader {
@@ -267,9 +263,9 @@ export class TabHeader {
   ];
 
   @ViewChild(TsTabHeaderComponent, { static: true })
-  public tabHeader: TsTabHeaderComponent;
+  public tabHeader!: TsTabHeaderComponent;
 
-  public constructor() {
+  constructor() {
     this.tabs[this.disabledTabIndex].disabled = true;
   }
 
@@ -292,16 +288,16 @@ export class TabHeader {
 })
 export class TabBody implements AfterContentInit {
   public content!: TemplatePortal;
-  public position: number;
-  public origin: number | null;
+  public position = 0;
+  public origin: number | null = null;
 
   @ViewChild(TsTabBodyComponent, { static: true })
-  public tabBody: TsTabBodyComponent;
+  public tabBody!: TsTabBodyComponent;
 
   @ViewChild(TemplateRef, { static: true })
-  public template: TemplateRef<any>;
+  public template!: TemplateRef<any>;
 
-  public constructor(private viewContainerRef: ViewContainerRef) { }
+  constructor(private viewContainerRef: ViewContainerRef) { }
 
   public ngAfterContentInit() {
     this.content = new TemplatePortal(this.template, this.viewContainerRef);
@@ -315,11 +311,8 @@ export class TabBody implements AfterContentInit {
 })
 export class InkBar {
   @ViewChild(TsTabInkBarComponent, { static: true })
-  public inkBar: TsTabInkBarComponent;
+  public inkBar!: TsTabInkBarComponent;
 }
-
-
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module.

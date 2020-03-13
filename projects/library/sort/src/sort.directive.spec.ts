@@ -1,7 +1,6 @@
 import { TsSortDirective } from './sort.directive';
 
-
-// Adding tests for areas missed by the TsTable integration tests
+// NOTE: These tests were added to cover areas missed by the TsTable integration tests
 describe(`TsSortDirective`, function() {
   let directive: TsSortDirective;
 
@@ -9,13 +8,9 @@ describe(`TsSortDirective`, function() {
     directive = new TsSortDirective();
   });
 
-
   describe(`getNextSortDirection()`, () => {
-
     it(`should return an empty string if no 'sortable' was passed in`, () => {
       expect(directive.getNextSortDirection(null as any)).toEqual('');
     });
-
   });
-
 });

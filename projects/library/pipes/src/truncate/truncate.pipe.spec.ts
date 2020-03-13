@@ -35,7 +35,6 @@ describe(`TsTruncateAtPipe`, function() {
     expect(pipe(inputString, 10, 'undefined as any')).toEqual(`This is m${ellipses}`);
   });
 
-
   describe(`end`, () => {
     test(`should be the format if no position is specified`, () => {
       expect(pipe(inputString, 10)).toEqual(`This is m${ellipses}`);
@@ -48,14 +47,12 @@ describe(`TsTruncateAtPipe`, function() {
     });
   });
 
-
   describe(`start`, () => {
     test(`should remove first part of the string`, () => {
       expect(pipe(inputString, 10, 'start')).toEqual(`${ellipses}st string`);
       expect(pipe(inputString, 10, 'start')).toHaveLength(10);
     });
   });
-
 
   describe(`middle`, () => {
     test(`should have equal number of characters on each side of ellipses if character count is odd`, () => {

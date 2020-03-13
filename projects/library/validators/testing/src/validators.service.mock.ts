@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { ValidatorFn } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class TsValidatorsServiceMock {
   public isValid = true;
 
-  public creditCard = () => {
+  public creditCard: ValidatorFn = () => {
     const response = {
       creditCard: {
         valid: false,
@@ -14,7 +15,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public domain = () => {
+  public domain: ValidatorFn = () => {
     const response = {
       domain: {
         valid: false,
@@ -24,7 +25,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public email = () => {
+  public email: ValidatorFn = () => {
     const response = {
       email: {
         valid: false,
@@ -34,7 +35,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public equalToControl = () => {
+  public equalToControl: ValidatorFn = () => {
     const response = {
       equalToControl: {
         valid: false,
@@ -45,7 +46,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public greaterThan = () => {
+  public greaterThan: ValidatorFn = () => {
     const response = {
       greaterThan: {
         valid: false,
@@ -56,7 +57,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public inCollection = () => {
+  public inCollection: ValidatorFn = () => {
     const response = {
       inCollection: {
         valid: false,
@@ -67,7 +68,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public isInRange = () => {
+  public isInRange: ValidatorFn = () => {
     const response = {
       isInRange: {
         valid: false,
@@ -79,7 +80,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public lessThan = () => {
+  public lessThan: ValidatorFn = () => {
     const response = {
       lessThan: {
         valid: false,
@@ -90,7 +91,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public lowercase = () => {
+  public lowercase: ValidatorFn = () => {
     const response = {
       lowercase: {
         valid: false,
@@ -101,7 +102,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public maxDate = () => {
+  public maxDate: ValidatorFn = () => {
     const response = {
       maxDate: {
         valid: false,
@@ -111,7 +112,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public minDate = () => {
+  public minDate: ValidatorFn = () => {
     const response = {
       minDate: {
         valid: false,
@@ -121,7 +122,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public numbers = () => {
+  public numbers: ValidatorFn = () => {
     const response = {
       numbers: {
         valid: false,
@@ -132,7 +133,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public password = () => {
+  public password: ValidatorFn = () => {
     const response = {
       password: {
         valid: false,
@@ -142,7 +143,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public uppercase = () => {
+  public uppercase: ValidatorFn = () => {
     const response = {
       uppercase: {
         valid: false,
@@ -153,7 +154,7 @@ export class TsValidatorsServiceMock {
     return this.isValid ? null : response;
   };
 
-  public url = () => {
+  public url: ValidatorFn = () => {
     const response = {
       lessThan: {
         valid: false,

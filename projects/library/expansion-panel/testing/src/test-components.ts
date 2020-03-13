@@ -1,4 +1,3 @@
-// tslint:disable: component-class-suffix
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -10,7 +9,6 @@ import {
   TS_EXPANSION_PANEL_DEFAULT_OPTIONS,
   TsExpansionPanelModule,
 } from '@terminus/ui/expansion-panel';
-
 
 @Component({
   template: `
@@ -289,9 +287,6 @@ export class SinglePanel {}
   `,
 })
 export class TriggerTitleDescription {}
-
-
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module.

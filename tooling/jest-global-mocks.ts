@@ -1,6 +1,3 @@
-import 'hammerjs';
-
-
 const mock = () => {
   let storage: {[key: string]: any} = {};
   return {
@@ -14,14 +11,13 @@ const mock = () => {
 Object.defineProperty(window, 'localStorage', { value: mock() });
 Object.defineProperty(window, 'sessionStorage', { value: mock() });
 Object.defineProperty(window, 'CSS', { value: () => ({}) });
-
+Object.defineProperty(window, 'getComputedStyle', { value: () => ({ getPropertyValue: prop => '' }) });
 
 /**
  * Patches for Material
  */
 const WARN_SUPPRESSING_PATTERNS = [
   /Could not find Angular Material core theme/,
-  /Could not find HammerJS/,
 ];
 const warn = console.warn;
 Object.defineProperty(console, 'warn', {

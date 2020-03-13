@@ -131,9 +131,6 @@ export class AutocompleteComponent {
       );
   }
 
-  ngOnInit() {
-  }
-
   private filterStates(value: string): State[] {
     const filterValue = value.toLowerCase();
     return this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);

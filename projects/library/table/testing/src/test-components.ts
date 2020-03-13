@@ -20,7 +20,6 @@ import {
   TestData,
 } from './test-helpers';
 
-
 @Component({
   template: `
     <table
@@ -72,7 +71,6 @@ export class TableApp {
   public columnsChanged(e: TsTableColumnsChangeEvent) {}
 }
 
-
 @Component({
   template: `
     <table ts-table [dataSource]="dataSource" [columns]="columns">
@@ -102,7 +100,6 @@ export class TableWithWhenRowApp {
     width: 100,
   }));
 }
-
 
 @Component({
   template: `
@@ -240,7 +237,6 @@ export class TableColumnInvalidAlignmentTableApp {
   }
 }
 
-
 @Component({
   template: `
     <table ts-table [dataSource]="dataSource" [columns]="columns">
@@ -322,7 +318,6 @@ export class ScrollingTable {
   }));
   public columnsChanged(e: TsTableColumnsChangeEvent) {}
 }
-
 
 /**
  * NOTE: Currently all exported Components must belong to a module. So this is our useless module to avoid the build error.

@@ -10,8 +10,8 @@
 . ~/.bashrc
 
 # Run tests
-yarn run test:ci || {
-    echo 'yarn run test:ci failed!';
+yarn run library:test:ci || {
+    echo 'yarn run library:test:ci failed!';
     exit 1;
 }
 

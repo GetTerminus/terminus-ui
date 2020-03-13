@@ -58,15 +58,13 @@ export class TsVerticalSpacingDirective {
     if (!value) {
       value = 'default--0';
     }
-
     // Split the string to get the type and size
     const type: string = value.split('--')[0];
     const size: number = parseInt(value.split('--')[1], 10);
     const valueIsNone: boolean = value === 'none';
-
     // Verify type and size are valid options
-    const typeIsInvalid: boolean = !!(!TS_SPACING[type] || TS_SPACING[type].length < 0);
-    const sizeIsInvalid: boolean = !!(typeIsInvalid || !TS_SPACING[type][size]);
+    const typeIsInvalid = !!(!TS_SPACING[type] || TS_SPACING[type].length < 0);
+    const sizeIsInvalid = !!(typeIsInvalid || !TS_SPACING[type][size]);
 
     // Only throw an error if type or size is invalid and the value is not 'none'
     if ((typeIsInvalid || sizeIsInvalid) && !valueIsNone && isDevMode()) {
@@ -76,10 +74,8 @@ export class TsVerticalSpacingDirective {
       throw Error(`${errorMessage} ${errorHelp}`);
     }
 
-    const margin = valueIsNone ? '0' : TS_SPACING[type][size];
-
     // Set the margin on the element
-    this.elementRef.nativeElement.style.marginBottom = margin;
+    this.elementRef.nativeElement.style.marginBottom = valueIsNone ? '0' : TS_SPACING[type][size];
   }
 
   constructor(

@@ -1,6 +1,5 @@
 import { merge } from './merge';
 
-
 describe(`merge`, function() {
   const obj1 = {
     key1: {},
@@ -33,5 +32,4 @@ describe(`merge`, function() {
   test(`should merge two objects without deleting properties`, () => {
     expect(merge(obj1, obj2)).toEqual(expected);
   });
-
 });

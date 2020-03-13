@@ -8,17 +8,15 @@ import { TsOptionComponent } from './option.component';
  * Determine if all options are selected
  *
  * @param options - The list of options
- * @return If all are selected
+ * @returns If all are selected
  */
 export function allOptionsAreSelected(options: QueryList<TsOptionComponent>): boolean {
   if (!options || options.toArray().length < 1) {
     return false;
   }
-
   // Return false if at least one options is not selected
   return !options.toArray().some(option => !option.selected);
 }
-
 
 /**
  * Counts the amount of option group labels that precede the specified option
@@ -26,7 +24,7 @@ export function allOptionsAreSelected(options: QueryList<TsOptionComponent>): bo
  * @param optionIndex - Index of the option at which to start counting
  * @param options - Flat list of all of the options
  * @param optionGroups - Flat list of all of the option groups
- * @return The number of labels
+ * @returns The number of labels
  */
 export function countGroupLabelsBeforeOption(
   optionIndex: number,
@@ -45,13 +43,10 @@ export function countGroupLabelsBeforeOption(
         groupCounter++;
       }
     }
-
     return groupCounter;
   }
-
   return 0;
 }
-
 
 /**
  * Determine the position to scroll a panel in order for an option to be in view
@@ -60,7 +55,7 @@ export function countGroupLabelsBeforeOption(
  * @param optionHeight - Height of the options
  * @param currentScrollPosition - Current scroll position of the panel
  * @param panelHeight - Height of the panel
- * @return The scroll position
+ * @returns The scroll position
  */
 export function getOptionScrollPosition(
   optionIndex: number,
@@ -77,16 +72,14 @@ export function getOptionScrollPosition(
   if (optionOffset + optionHeight > currentScrollPosition + panelHeight) {
     return Math.max(0, optionOffset - panelHeight + optionHeight);
   }
-
   return currentScrollPosition;
 }
-
 
 /**
  * Determine if one or more options are selected but not all
  *
  * @param options - The list of options
- * @return If some are selected
+ * @returns If some are selected
  */
 export function someOptionsAreSelected(options: QueryList<TsOptionComponent>): boolean {
   if (!options || options.toArray().length < 1) {
@@ -94,7 +87,6 @@ export function someOptionsAreSelected(options: QueryList<TsOptionComponent>): b
   }
   const someSelected = options.toArray().some(option => option.selected);
   const allSelected = allOptionsAreSelected(options);
-
   // Return true if at least one option is selected but not all
   return someSelected && !allSelected;
 }

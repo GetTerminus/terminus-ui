@@ -1,5 +1,4 @@
 import {
-  ChangeDetectorRef,
   Component,
   OnInit,
 } from '@angular/core';
@@ -16,12 +15,10 @@ import {
 import { map } from 'rxjs/operators';
 
 
-
 export interface State {
   name: string;
   population: string;
 }
-
 
 
 @Component({
@@ -54,9 +51,8 @@ export class SelectComponent implements OnInit {
       },
     },
     {
-      // tslint:disable: max-line-length
+      // eslint-disable-next-line max-len
       foo: 'Consequuntur eum eveniet accusamus ea saepe. Alias occaecati eos reprehenderit expedita. Ab perferendis nemo molestias nulla est inventore voluptate.',
-      // tslint:enable: max-line-length
       /*
        *foo: 'Consequuntur eum eveniet accusamus ea saepe.',
        */
@@ -225,9 +221,7 @@ export class SelectComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {
-
     this.firstOptions = this.singleWithCustomTrigger;
   }
 
@@ -278,12 +272,11 @@ export class SelectComponent implements OnInit {
 
   onFilterOptions(v) {
     console.log('DEMO: filtering options: ', v);
-    if (!v) {
-      this.firstOptions = this.singleWithCustomTrigger;
-    } else {
+    if (v) {
       const regex = new RegExp(v, 'i');
-      this.firstOptions = this.singleWithCustomTrigger
-        .pipe(map(a => a.filter(i => i.slug.match(regex))));
+      this.firstOptions = this.singleWithCustomTrigger.pipe(map(a => a.filter(i => i.slug.match(regex))));
+    } else {
+      this.firstOptions = this.singleWithCustomTrigger;
     }
   }
 

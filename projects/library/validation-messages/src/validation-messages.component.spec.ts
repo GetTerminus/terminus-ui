@@ -1,14 +1,12 @@
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
+import * as testComponents from '@terminus/ui/validation-messages/testing';
 
-import * as testComponents from '../testing/src/test-components';
 import { TsValidationMessagesComponent } from './validation-messages.component';
 import { TsValidationMessagesModule } from './validation-messages.module';
 
-
 describe(`TsValidationMessagesComponent`, function() {
-
   describe(`basics and defaults`, function() {
     let component: testComponents.Basic;
     let fixture: ComponentFixture<testComponents.Basic>;
@@ -22,7 +20,7 @@ describe(`TsValidationMessagesComponent`, function() {
       validationMessage = component.validationMessagesComponent;
       validationMessageEl = fixture.debugElement.query(By.css('.c-validation-message')).nativeElement as HTMLElement;
 
-      validationMessage.validationMessageService.getValidatorErrorMessage = jest.fn();
+      validationMessage['validationMessageService'].getValidatorErrorMessage = jest.fn();
     });
 
     test(`should exist`, () => {
@@ -35,7 +33,6 @@ describe(`TsValidationMessagesComponent`, function() {
     });
 
     describe(`get validation messages`, () => {
-
       test(`should return null if no control was passed in`, () => {
         expect(validationMessage.validationMessage).toBeNull();
       });
@@ -45,13 +42,12 @@ describe(`TsValidationMessagesComponent`, function() {
         const control = {
           touched: true,
           errors: { invalidEmail: ERROR },
-        // tslint:disable-next-line:no-any
         } as any;
         component.controlForm = control;
         fixture.detectChanges();
 
         expect(validationMessage.control).toBeTruthy();
-        expect(validationMessage.validationMessageService.getValidatorErrorMessage)
+        expect(validationMessage['validationMessageService'].getValidatorErrorMessage)
           .toHaveBeenCalledWith('invalidEmail', ERROR);
       });
 
@@ -60,13 +56,12 @@ describe(`TsValidationMessagesComponent`, function() {
         const control = {
           touched: false,
           errors: {},
-        // tslint:disable-next-line:no-any
         } as any;
         component.controlForm = control;
         fixture.detectChanges();
 
         expect(validationMessage.control).toBeTruthy();
-        expect(validationMessage.validationMessageService.getValidatorErrorMessage)
+        expect(validationMessage['validationMessageService'].getValidatorErrorMessage)
           .not.toHaveBeenCalled();
         expect(validationMessage.validationMessage).toBeNull();
       });
@@ -77,13 +72,12 @@ describe(`TsValidationMessagesComponent`, function() {
         const control = {
           touched: false,
           errors: { invalidEmail: ERROR },
-        // tslint:disable-next-line:no-any
         } as any;
         component.controlForm = control;
         fixture.detectChanges();
 
         expect(validationMessage.control).toBeTruthy();
-        expect(validationMessage.validationMessageService.getValidatorErrorMessage)
+        expect(validationMessage['validationMessageService'].getValidatorErrorMessage)
           .toHaveBeenCalledWith('invalidEmail', ERROR);
       });
     });
@@ -102,7 +96,6 @@ describe(`TsValidationMessagesComponent`, function() {
       validationMessage = component.validationMessagesComponent;
       validationMessageEl = fixture.debugElement.query(By.css('.c-validation-message')).nativeElement as HTMLElement;
     });
-
 
     test(`should set validateImmediately`, () => {
       component.validateImmediately = true;

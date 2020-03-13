@@ -2,7 +2,6 @@ import { FocusableOption } from '@angular/cdk/a11y';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -79,7 +78,7 @@ export class TsChipSelectionChange {
  * <example-url>https://getterminus.github.io/ui-demos-release/components/chip</example-url>
  */
 @Component({
-  selector: `ts-chip`,
+  selector: 'ts-chip',
   templateUrl: './chip.component.html',
   styleUrls: ['./chip.component.scss'],
   host: {
@@ -108,6 +107,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    * Define if multiple chips are allowed
    *
    * Used by the {@link TsAutocompleteComponent} consumer
+   *
+   * @param value
    */
   public set allowMultiple(value: boolean) {
     this._allowMultiple = value;
@@ -116,11 +117,6 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
     return this._allowMultiple;
   }
   private _allowMultiple = false;
-
-  /**
-   * Define reference to the document
-   */
-  private document: Document;
 
   /**
    * Define the default component ID
@@ -178,10 +174,12 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    * Access to container for chip contents
    */
   @ViewChild('content', { static: true })
-  private content: ElementRef<HTMLElement>;
+  private content!: ElementRef<HTMLElement>;
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -214,6 +212,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    * Whether or not the chip is selectable.
    *
    * By default a chip is selectable, and it becomes non-selectable if its parent chip collection is not selectable.
+   *
+   * @param value
    */
   @Input()
   public set isSelectable(value: boolean) {
@@ -226,6 +226,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
 
   /**
    * Define if the chip is selected
+   *
+   * @param value
    */
   @Input()
   public set selected(value: boolean) {
@@ -245,6 +247,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    * Define the value of the chip
    *
    * Falls back to the DOM content if not set.
+   *
+   * @param value
    */
   @Input()
   public set value(value: string | undefined) {
@@ -253,7 +257,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   // NOTE: Despite the return type, this getter will only ever return a string
   public get value(): string | undefined {
     if (isUndefined(this._value)) {
-      return this.content.nativeElement.textContent.trim();
+      return (this.content.nativeElement.textContent || '').trim();
     }
 
     return this._value;
@@ -262,6 +266,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
 
   /**
    * Define the theme for a chip
+   *
+   * @param value
    */
   @Input()
   public set theme(value: TsStyleThemeTypes) {
@@ -306,11 +312,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
   constructor(
     public elementRef: ElementRef<HTMLElement>,
     private ngZone: NgZone,
-    private changeDetectorRef: ChangeDetectorRef,
     private documentService: TsDocumentService,
-  ) {
-    this.document = documentService.document;
-  }
+  ) {}
 
 
   /**
@@ -325,6 +328,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    * Emit the 'clicked' event
    *
    * @internal
+   * @param event
    */
   public click(event: MouseEvent): void {
     this.clicked.emit(new TsChipClickEvent(this, event));
@@ -381,6 +385,8 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
    * pressed.
    *
    * Informs any listeners of the removal request. Does not remove the chip from the DOM.
+   *
+   * @param event
    */
   public removeChip(event?: MouseEvent | KeyboardEvent): void {
     // istanbul ignore else
@@ -408,7 +414,7 @@ export class TsChipComponent implements FocusableOption, OnDestroy {
 
     if (this.allowMultiple && this.isSelectable && shiftKey) {
       // NOTE: This is needed to disable text highlight when shift clicking chips
-      this.document.onselectstart = () => false;
+      this.documentService.document.onselectstart = () => false;
       this.toggleSelected();
     }
 

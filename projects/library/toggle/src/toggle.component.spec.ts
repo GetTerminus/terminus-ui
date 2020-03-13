@@ -1,13 +1,11 @@
 import { TsToggleComponent } from './toggle.component';
 
-
 describe(`ToggleComponent`, function() {
   let component: TsToggleComponent;
 
   beforeEach(() => {
     component = new TsToggleComponent();
   });
-
 
   test(`should exist`, () => {
     expect(component).toBeTruthy();
@@ -27,9 +25,7 @@ describe(`ToggleComponent`, function() {
     });
   });
 
-
   describe(`isChecked`, () => {
-
     test(`should set the underlying model value`, () => {
       // NOTE: The inherited base class defaults the internal model to a string
       expect(component.value).toBeFalsy();
@@ -38,7 +34,5 @@ describe(`ToggleComponent`, function() {
       expect(component.isChecked).toEqual(true);
       expect(component.value).toEqual(true);
     });
-
   });
-
 });

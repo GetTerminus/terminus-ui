@@ -82,6 +82,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
 
   /**
    * Define the confirmation button text
+   *
+   * @param value
    */
   @Input()
   public set confirmationButtonText(value: string) {
@@ -94,6 +96,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
 
   /**
    * Define the cancel button text
+   *
+   * @param value
    */
   @Input()
   public set cancelButtonText(value: string) {
@@ -112,10 +116,13 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
 
   /**
    * Define position of the overlay
+   *
+   * @param value
    */
   @Input()
   public set overlayPosition(value: TsConfirmationOverlayPositionTypes) {
     if (value && isDevMode() && (allowedOverlayPositionTypes.indexOf(value) < 0)) {
+      // eslint-disable-next-line no-console
       console.warn(`TsConfirmationOverlay: "${value}" is not an allowed position.`
        + `Allowed positions are defined by "allowedOverlayPositionTypes".`);
     }
@@ -146,6 +153,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
    * Spawn the confirmation overlay on click
    *
    * NOTE: Even though the 'event' param is not used, the param must exist for AoT to pass.
+   *
+   * @param event
    */
   @HostListener('click', ['$event'])
   public onClick(event: Event): void {
@@ -189,17 +198,18 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
     this.overlayRef = this.overlay.create(overlayConfig);
 
     // Wire up listeners for keydown events and overlay clicks
+    // eslint-disable-next-line deprecation/deprecation
     merge(
       // NOTE: Naming controlled by the CDK
       // eslint-disable-next-line no-underscore-dangle
       this.overlayRef._keydownEvents,
       this.overlayRef.backdropClick(),
-    ).pipe(
-      untilComponentDestroyed(this),
-    ).subscribe(() => {
-      this.dismissOverlay();
-      this.cancelled.emit(true);
-    });
+    )
+      .pipe(untilComponentDestroyed(this))
+      .subscribe(() => {
+        this.dismissOverlay();
+        this.cancelled.emit(true);
+      });
 
     // Create and attach the overlay
     const userProfilePortal = new ComponentPortal(TsConfirmationOverlayComponent);
@@ -225,6 +235,8 @@ export class TsConfirmationDirective implements OnDestroy, OnInit {
 
   /**
    * Configure the overlay
+   *
+   * @param value
    */
   private generateOverlayConfig(value: TsConfirmationOverlayPositionTypes = 'below') {
     let overlayPosOriginX: HorizontalConnectionPos = 'center';

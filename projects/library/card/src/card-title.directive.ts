@@ -20,6 +20,8 @@ import { TsCardComponent } from './card.component';
 export class TsCardTitleDirective {
   /**
    * Option to add a border to the header
+   *
+   * @param value
    */
   @Input()
   public set tsTitleAccentBorder(value: boolean) {
@@ -43,6 +45,8 @@ export class TsCardTitleDirective {
 
   /**
    * Verify the directive is nested within a {@link TsCardComponent}
+   *
+   * @param parent
    */
   constructor(
     @Optional() @Host() @SkipSelf() parent: TsCardComponent,

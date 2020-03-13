@@ -1,7 +1,7 @@
 import { CdkAccordion } from '@angular/cdk/accordion';
 import { InjectionToken } from '@angular/core';
 
-import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
+import { TsExpansionPanelTriggerComponent } from '../trigger/expansion-panel-trigger.component';
 
 
 /**

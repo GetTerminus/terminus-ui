@@ -2,8 +2,7 @@
  * Define positions that popover accepts
  */
 export type TsPopoverPosition
-  =
-  | 'top'
+  = 'top'
   | 'bottom'
   | 'left'
   | 'right'

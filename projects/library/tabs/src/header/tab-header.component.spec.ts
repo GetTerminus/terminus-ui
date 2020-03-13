@@ -26,8 +26,11 @@ import {
 } from '@terminus/ui/tabs';
 import * as testComponents from '@terminus/ui/tabs/testing';
 
-
-
+/**
+ * Create fake keydown event
+ *
+ * @param key
+ */
 function createKeydownEvent(key: KeyCode): KeyboardEvent {
   const event = document.createEvent('KeyboardEvent');
   event.initEvent('keydown', true, false);
@@ -39,7 +42,6 @@ function createKeydownEvent(key: KeyCode): KeyboardEvent {
   event.preventDefault = jest.fn();
   return event;
 }
-
 
 describe(`TsTabHeaderComponent`, function() {
   let fixture: ComponentFixture<testComponents.TabHeader>;
@@ -69,7 +71,6 @@ describe(`TsTabHeaderComponent`, function() {
     };
   });
 
-
   describe(`focusing`, () => {
     let tabListContainer: HTMLElement;
 
@@ -81,19 +82,16 @@ describe(`TsTabHeaderComponent`, function() {
       tabListContainer = hostComponent.tabHeader.tabListContainer.nativeElement;
     });
 
-
     test(`should initialize to the selected index`, () => {
       fixture.detectChanges();
       expect(hostComponent.tabHeader.focusIndex).toEqual(hostComponent.selectedIndex);
     });
-
 
     test(`should send the focus change event`, () => {
       hostComponent.tabHeader.focusIndex = 2;
       fixture.detectChanges();
       expect(hostComponent.tabHeader.focusIndex).toEqual(2);
     });
-
 
     test(`should not set focus to a disabled tab`, () => {
       hostComponent.tabHeader.focusIndex = 0;
@@ -105,7 +103,6 @@ describe(`TsTabHeaderComponent`, function() {
       fixture.detectChanges();
       expect(hostComponent.tabHeader.focusIndex).toEqual(0);
     });
-
 
     test(`should move focus right and skip disabled tabs`, () => {
       hostComponent.tabHeader.focusIndex = 0;
@@ -124,7 +121,6 @@ describe(`TsTabHeaderComponent`, function() {
       expect(hostComponent.tabHeader.focusIndex).toEqual(3);
     });
 
-
     test(`should move focus left and skip disabled tabs`, () => {
       hostComponent.tabHeader.focusIndex = 3;
       fixture.detectChanges();
@@ -141,7 +137,6 @@ describe(`TsTabHeaderComponent`, function() {
       fixture.detectChanges();
       expect(hostComponent.tabHeader.focusIndex).toEqual(0);
     });
-
 
     test(`should support key down events to move and select focus`, () => {
       hostComponent.tabHeader.focusIndex = 0;
@@ -173,7 +168,6 @@ describe(`TsTabHeaderComponent`, function() {
       expect(EVENTS.SPACE.preventDefault).toHaveBeenCalled();
     });
 
-
     test(`should move focus to the first tab when pressing HOME`, () => {
       hostComponent.tabHeader.focusIndex = 3;
       fixture.detectChanges();
@@ -185,7 +179,6 @@ describe(`TsTabHeaderComponent`, function() {
       expect(hostComponent.tabHeader.focusIndex).toEqual(0);
       expect(EVENTS.HOME.preventDefault).toHaveBeenCalled();
     });
-
 
     test(`should skip disabled items when moving focus using HOME`, () => {
       hostComponent.tabHeader.focusIndex = 3;
@@ -201,7 +194,6 @@ describe(`TsTabHeaderComponent`, function() {
       expect(EVENTS.HOME.preventDefault).toHaveBeenCalled();
     });
 
-
     test(`should move focus to the last tab when pressing END`, () => {
       hostComponent.tabHeader.focusIndex = 0;
       fixture.detectChanges();
@@ -214,7 +206,6 @@ describe(`TsTabHeaderComponent`, function() {
       expect(EVENTS.END.preventDefault).toHaveBeenCalled();
     });
 
-
     test(`should skip disabled items when moving focus using END`, () => {
       hostComponent.tabHeader.focusIndex = 0;
       hostComponent.tabs[3].disabled = true;
@@ -226,7 +217,6 @@ describe(`TsTabHeaderComponent`, function() {
 
       expect(hostComponent.tabHeader.focusIndex).toEqual(2);
     });
-
 
     test(`should not do anything if a modifier key is pressed`, () => {
       [EVENTS.RIGHT, EVENTS.ENTER].forEach(event => {
@@ -248,18 +238,14 @@ describe(`TsTabHeaderComponent`, function() {
       expect(hostComponent.selectedIndex).toEqual(0);
       expect(EVENTS.ENTER.preventDefault).not.toHaveBeenCalled();
     });
-
   });
 
-
   describe(`pagination`, () => {
-
     describe(`ltr`, () => {
       let listElement: HTMLElement;
       let containerElement: HTMLElement;
       let tabElements: HTMLElement[];
       let updateDimensions: Function;
-
 
       beforeEach(() => {
         fixture = TestBed.createComponent(testComponents.TabHeader);
@@ -291,7 +277,6 @@ describe(`TsTabHeaderComponent`, function() {
         updateDimensions();
       });
 
-
       test(`should show width when tab list width exceeds container`, () => {
         fixture.detectChanges();
         expect(hostComponent.tabHeader.showPaginationControls).toEqual(false);
@@ -303,7 +288,6 @@ describe(`TsTabHeaderComponent`, function() {
         expect(hostComponent.tabHeader.showPaginationControls).toEqual(true);
       });
 
-
       test(`should scroll to show the focused tab label`, () => {
         hostComponent.addTabsForScrolling();
         fixture.detectChanges();
@@ -314,7 +298,7 @@ describe(`TsTabHeaderComponent`, function() {
         hostComponent.tabHeader.focusIndex = hostComponent.tabs.length - 1;
         fixture.detectChanges();
 
-        expect(hostComponent.tabHeader.scrollDistance).toEqual(hostComponent.tabHeader.getMaxScrollDistance());
+        expect(hostComponent.tabHeader.scrollDistance).toEqual(hostComponent.tabHeader['getMaxScrollDistance']());
 
         // Focus on the first tab, expect this to be the maximum scroll distance.
         hostComponent.tabHeader.focusIndex = 0;
@@ -322,7 +306,6 @@ describe(`TsTabHeaderComponent`, function() {
         expect(hostComponent.tabHeader.scrollDistance).toEqual(0);
         expect.assertions(3);
       });
-
 
       test(`should show ripples for pagination buttons`, () => {
         hostComponent.addTabsForScrolling();
@@ -338,9 +321,7 @@ describe(`TsTabHeaderComponent`, function() {
 
         expect(fixture.nativeElement.querySelectorAll('.mat-ripple-element').length).toEqual(1);
       });
-
     });
-
 
     describe(`scrolling when holding paginator`, () => {
       let nextButton: HTMLElement;
@@ -388,26 +369,21 @@ describe(`TsTabHeaderComponent`, function() {
         updateDimensions();
       });
 
-
       test(`should scroll towards the end while holding down the next button using a mouse`, fakeAsync(() => {
         assertNextButtonScrolling('mousedown', 'click');
       }));
-
 
       test(`should scroll towards the start while holding down the prev button using a mouse`, fakeAsync(() => {
         assertPrevButtonScrolling('mousedown', 'click');
       }));
 
-
       test(`should scroll towards the end while holding down the next button using touch`, fakeAsync(() => {
         assertNextButtonScrolling('touchstart', 'touchend');
       }));
 
-
       test(`should scroll towards the start while holding down the prev button using touch`, fakeAsync(() => {
         assertPrevButtonScrolling('touchstart', 'touchend');
       }));
-
 
       test(`should not scroll if the sequence is interrupted quickly`, fakeAsync(() => {
         // Start not scrolled
@@ -427,7 +403,6 @@ describe(`TsTabHeaderComponent`, function() {
         expect(header.scrollDistance).toBe(0);
       }));
 
-
       test(`should clear the timeouts on destroy`, fakeAsync(() => {
         dispatchFakeEvent(nextButton, 'mousedown');
         fixture.detectChanges();
@@ -435,7 +410,6 @@ describe(`TsTabHeaderComponent`, function() {
 
         // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
       }));
-
 
       test(`should clear the timeouts on click`, fakeAsync(() => {
         dispatchFakeEvent(nextButton, 'mousedown');
@@ -447,7 +421,6 @@ describe(`TsTabHeaderComponent`, function() {
         // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
       }));
 
-
       test(`should clear the timeouts on touchend`, fakeAsync(() => {
         dispatchFakeEvent(nextButton, 'touchstart');
         fixture.detectChanges();
@@ -458,7 +431,6 @@ describe(`TsTabHeaderComponent`, function() {
         // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
       }));
 
-
       test(`should clear the timeouts when reaching the end`, fakeAsync(() => {
         dispatchFakeEvent(nextButton, 'mousedown');
         fixture.detectChanges();
@@ -468,7 +440,6 @@ describe(`TsTabHeaderComponent`, function() {
 
         // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
       }));
-
 
       test(`should clear the timeouts when reaching the start`, fakeAsync(() => {
         header.scrollDistance = Infinity;
@@ -482,7 +453,6 @@ describe(`TsTabHeaderComponent`, function() {
 
         // No need to assert. If fakeAsync doesn't throw, it means that the timers were cleared.
       }));
-
 
       test(`should stop scrolling if the pointer leaves the header`, fakeAsync(() => {
         // Start not scrolled
@@ -508,7 +478,6 @@ describe(`TsTabHeaderComponent`, function() {
 
         expect(header.scrollDistance).toBe(previousDistance);
       }));
-
 
       /**
        * Asserts that auto scrolling using the next button works
@@ -582,9 +551,7 @@ describe(`TsTabHeaderComponent`, function() {
         endEvent.initEvent(endEventName);
         prevButton.dispatchEvent(endEvent);
       }
-
     });
-
 
     test('should update arrows when the window is resized', fakeAsync(() => {
       fixture = TestBed.createComponent(testComponents.TabHeader);
@@ -600,7 +567,6 @@ describe(`TsTabHeaderComponent`, function() {
       expect(header.checkPaginationEnabled).toHaveBeenCalled();
       discardPeriodicTasks();
     }));
-
 
     test('should update the pagination state if the content of the labels changes', () => {
       const mutationCallbacks: Function[] = [];
@@ -644,9 +610,7 @@ describe(`TsTabHeaderComponent`, function() {
 
       expect(headerElement.classList).toContain(enabledClass);
     });
-
   });
-
 
   test(`should re-align the ink bar when the window is resized`, fakeAsync(() => {
     fixture = TestBed.createComponent(testComponents.TabHeader);
@@ -664,105 +628,82 @@ describe(`TsTabHeaderComponent`, function() {
     discardPeriodicTasks();
   }));
 
-
   describe(`small tests to complete coverage`, function() {
-
     beforeEach(() => {
       fixture = TestBed.createComponent(testComponents.TabHeader);
       hostComponent = fixture.componentInstance;
     });
 
-
     describe(`get focusIndex`, function() {
-
       test(`should return 0 if there is no key manager`, function() {
         fixture.detectChanges();
-        hostComponent.tabHeader.keyManager = undefined;
+        hostComponent.tabHeader['keyManager'] = undefined;
 
         expect(hostComponent.tabHeader.focusIndex).toEqual(0);
       });
-
     });
-
 
     describe(`ngAfterContentInit`, function() {
-
       test(`should realign if requestAnimationFrame is undefined`, function() {
-        hostComponent.tabHeader.updatePagination = jest.fn();
+        hostComponent.tabHeader['updatePagination'] = jest.fn();
         hostComponent.tabHeader.alignInkBarToSelectedTab = jest.fn();
-        window.requestAnimationFrame = undefined;
+        window.requestAnimationFrame = undefined as any;
         fixture.detectChanges();
 
-        expect(hostComponent.tabHeader.updatePagination).toHaveBeenCalled();
+        expect(hostComponent.tabHeader['updatePagination']).toHaveBeenCalled();
         expect(hostComponent.tabHeader.alignInkBarToSelectedTab).toHaveBeenCalled();
       });
-
     });
 
-
     describe(`alignInkBarToSelectedTab`, function() {
-
       test(`should pass null to the ink bar if no label wrappers exist`, function() {
         fixture.detectChanges();
         hostComponent.tabHeader.inkBar.alignToElement = jest.fn();
-        hostComponent.tabHeader.labelWrappers = undefined;
+        hostComponent.tabHeader.labelWrappers = undefined as any;
         hostComponent.tabHeader.alignInkBarToSelectedTab();
 
         expect(hostComponent.tabHeader.inkBar.alignToElement).toHaveBeenCalledWith(null);
       });
-
     });
 
-
     describe(`isValidIndex`, function() {
-
       test(`should return true if no label wrappers exist`, function() {
         fixture.detectChanges();
-        hostComponent.tabHeader.labelWrappers = undefined;
+        hostComponent.tabHeader.labelWrappers = undefined as any;
 
-        expect(hostComponent.tabHeader.isValidIndex(1)).toEqual(true);
+        expect(hostComponent.tabHeader['isValidIndex'](1)).toEqual(true);
       });
-
 
       test(`should return false if the correct label wrapper is not found`, function() {
         fixture.detectChanges();
 
-        expect(hostComponent.tabHeader.isValidIndex(99)).toEqual(false);
+        expect(hostComponent.tabHeader['isValidIndex'](99)).toEqual(false);
       });
-
     });
-
 
     describe(`updateTabScrollPosition`, function() {
-
       test(`should set scrollLeft to 0 on IE`, function() {
-        hostComponent.tabHeader.platform.TRIDENT = true;
-        hostComponent.tabHeader.updateTabScrollPosition();
+        hostComponent.tabHeader['platform'].TRIDENT = true;
+        hostComponent.tabHeader['updateTabScrollPosition']();
 
         expect(hostComponent.tabHeader.tabListContainer.nativeElement.scrollLeft).toEqual(0);
 
-        hostComponent.tabHeader.platform.TRIDENT = false;
-        hostComponent.tabHeader.platform.EDGE = true;
-        hostComponent.tabHeader.updateTabScrollPosition();
+        hostComponent.tabHeader['platform'].TRIDENT = false;
+        hostComponent.tabHeader['platform'].EDGE = true;
+        hostComponent.tabHeader['updateTabScrollPosition']();
 
         expect(hostComponent.tabHeader.tabListContainer.nativeElement.scrollLeft).toEqual(0);
       });
-
     });
-
 
     describe(`scrollToLabel`, function() {
-
       test(`should do nothing if no selected label is found`, function() {
-        hostComponent.tabHeader.labelWrappers = undefined;
-        hostComponent.tabHeader.scrollTo = jest.fn();
+        hostComponent.tabHeader.labelWrappers = undefined as any;
+        hostComponent.tabHeader['scrollTo'] = jest.fn();
 
-        expect(hostComponent.tabHeader.scrollToLabel()).toEqual(undefined);
-        expect(hostComponent.tabHeader.scrollTo).not.toHaveBeenCalled();
+        expect(hostComponent.tabHeader['scrollToLabel']()).toEqual(undefined);
+        expect(hostComponent.tabHeader['scrollTo']).not.toHaveBeenCalled();
       });
-
     });
-
   });
-
 });

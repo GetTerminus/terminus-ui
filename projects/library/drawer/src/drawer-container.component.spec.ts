@@ -22,6 +22,11 @@ import * as testComponents from '@terminus/ui/drawer/testing';
 import { TsDrawerComponent } from './drawer.component';
 import { TsDrawerModule } from './drawer.module';
 
+/**
+ * Create test host component
+ *
+ * @param component
+ */
 function createComponent<T>(component: Type<T>): ComponentFixture<T> {
   const moduleImports = [
     BrowserAnimationsModule,
@@ -40,13 +45,16 @@ function createComponent<T>(component: Type<T>): ComponentFixture<T> {
 describe(`TsDrawerContainerComponent`, () => {
   let fixture;
   let component;
-  let drawers;
 
+  /**
+   * Set up test component
+   *
+   * @param testComponent
+   */
   function setUpTestComponent(testComponent) {
     fixture = createComponent(testComponent);
     fixture.detectChanges();
     component = fixture.debugElement.queryAll(By.css('ts-drawer-container'))[0].componentInstance;
-    drawers = component.drawers;
   }
 
   test(`should exist`, () => {
@@ -74,7 +82,6 @@ describe(`TsDrawerContainerComponent`, () => {
   }));
 
   describe(`should set size accordingly`, () => {
-
     test('should calculate the left margin', fakeAsync(() => {
       setUpTestComponent(testComponents.SetMargins);
       const drawerElement = fixture.debugElement.nativeElement.querySelector('.ts-drawer');
@@ -88,7 +95,6 @@ describe(`TsDrawerContainerComponent`, () => {
       fixture.detectChanges();
       tick();
       expect(component.contentMargins.left).toEqual(204);
-
     }));
 
     test(`should calculate the right margin`, fakeAsync(() => {

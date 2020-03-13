@@ -3,8 +3,10 @@ import {
   Component,
   ElementRef,
   Input,
-  isDevMode, QueryList,
-  ViewChild, ViewChildren,
+  isDevMode,
+  QueryList,
+  ViewChild,
+  ViewChildren,
   ViewEncapsulation,
 } from '@angular/core';
 import {
@@ -16,7 +18,6 @@ import {
   TsStyleThemeTypes,
   TsUILibraryError,
 } from '@terminus/ui/utilities';
-
 
 
 /**
@@ -113,6 +114,8 @@ export class TsCopyComponent {
 
   /**
    * Define the UI style
+   *
+   * @param value
    */
   @Input()
   public set format(value: TsCopyDisplayFormat) {
@@ -141,6 +144,9 @@ export class TsCopyComponent {
 
   /**
    * Inject services
+   *
+   * @param documentService
+   * @param windowService
    */
   constructor(
     private documentService: TsDocumentService,
@@ -151,13 +157,12 @@ export class TsCopyComponent {
   /**
    * Return the inner text content
    *
-   * @return The text content of the inner <ng-content>
+   * @returns The text content of the inner <ng-content>
    */
   public get textContent(): string {
     const hasInnerText = this.content && this.content.nativeElement && this.content.nativeElement.innerText;
     return hasInnerText ? this.content.nativeElement.innerText : '';
   }
-
 
   /**
    * Select the text content of the passed in element
@@ -165,7 +170,7 @@ export class TsCopyComponent {
    * @param element - The element whose text should be selected
    * @param hasSelected - The flag defining if the selection has already been made
    * @param disabled - The flag defining if the selection functionality should be disabled
-   * @return The value representing if the copy was successful
+   * @returns The value representing if the copy was successful
    */
   public selectText(element: ElementRef, hasSelected: boolean, disabled: boolean): boolean {
     // If this functionality is disabled OR the text has already been selected,
@@ -178,15 +183,14 @@ export class TsCopyComponent {
     // NOTE: Adding the type of 'Range' to this causes an error with `range.selectNodeContents`
     // `Argument of type ElementRef is not assignable to type 'Node'`
     const range = this.document.createRange();
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     range.selectNodeContents(element as any);
-    selection.removeAllRanges();
-    selection.addRange(range);
+    selection?.removeAllRanges();
+    selection?.addRange(range);
 
     this.hasSelected = true;
     return true;
   }
-
 
   /**
    * Reset the text selection
@@ -196,7 +200,6 @@ export class TsCopyComponent {
     this.hasSelected = false;
   }
 
-
   /**
    * Copy text to the user's clipboard
    *
@@ -204,6 +207,10 @@ export class TsCopyComponent {
    */
   public copyToClipboard(text: string): void {
     // Create a hidden textarea to seed with text content
+    // FIXME: During the upgrade to TS 3.7.x 'createElement' is marked as deprecated but the signature for the deprecated and new methods
+    // are the same. So even when using the 'new' method, a deprecation error is still reported.
+    // I believe the new format should be `this.document.createElement<textarea>('textarea');`
+    // eslint-disable-next-line deprecation/deprecation
     const target = this.document.createElement('textarea');
     target.className = 'targetElement';
     target.style.position = 'absolute';
@@ -227,5 +234,4 @@ export class TsCopyComponent {
       this.window.prompt('Copy to clipboard: Ctrl+C, Enter', text);
     }
   }
-
 }

@@ -6,17 +6,37 @@ import {
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { createComponent as createComponentInner } from '@terminus/ngx-tools/testing';
-
-import * as TestComponents from '../testing/src/test-components';
+import * as TestComponents from '@terminus/ui/paginator/testing';
+// eslint-disable-next-line no-duplicate-imports
 import {
   clickToChangePage,
-  expectAllButtonsEnabled,
   getPaginatorInstance,
   updateRecordsPerPage,
-} from '../testing/src/test-helpers';
+} from '@terminus/ui/paginator/testing';
+
 import { TsPaginatorMenuItem } from './paginator.component';
 import { TsPaginatorModule } from './paginator.module';
 
+/**
+ * Call expect on each button to verify it is disabled
+ *
+ * @param fixture
+ */
+function expectAllButtonsDisabled(fixture: ComponentFixture<any>) {
+  const firstPageButton =
+    fixture.debugElement.query(By.css(`.qa-paginator-first-page-button .c-button`)).nativeElement as HTMLButtonElement;
+  const previousPageButton =
+    fixture.debugElement.query(By.css(`.qa-paginator-previous-page-button .c-button`)).nativeElement as HTMLButtonElement;
+  const lastPageButton =
+    fixture.debugElement.query(By.css(`.qa-paginator-last-page-button .c-button`)).nativeElement as HTMLButtonElement;
+  const nextPageButton =
+    fixture.debugElement.query(By.css(`.qa-paginator-next-page-button .c-button`)).nativeElement as HTMLButtonElement;
+
+  expect(firstPageButton.disabled).toEqual(true);
+  expect(previousPageButton.disabled).toEqual(true);
+  expect(lastPageButton.disabled).toEqual(true);
+  expect(nextPageButton.disabled).toEqual(true);
+}
 
 // FIXME: Tests should not rely on QA* classes
 describe(`TsPaginatorComponent`, function() {
@@ -119,7 +139,6 @@ describe(`TsPaginatorComponent`, function() {
       expect(previousPageBut.disabled).toEqual(true);
     }));
 
-
     test(`should go to the last page and disable last and next buttons`, fakeAsync(() => {
       fixture.detectChanges();
       const dir = 'last';
@@ -136,7 +155,6 @@ describe(`TsPaginatorComponent`, function() {
       expect(lastPageBut.disabled).toEqual(true);
       expect(nextPageBut.disabled).toEqual(true);
     }));
-
   });
 
   describe(`current page menu`, () => {
@@ -177,7 +195,7 @@ describe(`TsPaginatorComponent`, function() {
       expect(titleEl.textContent).toContain('1 - 8 of 8');
       expect(instance.isFirstPage(firstPageIndex)).toEqual(true);
 
-      expectAllButtonsEnabled(fixture);
+      expectAllButtonsDisabled(fixture);
     });
 
     test(`should show all results if they fit on a page, not zeroBased`, () => {
@@ -192,7 +210,7 @@ describe(`TsPaginatorComponent`, function() {
       expect(titleEl.textContent).toContain('1 - 8 of 8');
       expect(instance.isFirstPage(firstPageIndex)).toEqual(true);
 
-      expectAllButtonsEnabled(fixture);
+      expectAllButtonsDisabled(fixture);
     });
 
     test(`should specify partial results on the last page, zeroBased`, fakeAsync(() => {
@@ -242,7 +260,6 @@ describe(`TsPaginatorComponent`, function() {
   });
 
   describe(`isZeroBased`, () => {
-
     test(`should be zero-based by default`, () => {
       const fixture = createComponent(TestComponents.Basic);
       fixture.detectChanges();
@@ -281,9 +298,7 @@ describe(`TsPaginatorComponent`, function() {
     });
   });
 
-
   describe(`recordCountTooHighMessage`, () => {
-
     test(`should not display message when totalRecords is less than maxPreferredRecords`, () => {
       const fixture = createComponent(TestComponents.RecordsPerPage);
       const instance = getPaginatorInstance(fixture);
@@ -327,27 +342,22 @@ describe(`TsPaginatorComponent`, function() {
     });
   });
 
-
   /*
    * TODO: revisit this after tooltip tests have been converted to integration tests
    * tooltip:   https://github.com/GetTerminus/terminus-ui/issues/1296
    * paginator: https://github.com/GetTerminus/terminus-ui/issues/1512
    */
   describe(`tooltips`, () => {
-
     test.todo(`should display default tooltips by default`);
 
     test.todo(`should update tooltips if set`);
-
   });
 
   describe(`simple mode`, () => {
     let fixture: ComponentFixture<TestComponents.SimpleMode>;
-    let hostComponent: TestComponents.SimpleMode;
 
     beforeEach(() => {
       fixture = createComponent(TestComponents.SimpleMode);
-      hostComponent = fixture.componentInstance;
       fixture.detectChanges();
     });
 
@@ -369,11 +379,9 @@ describe(`TsPaginatorComponent`, function() {
 
   describe('disable next button', () => {
     let fixture: ComponentFixture<TestComponents.SimpleMode>;
-    let hostComponent: TestComponents.SimpleMode;
 
     beforeEach(() => {
       fixture = createComponent(TestComponents.SimpleMode);
-      hostComponent = fixture.componentInstance;
       fixture.detectChanges();
     });
 
@@ -400,23 +408,16 @@ describe(`TsPaginatorComponent`, function() {
       const btn = fixture.debugElement.query(By.css('.qa-paginator-next-page-button'));
       expect(btn.nativeElement.querySelector('button').disabled).toBeTruthy();
     }));
-
   });
-
 });
 
-
 /**
- * HELPERS
+ * @param component
  */
-
-function createComponent<T>(component: Type<T>): ComponentFixture<T> {
-
-  return createComponentInner<T>(
-    component,
-    undefined,
-    [
-      TsPaginatorModule,
-    ],
-  );
-}
+const createComponent = <T>(component: Type<T>): ComponentFixture<T> => createComponentInner<T>(
+  component,
+  undefined,
+  [
+    TsPaginatorModule,
+  ],
+);

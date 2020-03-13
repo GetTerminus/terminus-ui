@@ -131,6 +131,8 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Re-initialize the chart if the visualization type has changed
+   *
+   * @param changes
    */
   public ngOnChanges(changes: SimpleChanges): void {
     // istanbul ignore else
@@ -180,6 +182,8 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
 
   /**
    * Initialize a chart
+   *
+   * @param type
    */
   private createChart(type: TsChartVisualizationOptions): void {
     this.zone.runOutsideAngular(() => {
@@ -203,7 +207,8 @@ export class TsChartComponent implements OnInit, OnChanges, OnDestroy {
         this.chart = chart;
         this.chartInitialized.emit(chart);
       } else {
-        console.warn(`TsChartComponent: "${type}" is not a supported chart type. See TsChartVisualizationOptions.`);
+        // eslint-disable-next-line no-console
+        console.warn(`TsChartComponent: ${type} is not a supported chart type. See TsChartVisualizationOptions.`);
       }
     });
   }

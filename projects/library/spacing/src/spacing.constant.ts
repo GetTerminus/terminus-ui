@@ -1,7 +1,7 @@
-/* eslint-disable no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 
 /**
- * NOTE: The base value and the mathmatics behind these spacings must exactly reflect the spacings
+ * NOTE: The base value and the mathematics behind these spacings must exactly reflect the spacings
  * defined in lib/src/scss/helpers/_spacing.scss
  */
 const base = 16;

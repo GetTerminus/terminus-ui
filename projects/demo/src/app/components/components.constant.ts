@@ -4,296 +4,212 @@ import { Routes } from '@angular/router';
 export const componentsList: Routes = [
   {
     path: 'autocomplete',
-    loadChildren: `./components/autocomplete/autocomplete.module#AutocompleteModule`,
-    data: {
-      name: 'Autocomplete',
-    },
+    loadChildren: () => import('./autocomplete/autocomplete.module').then(m => m.AutocompleteModule),
+    data: { name: 'Autocomplete' },
   },
   {
     path: 'autofocus',
-    loadChildren: `./components/autofocus/autofocus.module#AutofocusModule`,
-    data: {
-      name: 'Autofocus',
-    },
+    loadChildren: () => import('./autofocus/autofocus.module').then(m => m.AutofocusModule),
+    data: { name: 'Autofocus' },
   },
   {
     path: 'breakpoints',
-    loadChildren: `./components/breakpoints/breakpoints.module#BreakpointsModule`,
-    data: {
-      name: 'Breakpoints',
-    },
+    loadChildren: () => import('./breakpoints/breakpoints.module').then(m => m.BreakpointsModule),
+    data: { name: 'Breakpoints' },
   },
   {
     path: 'button',
-    loadChildren: `./components/button/button.module#ButtonModule`,
-    data: {
-      name: 'Button',
-    },
+    loadChildren: () => import('./button/button.module').then(m => m.ButtonModule),
+    data: { name: 'Button' },
   },
   {
     path: 'card',
-    loadChildren: `./components/card/card.module#CardModule`,
-    data: {
-      name: 'Card',
-    },
+    loadChildren: () => import('./card/card.module').then(m => m.CardModule),
+    data: { name: 'Card' },
   },
   {
     path: 'chart',
-    loadChildren: `./components/chart/chart.module#ChartModule`,
-    data: {
-      name: 'Chart',
-    },
+    loadChildren: () => import('./chart/chart.module').then(m => m.ChartModule),
+    data: { name: 'Chart' },
   },
   {
     path: 'checkbox',
-    loadChildren: `./components/checkbox/checkbox.module#CheckboxModule`,
-    data: {
-      name: 'Checkbox',
-    },
+    loadChildren: () => import('./checkbox/checkbox.module').then(m => m.CheckboxModule),
+    data: { name: 'Checkbox' },
   },
   {
     path: 'chip',
-    loadChildren: `./components/chip/chip.module#ChipModule`,
-    data: {
-      name: 'Chip',
-    },
+    loadChildren: () => import('./chip/chip.module').then(m => m.ChipModule),
+    data: { name: 'Chip' },
   },
   {
     path: 'cohort-date-range',
-    loadChildren: `./components/cohort-date-range/cohort-date-range.module#CohortDateRangeModule`,
-    data: {
-      name: 'Cohort Date Range',
-    },
+    loadChildren: () => import('./cohort-date-range/cohort-date-range.module').then(m => m.CohortDateRangeModule),
+    data: { name: 'Cohort Date Range' },
   },
   {
     path: 'confirmation',
-    loadChildren: `./components/confirmation/confirmation.module#ConfirmationModule`,
-    data: {
-      name: 'Confirmation',
-    },
+    loadChildren: () => import('./confirmation/confirmation.module').then(m => m.ConfirmationModule),
+    data: { name: 'Confirmation' },
   },
   {
     path: 'copy',
-    loadChildren: `./components/copy/copy.module#CopyModule`,
-    data: {
-      name: 'Copy',
-    },
+    loadChildren: () => import('./copy/copy.module').then(m => m.CopyModule),
+    data: { name: 'Copy' },
   },
   {
     path: 'csv-entry',
-    loadChildren: `./components/csv-entry/csv-entry.module#CSVEntryModule`,
-    data: {
-      name: 'CSV Entry',
-    },
+    loadChildren: () => import('./csv-entry/csv-entry.module').then(m => m.CSVEntryModule),
+    data: { name: 'CSV Entry' },
   },
   {
     path: 'date-range',
-    loadChildren: `./components/date-range/date-range.module#DateRangeModule`,
-    data: {
-      name: 'Date Range',
-    },
+    loadChildren: () => import('./date-range/date-range.module').then(m => m.DateRangeModule),
+    data: { name: 'Date Range' },
   },
   {
     path: 'drawer',
-    loadChildren:`./components/drawer/drawer.module#DrawerModule`,
-    data: {
-      name: 'Drawer',
-    },
+    loadChildren: () => import('./drawer/drawer.module').then(m => m.DrawerModule),
+    data: { name: 'Drawer' },
   },
   {
     path: 'expansion-panel',
-    loadChildren: `./components/expansion-panel/expansion-panel.module#ExpansionPanelModule`,
-    data: {
-      name: 'Expansion Panel',
-    },
+    loadChildren: () => import('./expansion-panel/expansion-panel.module').then(m => m.ExpansionPanelModule),
+    data: { name: 'Expansion Panel' },
   },
   {
     path: 'file-upload',
-    loadChildren: `./components/file-upload/file-upload.module#FileUploadModule`,
-    data: {
-      name: 'File Upload',
-    },
+    loadChildren: () => import('./file-upload/file-upload.module').then(m => m.FileUploadModule),
+    data: { name: 'File Upload' },
   },
   {
     path: 'form-controls',
-    loadChildren: `./components/form-controls/form-controls.module#FormControlsModule`,
-    data: {
-      name: 'Form Controls',
-    },
+    loadChildren: () => import('./form-controls/form-controls.module').then(m => m.FormControlsModule),
+    data: { name: 'Form Controls' },
   },
   {
     path: 'icon',
-    loadChildren: `./components/icon/icon.module#IconModule`,
-    data: {
-      name: 'Icon',
-    },
+    loadChildren: () => import('./icon/icon.module').then(m => m.IconModule),
+    data: { name: 'Icon' },
   },
   {
     path: 'icon-button',
-    loadChildren: `./components/icon-button/icon-button.module#IconButtonModule`,
-    data: {
-      name: 'Icon Button',
-    },
+    loadChildren: () => import('./icon-button/icon-button.module').then(m => m.IconButtonModule),
+    data: { name: 'Icon Button' },
   },
   {
     path: 'input',
-    loadChildren: `./components/input/input.module#InputModule`,
-    data: {
-      name: 'Input',
-    },
+    loadChildren: () => import('./input/input.module').then(m => m.InputModule),
+    data: { name: 'Input' },
   },
   {
     path: 'link',
-    loadChildren: `./components/link/link.module#LinkModule`,
-    data: {
-      name: 'Link',
-    },
+    loadChildren: () => import('./link/link.module').then(m => m.LinkModule),
+    data: { name: 'Link' },
   },
   {
     path: 'loading-overlay',
-    loadChildren: `./components/loading-overlay/loading-overlay.module#LoadingOverlayModule`,
-    data: {
-      name: 'Loading Overlay',
-    },
+    loadChildren: () => import('./loading-overlay/loading-overlay.module').then(m => m.LoadingOverlayModule),
+    data: { name: 'Loading Overlay' },
   },
   {
     path: 'login-form',
-    loadChildren: `./components/login-form/login-form.module#LoginFormModule`,
-    data: {
-      name: 'Login Form',
-    },
+    loadChildren: () => import('./login-form/login-form.module').then(m => m.LoginFormModule),
+    data: { name: 'Login Form' },
   },
   {
     path: 'logo',
-    loadChildren: `./components/logo/logo.module#LogoModule`,
-    data: {
-      name: 'Logo',
-    },
+    loadChildren: () => import('./logo/logo.module').then(m => m.LogoModule),
+    data: { name: 'Logo' },
   },
   {
     path: 'menu',
-    loadChildren: `./components/menu/menu.module#MenuModule`,
-    data: {
-      name: 'Menu',
-    },
+    loadChildren: () => import('./menu/menu.module').then(m => m.MenuModule),
+    data: { name: 'Menu' },
   },
   {
     path: 'navigation',
-    loadChildren: `./components/navigation/navigation.module#NavigationModule`,
-    data: {
-      name: 'Navigation',
-    },
+    loadChildren: () => import('./navigation/navigation.module').then(m => m.NavigationModule),
+    data: { name: 'Navigation' },
   },
   {
     path: 'paginator',
-    loadChildren: `./components/paginator/paginator.module#PaginatorModule`,
-    data: {
-      name: 'Paginator',
-    },
+    loadChildren: () => import('./paginator/paginator.module').then(m => m.PaginatorModule),
+    data: { name: 'Paginator' },
   },
   {
     path: 'pipes',
-    loadChildren: `./components/pipes/pipes.module#PipesModule`,
-    data: {
-      name: 'Pipes',
-    },
+    loadChildren: () => import('./pipes/pipes.module').then(m => m.PipesModule),
+    data: { name: 'Pipes' },
   },
   {
     path: 'popover',
-    loadChildren: `./components/popover/popover.module#PopoverModule`,
-    data: {
-      name: 'Popover',
-    }
+    loadChildren: () => import('./popover/popover.module').then(m => m.PopoverModule),
+    data: { name: 'Popover' },
   },
   {
     path: 'radio',
-    loadChildren: `./components/radio/radio.module#RadioModule`,
-    data: {
-      name: 'Radio',
-    },
+    loadChildren: () => import('./radio/radio.module').then(m => m.RadioModule),
+    data: { name: 'Radio' },
   },
   {
     path: 'scrollbars',
-    loadChildren: `./components/scrollbars/scrollbars.module#ScrollbarsModule`,
-    data: {
-      name: 'Scrollbars',
-    },
+    loadChildren: () => import('./scrollbars/scrollbars.module').then(m => m.ScrollbarsModule),
+    data: { name: 'Scrollbars' },
   },
   {
     path: 'search',
-    loadChildren: `./components/search/search.module#SearchModule`,
-    data: {
-      name: 'Search',
-    },
+    loadChildren: () => import('./search/search.module').then(m => m.SearchModule),
+    data: { name: 'Search' },
   },
   {
     path: 'select',
-    loadChildren: `./components/select/select.module#SelectModule`,
-    data: {
-      name: 'Select',
-    },
+    loadChildren: () => import('./select/select.module').then(m => m.SelectModule),
+    data: { name: 'Select' },
   },
   {
     path: 'selection-list',
-    loadChildren: `./components/selection-list/selection-list.module#SelectionListModule`,
-    data: {
-      name: 'Selection List',
-    },
+    loadChildren: () => import('./selection-list/selection-list.module').then(m => m.SelectionListModule),
+    data: { name: 'Selection List' },
   },
   {
     path: 'spacing',
-    loadChildren: `./components/spacing/spacing.module#SpacingModule`,
-    data: {
-      name: 'Spacing',
-    },
+    loadChildren: () => import('./spacing/spacing.module').then(m => m.SpacingModule),
+    data: { name: 'Spacing' },
   },
   {
     path: 'spacing-styles',
-    loadChildren: `./components/spacing/spacing-styles.module#SpacingStylesModule`,
-    data: {
-      name: 'Spacing SCSS',
-    },
+    loadChildren: () => import('./spacing/spacing-styles.module').then(m => m.SpacingStylesModule),
+    data: { name: 'Spacing SCSS' },
   },
   {
     path: 'table',
-    loadChildren: `./components/table/table.module#TableModule`,
-    data: {
-      name: 'Table',
-    },
+    loadChildren: () => import('./table/table.module').then(m => m.TableModule),
+    data: { name: 'Table' },
   },
   {
     path: 'tabs',
-    loadChildren: `./components/tabs/tabs.module#TabsModule`,
-    data: {
-      name: 'Tabs',
-    },
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsModule),
+    data: { name: 'Tabs' },
   },
   {
     path: 'toggle',
-    loadChildren: `./components/toggle/toggle.module#ToggleModule`,
-    data: {
-      name: 'Toggle',
-    },
+    loadChildren: () => import('./toggle/toggle.module').then(m => m.ToggleModule),
+    data: { name: 'Toggle' },
   },
   {
     path: 'tooltip',
-    loadChildren: `./components/tooltip/tooltip.module#TooltipModule`,
-    data: {
-      name: 'Tooltip',
-    },
+    loadChildren: () => import('./tooltip/tooltip.module').then(m => m.TooltipModule),
+    data: { name: 'Tooltip' },
   },
   {
     path: 'typography',
-    loadChildren: `./components/typography/typography.module#TypographyModule`,
-    data: {
-      name: 'Typography',
-    },
+    loadChildren: () => import('./typography/typography.module').then(m => m.TypographyModule),
+    data: { name: 'Typography' },
   },
   {
     path: 'validation',
-    loadChildren: `./components/validation/validation.module#ValidationModule`,
-    data: {
-      name: 'Validation',
-    },
+    loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule),
+    data: { name: 'Validation' },
   },
 ];

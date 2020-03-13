@@ -38,6 +38,13 @@ import {
 })
 export class TsIconButtonComponent {
   /**
+   * Getter to return the native element
+   */
+  public get hostElement(): ElementRef {
+    return this.elementRef.nativeElement;
+  }
+
+  /**
    * Define the action for the aria-label. {@link TsButtonActionTypes}
    */
   @Input()
@@ -67,13 +74,6 @@ export class TsIconButtonComponent {
   @Output()
   public readonly clicked: EventEmitter<MouseEvent> = new EventEmitter();
 
-
-  /**
-   * Getter to return the native element
-   */
-  public get hostElement(): ElementRef {
-    return this.elementRef.nativeElement;
-  }
 
   constructor(
     private elementRef: ElementRef,

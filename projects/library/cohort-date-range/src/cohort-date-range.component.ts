@@ -104,8 +104,8 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   public customDateCohort: TsDateCohort = {
     display: 'Custom Dates',
     range: {
-      start: null,
-      end: null,
+      start: '',
+      end: '',
     },
   };
 
@@ -116,8 +116,8 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    */
   public formGroup = this.formBuilder.group({
     dateRange: this.formBuilder.group({
-      startDate: [null],
-      endDate: [null],
+      startDate: [''],
+      endDate: [''],
     }),
     cohort: new FormControl([]),
   });
@@ -151,10 +151,12 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    * @internal
    */
   @ViewChild(TsSelectionListComponent, { static: true })
-  public selectionListComponent: TsSelectionListComponent;
+  public selectionListComponent!: TsSelectionListComponent;
 
   /**
    * Define whether custom dates are allowed
+   *
+   * @param value
    */
   @Input()
   public set allowCustomDates(value: boolean) {
@@ -170,6 +172,8 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
 
   /**
    * Define the array of date cohorts
+   *
+   * @param value
    */
   @Input()
   public set cohorts(value: ReadonlyArray<TsDateCohort>) {
@@ -190,8 +194,8 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   public get cohorts(): ReadonlyArray<TsDateCohort> {
     return this._cohorts;
   }
-  private _cohorts: TsDateCohort[];
-  private originalCohorts: ReadonlyArray<TsDateCohort>;
+  private _cohorts!: TsDateCohort[];
+  private originalCohorts!: ReadonlyArray<TsDateCohort>;
 
   /**
    * Define the max date for the end date
@@ -207,6 +211,8 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -279,7 +285,7 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    *
    * @internal
    * @param index - The item index
-   * @return The index
+   * @returns The index
    */
   public trackByFn(index): number {
     return index;
@@ -289,7 +295,7 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    * The display formatter for {@link TsSelectionListComponent}
    *
    * @param cohort - The cohort
-   * @return The display value for the cohort
+   * @returns The display value for the cohort
    */
   public formatter(cohort: TsDateCohort): string {
     return cohort.display;
@@ -317,7 +323,8 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
    * Update the select when the date is manually changed to not match a cohort
    */
   private updateSelectOnRangeChange(): void {
-    this.formGroup.get('dateRange').valueChanges.pipe(untilComponentDestroyed(this)).subscribe(results => {
+    // eslint-disable-next-line deprecation/deprecation
+    this.formGroup.get('dateRange')?.valueChanges.pipe(untilComponentDestroyed(this)).subscribe(results => {
       if (!this.cohorts || !this.cohorts.length) {
         return;
       }
@@ -342,5 +349,4 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }

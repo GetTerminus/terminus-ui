@@ -37,29 +37,29 @@
 
 ```bash
 # Build the library
-$ yarn run build
+$ yarn run library:build
 
 # Build and watch library files for changes
-$ yarn run build:ts:watch
+$ yarn run library:build:watch
 
 # Run TypeScript and SCSS linters
-$ yarn run lint
+$ yarn run library:lint
 
 # Run all TypeScript tests
-$ yarn run test
+$ yarn run library:test
 
 # Run all TypeScript tests and output coverage
-$ yarn run test:ci:local
+$ yarn run library:test:ci:local
 
 # Start the demo project and watch demo and lib files for changes
 # (don't forget to build the library first!)
-$ yarn run start:app
+$ yarn run demo:start
 
 # Test the demo app
-$ yarn run test:app
+$ yarn run demo:test
 
 # Lint the demo app
-$ yarn run lint:app
+$ yarn run demo:lint
 
 # Create a commit with a helpful CLI tool
 $ yarn run cm
@@ -75,17 +75,15 @@ $ yarn run contributors:generate
 
 ### Demos
 
-1. `yarn install && yarn run build && yarn run start:app`
-2. Navigate to `http://localhost:4300/components/`
+1. `yarn install && yarn run library:build && yarn run demo:start`
+2. Navigate to `http://localhost:4200/components/`
 3. Select a component from the menu (top right)
 
 ![Demos Screenshot](https://user-images.githubusercontent.com/270193/35576969-67e0eab6-05ae-11e8-9c38-7d44bcf2c848.png)
 
 ## Adding a Component
 
-> NOTE: You can also use the [yeoman generator][generator] to quickly scaffold a new component
-
-1. Create a directory using the component name: `terminus-ui/src/button/`
+1. Create a directory using the component name: `projects/library/button/`
     - Necessary files:
       - `button.module.ts`
           - Class name: `TsButtonModule`
@@ -95,8 +93,6 @@ $ yarn run contributors:generate
       - `button.component.html`
 1. Import **and** export `button.component.ts` inside `button.module.ts`
 1. Add `TsButtonComponent` to the exports **and** declarations of `button.module.ts`.
-1. Import `TsButtonModule` in `terminus-ui/src/module.ts` and add it to imports **and** exports array.
-1. Export `TsButtonModule` from `terminus-ui/index.ts`.
 1. Comment all methods, constants & `@Input`s using the supported [JSDoc style][compodoc_comments].
 1. Add a usage example in the component documentation with every possible input and output included.
 1. Add the new component to available scopes in `tooling/cz-config.js`
@@ -211,10 +207,10 @@ Learn more about the automatic versioning tools we use:
 
 All projects should pass all available linters _before_ committing.
 
-TypeScript projects use TSLint, JavaScript projects use ESLint, and SASS/SCSS projects use Stylelint.
+TypeScript & JavaScript projects use ESLint and SASS/SCSS projects use Stylelint.
 
-To edit configuration, look for the files `tslint.json`, `.eslintrc`, or `.sass-lint.yml`. **These
-files should not be edited without a discussion with the team.**
+To edit configuration, look for the files `.eslintrc`, or `stylelint.config.js`. **These files should not be edited
+without a discussion with the team.**
 
 Look at the scripts section in the project's `package.json` for the command to run tests.
 
@@ -303,7 +299,7 @@ machines.
      * Get a customer by ID
      *
      * @param customerId - The customer's ID
-     * @return The customer object
+     * @returns The customer object
      */
     ```
 
@@ -558,7 +554,6 @@ public foo;
 [ui-npm]: https://www.npmjs.com/package/@terminus/ui
 [ui-github]: https://github.com/GetTerminus/terminus-ui
 [semver]: http://semver.org/
-[generator]: https://github.com/GetTerminus/generator-terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [unpkg-terminus]: https://unpkg.com/@terminus/ui/
 [pkg-json]: https://github.com/GetTerminus/terminus-ui/blob/release/package.json

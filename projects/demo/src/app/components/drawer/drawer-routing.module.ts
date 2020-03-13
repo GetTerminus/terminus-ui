@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {
+  RouterModule,
+  Routes,
+} from '@angular/router';
 
-import { DrawerComponent } from "./drawer.component";
+import { DrawerComponent } from './drawer.component';
 
 
 const routes: Routes = [

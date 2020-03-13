@@ -1,17 +1,18 @@
 'use strict';
 
 const path                 = require('path');
-const gulp                 = require('gulp');
-const gulpSass             = require('gulp-sass');
-const sassModuleImporter   = require('sass-module-importer');
-const postcss              = require('gulp-postcss');
+
 const autoprefixer         = require('autoprefixer');
-const gulpStripComments    = require('gulp-strip-json-comments');
-const gulpRemoveEmptyLines = require('gulp-remove-empty-lines');
+const gulp                 = require('gulp');
 const gulpConcat           = require('gulp-concat');
-const gulpReplace          = require('gulp-replace');
-// For dev
+const postcss              = require('gulp-postcss');
 const gulpPrint            = require('gulp-print').default;
+const gulpRemoveEmptyLines = require('gulp-remove-empty-lines');
+const gulpReplace          = require('gulp-replace');
+const gulpSass             = require('gulp-sass');
+const gulpStripComments    = require('gulp-strip-json-comments');
+const sassModuleImporter   = require('sass-module-importer');
+// For dev
 
 const libNameWithScope     = require('./../package.json').name;
 const libName              = libNameWithScope.slice(libNameWithScope.indexOf('/') + 1);
@@ -63,8 +64,6 @@ const config = {
     ],
   },
 };
-
-
 
 
 //
@@ -121,8 +120,6 @@ gulp.task('copy-to-npm', () => gulp.src([
   path.join(config.paths.distFolder, 'terminus-ui.css'),
 ])
   .pipe(gulp.dest(config.paths.npmFolder)));
-
-
 
 
 //

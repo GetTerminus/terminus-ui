@@ -31,7 +31,6 @@ export interface TsSearchResponse {
   query: string;
 }
 
-
 const INPUT_DEBOUNCE_DEFAULT_MS = 200;
 const INPUT_MINIMUM_LENGTH = 2;
 
@@ -217,7 +216,6 @@ export class TsSearchComponent implements OnInit {
     }
   }
 
-
   /**
    * Fire events as needed after keyup events
    */
@@ -230,7 +228,6 @@ export class TsSearchComponent implements OnInit {
     }
   }
 
-
   /**
    * Emit the submitted event
    *
@@ -239,5 +236,4 @@ export class TsSearchComponent implements OnInit {
   private emitSubmit(): void {
     this.submitted.emit({ query: this.currentQuery });
   }
-
 }

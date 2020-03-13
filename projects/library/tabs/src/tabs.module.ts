@@ -1,11 +1,12 @@
+import { A11yModule } from '@angular/cdk/a11y';
+import { ObserversModule } from '@angular/cdk/observers';
+import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatRippleModule } from '@angular/material/core';
 
-import { A11yModule } from '@angular/cdk/a11y';
-import { ObserversModule } from '@angular/cdk/observers';
-import { PortalModule } from '@angular/cdk/portal';
+
 import { TsTabBodyHostDirective } from './body/tab-body-host.directive';
 import { TsTabBodyComponent } from './body/tab-body.component';
 import { TsTabContentDirective } from './body/tab-content.directive';

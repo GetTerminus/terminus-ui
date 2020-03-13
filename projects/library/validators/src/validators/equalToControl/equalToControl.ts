@@ -9,10 +9,10 @@ import {
  * Return a validator function to verify the selected date is after a minimum date
  *
  * @param compareControl - The control to compare the value with
- * @return The validator function
+ * @returns The validator function
  */
-export function equalToControlValidator(compareControl: AbstractControl): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+export const equalToControlValidator =
+  (compareControl: AbstractControl): ValidatorFn => (control: AbstractControl): ValidationErrors | null => {
     // Allow optional controls by not validating empty values
     if (!control || !control.value || !compareControl.value) {
       return null;
@@ -29,5 +29,4 @@ export function equalToControlValidator(compareControl: AbstractControl): Valida
 
     return (control.value === compareControl.value) ? null : invalidResponse;
   };
-}
 

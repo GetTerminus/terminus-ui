@@ -13,8 +13,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { KEYS } from '@terminus/ngx-tools/keycodes';
-import { TsExpansionPanelComponent } from '../expansion-panel.component';
-import { TsExpansionPanelTriggerComponent } from './../trigger/expansion-panel-trigger.component';
+
+import { TsExpansionPanelTriggerComponent } from '../trigger/expansion-panel-trigger.component';
+
 import {
   TS_ACCORDION,
   TsAccordionBase,
@@ -49,7 +50,7 @@ import {
   selector: 'ts-accordion',
   template: `<ng-content></ng-content>`,
   // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
-  // tslint:disable-next-line:no-inputs-metadata-property
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: ['multi'],
   providers: [
     {
@@ -76,6 +77,8 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
 
   /**
    * Determine if the toggle indicator should be hidden
+   *
+   * @param value
    */
   @Input()
   public set hideToggle(value: boolean) {
@@ -100,7 +103,6 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
     this.keyManager = new FocusKeyManager(this.triggers).withWrap();
   }
 
-
   /**
    * Alert consumers when the accordion is destroyed
    */
@@ -110,6 +112,8 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
 
   /**
    * Handle keyboard events coming in from the panel triggers
+   *
+   * @param event
    */
   public handleTriggerKeydown(event: KeyboardEvent): void {
     const { code } = event;
@@ -126,7 +130,6 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
     }
   }
 
-
   /**
    * Handle focus events for the trigger
    *
@@ -135,5 +138,4 @@ export class TsAccordionComponent extends CdkAccordion implements TsAccordionBas
   public handleTriggerFocus(trigger: TsExpansionPanelTriggerComponent): void {
     this.keyManager.updateActiveItem(trigger);
   }
-
 }

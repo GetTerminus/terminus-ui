@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component, OnInit,
+} from '@angular/core';
 
 @Component({
-  selector: 'row',
+  selector: 'demo-row',
   templateUrl: './row.component.html',
 })
 

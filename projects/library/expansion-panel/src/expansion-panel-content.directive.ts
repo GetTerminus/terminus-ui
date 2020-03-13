@@ -20,8 +20,9 @@ import {
  *
  * <example-url>https://getterminus.github.io/ui-demos-release/components/expansion-panel</example-url>
  */
+// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({ selector: 'ng-template[tsExpansionPanelContent]' })
 export class TsExpansionPanelContentDirective {
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(public template: TemplateRef<any>) {}
 }

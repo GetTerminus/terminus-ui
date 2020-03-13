@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/no-conflicting-lifecycle */
 import { Platform } from '@angular/cdk/platform';
 import { AutofillMonitor } from '@angular/cdk/text-field';
 import {
@@ -52,6 +53,7 @@ import { Subject } from 'rxjs';
 import createAutoCorrectedDatePipe from 'text-mask-addons/dist/createAutoCorrectedDatePipe';
 import createNumberMask from 'text-mask-addons/dist/createNumberMask';
 import { createTextMaskInputElement } from 'text-mask-core/dist/textMaskCore';
+
 import {
   TS_DATE_FORMATS,
   TsDateAdapter,
@@ -59,7 +61,7 @@ import {
 import { TS_INPUT_VALUE_ACCESSOR } from './input-value-accessor';
 
 export interface TextMaskInputElement {
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   state: Record<string, any>;
   update: Function;
 }
@@ -154,8 +156,8 @@ const allowedMaskShorcuts: TsMaskShortcutOptions[] = [
 // Unique ID for each instance
 let nextUniqueId = 0;
 const AUTOCOMPLETE_DEFAULT: TsInputAutocompleteTypes = 'on';
-const NUMBER_ONLY_REGEX: RegExp = /[^0-9]/g;
-const NUMBER_WITH_DECIMAL_REGEX: RegExp = /[^0-9.]/g;
+const NUMBER_ONLY_REGEX = /[^0-9]/g;
+const NUMBER_WITH_DECIMAL_REGEX = /[^0-9.]/g;
 const DEFAULT_TEXTAREA_ROWS = 4;
 
 
@@ -235,14 +237,8 @@ const DEFAULT_TEXTAREA_ROWS = 4;
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsInput',
 })
-export class TsInputComponent implements
-  // tslint:disable-next-line no-any
-  TsFormFieldControl<any>,
-  AfterViewInit,
-  AfterContentInit,
-  DoCheck,
-  OnChanges,
-  OnDestroy {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export class TsInputComponent implements TsFormFieldControl<any>, AfterViewInit, AfterContentInit, DoCheck, OnChanges, OnDestroy {
   /**
    * Emits when the value changes (either due to user input or programmatic change). Need for Material Datepicker.
    *
@@ -263,7 +259,7 @@ export class TsInputComponent implements
   /**
    * Define an InputValueAccessor for this component
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private inputValueAccessor: {value: any};
 
   /**
@@ -306,7 +302,7 @@ export class TsInputComponent implements
   /**
    * Define placeholder for callback (provided later by the control value accessor)
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private onChangeCallback: (_: any) => void = noop;
 
   /**
@@ -317,7 +313,7 @@ export class TsInputComponent implements
   /**
    * Store the previous value
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private previousNativeValue: any;
 
   /**
@@ -333,7 +329,7 @@ export class TsInputComponent implements
   /**
    * Base settings for the mask
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private textMaskConfig: Record<string, any> = {
     mask: null,
     guide: false,
@@ -358,13 +354,13 @@ export class TsInputComponent implements
   /**
    * Expose reference to the Material datepicker component
    */
-  @ViewChild('picker', { static: false })
+  @ViewChild('picker')
   public picker!: MatDatepicker<string>;
 
   /**
    * Provide access to the input
    */
-  @ViewChild('inputElement', { static: false })
+  @ViewChild('inputElement')
   public inputElement!: ElementRef<HTMLInputElement>;
 
   /**
@@ -404,8 +400,10 @@ export class TsInputComponent implements
 
   /**
    * Set the accessor and call the onchange callback
+   *
+   * @param v
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public set value(v: any) {
     const oldDate = this.value;
 
@@ -425,7 +423,7 @@ export class TsInputComponent implements
       }
     }
   }
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public get value(): any {
     return this.inputValueAccessor.value;
   }
@@ -439,6 +437,8 @@ export class TsInputComponent implements
 
   /**
    * Define if the input should autocomplete. See {@link TsInputAutocompleteTypes}.
+   *
+   * @param value
    */
   @Input()
   public set autocomplete(value: TsInputAutocompleteTypes) {
@@ -455,6 +455,8 @@ export class TsInputComponent implements
 
   /**
    * Define a date filter to disallow certain dates for the datepicker
+   *
+   * @param value
    */
   @Input()
   public set dateFilter(value: TsDateFilterFunction | undefined) {
@@ -467,6 +469,8 @@ export class TsInputComponent implements
 
   /**
    * Define if the datepicker should be enabled
+   *
+   * @param value
    */
   @Input()
   public set datepicker(value: boolean) {
@@ -485,6 +489,8 @@ export class TsInputComponent implements
 
   /**
    * Define the form control to get access to validators
+   *
+   * @param value
    */
   @Input()
   public set formControl(value: FormControl) {
@@ -525,6 +531,8 @@ export class TsInputComponent implements
 
   /**
    * Define a hint for the input
+   *
+   * @param value
    */
   @Input()
   public set hint(value: string | undefined) {
@@ -537,6 +545,8 @@ export class TsInputComponent implements
 
   /**
    * Define an ID for the component
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -563,6 +573,8 @@ export class TsInputComponent implements
 
   /**
    * Define if the input should be focused
+   *
+   * @param value
    */
   @Input()
   public set isFocused(value: boolean) {
@@ -581,6 +593,8 @@ export class TsInputComponent implements
    * Define if the input is required
    *
    * Implemented as part of {@link TsFormFieldControl}
+   *
+   * @param value
    */
   @Input()
   public set isRequired(value: boolean) {
@@ -602,6 +616,8 @@ export class TsInputComponent implements
 
   /**
    * Define the label
+   *
+   * @param value
    */
   @Input()
   public set label(value: string | undefined) {
@@ -616,12 +632,15 @@ export class TsInputComponent implements
    * Define a mask
    *
    * param value - A {@link TsMaskShortcutOptions}
+   *
+   * @param value
    */
   @Input()
   public set mask(value: TsMaskShortcutOptions | undefined) {
     // Verify value is allowed
     // istanbul ignore else
     if (value && isDevMode() && (allowedMaskShorcuts.indexOf(value) < 0)) {
+      // eslint-disable-next-line no-console
       console.warn(`TsInputComponent: "${value}" is not an allowed mask. `
       + 'Allowed masks are defined by "TsMaskShortcutOptions".');
 
@@ -641,6 +660,8 @@ export class TsInputComponent implements
 
   /**
    * Define if decimals are allowed in numbers/currency/percentage masks
+   *
+   * @param value
    */
   @Input()
   public set maskAllowDecimal(value: boolean) {
@@ -665,6 +686,8 @@ export class TsInputComponent implements
 
   /**
    * Define the maximum date for the datepicker
+   *
+   * @param value
    */
   @Input()
   public set maxDate(value: string | Date | undefined) {
@@ -677,6 +700,8 @@ export class TsInputComponent implements
 
   /**
    * Define the minimum date for the datepicker
+   *
+   * @param value
    */
   @Input()
   public set minDate(value: string | Date | undefined) {
@@ -701,6 +726,8 @@ export class TsInputComponent implements
 
   /**
    * Define a date that the calendar should open to for the datepicker
+   *
+   * @param value
    */
   @Input()
   public set openTo(value: Date | undefined) {
@@ -735,6 +762,8 @@ export class TsInputComponent implements
 
   /**
    * Define the starting calendar view for the datepicker
+   *
+   * @param value
    */
   @Input()
   public set startingView(value: 'month' | 'year') {
@@ -751,6 +780,8 @@ export class TsInputComponent implements
 
   /**
    * Define the tabindex for the input
+   *
+   * @param value
    */
   @Input()
   public set tabIndex(value: number) {
@@ -765,6 +796,8 @@ export class TsInputComponent implements
    * Define the number of rows for a textarea
    *
    * NOTE: Since the 'rows' attribute of a textarea is stored as a string, we should accept both string and number.
+   *
+   * @param value
    */
   @Input()
   public set textareaRows(value: number) {
@@ -783,6 +816,8 @@ export class TsInputComponent implements
 
   /**
    * Define the input type (text, password etc.) See {@link TsInputTypes}
+   *
+   * @param value
    */
   @Input()
   public set type(value: TsInputTypes) {
@@ -792,6 +827,7 @@ export class TsInputComponent implements
 
     // istanbul ignore else
     if (this.mask && (value === 'email' || value === 'number')) {
+      // eslint-disable-next-line no-console
       console.warn(`TsInputComponent: "${value}" is not an allowed type when used with a mask. `
       + 'When using a mask, the input type must be "text", "tel", "url", "password" or "search".');
 
@@ -848,7 +884,7 @@ export class TsInputComponent implements
   @Output()
   public readonly selected: EventEmitter<Date> = new EventEmitter();
 
-  public constructor(
+  constructor(
     private elementRef: ElementRef,
     private renderer: Renderer2,
     private changeDetectorRef: ChangeDetectorRef,
@@ -857,7 +893,7 @@ export class TsInputComponent implements
     private ngZone: NgZone,
     private documentService: TsDocumentService,
     private datePipe: TsDatePipe,
-    // tslint:disable-next-line no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     @Optional() @Self() @Inject(TS_INPUT_VALUE_ACCESSOR) inputValueAccessor: any,
     @Optional() public dateAdapter: DateAdapter<Date>,
     @Optional() @Self() public ngControl: NgControl,
@@ -903,10 +939,10 @@ export class TsInputComponent implements
     /* eslint-disable no-underscore-dangle */
     if (this.picker && !this.picker._datepickerInput) {
       // NOTE: Dangle naming controlled by Material
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       this.picker._registerInput(this as any);
-      /* eslint-enable no-underscore-dangle */
     }
+    /* eslint-enable no-underscore-dangle */
   }
 
 
@@ -916,7 +952,7 @@ export class TsInputComponent implements
    * The issue seems to be that the elementRef.nativeElement isn't updated with the new value immediately. When manually inspecting the
    * nativeElement, the value does exist. But when the `empty` getter defines it's elementRef instance, the value is not yet set.
    *
-   * Material doesn't seem to have this issue. The only real difference is that they are implmenting the ControlValueAccessor in the input
+   * Material doesn't seem to have this issue. The only real difference is that they are implementing the ControlValueAccessor in the input
    * where we are extending another class.
    *
    * So currently, we just check to see if the value has changed, then trigger a fake input event since the CVA for ngModel listens for the
@@ -940,7 +976,6 @@ export class TsInputComponent implements
   }
 
 
-  // tslint:disable-next-line no-conflicting-lifecycle
   public ngDoCheck(): void {
     // We need to dirty-check the native element's value, because there are some cases where we won't be notified when it changes (e.g. the
     // consumer isn't using forms or they're updating the value using `emitEvent: false`).
@@ -954,10 +989,10 @@ export class TsInputComponent implements
    * @param changes - The changes
    */
   public ngOnChanges(changes: SimpleChanges): void {
-    const validMaskChange: boolean = !!(inputHasChanged(changes, 'mask') && this.mask);
-    const validSanitizeChange: boolean = !!(inputHasChanged(changes, 'maskSanitizeValue'));
-    const validDecimalChange: boolean = !!(inputHasChanged(changes, 'maskAllowDecimal'));
-    const validLabelChange: boolean = !!(inputHasChanged(changes, 'label'));
+    const validMaskChange = !!(inputHasChanged(changes, 'mask') && this.mask);
+    const validSanitizeChange = !!(inputHasChanged(changes, 'maskSanitizeValue'));
+    const validDecimalChange = !!(inputHasChanged(changes, 'maskAllowDecimal'));
+    const validLabelChange = !!(inputHasChanged(changes, 'label'));
 
     // istanbul ignore else
     if (validMaskChange || validSanitizeChange || validDecimalChange) {
@@ -1065,13 +1100,15 @@ export class TsInputComponent implements
     if (!this.changeDetectorRef['destroyed']) {
       this.changeDetectorRef.detectChanges();
     }
-  }
+  };
 
 
   /**
    * Register onChange callback (from ControlValueAccessor interface)
+   *
+   * @param fn
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
@@ -1079,8 +1116,10 @@ export class TsInputComponent implements
 
   /**
    * Register onTouched callback (from ControlValueAccessor interface)
+   *
+   * @param fn
    */
-  // tslint:disable-next-line no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   public registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
   }
@@ -1154,14 +1193,10 @@ export class TsInputComponent implements
   /**
    * Update values on input
    *
-   * NOTE(B$): Apparently TSLint doesn't realize that the host listener is calling this method.  Using the @HostDecorator shows the same
-   * error. So for now, we are disabling the lint rule here.
-   *
    * NOTE: KNOWN BUG that allows model and UI to get out of sync when extra characters are added after a fully satisfied mask.
    *
    * @param target - The event target for the input event.
    */
-  // tslint:disable: no-unused-variable
   public onInput(target: HTMLInputElement | HTMLTextAreaElement): void {
     if (!target) {
       return;
@@ -1198,7 +1233,6 @@ export class TsInputComponent implements
       this._valueChange.emit(new Date(value));
     }
   }
-  // tslint:enable: no-unused-variable
 
 
   /**
@@ -1224,7 +1258,7 @@ export class TsInputComponent implements
    *
    * @param value - The value to clean
    * @param regex - The RegExp to use to clean the value
-   * @return The clean value
+   * @returns The clean value
    */
   private cleanValue(value: string, regex?: RegExp | Function): string {
     // If there is no unmask regex, just return the value
@@ -1243,7 +1277,7 @@ export class TsInputComponent implements
    * Create the collection of possible masks
    *
    * @param allowDecimal - If the number based masks should allow a decimal character
-   * @return The collection of masks
+   * @returns The collection of masks
    */
   private createMaskCollection(allowDecimal: boolean): TsMaskCollection {
     return {
@@ -1287,7 +1321,7 @@ export class TsInputComponent implements
    * Helper to determine the correct postal code match (5 characters vs 9)
    *
    * @param value - The current postal code value
-   * @return The correct mask
+   * @returns The correct mask
    */
   private determinePostalMask(value: string): (RegExp | string)[] {
     const MIN_POSTAL_CODE_LENGTH = 5;
@@ -1301,7 +1335,7 @@ export class TsInputComponent implements
   /**
    * Checks whether the input is invalid based on the native validation
    *
-   * @return Whether the native validation passes
+   * @returns Whether the native validation passes
    */
   private isBadInput(): boolean {
     const validity: ValidityState = (this.inputElement.nativeElement).validity;
@@ -1364,7 +1398,7 @@ export class TsInputComponent implements
   private setUpMask(): void {
     // istanbul ignore else
     if (this.inputElement) {
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const maskOptions: {[key: string]: any} = {
         inputElement: this.inputElement.nativeElement,
         ...this.textMaskConfig,
@@ -1401,7 +1435,7 @@ export class TsInputComponent implements
    * See: https://github.com/text-mask/text-mask/issues/294#issuecomment-342299450
    *
    * @param value - The value to check
-   * @return The trimmed value (if needed)
+   * @returns The trimmed value (if needed)
    */
   private trimLastCharacter(value: string): string {
     // This only effects masked inputs
@@ -1409,7 +1443,7 @@ export class TsInputComponent implements
       const mask = this.currentMask.mask;
       const staticMask = isFunction(mask) ? mask(this.value) : mask;
       const maskLength = staticMask ? staticMask.length /* istanbul ignore next - Unreachable */ : 0;
-      // tslint:disable-next-line no-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const isNumberMask: boolean = (mask as any).instanceOf === 'createNumberMask';
 
       // istanbul ignore else
@@ -1443,7 +1477,6 @@ export class TsInputComponent implements
           value = trimmedValue;
         }
       }
-
     }
 
     return value;
@@ -1457,7 +1490,7 @@ export class TsInputComponent implements
    * method to our setters adds support for either version
    *
    * @param date - The date
-   * @return The Date object
+   * @returns The Date object
    */
   private verifyIsDateObject(date: string | Date): Date {
     return (date instanceof Date) ? date : new Date(date);
@@ -1472,7 +1505,7 @@ export class TsInputComponent implements
    * dates.
    *
    * @param value - The string
-   * @return If the string is a valid date
+   * @returns If the string is a valid date
    */
   private isValidDateString(value: string): boolean {
     const numbersInFormattedDate = 8;
@@ -1523,5 +1556,4 @@ export class TsInputComponent implements
       this.stateChanges.next();
     }
   }
-
 }

@@ -17,12 +17,12 @@ import {
 } from '@angular/core';
 import {
   KEYS,
-  TsDocumentService,
   untilComponentDestroyed,
 } from '@terminus/ngx-tools';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
 import {
   TsPopoverOptions,
   TsPopoverPosition,
@@ -61,11 +61,6 @@ let nextUniqueId = 0;
 })
 export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, AfterContentInit, AfterContentChecked {
   /**
-   * Store a reference to the document object
-   */
-  private document: Document;
-
-  /**
    * Define the UID
    */
   public readonly uid = `ts-popover-trigger-${nextUniqueId++}`;
@@ -100,6 +95,8 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
 
   /**
    * Define an ID for the directive
+   *
+   * @param value
    */
   @Input()
   public set id(value: string) {
@@ -118,6 +115,8 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
 
   /**
    * Set position of where popover opens
+   *
+   * @param value
    */
   @Input()
   public set position(value: TsPopoverPosition) {
@@ -173,25 +172,23 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
     private changeDetectorRef: ChangeDetectorRef,
     private elementRef: ElementRef,
     private ngZone: NgZone,
-    private documentService: TsDocumentService,
   ) {
     /**
      * Listen to `keydown` events outside the zone so that change detection is not run every
      * time a key is pressed. Re-enter the zone only if the `ESC` key is pressed
      */
     this.ngZone.runOutsideAngular(() => {
+      // eslint-disable-next-line deprecation/deprecation
       (fromEvent<KeyboardEvent>(this.elementRef.nativeElement, 'keydown'))
         .pipe(
           filter(event => event.code === KEYS.ESCAPE.code),
-          untilComponentDestroyed(this)
+          untilComponentDestroyed(this),
         ).subscribe(event => this.ngZone.run(() => {
           this.hide();
           event.stopPropagation();
           event.preventDefault();
         }));
     });
-    this.document = this.documentService.document;
-
   }
 
   /**
@@ -201,9 +198,10 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
     this.popover.referenceObject = this.viewContainerRef.element.nativeElement;
     this.setContentProperties(this.popover);
 
+    // eslint-disable-next-line deprecation/deprecation
     (fromEvent<MouseEvent>(this.elementRef.nativeElement, 'click'))
       .pipe(
-        untilComponentDestroyed(this)
+        untilComponentDestroyed(this),
       ).subscribe(event => {
         this.toggle();
         event.stopPropagation();
