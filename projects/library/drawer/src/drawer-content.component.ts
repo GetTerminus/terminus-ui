@@ -11,8 +11,8 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+
 @Component({
-  moduleId: module.id,
   selector: 'ts-drawer-content',
   template: '<ng-content></ng-content>',
   host: { class: 'ts-drawer-content' },
@@ -27,7 +27,7 @@ export class TsDrawerContentComponent extends CdkScrollable {
     private changeDetectorRef: ChangeDetectorRef,
     elementRef: ElementRef<HTMLElement>,
     scrollDispatcher: ScrollDispatcher,
-    ngZone: NgZone
+    ngZone: NgZone,
   ) {
     super(elementRef, scrollDispatcher, ngZone);
   }
