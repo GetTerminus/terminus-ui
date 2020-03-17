@@ -78,33 +78,55 @@ jobs:
           key: cache-{{ checksum "package.json" }}
           paths:
             - ~/.cache/Cypress
+      - run:
+          name: Look at Path
+          command: |
+            ls -al ~/
+            ls -al ~/ci-build
+            cp -rf ~/.cache/Cypress ~/ci-build
       - persist_to_workspace:
           root: .
           paths:
             - .
-  lint:
-    <<: *defaults
-    steps:
-      - *attach_workspace
       - run:
-          name: Lint
-          command: yarn run lint:ci
-  test:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - run:
-          name: Run Tests
-          command: tooling/ci/test-unit.sh
-      - store_test_results:
-          path: coverage/junit/
-      - store_artifacts:
-          path: coverage/
-          destination: ~/coverage/
+          name: Look at Path after persiste to workspace
+          command: |
+            ls -al ~/.cache
+            ls -al ~/.cache/yarn
+            ls -al ~/ci-build
+  #      - run:
+  #          # make sure app has been installed and built
+  #          # before running tests across multiple machines
+  #          # this avoids installing same dependencies 10 times
+  #          parallel: true # split all specs across machines
+  #          parallelism: 4 # use 4 CircleCI machines to finish quickly
+  #          group: 'all tests' # name this group "all tests" on the dashboard
+  #          start: 'yarn run start:app' # start server before running tests
+  #          wait-on: 'http://localhost:4200'
+  #          command: tooling/ci/check-demo-up-and-running.sh
+  #      - run:
+  #          name: Cypress run
+  #          command: yarn run e2e
   build:
     <<: *defaults
     steps:
       - *attach_workspace
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile --non-interactive
+      - run:
+          name: Look at Path before build executed
+          command: |
+            ls -al ~/.cache
+            ls -al ~/ci-build
+      #      - run:
+      #          name: Copy ci-build
+      #          command: |
+      #            cp -fr ~/ci-build/ci-build ~/
+      #      - restore_cache:
+      #          name: Restore Cypress Cache
+      #          keys:
+      #            - cache-{{ checksum "package.json" }}
       - run:
           name: Build Project
           command: yarn run build
@@ -118,6 +140,12 @@ jobs:
           root: .
           paths:
             - ./dist/library/*
+            - .
+      - run:
+          name: Look at Path after build
+          command: |
+            ls -al ~/.cache
+            ls -al ~/ci-build
   integration_test:
     <<: *defaults
     steps:
@@ -127,6 +155,10 @@ jobs:
           command: |
             ls -al /home/circleci
             ls -al /home/circleci/ci-build/tooling
+      #      - run:
+      #          name: Copy ci-build
+      #          command: |
+      #            cp -fr ~/ci-build/ci-build ~/
       - restore_cache:
           name: Restore Cypress Cache
           keys:
@@ -139,32 +171,19 @@ jobs:
           name: Install packages
           command: tooling/ci/check-demo-up-and-running.sh
       - run:
+          # make sure app has been installed and built
+          # before running tests across multiple machines
+          # this avoids installing same dependencies 10 times
+          # record: true # record results on Cypress Dashboard
+          #          parallel: true # split all specs across machines
+          #          parallelism: 4 # use 4 CircleCI machines to finish quickly
+          #          group: 'all tests' # name this group "all tests" on the dashboard
+          #          command: yarn start:app # start server before running tests
           command: yarn run cy:test
-  publish_library:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - add_ssh_keys
-      - run:
-          name: Publish Library
-          command: npx semantic-release
-  build_demos:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - run:
-          name: Build Demos with AoT
-          command: tooling/ci/build-demos-aot.sh
-      - run:
-          name: Update Package Versions for Demo Build
-          command: tooling/ci/inject-library-version-number.sh
-      - store_artifacts:
-          path: /home/circleci/ci-build/dist/demo/
-          destination: ~/projects/demo/
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./dist/demo/*
+  #          background: true
+  #      - run:
+  #          name: Cypress run
+  #          command: yarn run e2e
   deploy_demos:
     <<: *defaults
     steps:
@@ -172,36 +191,6 @@ jobs:
       - run:
           name: Publish Demos
           command: tooling/ci/demos-deploy-ci.sh
-  generate_docs:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - run:
-          name: Generate Documentation
-          command: yarn run docs:ci
-      - run:
-          name: Install emoji tool
-          command: yarn global add emojis
-      - run:
-          name: Replace emoji codes
-          command: node tooling/ci/replace-docs-emoji.js
-      - persist_to_workspace:
-          root: .
-          paths:
-            - ./docs/*
-  deploy_docs:
-    <<: *defaults
-    steps:
-      - *attach_workspace
-      - aws-s3/sync:
-          from: docs
-          to: 's3://uilibrary-docs.terminus.ninja/"${CIRCLE_BRANCH}"'
-          arguments: |
-            --acl public-read \
-            --cache-control "max-age=86400" \
-            --delete
-          overwrite: true
-
 
 #
 # Workflows
@@ -216,33 +205,4 @@ workflows:
             - setup
       - integration_test:
           requires:
-            - setup
-      - lint:
-          requires:
-            - setup
-      - test:
-          requires:
-            - setup
-      - build_demos:
-          requires:
             - build
-      - publish_library:
-          <<: *filter_only_release_branch
-          requires:
-            - build
-            - build_demos
-            - lint
-            - test
-      - generate_docs:
-          <<: *filter_only_release_branch
-          requires:
-            - publish_library
-      - deploy_docs:
-          <<: *filter_only_release_branch
-          requires:
-            - generate_docs
-      - deploy_demos:
-          <<: *filter_only_release_branch
-          requires:
-            - build_demos
-            - publish_library
