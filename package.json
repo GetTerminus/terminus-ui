@@ -251,7 +251,7 @@
     "tslint": "5.20.1",
     "typescript": "3.4.5",
     "validate-commit-msg": "2.14.0",
-    "zone.js": "0.10.2"
+    "zone.js": "0.10.3"
   },
   "resolutions": {
     "jsdom": "15.2.1"
