@@ -15,8 +15,6 @@
   "scripts": {
     "//////// Section: Demo App": "==============================",
     "ng": "ng",
-    "cy:run": "cypress run",
-    "cy:test": "start-server-and-test start:app http://localhost:4200 cy:run",
     "start:app": "yarn run build:styles && yarn run link && ng serve --project demo",
     "start:app:visual-regression": "yarn run build:styles && yarn run link && ng serve --project visual-regression",
     "start:app:aot": "yarn run link && ng serve --aot",
@@ -78,7 +76,8 @@
     "contributors:generate": "npx all-contributors generate",
     "contributors:check": "npx all-contributors check",
     "////////// Section: Integration": "===========================",
-    "cypress": "yarn install cypress --save-dev && cypress run"
+    "cy:run": "cypress run",
+    "cy:test": "start-server-and-test start:app http://localhost:4200 cy:run"
   },
   "husky": {
     "hooks": {
