@@ -15,7 +15,6 @@ references:
     working_directory: ~/ci-build
     docker:
       - image: circleci/node:12.16.1
-      - image: cypress/base:10
     environment:
       TEST_REPORTS: /coverage
 
