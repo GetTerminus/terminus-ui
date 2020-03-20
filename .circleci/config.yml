@@ -131,6 +131,8 @@ jobs:
           command: tooling/ci/install-required-packages-for-integration.sh
       - run:
           command: yarn run cy:test
+      - run:
+          command: yarn run percy:ci
   publish_library:
     <<: *defaults
     steps:

@@ -15,5 +15,6 @@ npm install text-mask-addons
 npm install text-mask-core
 npm install @amcharts/amcharts4-geodata@4.1.12
 sudo npm link gulp
+export PERCY_TOKEN=0db1f0d948714c17bf2ddd816f5719450ede85e8fd5793c9cfc274bd6399bd21
 
 

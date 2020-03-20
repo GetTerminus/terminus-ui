@@ -76,7 +76,9 @@
     "contributors:check": "npx all-contributors check",
     "////////// Section: Integration": "=============================",
     "cy:run": "cypress run",
-    "cy:test": "start-server-and-test start:app http://localhost:4200 cy:run"
+    "cy:test": "start-server-and-test start:app:visual-regression http://localhost:4200 cy:run",
+    "percy:run": "percy exec -- cypress run",
+    "percy:ci": "export PERCY_TOKEN=0db1f0d948714c17bf2ddd816f5719450ede85e8fd5793c9cfc274bd6399bd21 && start-server-and-test start:app:visual-regression http://localhost:4200 percy:run"
   },
   "husky": {
     "hooks": {
@@ -187,6 +189,7 @@
     "@compodoc/compodoc": "1.1.11",
     "@ngrx/effects": "8.6.0",
     "@ngrx/store": "8.6.0",
+    "@percy/cypress": "^2.3.1",
     "@semantic-release/changelog": "3.0.4",
     "@semantic-release/exec": "3.3.6",
     "@semantic-release/git": "7.0.16",
