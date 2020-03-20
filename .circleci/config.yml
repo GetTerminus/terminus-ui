@@ -3,6 +3,8 @@ version: 2.1
 orbs:
   # https://circleci.com/orbs/registry/orb/circleci/aws-s3
   aws-s3: circleci/aws-s3@1.0.11
+  # use Cypress orb from CircleCI registry
+  cypress: cypress-io/cypress@1.16.1
 
 #
 # Reusable definitions
@@ -51,10 +53,12 @@ jobs:
       - restore_cache:
           name: Restore Yarn Cache
           keys:
-            - terminusui-yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
-            - terminusui-yarn-deps-{{ .Branch }}
-            - terminusui-yarn-deps-release
-            - terminusui-yarn-deps-
+            - yarn-packages-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-packages-{{ .Branch }}
+            - yarn-packages-release
+            - yarn-packages-
+            - cache-cypress-{{ checksum "yarn.lock" }}
+            - cache-cypress-
       - run:
           name: Install Dependencies
           command: yarn install --frozen-lockfile --non-interactive
@@ -69,6 +73,11 @@ jobs:
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - save_cache:
+          name: Save Cypress Cache
+          key: cache-cypress-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/Cypress
       - persist_to_workspace:
           root: .
           paths:
@@ -109,6 +118,19 @@ jobs:
           root: .
           paths:
             - ./dist/library/*
+  integration_test:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - restore_cache:
+          name: Restore Cypress Cache
+          keys:
+            - cache-cypress-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install packages
+          command: tooling/ci/install-required-packages-for-integration.sh
+      - run:
+          command: yarn run cy:test
   publish_library:
     <<: *defaults
     steps:
@@ -183,6 +205,9 @@ workflows:
       - build:
           requires:
             - setup
+      - integration_test:
+          requires:
+            - build
       - lint:
           requires:
             - setup
@@ -199,6 +224,7 @@ workflows:
             - build_demos
             - lint
             - test
+            - integration_test
       - generate_docs:
           <<: *filter_only_release_branch
           requires:

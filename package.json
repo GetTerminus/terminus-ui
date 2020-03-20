@@ -73,7 +73,10 @@
     "todo": "npx notes -x node_modules/ -x out-tsc/ -x dist/ -x coverage/ -x demo/ -x integration/ -x docs/ -x .DS_Store -x README.md -x projects/library/helpers.scss",
     "contributors:add": "npx all-contributors add",
     "contributors:generate": "npx all-contributors generate",
-    "contributors:check": "npx all-contributors check"
+    "contributors:check": "npx all-contributors check",
+    "////////// Section: Integration": "=============================",
+    "cy:run": "cypress run",
+    "cy:test": "start-server-and-test start:app http://localhost:4200 cy:run"
   },
   "husky": {
     "hooks": {
@@ -174,7 +177,7 @@
     "popper.js": "1.16.1",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
-},
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.803.20",
     "@angular-devkit/build-ng-packagr": "0.803.25",
@@ -203,6 +206,7 @@
     "commitizen": "4.0.3",
     "condition-circle": "2.0.2",
     "cpr": "3.0.1",
+    "cypress": "^4.2.0",
     "cz-customizable": "6.2.0",
     "del": "5.1.0",
     "doctoc": "1.4.0",
