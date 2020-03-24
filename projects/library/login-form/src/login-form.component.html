@@ -2,12 +2,10 @@
   class="c-login-form qa-login-form"
   [formGroup]="loginForm"
   fxLayout="column"
-  *ngIf="showForm"
   (keydown.enter)="loginForm?.valid && submission.emit(loginForm?.value)"
 >
 
   <ts-input
-    class="qa-login-form-email"
     label="Email"
     name="email"
     type="email"
@@ -21,7 +19,6 @@
   ></ts-input>
 
   <ts-input
-    class="qa-login-form-password"
     label="Password"
     name="password"
     type="password"
@@ -35,7 +32,6 @@
   ></ts-input>
 
   <ts-checkbox
-    class="qa-login-form-remember-me"
     [formControl]="rememberMeControl"
     tabindex="-1"
     tabIndex="3"
@@ -45,7 +41,6 @@
   </ts-checkbox>
 
   <ts-link
-    class="qa-login-form-forgot-password"
     [destination]="forgotPasswordLink"
     tsVerticalSpacing
     tabindex="-1"
@@ -54,7 +49,6 @@
 
   <div fxLayout="row" fxFlexAlign="end">
     <ts-button
-      class="qa-login-form-submit"
       actionName="Submit"
       buttonType="submit"
       [showProgress]="inProgress || isRedirecting"
