@@ -8,6 +8,7 @@
   - [Event driven](#event-driven)
   - [Inputs to the component](#inputs-to-the-component)
     - [allowCustomDates](#allowcustomdates)
+  - [Date range boundaries](#date-range-boundaries)
     - [Disable](#disable)
   - [Test Helpers](#test-helpers)
 
@@ -109,6 +110,33 @@ When `allowCustomDates` is set to `false`, the date range is readonly (this defa
 ```
 
 NOTE: When set to `true`, a `Custom Dates` option will be added to the dropdown.
+
+
+## Date range boundaries
+
+To define bounds for custom date selection, pass in a valid `Date` to each of these `@Inputs`:
+
+1. `endMaxDate`
+1. `endMinDate`
+1. `startMaxDate`
+1. `startMinDate`
+
+```html
+<ts-cohort-date-range
+  [startMinDate]="startDate1"
+  [startMaxDate]="startDate2"
+  [endMinDate]="endDate1"
+  [endMaxDate]="endDate2"
+></ts-cohort-date-range>
+```
+
+```typescript
+startDate1 = new Date(2017, 1, 1);
+startDate2 = new Date(2017, 8, 1);
+endDate1 = new Date(2017, 1, 2);
+endDate2 = new Date(2017, 8, 2;
+```
+
 
 ### Disable
 

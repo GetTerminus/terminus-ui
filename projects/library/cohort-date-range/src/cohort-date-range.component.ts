@@ -70,7 +70,11 @@ let nextUniqueId = 0;
  * <ts-cohort-date-range
  *              [allowCustomDates]="true"
  *              [cohorts]="myCohorts"
+ *              endMaxDate="{{ new Date(2017, 4, 30) }}"
+ *              endMinDate="{{ new Date(2017, 4, 1) }}"
  *              id="myID"
+ *              startMaxDate="{{ new Date(2017, 4, 30) }}"
+ *              startMinDate="{{ new Date(2017, 4, 1) }}"
  *              (cohortDateRangeChange)="myFunc($event)"
  * ></ts-cohort-date-range>
  *
@@ -190,6 +194,18 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   private originalCohorts: ReadonlyArray<TsDateCohort>;
 
   /**
+   * Define the max date for the end date
+   */
+  @Input()
+  public endMaxDate: Date | undefined;
+
+  /**
+   * Define the min date for the end date
+   */
+  @Input()
+  public endMinDate: Date | undefined;
+
+  /**
    * Define an ID for the component
    */
   @Input()
@@ -208,11 +224,22 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   public isDisabled = false;
 
   /**
+   * Define the max date for the starting date
+   */
+  @Input()
+  public startMaxDate: Date | undefined;
+
+  /**
+   * Define the min date for the starting date
+   */
+  @Input()
+  public startMinDate: Date | undefined;
+
+  /**
    * Cohort change event emitter
    */
   @Output()
   public readonly cohortDateRangeChanged = new EventEmitter<TsCohortDateRangeChanged>();
-
 
   constructor(
     public formBuilder: FormBuilder,

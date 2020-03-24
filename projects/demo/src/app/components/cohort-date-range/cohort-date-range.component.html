@@ -1,3 +1,21 @@
+<ts-card tsVerticalSpacing>
+  <h3 tsCardTitle tsVerticalSpacing>Demo Controls</h3>
+
+  <div>
+    <div tsVerticalSpacing>Start date minimum and maximum</div>
+    <form [formGroup]="constraintForm" novalidate>
+      <ts-date-range
+        [dateFormGroup]="constraintForm.get('startDateRange')"
+      ></ts-date-range>
+
+      <div tsVerticalSpacing>End date minimum and maximum</div>
+      <ts-date-range
+        [dateFormGroup]="constraintForm.get('endDateRange')"
+      ></ts-date-range>
+    </form>
+  </div>
+</ts-card>
+
 <ts-card>
   <form [formGroup]="myForm" novalidate>
     <ts-cohort-date-range
@@ -5,11 +23,15 @@
       [allowCustomDates]="true"
       (cohortDateRangeChanged)="printRange($event)"
       [isDisabled]="false"
+      [startMinDate]="constraintForm.get('startDateRange')?.get('startDate')?.value"
+      [startMaxDate]="constraintForm.get('startDateRange')?.get('endDate')?.value"
+      [endMinDate]="constraintForm.get('endDateRange')?.get('startDate')?.value"
+      [endMaxDate]="constraintForm.get('endDateRange')?.get('endDate')?.value"
     ></ts-cohort-date-range>
   </form>
 
-<pre *ngIf="lastRange">
-  Start: {{ lastRange.start }}
-  End: {{ lastRange.end }}
-</pre>
+  <pre *ngIf="lastRange">
+    Start: {{ lastRange.start }}
+    End: {{ lastRange.end }}
+  </pre>
 </ts-card>
