@@ -1,5 +1,11 @@
-import { Component } from '@angular/core';
-import { TsLoginFormResponse } from '@terminus/ui/login-form';
+import {
+ Component,
+  ViewChild,
+} from '@angular/core';
+import {
+ TsLoginFormResponse,
+ TsLoginFormComponent,
+} from '@terminus/ui/login-form';
 
 
 @Component({
@@ -9,33 +15,27 @@ import { TsLoginFormResponse } from '@terminus/ui/login-form';
 export class LoginFormComponent {
   public progress = false;
   public link = '/reset';
-  public reset = false;
-  public isRedirecting = false;
 
+  @ViewChild(TsLoginFormComponent, { static: true })
+  loginFormComponent!: TsLoginFormComponent;
 
   formSubmission(e: TsLoginFormResponse): void {
-    console.warn('Demo: Form value: ', e);
+    console.warn('DEMO: Form value: ', e);
     this.progress = true;
 
     setTimeout(() => {
-      this.reset = true;
+      this.resetForm();
       this.progress = false;
-
-      setTimeout(() => {
-        this.reset = false;
-      }, 10);
     }, 1000);
   }
 
   resetForm() {
-    console.log('in demo reset');
-    setTimeout(() => {
-      this.reset = true;
+    console.log('DEMO: Reset form');
+    this.loginFormComponent.resetForm();
+  }
 
-      setTimeout(() => {
-        this.reset = false;
-      }, 10);
-    }, 10);
+  logForm(): void {
+    console.log('DEMO: Current form state: ', this.loginFormComponent.loginForm);
   }
 
 }
