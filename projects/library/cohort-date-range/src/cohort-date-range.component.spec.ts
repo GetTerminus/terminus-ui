@@ -39,6 +39,7 @@ describe(`TsCohortDateRangeComponent`, () => {
   let fixture: ComponentFixture<TsCohortDateRangeTestComponent>;
   let hostInstance: TsCohortDateRangeTestComponent;
   let startInputInstance: TsInputComponent;
+  let endInputInstance: TsInputComponent;
   let formFieldElement: HTMLElement;
   let cohortDebugElement: DebugElement;
   let cohortInstance: TsCohortDateRangeComponent;
@@ -48,6 +49,7 @@ describe(`TsCohortDateRangeComponent`, () => {
     fixture.detectChanges();
     hostInstance = fixture.componentInstance;
     startInputInstance = getRangeInputInstances(fixture)[0];
+    endInputInstance = getRangeInputInstances(fixture)[1];
     formFieldElement = getFormFieldElement(fixture);
     cohortDebugElement = getCohortDebugElement(fixture);
     cohortInstance = cohortDebugElement.componentInstance;
@@ -213,7 +215,27 @@ describe(`TsCohortDateRangeComponent`, () => {
 
       expect(instance.setDateRangeValues).toHaveBeenCalled();
     });
-
   });
 
+  describe.only(`date constraints`, function() {
+    beforeEach(() => {
+      setupComponent(testComponents.DateConstraints);
+    });
+
+    test(`should set end min date to provided value`, function() {
+      expect(endInputInstance.minDate).toEqual(new Date(2020, 2, 1));
+    });
+
+    test(`should set end max date to provided value`, function() {
+      expect(endInputInstance.maxDate).toEqual(new Date(2020, 2, 25));
+    });
+
+    test(`should set start min date to provided value`, function() {
+      expect(startInputInstance.minDate).toEqual(new Date(2020, 0, 1));
+    });
+
+    test(`should set start max date to provided value`, function() {
+      expect(startInputInstance.maxDate).toEqual(new Date(2020, 0, 25));
+    });
+  });
 });

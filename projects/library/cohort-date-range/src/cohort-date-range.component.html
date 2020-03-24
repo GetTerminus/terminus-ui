@@ -3,6 +3,10 @@
   [dateFormGroup]="dateRangeFormGroup"
   [isDisabled]="!allowCustomDates || isDisabled"
   (dateRangeChange)="cohortDateRangeChange($event)"
+  [startMinDate]="startMinDate"
+  [startMaxDate]="startMaxDate"
+  [endMinDate]="endMinDate"
+  [endMaxDate]="endMaxDate"
 ></ts-date-range>
 
 <ts-selection-list

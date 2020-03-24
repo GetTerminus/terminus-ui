@@ -38,6 +38,28 @@ export class CohortDateRangeComponent {
       ],
     }),
   });
+  public constraintForm: FormGroup = this.formBuilder.group({
+    startDateRange: this.formBuilder.group({
+      startDate: [
+        startOfDay(subDays(new Date(), 120)),
+        [Validators.required],
+      ],
+      endDate: [
+        startOfDay(subDays(new Date(), 1)),
+        [Validators.required],
+      ],
+    }),
+    endDateRange: this.formBuilder.group({
+      startDate: [
+        startOfDay(subDays(new Date(), 119)),
+        [Validators.required],
+      ],
+      endDate: [
+        endOfDay(new Date()),
+        [Validators.required],
+      ],
+    }),
+  });
   public cohorts: TsDateCohort[] = [
     {
       display: 'Last 90 days',
