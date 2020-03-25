@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TsPaginatorComponent } from '@terminus/ui/paginator';
-import { selectOption } from '@terminus/ui/select/testing';
+import { selectOption } from '@terminus/ui/selection-list/testing';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 
 export type TsPaginatorPage
@@ -26,7 +26,7 @@ export function clickToChangePage(fixture: ComponentFixture<any>, dir: TsPaginat
 }
 
 /**
- * Helper function to select an option from a select component
+ * Helper function to select an option from a select-list component
  *
  * @param fixture - fixture
  * @param value - viewable string selected

@@ -8,6 +8,7 @@ import {
   TsPaginatorModule,
 } from '@terminus/ui/paginator';
 
+
 @Component({ template: `<ts-paginator></ts-paginator>` })
 export class Basic {
   @ViewChild(TsPaginatorComponent, { static: true })

@@ -67,9 +67,11 @@ describe(`TsPaginatorComponent`, function() {
       const index: string = hostComponent.recordsPerPageChoices[1].toString();
       fixture.detectChanges();
       updateRecordsPerPage(fixture, index);
-
-      const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
-      expect(titleEl.textContent).toContain('1 - 20 of 100');
+      fixture.whenStable().then(() => {
+        // eslint-disable-next-line max-len
+        const titleEl = fixture.debugElement.query(By.css('.qa-paginator-current-page-menu .c-button__content')).nativeElement as HTMLElement;
+        expect(titleEl.textContent).toContain('1 - 20 of 100');
+      });
     });
 
     test(`should be hidden when set`, () => {
@@ -400,14 +402,15 @@ describe(`TsPaginatorComponent`, function() {
       expect(btn.nativeElement.querySelector('button').disabled).toEqual(false);
     }));
 
-    test(`should disable next button if set`, fakeAsync(() => {
+    test(`should disable next button if set`, () => {
       const instance = getPaginatorInstance(fixture);
       instance.isNextDisabled = true;
-      tick(1000);
       fixture.detectChanges();
-      const btn = fixture.debugElement.query(By.css('.qa-paginator-next-page-button'));
-      expect(btn.nativeElement.querySelector('button').disabled).toBeTruthy();
-    }));
+      fixture.whenStable().then(() => {
+        const btn = fixture.debugElement.query(By.css('.qa-paginator-next-page-button'));
+        expect(btn.nativeElement.querySelector('button').disabled).toBeTruthy();
+      });
+    });
   });
 });
 

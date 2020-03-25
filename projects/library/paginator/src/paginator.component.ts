@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { inputHasChanged } from '@terminus/ngx-tools/utilities';
-import { TsSelectChange } from '@terminus/ui/select';
+import { TsSelectionListChange } from '@terminus/ui/selection-list';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 
@@ -436,7 +436,7 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
    *
    * @param selection - The selected records-per-page count
    */
-  public recordsPerPageUpdated(selection: TsSelectChange<number>): void {
+  public recordsPerPageUpdated(selection: TsSelectionListChange<number>): void {
     this.recordsPerPage = selection.value;
     this.currentPageIndex = this.firstPageIndex;
     this.recordsPerPageChange.emit(selection.value);
