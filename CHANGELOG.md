@@ -1,3 +1,10 @@
+## [17.0.8](https://github.com/GetTerminus/terminus-ui/compare/v17.0.7...v17.0.8) (2020-03-13)
+
+
+### Bug Fixes
+
+* **Docs:** Update all local doc links ([f6d354d](https://github.com/GetTerminus/terminus-ui/commit/f6d354d4fcb851b50d05697ae8b88c3813f34bfb))
+
 ## [17.0.7](https://github.com/GetTerminus/terminus-ui/compare/v17.0.6...v17.0.7) (2020-03-12)
 
 
