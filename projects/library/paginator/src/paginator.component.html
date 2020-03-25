@@ -5,19 +5,19 @@
 
 <div fxLayout="row" fxLayoutAlign="start start">
 
-    <ts-select
+    <ts-selection-list
       class="qa-paginator-per-page-select"
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
-      [(ngModel)]="recordsPerPage"
       [label]="recordsSelectLabel"
       [isDisabled]="disableRecordsPerPage(totalRecords, recordsPerPageChoices)"
+      [noValidationOrHint]="true"
       (selectionChange)="recordsPerPageUpdated($event)"
     >
       <ts-option
         [value]="count"
         *ngFor="let count of recordsPerPageChoices"
       >{{ count }}</ts-option>
-    </ts-select>
+    </ts-selection-list>
 
 
     <ts-tooltip [tooltipValue]="isFirstPage(currentPageIndex) ? '' : firstPageTooltip">
