@@ -1,3 +1,10 @@
+# [17.1.0](https://github.com/GetTerminus/terminus-ui/compare/v17.0.8...v17.1.0) (2020-03-25)
+
+
+### Features
+
+* **CohortDateRange:** Now supports start & end date minimum & maximum values ([1bc610d](https://github.com/GetTerminus/terminus-ui/commit/1bc610d9a27f719791ad28da63725046fd933ea5))
+
 ## [17.0.8](https://github.com/GetTerminus/terminus-ui/compare/v17.0.7...v17.0.8) (2020-03-13)
 
 
