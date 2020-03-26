@@ -169,7 +169,7 @@
     "@terminus/design-tokens": "1.0.2",
     "@terminus/ngx-tools": "7.4.0",
     "@terminus/ui": "17.0.6",
-    "date-fns": "2.9.0",
+    "date-fns": "2.11.1",
     "ngx-perfect-scrollbar": "8.0.0",
     "popper.js": "1.16.1",
     "text-mask-addons": "3.8.0",
