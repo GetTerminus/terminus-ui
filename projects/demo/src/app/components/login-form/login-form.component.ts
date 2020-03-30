@@ -35,4 +35,8 @@ export class LoginFormComponent {
     this.loginForm.resetForm();
   }
 
+  logForm(): void {
+    console.log('DEMO: Current form state: ', this.loginForm.loginForm);
+  }
+
 }

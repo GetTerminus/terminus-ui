@@ -2,7 +2,7 @@
   class="c-login-form qa-login-form"
   [formGroup]="loginForm"
   fxLayout="column"
-  *ngIf="showForm"
+  (ngSubmit)="resetForm()"
   (keydown.enter)="loginForm?.valid && submission.emit(loginForm?.value)"
 >
 

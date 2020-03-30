@@ -15,6 +15,7 @@ import {
   NgZone,
   OnChanges,
   OnDestroy,
+  OnInit,
   Optional,
   Output,
   Renderer2,
@@ -240,6 +241,7 @@ export class TsInputComponent implements
   TsFormFieldControl<any>,
   AfterViewInit,
   AfterContentInit,
+  OnInit,
   DoCheck,
   OnChanges,
   OnDestroy {
@@ -413,7 +415,11 @@ export class TsInputComponent implements
     if (v !== this.value) {
       const sanitizedValue = this.maskSanitizeValue && this.currentMask ? this.cleanValue(v, this.currentMask.unmaskRegex) : v;
       this.inputValueAccessor.value = v;
+      const state = this.formControl.pristine;
       this.onChangeCallback(sanitizedValue);
+      if (sanitizedValue === '' && state) {
+        this.formControl.markAsPristine();
+      }
       this.stateChanges.next();
     }
 
@@ -947,6 +953,18 @@ export class TsInputComponent implements
     this.dirtyCheckNativeValue();
   }
 
+  public ngOnInit() {
+    const markAsDirty = this.formControl.markAsDirty;
+    this.formControl.markAsDirty = opts => {
+      markAsDirty.apply(this.formControl, opts);
+    };
+    const markAsPristine = this.formControl.markAsPristine;
+    this.formControl.markAsPristine = opts => {
+      markAsPristine.apply(this.formControl, opts);
+    };
+
+  }
+
 
   /**
    * Trigger needed changes when specific inputs change
@@ -964,7 +982,6 @@ export class TsInputComponent implements
       this.setUpMask();
       this.updateMaskModelHack();
     }
-
     // Only re-set the value if this isn't the first change. This avoids thrashing as the component is initialized.
     if (validMaskChange && !changes.mask.firstChange) {
       this.setValue(this.value);
@@ -984,7 +1001,6 @@ export class TsInputComponent implements
 
       this.changeDetectorRef.detectChanges();
     }
-
     // Let the parent FormField know that it should update the ouline gap for the new label
     if ((validLabelChange && !changes.label.firstChange)) {
       // Trigger change detection first so that the FormField will be working with the latest version

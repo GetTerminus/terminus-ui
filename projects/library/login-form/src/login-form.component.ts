@@ -106,10 +106,6 @@ export class TsLoginFormComponent {
    */
   public loginForm: FormGroup | undefined = this.formBuilder.group(this.FORM_GROUP);
 
-  /**
-   * Define a flag to add/remove the form from the DOM
-   */
-  public showForm = true;
 
   /**
    * Access the email form control
