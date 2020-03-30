@@ -1,0 +1,299 @@
+name: CI - Release
+on:
+  push:
+    branches:
+      - 'release'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+# 1) build library
+# 2) test library
+# 3) lint all files
+# 4) build demos
+# 5) publish library
+# 6) generate docs
+# 7) deploy docs
+# 8) deploy demos
+jobs:
+  #
+  # Build the library
+  #
+  library_build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Manual build
+        run: yarn library:build:prod
+        if: env.SHOULD_RUN == 'true'
+      - name: Upload built files
+        uses: actions/upload-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Test the library
+  #
+  library_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Run all tests
+        run: tooling/ci/test-unit.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-report
+          path: coverage/lcov-report
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Lint all files
+  #
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Lint all files
+        run: yarn run library:lint & yarn run demo:lint & yarn run vr:lint
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Build the demos
+  #
+  demos_build:
+    needs: library_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Download built library
+        uses: actions/download-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+      - name: Build demos with AoT
+        run: tooling/ci/build-demos-aot.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Inject new library version
+        run: tooling/ci/inject-library-version-number.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Upload built files
+        uses: actions/upload-artifact@v1
+        with:
+          name: built-demos
+          path: dist/demo
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Release the library
+  #
+  library_release:
+    needs: [library_build, library_test, lint, demos_build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Download built library
+        uses: actions/download-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+      - name: Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  #
+  # Generate and publish docs
+  #
+  docs:
+    needs: [library_release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Generate documentation
+        run: yarn run docs:ci
+        if: env.SHOULD_RUN == 'true'
+      - name: Install emoji tool
+        run: yarn global add emojis
+        if: env.SHOULD_RUN == 'true'
+      - name: Replace emoji codes
+        run: node ./tooling/ci/replace-docs-emoji.js
+        if: env.SHOULD_RUN == 'true'
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --cache-control "max-age=86400" --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          SOURCE_DIR: 'docs'
+          DEST_DIR: ${{ github.ref }}
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Publish demos
+  #
+  demos_publish:
+    needs: [demos_build, library_release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Download built demos
+        uses: actions/download-artifact@v1
+        with:
+          name: built-demos
+          path: dist/demo
+        if: env.SHOULD_RUN == 'true'
+      - name: Publish
+        run: node ./tooling/ci/demos-deploy-ci.sh
+        if: env.SHOULD_RUN == 'true'

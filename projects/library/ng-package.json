@@ -15,10 +15,5 @@
       "text-mask-addons/dist/createNumberMask": "createNumberMask",
       "text-mask-addons/dist/createAutoCorrectedDatePipe": "createAutoCorrectedDatePipe"
     }
-  },
-  "whitelistedNonPeerDependencies": [
-    "ngx-perfect-scrollbar",
-    "text-mask-addons",
-    "text-mask-core"
-  ]
+  }
 }

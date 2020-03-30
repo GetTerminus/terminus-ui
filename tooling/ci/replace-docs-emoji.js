@@ -1,4 +1,5 @@
 const fs = require('fs');
+
 // https://github.com/tallesl/node-emojis
 const emojis = require('emojis');
 
