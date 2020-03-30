@@ -219,13 +219,14 @@ Install the library and required dependencies:
 $ yarn add @terminus/ui @terminus/ngx-tools
 
 # Peer dependencies that will need to be installed (needed by UI and tools libraries):
-$ yarn add @angular/cdk @angular/material @angular/flex-layout@8.0.0-beta.26 date-fns @ngrx/effects @ngrx/store hammerjs
+$ yarn add @angular/cdk @angular/material @angular/flex-layout@9.0.0-beta.29 date-fns ngx-perfect-scrollbar \
+  @ngrx/effects @ngrx/store popper.js text-mask-addons text-mask-addons
 
-# Optional dependencies (needed if using the TsChartComponent):
+# Optional dependencies (needed if using `TsChartComponent`):
 $ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
 ```
 
-> NOTE: Angular `9.0.0` or greater is required.
+> NOTE: `@angular/*` & `@ngrx/*` require `9.0.0` or greater.
 
 
 ### Fonts and Typefaces

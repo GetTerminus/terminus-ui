@@ -3,16 +3,16 @@
   title: '[\s\S]*'
 
 "Size: XS":
-  size-below: 10
+  size-below: 20
 "Size: S":
-  size-above: 9
-  size-below: 50
+  size-above: 20
+  size-below: 60
 "Size: M":
-  size-above: 49
-  size-below: 100
+  size-above: 60
+  size-below: 140
 "Size: L":
-  size-above: 99
+  size-above: 140
   size-below: 400
 "Size: XL":
-  size-above: 399
+  size-above: 400
 
