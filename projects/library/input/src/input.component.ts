@@ -413,7 +413,12 @@ export class TsInputComponent implements
     if (v !== this.value) {
       const sanitizedValue = this.maskSanitizeValue && this.currentMask ? this.cleanValue(v, this.currentMask.unmaskRegex) : v;
       this.inputValueAccessor.value = v;
+      const state = this.formControl.pristine;
       this.onChangeCallback(sanitizedValue);
+      // NOTE: This is to fix an issue that `onChangeCallback` might alter form control pristine state wrong.
+      if ((sanitizedValue === '' || !sanitizedValue) && state) {
+        this.formControl.markAsPristine();
+      }
       this.stateChanges.next();
     }
 
