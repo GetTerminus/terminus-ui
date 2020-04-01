@@ -78,7 +78,7 @@ export interface TsLoginFormResponse {
   encapsulation: ViewEncapsulation.None,
   exportAs: 'tsLoginForm',
 })
-export class TsLoginFormComponent implements OnChanges {
+export class TsLoginFormComponent {
   /**
    * Define the form group for re-use
    */
@@ -106,10 +106,6 @@ export class TsLoginFormComponent implements OnChanges {
    */
   public loginForm: FormGroup | undefined = this.formBuilder.group(this.FORM_GROUP);
 
-  /**
-   * Define a flag to add/remove the form from the DOM
-   */
-  public showForm = true;
 
   /**
    * Access the email form control
@@ -197,22 +193,7 @@ export class TsLoginFormComponent implements OnChanges {
   constructor(
     private formBuilder: FormBuilder,
     private validatorsService: TsValidatorsService,
-    private changeDetectorRef: ChangeDetectorRef,
   ) {}
-
-
-  /**
-   * Trigger a form reset if `triggerFormReset` is changed to TRUE
-   * (explanation at `resetForm` method)
-   *
-   * @param changes - The inputs that have changed
-   */
-  public ngOnChanges(changes: SimpleChanges): void {
-    if (changes.hasOwnProperty('triggerFormReset')) {
-      this.resetForm();
-    }
-  }
-
 
   /**
    * Reset the form
@@ -220,24 +201,10 @@ export class TsLoginFormComponent implements OnChanges {
    * HACK: This is a hack. Currently there doesn't seem to be a good way to reset the form value and
    * validations without simply re-initializing the form each time.
    */
-  private resetForm(): void {
-    // Destroy the form
-    this.showForm = false;
-
-    // Clear out the form
-    // HACK: This is a hack around Angular to fully reset the form.
-    this.loginForm = undefined;
-
-    // Re-initialize the form
-    this.loginForm = this.formBuilder.group(this.FORM_GROUP);
-
-    // This timeout lets one change detection cycle pass so that the form is actually removed from
-    // the DOM
-    Promise.resolve().then(() => {
-      // Add the form back to the DOM
-      this.showForm = true;
-      this.changeDetectorRef.detectChanges();
-    });
+  public resetForm(): void {
+    if (this.loginForm) {
+      this.loginForm.reset();
+    }
   }
 
 }
