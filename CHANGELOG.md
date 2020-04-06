@@ -1,3 +1,10 @@
+## [18.0.3](https://github.com/GetTerminus/terminus-ui/compare/v18.0.2...v18.0.3) (2020-04-06)
+
+
+### Bug Fixes
+
+* **CI:** fix incorrect node prefix ([4084006](https://github.com/GetTerminus/terminus-ui/commit/4084006f6c40d4192073bed10b22bf0f170422b9))
+
 ## [18.0.2](https://github.com/GetTerminus/terminus-ui/compare/v18.0.1...v18.0.2) (2020-04-06)
 
 
