@@ -302,5 +302,5 @@ jobs:
           path: dist/demo
         if: env.SHOULD_RUN == 'true'
       - name: Publish
-        run: node tooling/ci/demos-deploy-ci.sh
+        run: tooling/ci/demos-deploy-ci.sh
         if: env.SHOULD_RUN == 'true'
