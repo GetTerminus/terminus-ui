@@ -212,7 +212,7 @@
     "@types/jest": "25.2.1",
     "@types/node": "13.11.0",
     "all-contributors-cli": "6.14.1",
-    "autoprefixer": "9.7.5",
+    "autoprefixer": "9.7.6",
     "camelcase": "5.3.1",
     "chalk-cli": "4.1.0",
     "code-notes": "1.0.4",
