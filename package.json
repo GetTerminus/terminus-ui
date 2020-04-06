@@ -15,7 +15,7 @@
   "scripts": {
     "////////// Section: Library": "==============================",
     "library:build": "node --max-old-space-size=4096 node_modules/@angular/cli/bin/ng build library",
-    "postlibrary:build": "yarn run library:build:styles && yarn run library:build:files",
+    "postlibrary:build": "yarn run library:build:styles && yarn run library:build:files && yarn run library:remove:prepublish",
     "library:build:watch": "yarn run library:build --watch",
     "library:build:prod": "yarn run library:build --prod",
     "library:build:styles": "npx gulp generate:styles --gulpfile tooling/gulpfile.js",
@@ -31,6 +31,7 @@
     "library:test:ci": "yarn run library:test --runInBand --coverage",
     "library:test:ci:local": "yarn run library:test --coverage",
     "library:test:debug": "yarn run library:test --debug --runInBand",
+    "library:remove:prepublish": "sed -i.bak '/prepublishOnly/d' dist/library/package.json && rm dist/library/package.json.bak",
     "//////// Section: Demo App": "==============================",
     "predemo:start": "yarn run library:build:styles",
     "demo:start": "ng serve demo",
