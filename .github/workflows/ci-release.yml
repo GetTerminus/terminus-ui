@@ -1,4 +1,4 @@
-name: CI - Release
+name: CI Release
 on:
   push:
     branches:
@@ -18,6 +18,7 @@ jobs:
   # Build the library
   #
   library_build:
+    name: Compile Library
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -57,6 +58,7 @@ jobs:
   # Test the library
   #
   library_test:
+    name: Test Library
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -96,6 +98,7 @@ jobs:
   # Lint all files
   #
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -129,6 +132,7 @@ jobs:
   # Build the demos
   #
   demos_build:
+    name: Compile Demos
     needs: library_build
     runs-on: ubuntu-latest
     steps:
@@ -178,6 +182,7 @@ jobs:
   # Release the library
   #
   library_release:
+    name: Release Library
     needs: [library_build, library_test, lint, demos_build]
     runs-on: ubuntu-latest
     steps:
@@ -220,6 +225,7 @@ jobs:
   # Generate and publish docs
   #
   docs:
+    name: Generate & Publish Docs
     needs: [library_release]
     runs-on: ubuntu-latest
     steps:
@@ -253,7 +259,7 @@ jobs:
         run: yarn global add emojis
         if: env.SHOULD_RUN == 'true'
       - name: Replace emoji codes
-        run: node ./tooling/ci/replace-docs-emoji.js
+        run: node tooling/ci/replace-docs-emoji.js
         if: env.SHOULD_RUN == 'true'
       - uses: jakejarvis/s3-sync-action@master
         with:
@@ -271,6 +277,7 @@ jobs:
   # Publish demos
   #
   demos_publish:
+    name: Publish Demos
     needs: [demos_build, library_release]
     runs-on: ubuntu-latest
     steps:
@@ -295,5 +302,5 @@ jobs:
           path: dist/demo
         if: env.SHOULD_RUN == 'true'
       - name: Publish
-        run: node ./tooling/ci/demos-deploy-ci.sh
+        run: node tooling/ci/demos-deploy-ci.sh
         if: env.SHOULD_RUN == 'true'
