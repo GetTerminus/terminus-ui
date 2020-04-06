@@ -1,3 +1,10 @@
+## [18.0.2](https://github.com/GetTerminus/terminus-ui/compare/v18.0.1...v18.0.2) (2020-04-06)
+
+
+### Bug Fixes
+
+* **CI:** remove script prefix for demo deploy ([ef3ce74](https://github.com/GetTerminus/terminus-ui/commit/ef3ce74f87da3ea67d80d66972231c57dcf4aa45))
+
 ## [18.0.1](https://github.com/GetTerminus/terminus-ui/compare/v18.0.0...v18.0.1) (2020-04-06)
 
 
