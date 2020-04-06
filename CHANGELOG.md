@@ -1,3 +1,10 @@
+## [18.0.1](https://github.com/GetTerminus/terminus-ui/compare/v18.0.0...v18.0.1) (2020-04-06)
+
+
+### Bug Fixes
+
+* **CI:** remove angular release blocker script ([87de424](https://github.com/GetTerminus/terminus-ui/commit/87de424728ad3c402f2ef5513e2b6806fb1ee18f))
+
 # [18.0.0](https://github.com/GetTerminus/terminus-ui/compare/v17.1.0...v18.0.0) (2020-04-06)
 
 
