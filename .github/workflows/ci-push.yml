@@ -1,4 +1,4 @@
-name: CI - Push
+name: CI Push
 on:
   push:
     # Ignore all release branches as that is handled in another workflow
@@ -11,6 +11,7 @@ jobs:
   # Cancel any workflows that would be duplicated by this run
   #
   cleanup-runs:
+    name: Cancel Duplicates
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -31,6 +32,7 @@ jobs:
   # Build the library
   #
   library_build:
+    name: Compile Library
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -70,6 +72,7 @@ jobs:
   # Test the library
   #
   library_test:
+    name: Test Library
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -109,6 +112,7 @@ jobs:
   # Lint all files
   #
   lint:
+    name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -142,6 +146,7 @@ jobs:
   # Build the demos
   #
   demos_build:
+    name: Compile Demos
     needs: library_build
     runs-on: ubuntu-latest
     steps:

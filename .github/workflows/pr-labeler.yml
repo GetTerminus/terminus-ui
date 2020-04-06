@@ -5,5 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: srvaroa/labeler@master
+        name: Autolabel PR
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
