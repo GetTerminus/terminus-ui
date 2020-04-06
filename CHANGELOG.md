@@ -1,3 +1,23 @@
+# [18.0.0](https://github.com/GetTerminus/terminus-ui/compare/v17.1.0...v18.0.0) (2020-04-06)
+
+
+### Bug Fixes
+
+* **Validators:** no longer shipping jest spys ([da5a632](https://github.com/GetTerminus/terminus-ui/commit/da5a632c227196fbef4e9bde776d50deb8b463cc))
+
+
+### Features
+
+* Upgrade to Angular9 & remove TSLint ([2caa1ab](https://github.com/GetTerminus/terminus-ui/commit/2caa1ab8b388eaff5b7555d371045aaec8a305d9))
+
+
+### BREAKING CHANGES
+
+* - TypeScript
+- TSLint
+* **Validators:** ValidatorsService mock no longer defaults to a jest spy. Now it simply returns. It is up to the
+consumer to spy if needed.
+
 # [17.1.0](https://github.com/GetTerminus/terminus-ui/compare/v17.0.8...v17.1.0) (2020-03-25)
 
 
