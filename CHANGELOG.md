@@ -28,23 +28,27 @@
 
 # [18.0.0](https://github.com/GetTerminus/terminus-ui/compare/v17.1.0...v18.0.0) (2020-04-06)
 
-
-### Bug Fixes
-
-* **Validators:** no longer shipping jest spys ([da5a632](https://github.com/GetTerminus/terminus-ui/commit/da5a632c227196fbef4e9bde776d50deb8b463cc))
-
-
-### Features
-
-* Upgrade to Angular9 & remove TSLint ([2caa1ab](https://github.com/GetTerminus/terminus-ui/commit/2caa1ab8b388eaff5b7555d371045aaec8a305d9))
-
+- Upgrade to Angular 9+ & convert to ESLint
+  ([2caa1ab](https://github.com/GetTerminus/terminus-ui/commit/2caa1ab8b388eaff5b7555d371045aaec8a305d9))
 
 ### BREAKING CHANGES
 
-* - TypeScript
-- TSLint
-* **Validators:** ValidatorsService mock no longer defaults to a jest spy. Now it simply returns. It is up to the
-consumer to spy if needed.
+- Angular packages upgrade to >=9
+- NGRX packages upgrade to >=9
+- TypeScript upgrade to `3.8.3`
+- Validators: `TsValidatorsServiceMock` no longer defaults to a Jest spy. It still returns the mock values but it is up
+  to the consumer to spy if needed. ([da5a632](https://github.com/GetTerminus/terminus-ui/commit/da5a632c227196fbef4e9bde776d50deb8b463cc))
+- `TsCohortDateRangeComponent`: Now defaults to empty string values (`''`) rather than `null` as it did before.
+- No longer shipping top level exports. e.g. `import { TsButtonModule } from '@terminus/ui';`. All items must be
+  imported from their specific module: `import { TsButtonModule } from '@terminus/ui/button';`
+- `TsLoginFormComponent`: No longer supports the `triggerFormReset` @Input. A public method called `resetForm()` is now
+  available via the component instance to trigger a form reset.
+
+### Internal
+
+- Updated most `package.json` script names
+- Fully removed TSLint in favor of ESLint
+- Full pass for linting and TypeScript errors.
 
 # [17.1.0](https://github.com/GetTerminus/terminus-ui/compare/v17.0.8...v17.1.0) (2020-03-25)
 
