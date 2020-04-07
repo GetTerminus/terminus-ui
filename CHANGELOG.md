@@ -50,6 +50,8 @@
   imported from their specific module: `import { TsButtonModule } from '@terminus/ui/button';`
 - `TsLoginFormComponent`: No longer supports the `triggerFormReset` @Input. A public method called `resetForm()` is now
   available via the component instance to trigger a form reset.
+- Four dependencies are no longer bundled and must be installed by consumers:
+  - `yarn add text-mask-addons text-mask-core text-mask-core ngx-perfect-scrollbar`
 
 ### Internal
 

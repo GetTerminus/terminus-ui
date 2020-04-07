@@ -220,7 +220,7 @@ $ yarn add @terminus/ui @terminus/ngx-tools
 
 # Peer dependencies that will need to be installed (needed by UI and tools libraries):
 $ yarn add @angular/cdk @angular/material @angular/flex-layout@9.0.0-beta.29 date-fns ngx-perfect-scrollbar \
-  @ngrx/effects @ngrx/store popper.js text-mask-addons text-mask-addons
+  @ngrx/effects @ngrx/store popper.js text-mask-core text-mask-addons
 
 # Optional dependencies (needed if using `TsChartComponent`):
 $ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
