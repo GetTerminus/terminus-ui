@@ -12,31 +12,13 @@
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.12.tgz#fcd73e82ca29718d05fa1342346fc1a294a64475"
   integrity sha512-mK31lSAuZv7EMCioxf9yaOaWgI59TQfSPzc3wBGFsGZTJT4CVFiqY6fggkn8Lpj9U5Hs8pcLIW2XPCZ6X0PVmw==
 
-"@amcharts/amcharts4@4.9.13":
+"@amcharts/amcharts4@4.9.13", "@amcharts/amcharts4@^4.9.0":
   version "4.9.13"
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.9.13.tgz#fb274ac5251a0109124575e74f7ebb2a84721e4d"
   integrity sha512-Sw+W746AhX3SzwgUA9Na3eVSA9EmHkY1beMUwXFt89WGSjQAiSg5nNsvikdfQWEEJXJGhNk2VxQklBb4aQ/Z2g==
   dependencies:
     "@types/regression" "^2.0.0"
     canvg "^3.0.0"
-    css-element-queries "1.2.1"
-    d3-force "^2.0.1"
-    d3-geo "^1.11.3"
-    d3-geo-projection "^2.6.0"
-    pdfmake "^0.1.36"
-    polylabel "^1.0.2"
-    regression "^2.0.1"
-    tslib "^1.9.3"
-    venn.js "^0.2.20"
-    xlsx "^0.15.4"
-
-"@amcharts/amcharts4@^4.5.3":
-  version "4.9.5"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.9.5.tgz#6231f705adb83ef8dfda509155259ddf330dc606"
-  integrity sha512-3W1hBjumBneKQsB6YudRpG4LdoPgBkOdsabBiX2mJFiYyH8YC9/01ExWgxIAWGwaxcvX5Qt5/lHE1OaO3Oeb5Q==
-  dependencies:
-    "@types/regression" "^2.0.0"
-    canvg "^2.0.0"
     css-element-queries "1.2.1"
     d3-force "^2.0.1"
     d3-geo "^1.11.3"
@@ -2108,18 +2090,14 @@
     stylelint-scss "^3.12.0"
     stylelint-selector-no-empty "^1.0.7"
 
-"@terminus/ui@17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-17.1.0.tgz#dc68fb3fbaf1bb418b1c75d9862044249cb40049"
-  integrity sha512-ml7f+NhGMeWY6HlzHa7e0TOI75yLs26k9b0ZaG2+54Xqb5MbMr1pn/EdBbYKO23hBbVGjx5EsuQoasH2pkO7gQ==
-  dependencies:
-    ngx-perfect-scrollbar "8.0.0"
-    text-mask-addons "3.8.0"
-    text-mask-core "5.1.2"
-    tslib "^1.9.0"
+"@terminus/ui@18.1.0":
+  version "18.1.0"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.0.tgz#e66aa5cefa5043befe6d3278759be0e44a1f13c7"
+  integrity sha512-T9FRID0JL2SGGI51DdMBp2VAhKFK+/oDwq5Pf/wbrrqlfprwxncZat1L/rPuTxz88bnKk9qRcN2En1PwZouatQ==
   optionalDependencies:
-    "@amcharts/amcharts4" "^4.5.3"
+    "@amcharts/amcharts4" "^4.9.0"
     "@amcharts/amcharts4-geodata" "^4.1.6"
+    popper.js "^1.16.1"
 
 "@textlint/ast-node-types@^4.0.3":
   version "4.2.5"
@@ -4105,14 +4083,6 @@ canonical-path@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/canonical-path/-/canonical-path-1.0.0.tgz#fcb470c23958def85081856be7a86e904f180d1d"
   integrity sha512-feylzsbDxi1gPZ1IjystzIQZagYYLvfKrSuygUCgf7z6x790VEzze5QEkdSV1U58RA7Hi0+v6fv4K54atOzATg==
-
-canvg@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/canvg/-/canvg-2.0.0.tgz#9ff77bf8837106e358a12fb3d2bf11aeb60e5b46"
-  integrity sha512-PiKa+sjzzAv8HONsBaJZRhZ3eCM5uJkpFgF0rSzcamOrdXdls81ukjNxtz7JYyxucj6WpIkZwk9j7Jku0+ivqQ==
-  dependencies:
-    rgbcolor "^1.0.1"
-    stackblur-canvas "^2.0.0"
 
 canvg@^3.0.0:
   version "3.0.5"
@@ -11999,14 +11969,6 @@ ngx-clipboard@^12.3.1:
     ngx-window-token "^2.0.0"
     tslib "^1.9.0"
 
-ngx-perfect-scrollbar@8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-8.0.0.tgz#19c1bbf9b1a36d89b00a68f7834e39427d29182f"
-  integrity sha512-IXoFbULQnxyJj0gdCcKCLE/6OW9HCP9KARzMCKS1kNxTuzG4DghjM2AaCBRM5/sFwdbn6rqOKMCINtHA8W8YCA==
-  dependencies:
-    perfect-scrollbar "^1.4.0"
-    resize-observer-polyfill "^1.5.0"
-
 ngx-perfect-scrollbar@9.0.0:
   version "9.0.0"
   resolved "https://registry.yarnpkg.com/ngx-perfect-scrollbar/-/ngx-perfect-scrollbar-9.0.0.tgz#361c75010d2a560dd8aaadb799bdf04db5a1824b"
@@ -13398,7 +13360,7 @@ pegjs@^0.10.0:
   resolved "https://registry.yarnpkg.com/pegjs/-/pegjs-0.10.0.tgz#cf8bafae6eddff4b5a7efb185269eaaf4610ddbd"
   integrity sha1-z4uvrm7d/0tafvsYUmnqr0YQ3b0=
 
-perfect-scrollbar@1.5.0, perfect-scrollbar@^1.4.0:
+perfect-scrollbar@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/perfect-scrollbar/-/perfect-scrollbar-1.5.0.tgz#821d224ed8ff61990c23f26db63048cdc75b6b83"
   integrity sha512-NrNHJn5mUGupSiheBTy6x+6SXCFbLlm8fVZh9moIzw/LgqElN5q4ncR4pbCBCYuCJ8Kcl9mYM0NgDxvW+b4LxA==
@@ -13544,7 +13506,7 @@ polylabel@^1.0.2:
   dependencies:
     tinyqueue "^1.1.0"
 
-popper.js@1.16.1:
+popper.js@1.16.1, popper.js@^1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
