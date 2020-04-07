@@ -2108,10 +2108,10 @@
     stylelint-scss "^3.12.0"
     stylelint-selector-no-empty "^1.0.7"
 
-"@terminus/ui@17.1.0":
-  version "17.1.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-17.1.0.tgz#dc68fb3fbaf1bb418b1c75d9862044249cb40049"
-  integrity sha512-ml7f+NhGMeWY6HlzHa7e0TOI75yLs26k9b0ZaG2+54Xqb5MbMr1pn/EdBbYKO23hBbVGjx5EsuQoasH2pkO7gQ==
+"@terminus/ui@17.2.1":
+  version "17.2.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-17.2.1.tgz#ecb00372d3a1cd322a57b8ce006be2b6de4294ca"
+  integrity sha512-kPstpIlQJ54PKlPA0fzcv6dfUPjm6r/ggPugrp27zBrKqnKy6ejj6IWxD/TF6v3wERWo+EGgzbNBJea2dNtmqw==
   dependencies:
     ngx-perfect-scrollbar "8.0.0"
     text-mask-addons "3.8.0"
