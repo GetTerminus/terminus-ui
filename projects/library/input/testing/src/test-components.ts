@@ -364,6 +364,32 @@ export class DateFilter {
   inputComponent!: TsInputComponent;
 }
 
+@Component({
+  template: `
+    <ts-input
+      [dateLocale]="myLocale"
+      [openTo]="myDate"
+      [datepicker]="true"
+    ></ts-input>
+  `,
+})
+export class DateLocale {
+  myDate = new Date(2020, 3, 1);
+  myLocale = 'en-US';
+}
+
+@Component({
+  template: `
+    <ts-input
+      dateLocale="fa"
+      [openTo]="myDate"
+      [datepicker]="true"
+    ></ts-input>
+  `,
+})
+export class DateLocaleForeign {
+  myDate = new Date(2020, 3, 1);
+}
 @Component({ template: `<ts-input [formControl]="formControl"></ts-input>` })
 export class Autofill {
   public formControl = new FormControl();
@@ -454,6 +480,8 @@ export class NoValidationOrHint {
     Autofill,
     Clearable,
     DateFilter,
+    DateLocale,
+    DateLocaleForeign,
     FormControlAttrRequired,
     Hint,
     InputType,

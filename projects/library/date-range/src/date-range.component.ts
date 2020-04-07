@@ -149,6 +149,12 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
   private _dateFormGroup: FormGroup | AbstractControl | undefined;
 
   /**
+   * Define the date locale
+   */
+  @Input()
+  public dateLocale: string | undefined;
+
+  /**
    * Define the max date for the end date
    */
   @Input()

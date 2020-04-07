@@ -31,6 +31,7 @@ import {
 import {
   DateAdapter,
   MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
 } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { TsDocumentService } from '@terminus/ngx-tools/browser';
@@ -142,7 +143,7 @@ export type TsMaskShortcutOptions
 /**
  * Create an array used to verify the passed in shortcut is valid. Used by {@link TsInputComponent}
  */
-const allowedMaskShorcuts: TsMaskShortcutOptions[] = [
+const allowedMaskShortcuts: TsMaskShortcutOptions[] = [
   'currency',
   'date',
   'number',
@@ -159,23 +160,17 @@ const AUTOCOMPLETE_DEFAULT: TsInputAutocompleteTypes = 'on';
 const NUMBER_ONLY_REGEX = /[^0-9]/g;
 const NUMBER_WITH_DECIMAL_REGEX = /[^0-9.]/g;
 const DEFAULT_TEXTAREA_ROWS = 4;
-
+const DEFAULT_DATE_LOCALE = 'en-US';
 
 /**
  * A presentational component to render a text input
- *
- * #### QA CSS CLASSES
- * - `qa-input-label-text`: The label text
- * - `qa-input-text`: The input element
- * - `qa-input-prefix-icon`: The icon element for the prefix icon, if one is set
- * - `qa-input-suffix-icon`: The icon element for the clickable "clear" icon, if this control is clearable
- * - `qa-datepicker-calendar`: The calendar popup for the datepicker
  *
  * @example
  * <ts-input
  *              [autocapitalize]="false"
  *              autocomplete="email"
  *              [dateFilter]="myFilterFunction"
+ *              dateLocale="en-US"
  *              [datepicker]="true"
  *              [formControl]="myForm.get('myControl')"
  *              [hasExternalFormField]="true"
@@ -231,6 +226,10 @@ const DEFAULT_TEXTAREA_ROWS = 4;
     {
       provide: MAT_DATE_FORMATS,
       useValue: TS_DATE_FORMATS,
+    },
+    {
+      provide: MAT_DATE_LOCALE,
+      useValue: DEFAULT_DATE_LOCALE,
     },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -468,6 +467,21 @@ export class TsInputComponent implements TsFormFieldControl<any>, AfterViewInit,
   private _dateFilter: TsDateFilterFunction | undefined;
 
   /**
+   * Allow the date locale to be changed
+   *
+   * @param value
+   */
+  @Input()
+  public set dateLocale(value: string) {
+    this._dateLocale = value ? value : DEFAULT_DATE_LOCALE;
+    this.setDateLocale(this.dateLocale);
+  }
+  public get dateLocale(): string {
+    return this._dateLocale;
+  }
+  private _dateLocale: string = DEFAULT_DATE_LOCALE;
+
+  /**
    * Define if the datepicker should be enabled
    *
    * @param value
@@ -639,7 +653,7 @@ export class TsInputComponent implements TsFormFieldControl<any>, AfterViewInit,
   public set mask(value: TsMaskShortcutOptions | undefined) {
     // Verify value is allowed
     // istanbul ignore else
-    if (value && isDevMode() && (allowedMaskShorcuts.indexOf(value) < 0)) {
+    if (value && isDevMode() && (allowedMaskShortcuts.indexOf(value) < 0)) {
       // eslint-disable-next-line no-console
       console.warn(`TsInputComponent: "${value}" is not an allowed mask. `
       + 'Allowed masks are defined by "TsMaskShortcutOptions".');
@@ -922,6 +936,8 @@ export class TsInputComponent implements TsFormFieldControl<any>, AfterViewInit,
    * After the view is initialized, trigger any needed animations
    */
   public ngAfterViewInit(): void {
+    this.setDateLocale(this.dateLocale);
+
     // Begin monitoring for the input autofill
     this.autofillMonitor.monitor(this.inputElement.nativeElement).subscribe(event => {
       this.autofilled = event.isAutofilled;
@@ -1540,6 +1556,15 @@ export class TsInputComponent implements TsFormFieldControl<any>, AfterViewInit,
     }
   }
 
+  /**
+   * Set a new date locale
+   *
+   * @param newLocale - The locale to set
+   */
+  private setDateLocale(newLocale: string): void {
+    this.dateAdapter.setLocale(newLocale);
+    this.changeDetectorRef.detectChanges();
+  }
 
   /**
    * Manually dirty check the native input `value` property
