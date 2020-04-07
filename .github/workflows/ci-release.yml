@@ -301,6 +301,23 @@ jobs:
           name: built-demos
           path: dist/demo
         if: env.SHOULD_RUN == 'true'
-      - name: Publish
-        run: tooling/ci/demos-deploy-ci.sh
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          repository: GetTerminus/ui-demos-release
+          token: ${{ secrets.GH_TOKEN }}
+        if: env.SHOULD_RUN == 'true'
+      - name: Prepare Demos for Deploy
+        run: tooling/ci/demos-predeploy.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Commit files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Update via release" -a
+        if: env.SHOULD_RUN == 'true'
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
         if: env.SHOULD_RUN == 'true'
