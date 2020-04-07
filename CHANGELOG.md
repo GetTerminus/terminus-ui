@@ -1,3 +1,10 @@
+## [17.2.1](https://github.com/GetTerminus/terminus-ui/compare/v17.2.0...v17.2.1) (2020-04-07)
+
+
+### Bug Fixes
+
+* **CI:** correctly tag v17 ([047bf41](https://github.com/GetTerminus/terminus-ui/commit/047bf41fd54c1115c4fa434b9ba05a24e3c5ae3d))
+
 # [17.2.0](https://github.com/GetTerminus/terminus-ui/compare/v17.1.0...v17.2.0) (2020-04-07)
 
 
