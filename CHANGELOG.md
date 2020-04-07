@@ -1,3 +1,10 @@
+# [18.1.0](https://github.com/GetTerminus/terminus-ui/compare/v18.0.3...v18.1.0) (2020-04-07)
+
+
+### Features
+
+* **Input:** support dynamic locale changes ([d9d5686](https://github.com/GetTerminus/terminus-ui/commit/d9d5686fbe56f0f77c94d1d23aa53b0d5c75f410)), closes [#2108](https://github.com/GetTerminus/terminus-ui/issues/2108)
+
 ## [18.0.3](https://github.com/GetTerminus/terminus-ui/compare/v18.0.2...v18.0.3) (2020-04-06)
 
 
