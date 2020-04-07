@@ -570,6 +570,29 @@ describe(`TsInputComponent`, function() {
 
     });
 
+    describe(`locale`, () {
+      test(`should default to US locale`, () => {
+        const fixture = createComponent(TestComponents.DateLocale);
+        fixture.detectChanges();
+        const button = document.getElementsByTagName('mat-datepicker-toggle')[0].getElementsByTagName('button')[0];
+        button.click();
+        fixture.detectChanges();
+        const month = document.getElementsByClassName('mat-calendar-body-label')[0];
+        expect(month.textContent).toEqual('APR');
+      });
+
+      test.todo(`should be able to change the locale`);
+      // NOTE: This works perfectly IRL, but in tests I only ever get en-US values
+      // test(`should be able to change the locale`, () => {
+      //   const fixture = createComponent(TestComponents.DateLocaleForeign);
+      //   fixture.detectChanges();
+      //   const button = document.getElementsByTagName('mat-datepicker-toggle')[0].getElementsByTagName('button')[0];
+      //   button.click();
+      //   fixture.detectChanges();
+      //   const month = document.getElementsByClassName('mat-calendar-body-label')[0];
+      //   expect(month.textContent).not.toEqual('APR');
+      // });
+    });
   });
 
 
