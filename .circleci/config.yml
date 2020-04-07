@@ -21,7 +21,7 @@ references:
     filters:
       branches:
         only:
-          - /^release$/
+          - /^17.x.x$/
 
   # Filter to run a job on tagged releases.
   # https://circleci.com/docs/2.0/workflows/#using-regular-expressions-to-filter-tags-and-branches
@@ -53,7 +53,7 @@ jobs:
           keys:
             - terminusui-yarn-deps-{{ .Branch }}-{{ checksum "yarn.lock" }}
             - terminusui-yarn-deps-{{ .Branch }}
-            - terminusui-yarn-deps-release
+            - terminusui-yarn-deps-17.x.x
             - terminusui-yarn-deps-
       - run:
           name: Install Dependencies

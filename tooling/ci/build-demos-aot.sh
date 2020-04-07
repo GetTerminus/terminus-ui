@@ -16,4 +16,4 @@ rm -rf node_modules/@terminus/ui/*
 cp -r dist/library/* node_modules/@terminus/ui/
 
 # Build the app with the correct base href
-yarn run build:app:ci --base-href https://getterminus.github.io/ui-demos-release/
+yarn run build:app:ci --base-href https://getterminus.github.io/ui-demos-17.x.x/
