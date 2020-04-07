@@ -1,3 +1,10 @@
+## [18.1.1](https://github.com/GetTerminus/terminus-ui/compare/v18.1.0...v18.1.1) (2020-04-07)
+
+
+### Bug Fixes
+
+* **CI:** remove CircleCI ssh hack ([80d6eae](https://github.com/GetTerminus/terminus-ui/commit/80d6eae3546326961fd6fecc26d3614dbb911ba3))
+
 # [18.1.0](https://github.com/GetTerminus/terminus-ui/compare/v18.0.3...v18.1.0) (2020-04-07)
 
 
