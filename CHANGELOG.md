@@ -1,3 +1,15 @@
+# [17.2.0](https://github.com/GetTerminus/terminus-ui/compare/v17.1.0...v17.2.0) (2020-04-07)
+
+
+### Bug Fixes
+
+* **CI:** update release config ([62aae18](https://github.com/GetTerminus/terminus-ui/commit/62aae181b4dc71b378e5bde5eb99ad51596f6b38))
+
+
+### Features
+
+* **Input:** support date locales ([8d9da10](https://github.com/GetTerminus/terminus-ui/commit/8d9da105f21cf81f9de7543413d1e80e01c7ea83)), closes [#2108](https://github.com/GetTerminus/terminus-ui/issues/2108)
+
 # [17.1.0](https://github.com/GetTerminus/terminus-ui/compare/v17.0.8...v17.1.0) (2020-03-25)
 
 
