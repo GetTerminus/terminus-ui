@@ -207,8 +207,3 @@ workflows:
           <<: *filter_only_release_branch
           requires:
             - generate_docs
-      - deploy_demos:
-          <<: *filter_only_release_branch
-          requires:
-            - build_demos
-            - publish_library
