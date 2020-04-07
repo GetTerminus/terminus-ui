@@ -198,6 +198,12 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   private originalCohorts!: ReadonlyArray<TsDateCohort>;
 
   /**
+   * Define the date locale
+   */
+  @Input()
+  public dateLocale: string | undefined;
+
+  /**
    * Define the max date for the end date
    */
   @Input()
