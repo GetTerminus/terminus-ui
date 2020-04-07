@@ -1,6 +1,7 @@
 <ts-date-range
   class="ts-cohort-date-range__date-range"
   [dateFormGroup]="dateRangeFormGroup"
+  [dateLocale]="dateLocale"
   [isDisabled]="!allowCustomDates || isDisabled"
   (dateRangeChange)="cohortDateRangeChange($event)"
   [startMinDate]="startMinDate"

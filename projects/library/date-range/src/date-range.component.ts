@@ -27,7 +27,6 @@ export interface TsDateRange {
    * The start date of the range
    */
   start: Date | undefined;
-
   /**
    * The end date of the range
    */
@@ -41,6 +40,7 @@ export interface TsDateRange {
  * @example
  * <ts-date-range
  *              [dateFormGroup]="myForm.get('dateRange')"
+ *              dateLocale="fr"
  *              endMaxDate="{{ new Date(2017, 4, 30) }}"
  *              endMinDate="{{ new Date(2017, 4, 1) }}"
  *              [isDisabled]="true"
@@ -135,6 +135,12 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
   public startLabel = 'Start date';
 
   /**
+   * Define the date locale
+   */
+  @Input()
+  public dateLocale: string | undefined;
+
+  /**
    * Define the form group to attach the date range to
    */
   @Input()
@@ -209,7 +215,7 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-  ) { }
+  ) {}
 
 
   /**
@@ -234,21 +240,108 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.setUpFormControlSync();
   }
 
-
   /**
    * Needed for untilComponentDestroyed
    */
   public ngOnDestroy(): void {}
 
+  /**
+   * Emit the selected start date and date range
+   *
+   * @param date
+   */
+  public startDateSelected(date: Date): void {
+    if (date) {
+      this.endMinDate$.next(date);
+
+      // Update the form value if a formGroup was passed in
+      // istanbul ignore else
+      if (this.dateFormGroup && this.startDateControl) {
+        this.startDateControl.setValue(date);
+      }
+
+      this.startSelected.emit(date);
+      this.dateRangeChange.emit(this.dateRange);
+    } else {
+      // If no startDate was selected, reset to the original endMinDate
+      this.endMinDate$.next(this.endMinDate);
+    }
+  }
 
   /**
-   * Set up subscriptions to sync the internat FormControl to the external FormControl
+   * Emit the selected end date and date range
+   *
+   * @param date
+   */
+  public endDateSelected(date: Date): void {
+    if (date) {
+      this.startMaxDate$.next(date);
+
+      // Update the form value if a formGroup was passed in
+      // istanbul ignore else
+      if (this.dateFormGroup && this.endDateControl) {
+        this.endDateControl.setValue(date);
+      }
+
+      this.endSelected.emit(date);
+      this.dateRangeChange.emit(this.dateRange);
+    } else {
+      // If no endDate was selected, reset to the original startMaxDate
+      this.startMaxDate$.next(this.startMaxDate);
+    }
+  }
+
+  /**
+   * Update dates when the start date input receives a blur event
+   *
+   * @param date - The date entered
+   */
+  public startBlur(date: Date | undefined): void {
+    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('startDate') /* istanbul ignore next - Untestable */ : null;
+    const value = date ? date : null;
+
+    // Update the max date for the end date control
+    this.endMinDate$.next(value);
+
+    // Update the consumer's control
+    // istanbul ignore else
+    if (ctrl) {
+      ctrl.setValue(value);
+      ctrl.markAsTouched();
+      ctrl.updateValueAndValidity();
+      this.dateRangeChange.emit(this.dateRange);
+    }
+  }
+
+  /**
+   * Update dates when the end date input receives a blur event
+   *
+   * @param date - The date entered
+   */
+  public endBlur(date: Date | undefined): void {
+    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('endDate') /* istanbul ignore next - Untestable */ : null;
+    const value = date ? date : null;
+
+    // Update the max date for the start date control
+    this.startMaxDate$.next(value);
+
+    // Update the consumer's control
+    // istanbul ignore else
+    if (ctrl) {
+      ctrl.setValue(value);
+      ctrl.markAsTouched();
+      ctrl.updateValueAndValidity();
+      this.dateRangeChange.emit(this.dateRange);
+    }
+  }
+
+  /**
+   * Set up subscriptions to sync the internal FormControl to the external FormControl
    */
   private setUpFormControlSync(): void {
     if (!this.dateFormGroup) {
       return;
     }
-
     const startCtrl = this.dateFormGroup.get('startDate');
     const endCtrl = this.dateFormGroup.get('endDate');
 
@@ -259,7 +352,6 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.detectChanges();
 
     // HACK: This is to fix on an initial load, date range value isn't populating correctly.
-
     this.internalStartControl.setValue(startCtrl.value);
     this.internalEndControl.setValue(endCtrl.value);
 
@@ -284,7 +376,6 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.changeDetectorRef.detectChanges();
   }
 
-
   /**
    * Set up initial min and max dates
    *
@@ -301,101 +392,4 @@ export class TsDateRangeComponent implements OnInit, OnDestroy {
     this.endMinDate$.next(startValueToUse);
     this.startMaxDate$.next(endValueToUse);
   }
-
-
-  /**
-   * Emit the selected start date and date range
-   *
-   * @param datepickerEvent - The event received from the range start event
-   * {@link TsDatepickerComponent}
-   */
-  public startDateSelected(date: Date): void {
-    if (date) {
-      this.endMinDate$.next(date);
-
-      // Update the form value if a formGroup was passed in
-      // istanbul ignore else
-      if (this.dateFormGroup && this.startDateControl) {
-        this.startDateControl.setValue(date);
-      }
-
-      this.startSelected.emit(date);
-      this.dateRangeChange.emit(this.dateRange);
-    } else {
-      // If no startDate was selected, reset to the original endMinDate
-      this.endMinDate$.next(this.endMinDate);
-    }
-  }
-
-
-  /**
-   * Emit the selected end date and date range
-   *
-   * @param datepickerEvent - The event received from the range end event
-   * {@link TsDatepickerComponent}
-   */
-  public endDateSelected(date: Date): void {
-    if (date) {
-      this.startMaxDate$.next(date);
-
-      // Update the form value if a formGroup was passed in
-      // istanbul ignore else
-      if (this.dateFormGroup && this.endDateControl) {
-        this.endDateControl.setValue(date);
-      }
-
-      this.endSelected.emit(date);
-      this.dateRangeChange.emit(this.dateRange);
-    } else {
-      // If no endDate was selected, reset to the original startMaxDate
-      this.startMaxDate$.next(this.startMaxDate);
-    }
-  }
-
-
-  /**
-   * Update dates when the start date input receives a blur event
-   *
-   * @param date - The date entered
-   */
-  public startBlur(date: Date | undefined): void {
-    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('startDate') /* istanbul ignore next - Untestable */ : null;
-    const value = date ? date : null;
-
-    // Update the max date for the end date control
-    this.endMinDate$.next(value);
-
-    // Update the consumer's control
-    // istanbul ignore else
-    if (ctrl) {
-      ctrl.setValue(value);
-      ctrl.markAsTouched();
-      ctrl.updateValueAndValidity();
-      this.dateRangeChange.emit(this.dateRange);
-    }
-  }
-
-
-  /**
-   * Update dates when the end date input receives a blur event
-   *
-   * @param date - The date entered
-   */
-  public endBlur(date: Date | undefined): void {
-    const ctrl = this.dateFormGroup ? this.dateFormGroup.get('endDate') /* istanbul ignore next - Untestable */ : null;
-    const value = date ? date : null;
-
-    // Update the max date for the start date control
-    this.startMaxDate$.next(value);
-
-    // Update the consumer's control
-    // istanbul ignore else
-    if (ctrl) {
-      ctrl.setValue(value);
-      ctrl.markAsTouched();
-      ctrl.updateValueAndValidity();
-      this.dateRangeChange.emit(this.dateRange);
-    }
-  }
-
 }

@@ -70,6 +70,7 @@ let nextUniqueId = 0;
  * <ts-cohort-date-range
  *              [allowCustomDates]="true"
  *              [cohorts]="myCohorts"
+ *              dateLocale="fr"
  *              endMaxDate="{{ new Date(2017, 4, 30) }}"
  *              endMinDate="{{ new Date(2017, 4, 1) }}"
  *              id="myID"
@@ -192,6 +193,12 @@ export class TsCohortDateRangeComponent implements OnInit, OnDestroy {
   }
   private _cohorts: TsDateCohort[];
   private originalCohorts: ReadonlyArray<TsDateCohort>;
+
+  /**
+   * Define the date locale
+   */
+  @Input()
+  public dateLocale: string | undefined;
 
   /**
    * Define the max date for the end date
