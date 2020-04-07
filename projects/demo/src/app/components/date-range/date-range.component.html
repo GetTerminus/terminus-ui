@@ -11,6 +11,8 @@
   <button (click)="updateStartDate()">Update start date</button>
   <br>
   <button (click)="printRange(myForm.value)">Print Range</button>
+  <br>
+  <button (click)="changeLocale()">Toggle locale to {{ locale === 'fr' ? 'en-US' : 'fr' }}</button>
 </ts-card>
 
 
@@ -19,6 +21,7 @@
 
     <ts-date-range
       [dateFormGroup]="myForm.get('dateRange')"
+      [dateLocale]="locale"
       (dateRangeChange)="printRange(myForm.value)"
     ></ts-date-range>
 

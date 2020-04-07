@@ -19,6 +19,7 @@ date2.setDate(date2.getDate() + 5);
   templateUrl: './date-range.component.html',
 })
 export class DateRangeComponent implements OnInit {
+  locale = 'en-US';
   myMin: Date = new Date(2017, 4, 2);
   /*
    *initialStart: Date = new Date(2017, 4, 5);
@@ -77,6 +78,10 @@ export class DateRangeComponent implements OnInit {
         ctrl.enable();
       }
     }
+  }
+
+  changeLocale(): void {
+    this.locale = (this.locale === 'en-US') ? 'fr' : 'en-US';
   }
 
 }

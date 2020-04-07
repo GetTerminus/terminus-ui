@@ -6,6 +6,7 @@
 >
   <ts-input
     class="c-date-range--start qa-date-range-start-datepicker"
+    [dateLocale]="dateLocale"
     [formControl]="internalStartControl"
     [label]="startLabel"
     [maxDate]="startMaxDate$ | async"
@@ -26,6 +27,7 @@
 
   <ts-input
     class="c-date-range--end qa-date-range-end-datepicker"
+    [dateLocale]="dateLocale"
     [formControl]="internalEndControl"
     [label]="endLabel"
     [maxDate]="endMaxDate"
