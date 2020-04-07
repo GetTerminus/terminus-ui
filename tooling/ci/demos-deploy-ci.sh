@@ -8,8 +8,6 @@
 
 # Clone the demo repo
 cd "$HOME" || exit
-# HACK: Avoid hosts unknown for GitHub: https://discuss.circleci.com/t/git-clone-fails-in-circle-2-0/15211
-mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
 git clone git@github.com:GetTerminus/ui-demos-release.git
 
 # Enter the demos repo
