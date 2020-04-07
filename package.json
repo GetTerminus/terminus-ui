@@ -227,7 +227,7 @@
     "eslint-plugin-deprecation": "1.0.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jsdoc": "22.1.0",
-    "eslint-plugin-prefer-arrow": "1.1.7",
+    "eslint-plugin-prefer-arrow": "1.2.0",
     "execa": "4.0.0",
     "glob": "7.1.6",
     "global": "4.4.0",
