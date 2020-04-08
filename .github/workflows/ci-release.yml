@@ -310,7 +310,7 @@ jobs:
       - name: TEMP_DEBUG Log Dir
         run: |
           ls -a
-          cd ../ui-demos-release || true
+          cd ../
           ls -a
         if: env.SHOULD_RUN == 'true'
       - name: Prepare Demos for Deploy
