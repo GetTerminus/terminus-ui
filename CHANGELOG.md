@@ -1,3 +1,10 @@
+## [18.1.5](https://github.com/GetTerminus/terminus-ui/compare/v18.1.4...v18.1.5) (2020-04-08)
+
+
+### Bug Fixes
+
+* **CI:** try logging dirs ([714191a](https://github.com/GetTerminus/terminus-ui/commit/714191acf5e560618a95bee0300d5135114e91fe))
+
 ## [18.1.4](https://github.com/GetTerminus/terminus-ui/compare/v18.1.3...v18.1.4) (2020-04-08)
 
 
