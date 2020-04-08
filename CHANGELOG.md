@@ -1,3 +1,10 @@
+## [18.1.2](https://github.com/GetTerminus/terminus-ui/compare/v18.1.1...v18.1.2) (2020-04-08)
+
+
+### Bug Fixes
+
+* **CI:** attempt new demo deploy flow ([98ce538](https://github.com/GetTerminus/terminus-ui/commit/98ce53844207580a82179c8ede7d1bc625e641d4))
+
 ## [18.1.1](https://github.com/GetTerminus/terminus-ui/compare/v18.1.0...v18.1.1) (2020-04-07)
 
 
