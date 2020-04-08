@@ -281,7 +281,7 @@ jobs:
     needs: [demos_build, library_release]
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout library repo
         uses: actions/checkout@v2
       - name: Set SHOULD_RUN flag
         run: |
@@ -301,11 +301,17 @@ jobs:
           name: built-demos
           path: dist/demo
         if: env.SHOULD_RUN == 'true'
-      - name: Checkout repo
+      - name: Checkout ui-demos-release repo
         uses: actions/checkout@v2
         with:
           repository: GetTerminus/ui-demos-release
           token: ${{ secrets.GH_TOKEN }}
+        if: env.SHOULD_RUN == 'true'
+      - name: TEMP_DEBUG Log Dir
+        run: |
+          ls -a
+          cd ../ui-demos-release || true
+          ls -a
         if: env.SHOULD_RUN == 'true'
       - name: Prepare Demos for Deploy
         run: tooling/ci/demos-predeploy.sh
