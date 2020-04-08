@@ -309,9 +309,12 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: TEMP_DEBUG Log Dir
         run: |
+          echo "LIST current:"
           ls -a
-          cd ../
-          ls -a
+          echo "LIST up one:"
+          ls -a ../
+          echo "LIST up two:"
+          ls -a ../../
         if: env.SHOULD_RUN == 'true'
       - name: Prepare Demos for Deploy
         run: tooling/ci/demos-predeploy.sh
