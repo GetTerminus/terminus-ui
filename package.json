@@ -242,7 +242,7 @@
     "gulp-sourcemaps": "2.6.5",
     "gulp-strip-json-comments": "4.0.1",
     "husky": "4.2.3",
-    "jest": "25.2.7",
+    "jest": "25.3.0",
     "jest-create-mock-instance": "1.1.0",
     "jest-junit": "10.0.0",
     "jest-preset-angular": "8.1.3",
