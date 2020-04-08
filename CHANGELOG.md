@@ -1,3 +1,10 @@
+## [18.1.4](https://github.com/GetTerminus/terminus-ui/compare/v18.1.3...v18.1.4) (2020-04-08)
+
+
+### Bug Fixes
+
+* **CI:** try moving out a directory ([2e67ff2](https://github.com/GetTerminus/terminus-ui/commit/2e67ff21fba8be4f77f79e297c51fc91911f144b))
+
 ## [18.1.3](https://github.com/GetTerminus/terminus-ui/compare/v18.1.2...v18.1.3) (2020-04-08)
 
 
