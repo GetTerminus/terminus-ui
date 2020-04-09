@@ -1,3 +1,11 @@
+## [18.1.6](https://github.com/GetTerminus/terminus-ui/compare/v18.1.5...v18.1.6) (2020-04-09)
+
+
+### Bug Fixes
+
+* **Packages:** update entry points for ngx-tools ([39660a0](https://github.com/GetTerminus/terminus-ui/commit/39660a0446188217ed93ce56268e37ff3260cb28))
+* **Packages:** update ngx-tools dependency for Angular 9 ([cd7ebb9](https://github.com/GetTerminus/terminus-ui/commit/cd7ebb9a0c7c0313748aab56c2fe3763e321c699))
+
 ## [18.1.5](https://github.com/GetTerminus/terminus-ui/compare/v18.1.4...v18.1.5) (2020-04-08)
 
 
