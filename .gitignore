@@ -1,3 +1,4 @@
+cypress/videos/*
 .idea/
 .vscode/
 dist/

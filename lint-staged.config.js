@@ -12,6 +12,7 @@ const IGNORE = [
 module.exports = {
   // Target all TS & JS files
   '**/*.{js,ts}': filenames => {
+    filenames = removeDirectories(filenames);
     const escapedFileNames = filenames.map(filename => `"${escape([filename])}"`).join(' ');
     return [
       `eslint --fix ${filenames.map(f => `"${f}"`).join(' ')}`,
@@ -46,16 +47,14 @@ module.exports = {
 
 
 /**
- * Function to remove any testing or demo files and return a string containing all file names
+ * Function to remove any testing or demo files and return an array containing all file names
  *
  * @param files
- * @returns fileNames
+ * @returns Array
  */
-function removeDirectories(files) {
-  const match = micromatch.not(files, [
-    ...IGNORE,
-    '**/testing/**',
-    '**/demo/**',
-  ]);
-  return match.join(' ');
-}
+const removeDirectories = files => micromatch.not(files, [
+  ...IGNORE,
+  '**/testing/**',
+  '**/demo/**',
+  '**/cypress/**',
+]);
