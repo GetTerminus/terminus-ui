@@ -267,7 +267,7 @@
     "semantic-release": "15.13.24",
     "shell-quote": "^1.7.2",
     "start-server-and-test": "^1.10.11",
-    "stylelint": "13.3.0",
+    "stylelint": "13.3.1",
     "stylelint-order": "4.0.0",
     "systemjs": "6.2.6",
     "tsickle": "0.38.1",
