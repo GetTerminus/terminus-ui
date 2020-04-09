@@ -244,7 +244,7 @@
     "gulp-sass": "4.0.2",
     "gulp-sourcemaps": "2.6.5",
     "gulp-strip-json-comments": "4.0.1",
-    "husky": "4.2.3",
+    "husky": "4.2.5",
     "jest": "25.2.7",
     "jest-create-mock-instance": "1.1.0",
     "jest-junit": "10.0.0",
