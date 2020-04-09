@@ -2146,12 +2146,10 @@
     "@typescript-eslint/eslint-plugin" "2.25.0"
     "@typescript-eslint/parser" "2.25.0"
 
-"@terminus/ngx-tools@7.4.0":
-  version "7.4.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-7.4.0.tgz#b84a8e274bccc95839cf60155e9daaee430d3a58"
-  integrity sha512-Xygd9Day8qRlO+r4nZsqkJbReu/ryqyR/Z8s8cUACXJ4q4h5aEcqqviCAqsIa7bKvCAzATJsZR+E1Hx57ehFFw==
-  dependencies:
-    tslib "^1.9.0"
+"@terminus/ngx-tools@8.0.1":
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-8.0.1.tgz#14443bb3ccc5b1ee0bcd975a55ce71b0cdc14568"
+  integrity sha512-dUPXk+z9naI8kXB5aDw9ee13o9RjCzK2bBQVvW9NLKm98x9c4vTkGH7r8gEa/gXxJqJIVB/liz+VvzK6AUdnlQ==
 
 "@terminus/stylelint-config-frontend@1.1.3":
   version "1.1.3"
@@ -2167,10 +2165,10 @@
     stylelint-scss "^3.12.0"
     stylelint-selector-no-empty "^1.0.7"
 
-"@terminus/ui@18.1.0":
-  version "18.1.0"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.0.tgz#e66aa5cefa5043befe6d3278759be0e44a1f13c7"
-  integrity sha512-T9FRID0JL2SGGI51DdMBp2VAhKFK+/oDwq5Pf/wbrrqlfprwxncZat1L/rPuTxz88bnKk9qRcN2En1PwZouatQ==
+"@terminus/ui@18.1.5":
+  version "18.1.5"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.5.tgz#bdf33dd648c3dfd81ca99915e608912306dde555"
+  integrity sha512-kuoVTmMEwQJHib18fHVT0zYJ/7fREEixtYAa3nrm/tCgJ/8GBTTIF+A003sKeUD7PQ6rMkPlJLcrlVCngebIJA==
   optionalDependencies:
     "@amcharts/amcharts4" "^4.9.0"
     "@amcharts/amcharts4-geodata" "^4.1.6"

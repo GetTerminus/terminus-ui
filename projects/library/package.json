@@ -54,7 +54,7 @@
     "@angular/material": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
     "@angular/router": "^9.0.0",
-    "@terminus/ngx-tools": ">=7.0.0",
+    "@terminus/ngx-tools": ">=8.0.0",
     "@ngrx/effects": "9.0.0",
     "@ngrx/store": "9.0.0",
     "date-fns": "^2.0.1",
