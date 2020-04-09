@@ -4,7 +4,7 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
-import { isString } from '@terminus/ngx-tools';
+import { isString } from '@terminus/ngx-tools/type-guards';
 import { TsStyleThemeTypes } from '@terminus/ui/utilities';
 
 

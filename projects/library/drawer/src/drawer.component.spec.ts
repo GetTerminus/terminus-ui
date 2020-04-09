@@ -15,7 +15,7 @@ import {
 import { MatRippleModule } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { KEYS } from '@terminus/ngx-tools';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   dispatchKeyboardEvent,

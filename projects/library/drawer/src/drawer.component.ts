@@ -15,11 +15,11 @@ import {
   Renderer2,
   ViewEncapsulation,
 } from '@angular/core';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   isUnset,
-  KEYS,
   untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+} from '@terminus/ngx-tools/utilities';
 import {
   fromEvent,
   Observable,
