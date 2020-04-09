@@ -192,3 +192,51 @@ jobs:
           path: dist/demo
         if: env.SHOULD_RUN == 'true'
 
+  #
+  # Run integration test
+  #
+  integration_test:
+    name: Run integration test
+    needs: demos_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Set SHOULD_RUN flag
+        run: |
+          if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
+            echo "::set-env name=SHOULD_RUN::false"
+          else
+            echo "::set-env name=SHOULD_RUN::true"
+          fi
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - if: env.SHOULD_RUN == 'true'
+        run: yarn add start-server-and-test
+      - name: Download built library
+        uses: actions/download-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+      - name: Download built demo
+        uses: actions/download-artifact@v1
+        with:
+          name: builtDemo
+          path: dist/demo
+        if: env.SHOULD_RUN == 'true'
+      - name: Run integration test
+        run: yarn library:test:integration
+        if: env.SHOULD_RUN == 'true'
