@@ -2165,10 +2165,10 @@
     stylelint-scss "^3.12.0"
     stylelint-selector-no-empty "^1.0.7"
 
-"@terminus/ui@18.1.5":
-  version "18.1.5"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.5.tgz#bdf33dd648c3dfd81ca99915e608912306dde555"
-  integrity sha512-kuoVTmMEwQJHib18fHVT0zYJ/7fREEixtYAa3nrm/tCgJ/8GBTTIF+A003sKeUD7PQ6rMkPlJLcrlVCngebIJA==
+"@terminus/ui@18.1.6":
+  version "18.1.6"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.6.tgz#01b50677dfa1749adc42ac23beae9cd9dacabb90"
+  integrity sha512-8EtF4j0BDQRVnHXesqq7teOKptIw9yn9Vs5aYx4h52PjSyiw8SEXhaF2QA8Nj1MexzRZ6Eyza3qoI5sXMjVcKg==
   optionalDependencies:
     "@amcharts/amcharts4" "^4.9.0"
     "@amcharts/amcharts4-geodata" "^4.1.6"
