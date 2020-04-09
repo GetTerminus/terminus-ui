@@ -15,10 +15,8 @@ import {
   SimpleChange,
   ViewContainerRef,
 } from '@angular/core';
-import {
-  KEYS,
-  untilComponentDestroyed,
-} from '@terminus/ngx-tools';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 import { fromEvent } from 'rxjs';
 import { filter } from 'rxjs/operators';

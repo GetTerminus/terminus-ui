@@ -11,7 +11,7 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { KEYS } from '@terminus/ngx-tools';
+import { KEYS } from '@terminus/ngx-tools/keycodes';
 import {
   createComponent as createComponentInner,
   dispatchEvent,

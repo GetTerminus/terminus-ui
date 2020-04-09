@@ -19,7 +19,7 @@ import {
   DomSanitizer,
   SafeHtml,
 } from '@angular/platform-browser';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import {
   TsPaginatorComponent,
   TsPaginatorMenuItem,

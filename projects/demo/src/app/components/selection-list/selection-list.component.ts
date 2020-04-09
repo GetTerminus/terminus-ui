@@ -4,7 +4,7 @@ import {
   OnInit,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { untilComponentDestroyed } from '@terminus/ngx-tools';
+import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 import { TsSelectionListChange } from '@terminus/ui/selection-list';
 import {
   BehaviorSubject,
