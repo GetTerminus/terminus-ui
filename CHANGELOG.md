@@ -1,3 +1,10 @@
+## [18.1.8](https://github.com/GetTerminus/terminus-ui/compare/v18.1.7...v18.1.8) (2020-04-10)
+
+
+### Bug Fixes
+
+* **Packages:** upgrade semantic-release ([d4486fa](https://github.com/GetTerminus/terminus-ui/commit/d4486fa984b9d68dcc602b92059e286c8f379ffe)), closes [#2089](https://github.com/GetTerminus/terminus-ui/issues/2089)
+
 ## [18.1.7](https://github.com/GetTerminus/terminus-ui/compare/v18.1.6...v18.1.7) (2020-04-10)
 
 
