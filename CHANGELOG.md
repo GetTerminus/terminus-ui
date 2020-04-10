@@ -1,3 +1,10 @@
+## [18.1.7](https://github.com/GetTerminus/terminus-ui/compare/v18.1.6...v18.1.7) (2020-04-10)
+
+
+### Bug Fixes
+
+* **CI:** final tweaks for Ivy ([1d5c0cc](https://github.com/GetTerminus/terminus-ui/commit/1d5c0ccaa8a6b4e525170e36fcfafa0cc8d7bf87))
+
 ## [18.1.6](https://github.com/GetTerminus/terminus-ui/compare/v18.1.5...v18.1.6) (2020-04-09)
 
 
