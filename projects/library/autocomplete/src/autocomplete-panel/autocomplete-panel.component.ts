@@ -27,6 +27,7 @@ import {
 export class TsAutocompletePanelSelectedEvent {
   constructor(
     // Reference to the autocomplete panel that emitted the event
+    // eslint-disable-next-line deprecation/deprecation
     public source: TsAutocompletePanelComponent,
     // The option that was selected
     public option: TsOptionComponent,
@@ -40,8 +41,7 @@ let nextUniqueId = 0;
 /**
  * The panel used to display autocomplete options when {@link TsOptionComponent} is in autocomplete mode.
  *
- * #### QA CSS CLASSES
- * - `qa-autocomplete-panel`: The panel container
+ * @deprecated Please use `TsSelectionListPanel`
  *
  * @example
  * <ts-autocomplete-panel
@@ -58,6 +58,7 @@ let nextUniqueId = 0;
   providers: [
     {
       provide: TS_OPTION_PARENT_COMPONENT,
+      // eslint-disable-next-line deprecation/deprecation
       useExisting: TsAutocompletePanelComponent,
     },
   ],

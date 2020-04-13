@@ -8,6 +8,8 @@ import {
   TsOptionComponent,
 } from '@terminus/ui/option';
 
+/* eslint-disable deprecation/deprecation */
+
 /**
  * Get the DebugElement for a TsAutocompleteComponent
  *

@@ -8,6 +8,8 @@ import {
 } from '@terminus/ui/option';
 import { TsSelectComponent } from '@terminus/ui/select';
 
+/* eslint-disable deprecation/deprecation */
+
 /**
  * Create a mock keydown event
  *
