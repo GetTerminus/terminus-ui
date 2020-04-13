@@ -97,6 +97,8 @@ let nextUniqueId = 0;
 /**
  * A directive that adds autocomplete trigger functionality to an input. Used in {@link TsSelectComponent}.
  *
+ * @deprecated Please use `TsSelectionListTrigger`
+ *
  * @example
  * <ts-input
  *              [tsAutocompleteTrigger]="myReferenceToAutocompletePanel"
@@ -125,6 +127,7 @@ let nextUniqueId = 0;
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
+      // eslint-disable-next-line deprecation/deprecation
       useExisting: forwardRef(() => TsAutocompleteTriggerDirective),
       multi: true,
     },
@@ -289,6 +292,7 @@ export class TsAutocompleteTriggerDirective<ValueType = string> implements Contr
   // Note: Renaming as prefixed name does not add clarity
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tsAutocompleteTrigger')
+  // eslint-disable-next-line deprecation/deprecation
   public autocompletePanel!: TsAutocompletePanelComponent;
 
   /**

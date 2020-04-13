@@ -45,7 +45,6 @@ module.exports = {
   ],
 
   scopes: [
-    { name: 'Autocomplete' },
     { name: 'Autofocus' },
     { name: 'Button' },
     { name: 'Card' },
@@ -76,7 +75,6 @@ module.exports = {
     { name: 'RadioGroup' },
     { name: 'Scrollbars' },
     { name: 'Search' },
-    { name: 'Select' },
     { name: 'SelectionList' },
     { name: 'Services' },
     { name: 'SCSS' },

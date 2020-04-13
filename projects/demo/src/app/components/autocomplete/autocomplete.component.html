@@ -1,4 +1,3 @@
-
 <ts-card tsVerticalSpacing fxFlex>
   <form
     novalidate
@@ -6,6 +5,11 @@
     fxLayout.gt-sm="row"
     fxLayoutGap="1rem"
   >
+    <aside class="deprecated" tsVerticalSpacing>
+      <h2>🚨 DEPRECATED 🚨</h2>
+      <p>Please use <a [routerLink]="['/components/selection-list']">TsSelectionList</a>.</p>
+    </aside>
+
     <h3 tsCardTitle tsVerticalSpacing="small--1">
       Autocomplete (multiple)
     </h3>

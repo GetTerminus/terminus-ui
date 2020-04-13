@@ -119,7 +119,7 @@ export type TsSelectFormatFn = (v: unknown) => string;
 /**
  * Used to sort selected options.
  *
- * Function used to sort the values ina aselect in multiple mode. Follows the same logic as `Array.prototype.sort`.
+ * Function used to sort the values in a select in multiple mode. Follows the same logic as `Array.prototype.sort`.
  */
 export type TsSelectSortComparatorFunction = (
   a: TsOptionComponent,
@@ -151,6 +151,7 @@ export const TS_SELECT_PANEL_VIEWPORT_PADDING = 8;
 export class TsSelectChange<T = string | string[]> {
   constructor(
     // Reference to the select that emitted the change event
+    // eslint-disable-next-line deprecation/deprecation
     public source: TsSelectComponent,
     // The current value
     public value: T,
@@ -173,13 +174,7 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
 /**
  * A component to create a select menu
  *
- * #### QA CSS CLASSES
- * - `qa-select-trigger`: The trigger that opens the select
- * - `qa-select-value-text`: The container for the select trigger text content
- * - `qa-select-arrow-wrapper`: The container for the select arrow
- * - `qa-select-panel`: The panel for select options
- * - `qa-select-toggle-all`: The checkbox to toggle all selections
- * - `qa-select-selected-count`: The current count of selected items
+ * @deprecated Please use `TsSelectionListComponent`
  *
  * @example
  * <ts-select
@@ -236,10 +231,12 @@ const DEFAULT_VIEWPORT_MARGIN = 100;
   providers: [
     {
       provide: TsFormFieldControl,
+      // eslint-disable-next-line deprecation/deprecation
       useExisting: TsSelectComponent,
     },
     {
       provide: TS_OPTION_PARENT_COMPONENT,
+      // eslint-disable-next-line deprecation/deprecation
       useExisting: TsSelectComponent,
     },
     // Since we handle all option selection/deselection functionality we tell the underlying MatCheckbox to do nothing on click.
@@ -466,7 +463,9 @@ export class TsSelectComponent implements
   /**
    * Access the user-supplied override of the trigger element
    */
+  // eslint-disable-next-line deprecation/deprecation
   @ContentChild(TsSelectTriggerComponent)
+  // eslint-disable-next-line deprecation/deprecation
   public customTrigger: TsSelectTriggerComponent | undefined;
 
   /**

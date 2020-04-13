@@ -73,6 +73,7 @@ const DEFAULT_DEBOUNCE_DELAY = 200;
  */
 export class TsAutocompleteChange<T = unknown> {
   constructor(
+    // eslint-disable-next-line deprecation/deprecation
     public source: TsAutocompleteComponent,
     public value: T,
   ) { }
@@ -83,6 +84,8 @@ export type TsAutocompleteComparator = (a: unknown, b: unknown) => boolean;
 
 /**
  * The autocomplete UI Component
+ *
+ * @deprecated Please use `TsSelectionListComponent`
  *
  * @example
  * <ts-autocomplete
@@ -123,10 +126,12 @@ export type TsAutocompleteComparator = (a: unknown, b: unknown) => boolean;
   providers: [
     {
       provide: TsFormFieldControl,
+      // eslint-disable-next-line deprecation/deprecation
       useExisting: TsAutocompleteComponent,
     },
     {
       provide: TS_OPTION_PARENT_COMPONENT,
+      // eslint-disable-next-line deprecation/deprecation
       useExisting: TsAutocompleteComponent,
     },
   ],
@@ -228,12 +233,15 @@ export class TsAutocompleteComponent implements OnInit,
    * Access the trigger
    */
   @ViewChild('auto', { static: true })
+  // eslint-disable-next-line deprecation/deprecation
   public autocompletePanel!: TsAutocompletePanelComponent;
 
   /**
    * Access the trigger
    */
+  // eslint-disable-next-line deprecation/deprecation
   @ViewChild(TsAutocompleteTriggerDirective)
+  // eslint-disable-next-line deprecation/deprecation
   public autocompleteTrigger!: TsAutocompleteTriggerDirective;
 
   /**

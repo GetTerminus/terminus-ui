@@ -12,6 +12,8 @@ let nextUniqueId = 0;
 
 /**
  * Allows the user to customize the trigger that is displayed when the select has a value.
+ *
+ * @deprecated Please use `TsSelectionListTriggerDirective`
  */
 @Component({
   selector: 'ts-select-trigger',

@@ -70,8 +70,7 @@ best for the Terminus UI specifically.
 
 ## Documentation
 
-The [available features table](#available-features) contains links for functional and usage documentation
-for each feature.
+The [available features](#available-features) table contains links for functional and usage documentation for each feature.
 
 ### Versioned Documentation and Demos
 
@@ -88,32 +87,28 @@ for each feature.
 
 ### Components
 
-| Feature                                    | Notes                                                     | Status             | Demo                            | Docs                           | Usage                            |
+|                  Feature                   |                           Notes                           |       Status       |              Demo               |              Docs              |              Usage               |
 |--------------------------------------------|-----------------------------------------------------------|:------------------:|---------------------------------|--------------------------------|----------------------------------|
-| alert                                      |                                                           |                    |                                 |                                |                                  |
-| [autocomplete][src-autocomplete]           | An input with suggestions                                 | :white_check_mark: | [Demo][demo-autocomplete]       | [Docs][autocomplete-docs]      | [Usage][autocomplete-usage]      |
+| autocomplete                               | Deprecated. See `selection-list`                          |      :hankey:      | [Demo][demo-autocomplete]       | [Docs][autocomplete-docs]      | [Usage][autocomplete-usage]      |
 | [autofocus][src-autofocus]                 | Focus a focusable element on load                         | :white_check_mark: | [Demo][demo-autofocus]          | [Docs][autofocus-docs]         | [Usage][autofocus-usage]         |
-| badge                                      |                                                           |                    |                                 |                                |                                  |
+| badge                                      | See `chip`                                                | :white_check_mark: | [Demo][demo-chip]               |                                |                                  |
 | [button][src-button]                       |                                                           | :white_check_mark: | [Demo][demo-button]             | [Docs][button-docs]            |                                  |
-| breadcrumbs                                |                                                           |                    |                                 |                                |                                  |
-| [card][src-card]                           |                                                           | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]              | [Usage][card-usage]              |
+| [card][src-card]                           | Presentational card                                       | :white_check_mark: | [Demo][demo-card]               | [Docs][card-docs]              | [Usage][card-usage]              |
 | [chart][src-chart]                         | Charts, graphs etc                                        | :white_check_mark: | [Demo][demo-chart]              | [Docs][chart-docs]             | [Usage][chart-usage]             |
 | [chip][src-chip]                           | Chip                                                      | :white_check_mark: | [Demo][demo-chip]               | [Docs][chip-docs]              | [Usage][chip-usage]              |
 | [checkbox][src-checkbox]                   |                                                           | :white_check_mark: | [Demo][demo-checkbox]           | [Docs][checkbox-docs]          | [Usage][checkbox-usage]          |
 | [cohort-date-range][src-cohort-date-range] | CohortDateRange                                           | :white_check_mark: | [Demo][demo-cohort-date-range]  | [Docs][cohort-date-range-docs] | [Usage][cohort-date-range-usage] |
 | [confirmation][src-confirmation]           | Add a confirmation step to any `ts-button`                | :white_check_mark: | [Demo][demo-confirmation]       | [Docs][confirmation-docs]      | [Usage][confirmation-usage]      |
-| [copy][src-copy]                           |                                                           | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]              | [Usage][copy-usage]              |
+| [copy][src-copy]                           | Component to easily copy string values                    | :white_check_mark: | [Demo][demo-copy]               | [Docs][copy-docs]              | [Usage][copy-usage]              |
 | [csv entry][src-csv-entry]                 | Manually enter CSV values                                 | :white_check_mark: | [Demo][demo-csv-entry]          | [Docs][csv-entry-docs]         | [Usage][csv-entry-usage]         |
 | [datepicker][src-input]                    | See `TsInputComponent`                                    | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]             | [Usage][input-usage]             |
 | [date-range][src-date-range]               | Dual inputs with calendar pop-ups                         | :white_check_mark: | [Demo][demo-date-range]         | [Docs][date-range-docs]        | [Usage][date-range-usage]        |
-| dialog                                     |                                                           |                    |                                 |                                |                                  |
-| divider                                    |                                                           |                    |                                 |                                |                                  |
-| [drawer][src-drawer]                       | Drawer                                                    | :white_check_mark: | [Demo][demo-drawer]             | [Docs][drawer-docs]            | [Usage][drawer-usage]            |
+| [drawer][src-drawer]                       | Slide-out drawer panel                                    | :white_check_mark: | [Demo][demo-drawer]             | [Docs][drawer-docs]            | [Usage][drawer-usage]            |
 | [expansion-panel][src-expansion-panel]     | Expansion panel with accordion & stepper functionality    | :white_check_mark: | [Demo][demo-expansion-panel]    | [Docs][expansion-panel-docs]   | [Usage][expansion-panel-usage]   |
 | [file-upload][src-file-upload]             | File upload with drag and drop                            | :white_check_mark: | [Demo][demo-file-upload]        | [Docs][file-upload-docs]       | [Usage][file-upload-usage]       |
 | [icon][src-icon]                           | Supported icons: https://material.io/icons                | :white_check_mark: | [Demo][demo-icon]               | [Docs][icon-docs]              | [Usage][icon-usage]              |
-| [icon-button][src-button]                  |                                                           | :white_check_mark: | [Demo][demo-icon-button]        | [Docs][icon-button-docs]       | [Usage][icon-button-usage]       |
-| [input][src-input]                         |                                                           | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]             | [Usage][input-usage]             |
+| [icon-button][src-icon-button]             | Icon only button                                          | :white_check_mark: | [Demo][demo-icon-button]        | [Docs][icon-button-docs]       | [Usage][icon-button-usage]       |
+| [input][src-input]                         | Input with masking, datepicker, etc                       | :white_check_mark: | [Demo][demo-input]              | [Docs][input-docs]             | [Usage][input-usage]             |
 | [link][src-link]                           |                                                           | :white_check_mark: | [Demo][demo-link]               | [Docs][link-docs]              | [Usage][link-usage]              |
 | [loading overlay][src-loading-overlay]     | Overlay with loading spinner                              | :white_check_mark: | [Demo][demo-loading-overlay]    | [Docs][loading-overlay-docs]   |                                  |
 | [login form][src-login-form]               | Email/password with 'remember me' checkbox                | :white_check_mark: | [Demo][demo-log-in-form]        | [Docs][login-form-docs]        | [Usage][login-form-usage]        |
@@ -122,20 +117,19 @@ for each feature.
 | [navigation][src-navigation]               | Global navigation menu                                    | :white_check_mark: | [Demo][demo-navigation]         | [Docs][navigation-docs]        | [Usage][navigation-usage]        |
 | [paginator][src-paginator]                 | Paging controls for collections                           | :white_check_mark: | [Demo][demo-paginator]          | [Docs][paginator-docs]         | [Usage][paginator-usage]         |
 | [pipes][src-pipes]                         | A collection of pipes for Angular                         | :white_check_mark: | [Demo][demo-pipes]              | [Docs][pipes-docs]             |                                  |
-| [popover][src-popover]                     | Popover                                                   | :white_check_mark: | [Demo][demo-popover]            | [Docs][popover-docs]           | [Usage][popover-usage]           |
-| progress                                   |                                                           |                    |                                 |                                |                                  |
+| [popover][src-popover]                     | Popover with templates                                    | :white_check_mark: | [Demo][demo-popover]            | [Docs][popover-docs]           | [Usage][popover-usage]           |
 | [radio-group][src-radio-group]             |                                                           | :white_check_mark: | [Demo][demo-radio-group]        | [Docs][radio-group-docs]       | [Usage][radio-group-usage]       |
-| [scrollbars][src-scrollbars]               | Custom scrollars for both axis'                           | :white_check_mark: | [Demo][demo-scrollbars]         | [Docs][scrollbars-docs]        | [Usage][scrollbars-usage]        |
+| [scrollbars][src-scrollbars]               | Custom scrollbars for both axis'                          | :white_check_mark: | [Demo][demo-scrollbars]         | [Docs][scrollbars-docs]        | [Usage][scrollbars-usage]        |
 | [search][src-search]                       | Input with search capabilities                            | :white_check_mark: | [Demo][demo-search]             | [Docs][search-docs]            |                                  |
-| [select][src-select]                       | Classic select menu with optgroup support                 | :white_check_mark: | [Demo][demo-select]             | [Docs][select-docs]            | [Usage][select-usage]            |
+| select                                     | Deprecated. See `selection-list`                          |      :hankey:      | [Demo][demo-select]             | [Docs][select-docs]            | [Usage][select-usage]            |
 | [selection-list][src-selection-list]       | Classic select dropdown / autocomplete                    | :white_check_mark: | [Demo][demo-selection-list]     | [Docs][selection-list-docs]    | [Usage][selection-list-usage]    |
 | [spacing][src-spacing]                     | Helpers for consistent spacing                            | :white_check_mark: | [Demo][demo-spacing]            | [Docs][spacing-docs]           |                                  |
 | [sort][src-sort]                           | Used by `table` for column sorting                        | :white_check_mark: | <small>(see table demo)</small> | [Docs][sort-docs]              | [Usage][sort-usage]              |
 | [table][src-table]                         |                                                           | :white_check_mark: | [Demo][demo-table]              | [Docs][table-docs]             | [Usage][table-usage]             |
 | [tabs][src-tabs]                           | Horizontal tab interface                                  | :white_check_mark: | [Demo][demo-tabs]               | [Docs][tabs-docs]              | [Usage][tabs-usage]              |
 | textarea                                   | See `input`                                               | :white_check_mark: | <small>(see input demo)</small> |                                |                                  |
-| [toggle][src-toggle]                       |                                                           | :white_check_mark: | [Demo][demo-toggle]             | [Docs][toggle-docs]            | [Usage][toggle-usage]            |
-| [tooltip][src-tooltip]                     |                                                           | :white_check_mark: | [Demo][demo-tooltip]            | [Docs][tooltip-docs]           |                                  |
+| [toggle][src-toggle]                       | Toggle switch                                             | :white_check_mark: | [Demo][demo-toggle]             | [Docs][toggle-docs]            | [Usage][toggle-usage]            |
+| [tooltip][src-tooltip]                     | Simple tooltip                                            | :white_check_mark: | [Demo][demo-tooltip]            | [Docs][tooltip-docs]           |                                  |
 
 
 ### Pipes
@@ -192,22 +186,21 @@ for each feature.
 
 ### Style Helpers
 
-| Feature            | Notes                       | Status             | Docs                     |
-|--------------------|-----------------------------|:------------------:|--------------------------|
-| a11y               | Accessibility helpers       | :white_check_mark: |                          |
-| animation          |                             | :hammer:           |                          |
-| assets             |                             | :hammer:           |                          |
-| breakpoints        |                             | :white_check_mark: | [Docs][breakpoints-docs] |
-| colors             |                             | :white_check_mark: | [Docs][color-docs]       |
-| cursors            |                             | :white_check_mark: | [Docs][cursors-docs]     |
-| input-placeholder  |                             | :white_check_mark: |                          |
-| layout             |                             | :white_check_mark: | [Docs][layout-docs]      |
-| opposite-direction | Reverse a direction         | :white_check_mark: |                          |
-| shadows            |                             | :white_check_mark: | [Docs][shadows-docs]     |
-| spacing            |                             | :white_check_mark: | [Docs][spacing-docs]     |
-| triangle           | Create a triangle using CSS | :white_check_mark: |                          |
-| typography         |                             | :white_check_mark: | [Docs][typography-docs]  |
-| z-index            |                             | :white_check_mark: | [Docs][z-index-docs]     |
+|      Feature       |                Notes                |       Status       |           Docs            |
+|--------------------|-------------------------------------|:------------------:|---------------------------|
+| a11y               | Accessibility helpers               | :white_check_mark: |                           |
+| animation          |                                     |      :hammer:      |                           |
+| breakpoints        | Media query breakpoints             | :white_check_mark: | [Docs][breakpoints-docs]  |
+| colors             | Base colors                         | :white_check_mark: | [Docs][color-docs]        |
+| cursors            |                                     | :white_check_mark: | [Docs][cursors-docs]      |
+| input-placeholder  |                                     | :white_check_mark: |                           |
+| layout             |                                     | :white_check_mark: | [Docs][layout-docs]       |
+| opposite-direction | Reverse a direction                 | :white_check_mark: |                           |
+| shadows            | Shadow functions & mixins           | :white_check_mark: | [Docs][shadows-docs]      |
+| spacing            | Control vertical/horizontal spacing | :white_check_mark: | [Docs][spacing-scss-docs] |
+| triangle           | Create a triangle using CSS         | :white_check_mark: |                           |
+| typography         | Typography styles                   | :white_check_mark: | [Docs][typography-docs]   |
+| z-index            | z-index helper                       | :white_check_mark: | [Docs][z-index-docs]      |
 
 
 ## Installation
@@ -234,8 +227,8 @@ $ yarn add @amcharts/amcharts4 @amcharts/amcharts4-geodata
 Add the following links to install the body fonts and icon fonts used by the library:
 
 ```html
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 
 
@@ -244,7 +237,7 @@ Add the following links to install the body fonts and icon fonts used by the lib
 To use the global styles, import the CSS file into your stylesheets:
 
 ```scss
-@import '@terminus/ui/terminus-ui.css'
+@import '~@terminus/ui/terminus-ui.css';
 ```
 
 
@@ -253,7 +246,7 @@ To use the global styles, import the CSS file into your stylesheets:
 To use the provided SCSS helper methods/variables/mixins, import the helpers file from `@terminus/ui`:
 
 ```scss
-@import '~@terminus/ui/helpers'
+@import '~@terminus/ui/helpers';
 ```
 
 ## Contributing
@@ -329,7 +322,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 <!-- BADGES -->
 [circle-badge]:           https://circleci.com/gh/GetTerminus/terminus-ui/tree/release.svg?style=shield
 [codecov-badge]:          https://codecov.io/gh/GetTerminus/terminus-ui/branch/release/graph/badge.svg
-[compodoc-badge]:         https://rawgit.com/GetTerminus/terminus-ui/release/docs/images/coverage-badge.svg
 [file-size-badge]:        http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js?compression=gzip
 [npm-version-image]:      http://img.shields.io/npm/v/@terminus/ui.svg
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
@@ -346,19 +338,11 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 <!-- 3RD PARTY -->
 [codecov]:                https://codecov.io
-[codecov_browser]:        https://docs.codecov.io/docs/browser-extension
 [commitizen-cli]:         https://github.com/commitizen/cz-cli
 [commitizen]:             https://github.com/commitizen
 [commitizen_vsc]:         https://github.com/KnisterPeter/vscode-commitizen
-[compodoc]:               https://compodoc.github.io/website/
-[compodoc_comments]:      https://compodoc.github.io/website/guides/comments.html
-[conventional-changelog]: https://github.com/conventional-changelog/conventional-changelog/blob/v0.5.3/conventions/angular.md
 [doctoc]:                 https://github.com/thlorenz/doctoc
-[markdown]:               https://daringfireball.net/projects/markdown/syntax
-[semantic-release-video]: https://youtu.be/tc2UgG5L7WM
 [semantic-release]:       https://github.com/semantic-release/semantic-release
-[semver]:                 http://semver.org/
-[validate-commit-msg]:    https://github.com/kentcdodds/validate-commit-msg
 [all-contributors-key]:   https://github.com/kentcdodds/all-contributors#emoji-key
 
 <!-- Demos -->
@@ -374,7 +358,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-copy]:             https://getterminus.github.io/ui-demos-release/components/copy
 [demo-csv-entry]:        https://getterminus.github.io/ui-demos-release/components/csv-entry
 [demo-date-range]:       https://getterminus.github.io/ui-demos-release/components/date-range
-[demo-datepicker]:       https://getterminus.github.io/ui-demos-release/components/datepicker
 [demo-drawer]:           https://getterminus.github.io/ui-demos-release/components/drawer
 [demo-expansion-panel]:  https://getterminus.github.io/ui-demos-release/components/expansion-panel
 [demo-file-upload]:      https://getterminus.github.io/ui-demos-release/components/file-upload
@@ -404,17 +387,16 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [demo-validators]:       https://getterminus.github.io/ui-demos-release/components/validation
 
 <!-- SCSS Docs -->
-[breakpoints-docs]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/breakpoints.md
-[color-docs]:       https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/color.md
-[cursors-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/cursors.md
-[layout-docs]:      https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/layout.md
-[shadows-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/shadows.md
-[spacing-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/spacing.md
-[typography-docs]:  https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/typography.md
-[z-index-docs]:     https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/z-index.md
+[breakpoints-docs]:  https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/breakpoints.md
+[color-docs]:        https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/color.md
+[cursors-docs]:      https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/cursors.md
+[layout-docs]:       https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/layout.md
+[shadows-docs]:      https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/shadows.md
+[spacing-scss-docs]: https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/spacing.md
+[typography-docs]:   https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/typography.md
+[z-index-docs]:      https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scss/docs/z-index.md
 
 <!-- Source Directories -->
-[src-autocomplete]:       https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/autocomplete/src/
 [src-autofocus]:          https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/autofocus/src/
 [src-button]:             https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/button/src/
 [src-card]:               https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/card/src/
@@ -451,7 +433,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [src-radio-group]:        https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/radio-group/src/
 [src-scrollbars]:         https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/scrollbars/src/
 [src-search]:             https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/search/src/
-[src-select]:             https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/select/src/
 [src-selection-list]:     https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/selection-list/src/
 [src-sort]:               https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/sort/src/
 [src-spacing]:            https://github.com/GetTerminus/terminus-ui/blob/release/projects/library/spacing/src/
@@ -474,7 +455,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [copy-docs]:            http://uilibrary-docs.terminus.ninja/release/components/TsCopyComponent.html
 [csv-entry-docs]:       http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html
 [date-range-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html
-[datepicker-docs]:      http://uilibrary-docs.terminus.ninja/release/components/TsDatepickerComponent.html
 [drawer-docs]:          http://uilibrary-docs/terminus.ninja/release/components/TsDrawerComponent.html
 [expansion-panel-docs]: http://uilibrary-docs.terminus.ninja/release/components/TsExpansionPanelComponent.html
 [file-upload-docs]:     http://uilibrary-docs.terminus.ninja/release/components/TsFileUploadComponent.html
@@ -504,13 +484,7 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [validators-docs]:      http://uilibrary-docs.terminus.ninja/release/injectables/TsValidatorsService.html
 
 <!-- Versioned Docs & Demos -->
-[docs-v8]: http://uilibrary-docs.terminus.ninja/8.x.x/
-[docs-v9]: http://uilibrary-docs.terminus.ninja/9.x.x/
-[docs-v10]: http://uilibrary-docs.terminus.ninja/10.x.x/
 [docs-latest]: http://uilibrary-docs.terminus.ninja/release/
-[demo-v8]: https://getterminus.github.io/ui-demos-8.x.x/
-[demo-v9]: https://getterminus.github.io/ui-demos-9.x.x/
-[demo-v10]: https://getterminus.github.io/ui-demos-10.x.x/
 [demo-latest]: https://getterminus.github.io/ui-demos-release/
 
 <!-- TS Usage Docs -->
@@ -525,7 +499,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [copy-usage]:              http://uilibrary-docs.terminus.ninja/release/directives/TsCopyComponent.html#readme
 [csv-entry-usage]:         http://uilibrary-docs.terminus.ninja/release/components/TsCSVEntryComponent.html#readme
 [date-range-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsDateRangeComponent.html#readme
-[datepicker-usage]:        http://uilibrary-docs.terminus.ninja/release/components/TsDatepickerComponent.html#readme
 [drawer-usage]:            http://uilibrary-docs.terminus.ninja/release/components/TsDrawerComponent.html#readme
 [expansion-panel-usage]:   http://uilibrary-docs.terminus.ninja/release/components/TsExpansionPanelComponent.html#readme
 [file-upload-usage]:       http://uilibrary-docs.terminus.ninja/release/components/TsFileUploadComponent.html#readme

@@ -19,12 +19,14 @@ import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 import { TsSelectTriggerComponent } from './select-trigger.component';
 import { TsSelectComponent } from './select.component';
 
+/* eslint-disable deprecation/deprecation */
 
 export * from './select.component';
 export * from './select-trigger.component';
 export * from './select-animations';
 
 
+// @deprecated Please use `TsSelectionListModule`
 @NgModule({
   imports: [
     CommonModule,

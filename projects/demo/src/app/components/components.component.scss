@@ -35,3 +35,27 @@ header {
     }
   }
 }
+
+::ng-deep {
+  .deprecated {
+    --deprecated-red-color: #e33f26;
+    --deprecated-red-background-color: #fbe2e2;
+    background-color: var(--deprecated-red-background-color);
+    border: 1px dotted var(--deprecated-red-color);
+    border-radius: 5px;
+    display: inline-block;
+    padding: 2em;
+    transition: color 200ms ease-out;
+
+    h2 {
+      color: var(--deprecated-red-color);
+    }
+
+    a {
+      &:focus,
+      &:hover {
+        color: darkred;
+      }
+    }
+  }
+}
