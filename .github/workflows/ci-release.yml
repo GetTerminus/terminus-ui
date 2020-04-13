@@ -291,7 +291,6 @@ jobs:
           ls -a ../
           echo "LIST in repo:"
           ls -a terminus-ui/
-        if: env.SHOULD_RUN == 'true'
       - name: Set SHOULD_RUN flag
         run: |
           if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
