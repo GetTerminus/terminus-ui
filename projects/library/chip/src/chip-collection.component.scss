@@ -11,6 +11,14 @@
       align-items: flex-start;
       flex-direction: column;
     }
+
+    // Needed for specificity
+    .ts-chip {
+      .c-chip {
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
   }
 }
 
