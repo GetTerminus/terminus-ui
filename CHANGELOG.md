@@ -1,3 +1,10 @@
+## [18.1.9](https://github.com/GetTerminus/terminus-ui/compare/v18.1.8...v18.1.9) (2020-04-13)
+
+
+### Bug Fixes
+
+* **Chip:** vertical mode now correctly aligned ([510552b](https://github.com/GetTerminus/terminus-ui/commit/510552b8941745dc419e44049c86acdef5bb73e3)), closes [#2102](https://github.com/GetTerminus/terminus-ui/issues/2102)
+
 ## [18.1.8](https://github.com/GetTerminus/terminus-ui/compare/v18.1.7...v18.1.8) (2020-04-10)
 
 
