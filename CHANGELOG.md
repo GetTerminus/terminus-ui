@@ -1,3 +1,13 @@
+## [18.1.12](https://github.com/GetTerminus/terminus-ui/compare/v18.1.11...v18.1.12) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** incorrect var usage in path ([c0314f0](https://github.com/GetTerminus/terminus-ui/commit/c0314f05fd9ae1b160aa398b99aa335908743873))
+* **CI:** make sure dist is inside working dir ([54c6f46](https://github.com/GetTerminus/terminus-ui/commit/54c6f465abedd714019e0d9cd321644912358ccf))
+* **CI:** try using home var ([d3adefa](https://github.com/GetTerminus/terminus-ui/commit/d3adefa8c51396208014b8b92c5fb68bb269e34d))
+* **CI:** tweak for demo deploy ([1a8bf1e](https://github.com/GetTerminus/terminus-ui/commit/1a8bf1efeeba044a138ec386d1351bebade80a7a))
+
 ## [18.1.11](https://github.com/GetTerminus/terminus-ui/compare/v18.1.10...v18.1.11) (2020-04-14)
 
 
