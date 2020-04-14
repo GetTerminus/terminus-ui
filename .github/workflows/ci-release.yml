@@ -313,7 +313,7 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: built-demos
-          path: "$HOME"/terminus-ui/dist/demo
+          path: dist/demo
         if: env.SHOULD_RUN == 'true'
       - name: Checkout ui-demos-release repo
         uses: actions/checkout@v2
