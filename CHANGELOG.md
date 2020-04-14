@@ -1,3 +1,10 @@
+## [18.1.13](https://github.com/GetTerminus/terminus-ui/compare/v18.1.12...v18.1.13) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** remove home prefix for demos path ([abb7c74](https://github.com/GetTerminus/terminus-ui/commit/abb7c7421b8637af4491fc57f8692abd073e6be2))
+
 ## [18.1.12](https://github.com/GetTerminus/terminus-ui/compare/v18.1.11...v18.1.12) (2020-04-14)
 
 
