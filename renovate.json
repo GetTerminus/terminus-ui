@@ -1,7 +1,7 @@
 {
   "extends": [
     "config:base",
-    "schedule:nonOfficeHours"
+    "schedule:monthly"
   ],
   "masterIssue": true,
   "packageRules": [
