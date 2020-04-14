@@ -312,7 +312,7 @@ jobs:
         with:
           repository: GetTerminus/ui-demos-release
           token: ${{ secrets.GH_TOKEN }}
-          path: ${{HOME}}/ui-demos-release
+          path: /home/runner/work/terminus-ui/ui-demos-release
         if: env.SHOULD_RUN == 'true'
       - name: LOG after demos clone
         run: |
