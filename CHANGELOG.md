@@ -1,3 +1,12 @@
+## [18.1.10](https://github.com/GetTerminus/terminus-ui/compare/v18.1.9...v18.1.10) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** fix demo debug log ([cf001db](https://github.com/GetTerminus/terminus-ui/commit/cf001db541dc3d240f63aa04cfa7cae3c9bdfd27))
+* **Chip:** remove icon no longer moves on hover ([32de7b9](https://github.com/GetTerminus/terminus-ui/commit/32de7b998ec780979d9af06c13cded33e471852f)), closes [#2101](https://github.com/GetTerminus/terminus-ui/issues/2101)
+* **CI:** set directory for demos clone ([ac3f6f6](https://github.com/GetTerminus/terminus-ui/commit/ac3f6f66ff1540ab4dc3ed599bd87bb199c87c72))
+
 ## [18.1.9](https://github.com/GetTerminus/terminus-ui/compare/v18.1.8...v18.1.9) (2020-04-13)
 
 
