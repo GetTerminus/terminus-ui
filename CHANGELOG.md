@@ -1,3 +1,10 @@
+## [18.1.14](https://github.com/GetTerminus/terminus-ui/compare/v18.1.13...v18.1.14) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** remove home prefix ([9bf2cbd](https://github.com/GetTerminus/terminus-ui/commit/9bf2cbdf9539feef1404bcc8a45aa411772cf223))
+
 ## [18.1.13](https://github.com/GetTerminus/terminus-ui/compare/v18.1.12...v18.1.13) (2020-04-14)
 
 
