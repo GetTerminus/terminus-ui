@@ -334,7 +334,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -am "Update via release"
+          git add .
+          git commit -m "Update via release workflow"
         if: env.SHOULD_RUN == 'true'
       - name: Push changes
         uses: ad-m/github-push-action@master
