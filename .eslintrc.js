@@ -12,6 +12,10 @@ module.exports = {
     // TypeScript and Angular specific rules
     {
       files: ['*.ts'],
+      parserOptions: {
+        project: './tsconfig.json',
+        tsconfigRootDir: __dirname,
+      },
       rules: {
         // TODO: Do I need to redefine the entire rule here? Or can I just add the prefix array?
         '@angular-eslint/component-selector': [
