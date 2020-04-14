@@ -20,4 +20,4 @@ cd ../
 mv -f -v dist/demo/* ui-demos-release/
 
 # Clone the index.html file as 404.html to support deep linking
-cp "$HOME"/ui-demos-release/index.html "$HOME"/ui-demos-release/404.html
+cp ui-demos-release/index.html ui-demos-release/404.html
