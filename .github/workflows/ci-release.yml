@@ -283,16 +283,8 @@ jobs:
     steps:
       - name: Checkout library repo
         uses: actions/checkout@v2
-      - name: LOG after library clone
-        run: |
-          echo "PWD:"
-          pwd
-          echo "LIST current:"
-          ls -a
-          echo "LIST up one:"
-          ls -a ../
-          echo "LIST home:"
-          ls -a "$HOME"
+        with:
+          path: library
       - name: Set SHOULD_RUN flag
         run: |
           if [[ "${{github.event.head_commit.message}}" =~ (skip\ ci|ci\ skip) ]]; then
@@ -305,6 +297,8 @@ jobs:
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
+      - name: Move into library
+        run: cd library
       - name: Download built demos
         uses: actions/download-artifact@v1
         with:
@@ -316,22 +310,14 @@ jobs:
         with:
           repository: GetTerminus/ui-demos-release
           token: ${{ secrets.GH_TOKEN }}
-          path: ui-demos-release
-        if: env.SHOULD_RUN == 'true'
-      - name: LOG after demos clone
-        run: |
-          echo "PWD:"
-          pwd
-          echo "LIST current:"
-          ls -a
-          echo "LIST up one:"
-          ls -a ../
+          path: /home/runner/work/terminus-ui/terminus-ui/ui-demos-release
         if: env.SHOULD_RUN == 'true'
       - name: Prepare Demos for Deploy
-        run: tooling/ci/demos-predeploy.sh
+        run: library/tooling/ci/demos-predeploy.sh
         if: env.SHOULD_RUN == 'true'
       - name: Commit files
         run: |
+          cd ui-demos-release/
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add .
@@ -341,4 +327,5 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GH_TOKEN }}
+          directory: /home/runner/work/terminus-ui/terminus-ui/ui-demos-release
         if: env.SHOULD_RUN == 'true'
