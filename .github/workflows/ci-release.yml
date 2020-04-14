@@ -285,6 +285,8 @@ jobs:
         uses: actions/checkout@v2
       - name: LOG after library clone
         run: |
+          echo "PWD:"
+          pwd
           echo "LIST current:"
           ls -a
           echo "LIST up one:"
@@ -312,10 +314,12 @@ jobs:
         with:
           repository: GetTerminus/ui-demos-release
           token: ${{ secrets.GH_TOKEN }}
-          path: /home/runner/work/terminus-ui/terminus-ui/ui-demos-release
+          path: /home/runner/dist/demo
         if: env.SHOULD_RUN == 'true'
       - name: LOG after demos clone
         run: |
+          echo "PWD:"
+          pwd
           echo "LIST current:"
           ls -a
           echo "LIST up one:"
