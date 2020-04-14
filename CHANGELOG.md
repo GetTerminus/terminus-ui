@@ -1,3 +1,10 @@
+## [18.1.16](https://github.com/GetTerminus/terminus-ui/compare/v18.1.15...v18.1.16) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** manually run add ([36c1128](https://github.com/GetTerminus/terminus-ui/commit/36c112813836e8f74f0708cc0c26c3ad65abf1c6))
+
 ## [18.1.15](https://github.com/GetTerminus/terminus-ui/compare/v18.1.14...v18.1.15) (2020-04-14)
 
 
