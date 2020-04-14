@@ -1,3 +1,10 @@
+## [18.1.11](https://github.com/GetTerminus/terminus-ui/compare/v18.1.10...v18.1.11) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** demo clone fix ([6dc5f27](https://github.com/GetTerminus/terminus-ui/commit/6dc5f279cfb6e82a95c0734fb6b8c9f04f9b2751))
+
 ## [18.1.10](https://github.com/GetTerminus/terminus-ui/compare/v18.1.9...v18.1.10) (2020-04-14)
 
 
