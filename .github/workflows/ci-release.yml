@@ -305,10 +305,6 @@ jobs:
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
-
-      - name: Debug Action
-        uses: hmarr/debug-action@v1.0.0
-
       - name: Download built demos
         uses: actions/download-artifact@v1
         with:
@@ -331,10 +327,6 @@ jobs:
           echo "LIST up one:"
           ls -a ../
         if: env.SHOULD_RUN == 'true'
-
-      - name: Debug Action
-        uses: hmarr/debug-action@v1.0.0
-
       - name: Prepare Demos for Deploy
         run: tooling/ci/demos-predeploy.sh
         if: env.SHOULD_RUN == 'true'
@@ -342,7 +334,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Update via release" -a
+          git commit -am "Update via release"
         if: env.SHOULD_RUN == 'true'
       - name: Push changes
         uses: ad-m/github-push-action@master
