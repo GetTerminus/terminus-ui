@@ -89,6 +89,8 @@
     }
 
     .c-chip__remove {
+      // Needed to remove 1px jump caused on opacity change
+      backface-visibility: hidden;
       cursor: cursor(pointer);
       display: none;
       height: var(--chip-remove-size);
