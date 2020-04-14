@@ -1,3 +1,10 @@
+## [18.1.15](https://github.com/GetTerminus/terminus-ui/compare/v18.1.14...v18.1.15) (2020-04-14)
+
+
+### Bug Fixes
+
+* **CI:** ensure files are tracked before committing ([f85680d](https://github.com/GetTerminus/terminus-ui/commit/f85680d284bf6212dc3eb20d67c0ecd6b77f547a))
+
 ## [18.1.14](https://github.com/GetTerminus/terminus-ui/compare/v18.1.13...v18.1.14) (2020-04-14)
 
 
