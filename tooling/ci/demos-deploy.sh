@@ -17,7 +17,7 @@ echo "CURRENT PATH:"
 pwd
 
 # Move new files into the cloned repo
-mv -f -v ../dist/demo/* ui-demos-release/
+mv -f -v ../dist/demo/* .
 
 # Clone the index.html file as 404.html to support deep linking
 cp index.html 404.html
