@@ -1,27 +1,25 @@
 @import '../../scss/card/card';
-@import '../../scss/color/color';
 @import '../../scss/layout/layout';
 @import '../../scss/reset/reset';
-@import '../../scss/spacing/spacing';
 @import '../../scss/typography/typography';
 
 
 @mixin card-border($side) {
   &.c-card--primary {
     .c-card__inner {
-      border-#{$side}: 2px solid color(primary);
+      border-#{$side}: 2px solid var(--ts-color-primary-500);
     }
   }
 
   &.c-card--accent {
     .c-card__inner {
-      border-#{$side}: 2px solid color(accent);
+      border-#{$side}: 2px solid var(--ts-color-accent-500);
     }
   }
 
   &.c-card--warn {
     .c-card__inner {
-      border-#{$side}: 2px solid color(warn);
+      border-#{$side}: 2px solid var(--ts-color-warn-500);
     }
   }
 }
@@ -34,6 +32,8 @@
 //  A simple card component
 //
 .ts-card {
+  --card-disabled-opacity: .5;
+  --card-disabled-menu-opacity: .3;
   @include reset;
   display: flex;
   flex-flow: row nowrap;
@@ -41,10 +41,10 @@
   // Top level styles should be nested here
   .c-card {
     @include typography;
-    background-color: color(pure);
+    background-color: var(--ts-color-light);
     // Set up for possible utility nav
     position: relative;
-    transition: height 200ms ease;
+    transition: height var(--ts-animation-time-duration-200) var(--ts-animation-easing-ease);
     width: 100%;
 
     &:not(.c-card--interaction),
@@ -65,15 +65,15 @@
     width: 100%;
 
     .c-card__title-accent-border {
-      border-left: 2px solid color(primary);
+      border-left: 2px solid var(--ts-color-primary-500);
       padding-left: spacing(small, 1);
 
       &[theme='accent'] {
-        border-left-color: color(accent);
+        border-left-color: var(--ts-color-accent-500);
       }
 
       &[theme='warn'] {
-        border-left-color: color(warn);
+        border-left-color: var(--ts-color-warn-500);
       }
     }
   }
@@ -94,8 +94,6 @@
 }
 
 .c-card--aspect {
-  $padding: spacing(large) * 2;
-
   .c-card__inner {
     @include take-space;
   }
@@ -103,37 +101,39 @@
 
 .c-card--disabled {
   .c-card__inner {
-    opacity: .5;
+    opacity: var(--card-disabled-opacity);
   }
 
   // Class added to menu container when the card is disabled
   .c-menu {
-    opacity: .3;
+    opacity: var(--card-disabled-menu-opacity);
     pointer-events: none;
   }
 
   // Lock icon
   .c-card__lock {
-    color: color(utility);
+    --lock-top-alignment: 2px;
+    --lock-scale: .7;
+    color: var(--ts-color-utility-500);
     position: absolute;
-    right: spacing(large);
+    right: var(--ts-space-inline-600);
     // Magic number adjustment to align with title
-    top: calc(#{spacing(large)} - 2px);
-    transform: scale(.7);
+    top: calc(var(--ts-space-inline-600) - var(--lock-top-alignment));
+    transform: scale(var(--lock-scale));
   }
 }
 
 // Class added when padding needed on the right for icon or utility menu
 .c-card--right-spacing {
   .c-card__inner {
-    padding-right: spacing(large, 4);
+    padding-right: var(--ts-space-base-large4);
   }
 }
 
 // Class added for flat cards (no drop shadow)
 .c-card--flat {
   > .c-card__inner {
-    border: 1px solid color(utility, light);
+    border: 1px solid var(--ts-color-utility-300);
     box-shadow: none;
   }
 }
@@ -162,8 +162,8 @@
   .ts-table {
     ~ .ts-loading-overlay {
       .c-loading-overlay {
-        left: -(spacing(large));
-        right: -(spacing(large));
+        left: -(var(--ts-space-inline-600));
+        right: -(var(--ts-space-inline-600));
       }
     }
   }
