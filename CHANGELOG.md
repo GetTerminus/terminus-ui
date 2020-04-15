@@ -1,3 +1,10 @@
+## [18.1.18](https://github.com/GetTerminus/terminus-ui/compare/v18.1.17...v18.1.18) (2020-04-15)
+
+
+### Bug Fixes
+
+* **Demo:** correct env var for token ([707c6cb](https://github.com/GetTerminus/terminus-ui/commit/707c6cbc7213b259ebe8652c812a25d5c056089d))
+
 ## [18.1.17](https://github.com/GetTerminus/terminus-ui/compare/v18.1.16...v18.1.17) (2020-04-15)
 
 
