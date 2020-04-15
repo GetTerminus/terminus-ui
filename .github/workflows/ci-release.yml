@@ -322,5 +322,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Update via release workflow"
-          git push -q https://"${GH_TOKEN}"@github.com/GetTerminus/ui-demos-release.git master
+          git push -q https://${GH_TOKEN}@github.com/GetTerminus/ui-demos-release.git master
       if: env.SHOULD_RUN == 'true'
