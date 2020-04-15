@@ -1,3 +1,10 @@
+## [18.1.17](https://github.com/GetTerminus/terminus-ui/compare/v18.1.16...v18.1.17) (2020-04-15)
+
+
+### Bug Fixes
+
+* **CI:** update git commit commands and paths ([95eaab3](https://github.com/GetTerminus/terminus-ui/commit/95eaab3f668e7f540ff2d9530504f15844301a3a))
+
 ## [18.1.16](https://github.com/GetTerminus/terminus-ui/compare/v18.1.15...v18.1.16) (2020-04-14)
 
 
