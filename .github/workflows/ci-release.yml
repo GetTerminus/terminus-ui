@@ -322,10 +322,5 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           git commit -m "Update via release workflow"
-        if: env.SHOULD_RUN == 'true'
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GH_TOKEN }}
-          directory: /home/runner/work/terminus-ui/terminus-ui/ui-demos-release
-        if: env.SHOULD_RUN == 'true'
+          git push -q https://"${GH_TOKEN}"@github.com/GetTerminus/ui-demos-release.git master
+      if: env.SHOULD_RUN == 'true'
