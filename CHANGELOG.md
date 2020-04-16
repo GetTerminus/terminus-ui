@@ -1,3 +1,11 @@
+## [18.1.19](https://github.com/GetTerminus/terminus-ui/compare/v18.1.18...v18.1.19) (2020-04-16)
+
+
+### Bug Fixes
+
+* **Demo:** correctly sets version ([6a30f78](https://github.com/GetTerminus/terminus-ui/commit/6a30f78d6e4a8b51e583900c2d92a2951d8e6ea6))
+* **Demos:** use manual deploy script ([42c59a6](https://github.com/GetTerminus/terminus-ui/commit/42c59a6a0b9e53a247dea4acf21aa0186bc8b473))
+
 ## [18.1.18](https://github.com/GetTerminus/terminus-ui/compare/v18.1.17...v18.1.18) (2020-04-15)
 
 
