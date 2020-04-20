@@ -2091,7 +2091,34 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@terminus/design-tokens@1.0.6", "@terminus/design-tokens@^1.0.3":
+"@terminus/design-tokens@1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@terminus/design-tokens/-/design-tokens-1.0.8.tgz#c2c608679c5916d456fb77ad79a8a0d49255aaea"
+  integrity sha512-D+/LXjxMrI8157gY0/brQGsxowxzKCT4sGYeak18ME6sZ3usmbbtcV2Wn0QZ+Oj9ZGV/RrtoLVwJ60gPJEJMtw==
+  dependencies:
+    "@angular/animations" "8.2.14"
+    "@angular/cdk" "8.2.3"
+    "@angular/common" "8.2.14"
+    "@angular/compiler" "8.2.14"
+    "@angular/core" "8.2.14"
+    "@angular/flex-layout" "8.0.0-beta.26"
+    "@angular/forms" "8.2.14"
+    "@angular/material" "8.2.3"
+    "@angular/platform-browser" "8.2.14"
+    "@angular/platform-browser-dynamic" "8.2.14"
+    "@angular/router" "8.2.14"
+    "@terminus/design-tokens" "^1.0.3"
+    "@w11k/ngx-componentdestroyed" "^4.1.5"
+    angular-cli-ghpages "^0.6.2"
+    modern-normalize "^0.6.0"
+    ng-inline-svg "^10.0.0"
+    ngx-clipboard "^12.3.1"
+    ngx-webstorage-service "^4.1.0"
+    rxjs "~6.4.0"
+    tslib "^1.10.0"
+    zone.js "~0.9.1"
+
+"@terminus/design-tokens@^1.0.3":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@terminus/design-tokens/-/design-tokens-1.0.6.tgz#3d268ee9646021a8be058ca9ba1b28d9cb06b319"
   integrity sha512-gztVL4of2P8a/4PQbRGldYoxB92lz48j86bVhQZBboCV0PJya4X18VmHG6Jxus5hpQqLwhRiXZ1c4TZKzKjycg==
@@ -2118,21 +2145,21 @@
     tslib "^1.10.0"
     zone.js "~0.9.1"
 
-"@terminus/eslint-config-frontend@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@terminus/eslint-config-frontend/-/eslint-config-frontend-2.0.1.tgz#db0b42e093758a26d205e44b646e1dc9bd478a5b"
-  integrity sha512-vJFpTgAAXiIlqDfVeqQcluq2cIuDjiKnl6OlD6oXIKMU93I5fcc3DfsLwGcbwTIDO+focImo5HJj0SEUlmaNEA==
+"@terminus/eslint-config-frontend@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@terminus/eslint-config-frontend/-/eslint-config-frontend-2.0.3.tgz#ff0516424762c41b3c301ea72459453f0384c41f"
+  integrity sha512-/9aZ/VFGMXzgpeqEVrkX9en/XuzJgeBZGuv1OwlXbWtACECI74oBQ10W4bi4pPZxX6cIlWNWP0n0nQKY69tVjQ==
   dependencies:
     "@angular-eslint/eslint-plugin" "0.0.1-alpha.27"
     "@angular-eslint/eslint-plugin-template" "0.0.1-alpha.27"
     "@angular-eslint/template-parser" "0.0.1-alpha.27"
-    "@typescript-eslint/eslint-plugin" "2.25.0"
-    "@typescript-eslint/parser" "2.25.0"
+    "@typescript-eslint/eslint-plugin" "2.28.0"
+    "@typescript-eslint/parser" "2.27.0"
 
-"@terminus/ngx-tools@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-8.0.1.tgz#14443bb3ccc5b1ee0bcd975a55ce71b0cdc14568"
-  integrity sha512-dUPXk+z9naI8kXB5aDw9ee13o9RjCzK2bBQVvW9NLKm98x9c4vTkGH7r8gEa/gXxJqJIVB/liz+VvzK6AUdnlQ==
+"@terminus/ngx-tools@8.0.2":
+  version "8.0.2"
+  resolved "https://registry.yarnpkg.com/@terminus/ngx-tools/-/ngx-tools-8.0.2.tgz#e72dc88b610a379ebad3e19209b164006c6df2d2"
+  integrity sha512-+7SW6+JrUjqyh7oqvUpWh/k1aM2hACjEh/I/5PnLqL1+WqQh+csloJ85ong0bngyn2jQv2GEcMcIILxlhfVSUQ==
 
 "@terminus/stylelint-config-frontend@1.1.5":
   version "1.1.5"
@@ -2148,10 +2175,10 @@
     stylelint-scss "^3.12.0"
     stylelint-selector-no-empty "^1.0.7"
 
-"@terminus/ui@18.1.6":
-  version "18.1.6"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.6.tgz#01b50677dfa1749adc42ac23beae9cd9dacabb90"
-  integrity sha512-8EtF4j0BDQRVnHXesqq7teOKptIw9yn9Vs5aYx4h52PjSyiw8SEXhaF2QA8Nj1MexzRZ6Eyza3qoI5sXMjVcKg==
+"@terminus/ui@18.1.9":
+  version "18.1.9"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.1.9.tgz#0efb1784a3a63a4f9109f158fff600c3dcf09c85"
+  integrity sha512-bnWXr9860xg6Lq/xd1fjWqU6XSiO4NEcbvIEQ6pALHj1HFV3PFwv1H/oeA192hp6tYbBXvblKgQvmN8uBhNPvA==
   optionalDependencies:
     "@amcharts/amcharts4" "^4.9.0"
     "@amcharts/amcharts4-geodata" "^4.1.6"
@@ -2483,12 +2510,12 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@typescript-eslint/eslint-plugin@2.25.0":
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.25.0.tgz#0b60917332f20dcff54d0eb9be2a9e9f4c9fbd02"
-  integrity sha512-W2YyMtjmlrOjtXc+FtTelVs9OhuR6OlYc4XKIslJ8PUJOqgYYAPRJhAqkYRQo3G4sjvG8jSodsNycEn4W2gHUw==
+"@typescript-eslint/eslint-plugin@2.28.0":
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-2.28.0.tgz#4431bc6d3af41903e5255770703d4e55a0ccbdec"
+  integrity sha512-w0Ugcq2iatloEabQP56BRWJowliXUP5Wv6f9fKzjJmDW81hOTBxRoJ4LoEOxRpz9gcY51Libytd2ba3yLmSOfg==
   dependencies:
-    "@typescript-eslint/experimental-utils" "2.25.0"
+    "@typescript-eslint/experimental-utils" "2.28.0"
     functional-red-black-tree "^1.0.1"
     regexpp "^3.0.0"
     tsutils "^3.17.1"
@@ -2502,13 +2529,23 @@
     "@typescript-eslint/typescript-estree" "2.19.2"
     eslint-scope "^5.0.0"
 
-"@typescript-eslint/experimental-utils@2.25.0":
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.25.0.tgz#13691c4fe368bd377b1e5b1e4ad660b220bf7714"
-  integrity sha512-0IZ4ZR5QkFYbaJk+8eJ2kYeA+1tzOE1sBjbwwtSV85oNWYUBep+EyhlZ7DLUCyhMUGuJpcCCFL0fDtYAP1zMZw==
+"@typescript-eslint/experimental-utils@2.27.0":
+  version "2.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.27.0.tgz#801a952c10b58e486c9a0b36cf21e2aab1e9e01a"
+  integrity sha512-vOsYzjwJlY6E0NJRXPTeCGqjv5OHgRU1kzxHKWJVPjDYGbPgLudBXjIlc+OD1hDBZ4l1DLbOc5VjofKahsu9Jw==
   dependencies:
     "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.25.0"
+    "@typescript-eslint/typescript-estree" "2.27.0"
+    eslint-scope "^5.0.0"
+    eslint-utils "^2.0.0"
+
+"@typescript-eslint/experimental-utils@2.28.0":
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.28.0.tgz#1fd0961cd8ef6522687b4c562647da6e71f8833d"
+  integrity sha512-4SL9OWjvFbHumM/Zh/ZeEjUFxrYKtdCi7At4GyKTbQlrj1HcphIDXlje4Uu4cY+qzszR5NdVin4CCm6AXCjd6w==
+  dependencies:
+    "@types/json-schema" "^7.0.3"
+    "@typescript-eslint/typescript-estree" "2.28.0"
     eslint-scope "^5.0.0"
     eslint-utils "^2.0.0"
 
@@ -2521,14 +2558,14 @@
     "@typescript-eslint/typescript-estree" "2.23.0"
     eslint-scope "^5.0.0"
 
-"@typescript-eslint/parser@2.25.0":
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.25.0.tgz#abfb3d999084824d9a756d9b9c0f36fba03adb76"
-  integrity sha512-mccBLaBSpNVgp191CP5W+8U1crTyXsRziWliCqzj02kpxdjKMvFHGJbK33NroquH3zB/gZ8H511HEsJBa2fNEg==
+"@typescript-eslint/parser@2.27.0":
+  version "2.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/parser/-/parser-2.27.0.tgz#d91664335b2c46584294e42eb4ff35838c427287"
+  integrity sha512-HFUXZY+EdwrJXZo31DW4IS1ujQW3krzlRjBrFRrJcMDh0zCu107/nRfhk/uBasO8m0NVDbBF5WZKcIUMRO7vPg==
   dependencies:
     "@types/eslint-visitor-keys" "^1.0.0"
-    "@typescript-eslint/experimental-utils" "2.25.0"
-    "@typescript-eslint/typescript-estree" "2.25.0"
+    "@typescript-eslint/experimental-utils" "2.27.0"
+    "@typescript-eslint/typescript-estree" "2.27.0"
     eslint-visitor-keys "^1.1.0"
 
 "@typescript-eslint/typescript-estree@2.19.2":
@@ -2557,10 +2594,23 @@
     semver "^6.3.0"
     tsutils "^3.17.1"
 
-"@typescript-eslint/typescript-estree@2.25.0":
-  version "2.25.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.25.0.tgz#b790497556734b7476fa7dd3fa539955a5c79e2c"
-  integrity sha512-VUksmx5lDxSi6GfmwSK7SSoIKSw9anukWWNitQPqt58LuYrKalzsgeuignbqnB+rK/xxGlSsCy8lYnwFfB6YJg==
+"@typescript-eslint/typescript-estree@2.27.0":
+  version "2.27.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.27.0.tgz#a288e54605412da8b81f1660b56c8b2e42966ce8"
+  integrity sha512-t2miCCJIb/FU8yArjAvxllxbTiyNqaXJag7UOpB5DVoM3+xnjeOngtqlJkLRnMtzaRcJhe3CIR9RmL40omubhg==
+  dependencies:
+    debug "^4.1.1"
+    eslint-visitor-keys "^1.1.0"
+    glob "^7.1.6"
+    is-glob "^4.0.1"
+    lodash "^4.17.15"
+    semver "^6.3.0"
+    tsutils "^3.17.1"
+
+"@typescript-eslint/typescript-estree@2.28.0":
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.28.0.tgz#d34949099ff81092c36dc275b6a1ea580729ba00"
+  integrity sha512-HDr8MP9wfwkiuqzRVkuM3BeDrOC4cKbO5a6BymZBHUt5y/2pL0BXD6I/C/ceq2IZoHWhcASk+5/zo+dwgu9V8Q==
   dependencies:
     debug "^4.1.1"
     eslint-visitor-keys "^1.1.0"
