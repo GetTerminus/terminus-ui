@@ -1,3 +1,10 @@
+## [18.1.20](https://github.com/GetTerminus/terminus-ui/compare/v18.1.19...v18.1.20) (2020-04-20)
+
+
+### Bug Fixes
+
+* **packages:** update terminus packages ([6d008a9](https://github.com/GetTerminus/terminus-ui/commit/6d008a9eca47a66bbb6a1f714d47cccdf9653cf6))
+
 ## [18.1.19](https://github.com/GetTerminus/terminus-ui/compare/v18.1.18...v18.1.19) (2020-04-16)
 
 
