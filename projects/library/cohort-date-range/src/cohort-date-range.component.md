@@ -27,7 +27,6 @@ Pass in the cohorts:
 ```
 
 ```typescript
-```typescript
 cohorts: TsDateCohort[] = [
   {
     display: 'Last full year',
@@ -39,8 +38,8 @@ cohorts: TsDateCohort[] = [
   {
     display: 'Last full month',
     range: {
-      startDate: new Date(2019, 8, 1),
-      endDate: new Date(2019, 8, 31),
+      start: new Date(2019, 8, 1),
+      end: new Date(2019, 8, 31),
     },
   },
 ];
@@ -63,7 +62,6 @@ The keys inside the passed in `cohorts` object must match the `TsDateCohort` int
 
 The first `TsDateCohort` that has the `active` key set to `true` will be selected by default.
 
-```typescript
 ```typescript
 cohorts: TsDateCohort[] = [
   {
