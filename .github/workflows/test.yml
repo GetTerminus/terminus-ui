@@ -1,4 +1,4 @@
-name: CI Pull Request
+name: DEBUG EVENT
 on: pull_request
 
 jobs:
