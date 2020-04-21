@@ -1,0 +1,11 @@
+name: CI Pull Request
+on: pull_request
+  types: [assigned, opened, synchronize, reopened, edited]
+
+jobs:
+  one:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug Action
+        uses: hmarr/debug-action@v1.0.0
