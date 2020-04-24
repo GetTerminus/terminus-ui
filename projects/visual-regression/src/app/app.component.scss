@@ -1,2 +1,5 @@
-@import '~@terminus/design-tokens/css/library-design-tokens.css';
+@import '~@terminus/ui/helpers';
 
+h1 {
+  color: color(warn);
+}

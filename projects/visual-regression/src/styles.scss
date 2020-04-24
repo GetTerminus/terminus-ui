@@ -1,1 +1,26 @@
-@import '~@terminus/design-tokens/css/library-design-tokens.css';/* You can add global styles to this file, and also import other style files */
+@import '~@terminus/ui/helpers';
+@import '~@terminus/ui/terminus-ui.css';
+@import '~@terminus/design-tokens/css/library-design-tokens.css';
+
+html {
+  background-color: color(pure);
+  font-family: $type__family--base;
+  font-size: $type__size--base;
+  font-weight: $type__weight--base;
+}
+
+body {
+  margin: 0;
+}
+
+hr,
+.page {
+  margin: 1rem;
+}
+
+
+router-outlet + * {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}

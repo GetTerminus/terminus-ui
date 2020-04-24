@@ -1,0 +1,99 @@
+name: CI Pull Request
+on: pull_request
+
+jobs:
+  #
+  # Cancel any workflows that would be duplicated by this run
+  #
+  cleanup-runs:
+    name: Cancel Duplicates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - uses: rokroskar/workflow-run-cleanup-action@master
+        env:
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+    if: "!startsWith(github.ref, 'refs/tags/') && github.ref != 'refs/heads/release'"
+
+  #
+  # Build the library
+  #
+  library_build:
+    name: Compile Library
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: check last commit message
+        id: skip
+        uses: atlwendy/retrieve-commit-messages-from-pr@v2
+      - name: Set SHOULD_RUN flag
+        run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Manual build
+        run: yarn library:build:prod
+        if: env.SHOULD_RUN == 'true'
+      - name: Upload built files
+        uses: actions/upload-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Run regression test
+  #
+  regression_test:
+    name: Run regression test
+    needs: library_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: check last commit message
+        id: skip
+        uses: atlwendy/retrieve-commit-messages-from-pr@master
+      - name: Set SHOULD_RUN flag
+        run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true'
+        run: yarn add start-server-and-test
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Download built library
+        uses: actions/download-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+      - name: Run regression test
+        run: yarn run vr:test:regression
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+        if: env.SHOULD_RUN == 'true'
+

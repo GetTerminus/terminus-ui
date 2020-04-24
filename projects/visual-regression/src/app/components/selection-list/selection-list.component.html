@@ -1,0 +1,101 @@
+
+<div class="page">
+  <button (click)="seedSelections(complexMultipleControl)" tabindex="-1">
+      Seed selections
+  </button>
+  <br>
+  <label>
+    Disable
+    <input type="checkbox" [(ngModel)]="isDisabledMulti" [ngModelOptions]="{standalone: true}">
+  </label>
+  <br>
+  <label>
+    Allow user input
+    <input type="checkbox" [(ngModel)]="allowInputMulti" [ngModelOptions]="{standalone: true}">
+  </label>
+
+  <form
+  novalidate
+  fxLayout="column"
+  fxLayoutGap="1rem"
+  >
+    <h3>
+      SelectionList w/complex object (allowMultiple)
+    </h3>
+    <ts-selection-list
+      label="Select states"
+      hint="Begin typing to search.."
+      [isDisabled]="isDisabledMulti"
+      [formControl]="complexMultipleControl"
+      [allowMultiple]="true"
+      [allowUserInput]="allowInputMulti"
+      [reopenAfterSelection]="false"
+      [showProgress]="complexMultipleAsync"
+      [displayFormatter]="formatter"
+      (queryChange)="queryHasChanged($event, 'complexMultiple')"
+      tsVerticalSpacing
+    >
+      <ts-option
+        [value]="state"
+        [option]="state"
+        *ngFor="let state of complexMultipleResults | async"
+      >
+        {{ state.name }}
+      </ts-option>
+    </ts-selection-list>
+
+    <div>
+      FormControl value: {{ complexMultipleControl.value | json }}
+    </div>
+  </form>
+
+  <form
+  novalidate
+  fxLayout="column"
+  fxLayoutGap="1rem"
+  >
+    <h3>
+      SelectionList (single)
+    </h3>
+
+    <div >
+      <button (click)="seedSelections(simpleControl, [states[4]])" tabindex="-1">
+        Seed selection
+      </button>
+      <br>
+      <label>
+        Disable
+        <input type="checkbox" [(ngModel)]="isDisabledSingle" [ngModelOptions]="{standalone: true}">
+      </label>
+      <br>
+      <label>
+        Allow user input
+        <input type="checkbox" [(ngModel)]="allowInputSingle" [ngModelOptions]="{standalone: true}">
+      </label>
+    </div>
+
+    <ts-selection-list
+      label="Select states"
+      hint="Begin typing to search.."
+      [allowUserInput]="allowInputSingle"
+      [isDisabled]="isDisabledSingle"
+      [formControl]="simpleControl"
+      [showProgress]="simpleAsync"
+      [displayFormatter]="formatter"
+      (queryChange)="queryHasChanged($event, 'simple')"
+      tsVerticalSpacing
+    >
+      <ts-option
+        [value]="state"
+        [option]="state"
+        *ngFor="let state of simpleResults | async"
+      >
+        {{ state.name }}
+      </ts-option>
+    </ts-selection-list>
+
+    <div>
+      FormControl value: {{ simpleControl.value | json }}
+    </div>
+  </form>
+</div>
