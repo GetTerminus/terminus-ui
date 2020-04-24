@@ -1,0 +1,96 @@
+<div class="page">
+  <h3 tsVerticalSpacing>
+    Input with Datepicker
+  </h3>
+
+  <ts-input
+    [(ngModel)]="myDatepickerValue"
+    label="Input with datepicker"
+    mask="date"
+    name="Datepicker input"
+    tsVerticalSpacing="small--0"
+    [datepicker]="true"
+  ></ts-input>
+
+
+  <h3 tsVerticalSpacing>
+    Input: Reactive Form
+  </h3>
+
+  <button (click)="shouldDisable = !shouldDisable">
+    {{ shouldDisable ? 'Enable' : 'Disable' }} the name input
+  </button>
+
+  <form [formGroup]="myForm" novalidate>
+    <br>
+    <ts-input
+      [label]="label"
+      [formControl]="myForm.get('readonly')"
+      [readOnly]="true"
+    ></ts-input>
+    <ts-input
+      [formControl]="myForm.get('name')"
+      [label]="label1"
+      [isClearable]="clearable"
+      hint="Name input with validation"
+      [isDisabled]="shouldDisable"
+      [spellcheck]="false"
+      [prefixIcon]="icon"
+      #foo="tsInput"
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('email')"
+      [label]="label2"
+      [isClearable]="clearable"
+      [prefixIcon]="'alternate_email'"
+      [validateOnChange]="true"
+      [hint]="'Email input with validation'"
+      name="email"
+      [spellcheck]="false"
+      [autocomplete]="'email'"
+      type="email"
+    ></ts-input>
+
+    <ts-input
+      [formControl]="myForm.get('phone')"
+      label="Phone"
+      hint="Phone input with masking"
+      mask="phone"
+    ></ts-input>
+  </form>
+
+
+  <h3 tsVerticalSpacing>
+    Input: Textarea
+  </h3>
+
+  <ts-input
+    [(ngModel)]="textareaModel"
+    label="My textarea"
+    name="My textarea"
+    hint="So much space! How will you use it?"
+    [isTextarea]="true"
+  ></ts-input>
+
+  <strong>ngModel value:</strong>
+  <pre style="outline: 1px solid lightgray;">
+  {{ textareaModel }}
+  </pre>
+
+  <h3 tsVerticalSpacing>
+    Input: with no validation or hint
+  </h3>
+
+  <ts-input
+    [formControl]="myForm.get('name')"
+    label="No validation or hint padding added"
+    [noValidationOrHint]="true"
+  ></ts-input>
+
+  <ts-input
+    [formControl]="myForm.get('email')"
+    [label]="label2"
+    [noValidationOrHint]="true"
+  ></ts-input>
+</div>

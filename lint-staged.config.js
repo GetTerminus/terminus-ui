@@ -57,4 +57,6 @@ const removeDirectories = files => micromatch.not(files, [
   '**/testing/**',
   '**/demo/**',
   '**/cypress/**',
+  '**/visual-regression/**',
 ]);
+

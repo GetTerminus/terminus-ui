@@ -1,0 +1,85 @@
+<ts-card tsVerticalSpacing class="double">
+  <h3 tsCardTitle tsVerticalSpacing id="title">
+    Themes:
+  </h3>
+
+  <ts-button
+    theme="primary"
+    tsVerticalSpacing
+    id="ts-button-id-1"
+  >Primary</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="primary"
+    format="hollow"
+    icon="home"
+    tsVerticalSpacing
+  >Primary Hollow</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="accent"
+    tsVerticalSpacing
+  >Accent</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="accent"
+    format="hollow"
+    tsVerticalSpacing
+  >Accent Hollow</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="warn"
+    tsVerticalSpacing
+  >Warn</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="warn"
+    format="hollow"
+    tsVerticalSpacing
+  >Warn Hollow</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="primary"
+    [isDisabled]="true"
+    tsVerticalSpacing
+  >I'm disabled :(</ts-button>
+
+  <br>
+
+  <ts-button
+    theme="primary"
+    format="hollow"
+    [isDisabled]="true"
+    tsVerticalSpacing
+  >I'm disabled AND empty inside :(</ts-button>
+
+  <br>
+
+  <div>
+    <ts-button
+      (clicked)="run()"
+      [showProgress]="progress"
+    >
+      <ts-icon>build</ts-icon>
+    </ts-button>
+  </div>
+
+  <ts-button
+    theme="primary"
+    iconName="add"
+    format="collapsible"
+    tsVerticalSpacing
+  >New Campaign / New Tactic</ts-button>
+</ts-card>
