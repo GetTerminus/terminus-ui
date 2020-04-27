@@ -88,6 +88,16 @@ export function getHeaderRow(tableElement: Element): Element {
 }
 
 /**
+ * Return all footer rows
+ *
+ * @param tableElement - The table element to search within
+ * @returns An array of footer rows
+ */
+export function getFooterRows(tableElement: Element): Element[] {
+  return Array.from(tableElement.querySelectorAll('.ts-footer-row'));
+}
+
+/**
  * Get all row elements
  *
  * @param tableElement - The table to search within
@@ -115,6 +125,20 @@ export function getCells(row: Element): Element[] {
  */
 export function getHeaderCells(tableElement: Element): Element[] {
   return getElements(getHeaderRow(tableElement), '.ts-header-cell');
+}
+
+/**
+ * Get all footer cells
+ *
+ * @param footerRow - The Row to search within
+ * @return An array of footer cells
+ */
+export function getFooterCells(footerRow: Element): Element[] {
+  let cells = getElements(footerRow, 'ts-footer-cell');
+  if (!cells.length) {
+    cells = getElements(footerRow, 'td');
+  }
+  return cells;
 }
 
 /**

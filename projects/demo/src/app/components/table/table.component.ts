@@ -97,7 +97,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       display: 'Title',
       name: 'title',
-      width: 200,
+      width: 300,
       control: new FormControl(true),
     },
     {
@@ -115,7 +115,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       display: 'Updated',
       name: 'updated',
-      width: 100,
+      width: 200,
       control: new FormControl(true),
     },
     {
@@ -171,6 +171,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
   public density: TsTableDensity = 'comfy';
   public visibleColumns: TsColumn[] = [];
   public allFormControlChanges$ = merge(...this.allPossibleColumns.map(c => c.control && c.control.valueChanges));
+  public latestCreationDate = new Date(2020, 2, 23);
 
   @ViewChild(TsSortDirective, { static: true })
   public sort!: TsSortDirective;

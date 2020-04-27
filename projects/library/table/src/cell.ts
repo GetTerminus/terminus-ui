@@ -5,6 +5,8 @@ import {
   CdkCell,
   CdkCellDef,
   CdkColumnDef,
+  CdkFooterCell,
+  CdkFooterCellDef,
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
@@ -379,5 +381,60 @@ export class TsCellDirective extends CdkCell {
       elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
     }
   }
+}
 
+
+/**
+ * Footer cell definition for the mat-table.
+ *
+ * Captures the template of a column's footer cell and as well as cell-specific properties.
+ */
+@Directive({
+  selector: '[tsFooterCellDef]',
+  providers: [{
+    provide: CdkFooterCellDef,
+    useExisting: TsFooterCellDefDirective,
+  }],
+})
+export class TsFooterCellDefDirective extends CdkFooterCellDef {}
+
+/**
+ * Footer cell template container that adds the right classes and role.
+ */
+@Directive({
+  selector: 'ts-footer-cell, td[ts-footer-cell]',
+  host: {
+    class: 'ts-footer-cell',
+    role: 'gridcell',
+  },
+})
+export class TsFooterCellDirective extends CdkFooterCell {
+  /**
+   * Store a reference to the column
+   */
+  public column: TsColumnDefDirective;
+
+  constructor(
+    public columnDef: CdkColumnDef,
+    public elementRef: ElementRef,
+    private renderer: Renderer2,
+  ) {
+    super(columnDef, elementRef);
+    elementRef.nativeElement.classList.add(`ts-column-${columnDef.cssClassFriendlyName}`);
+
+    // NOTE: Changing the type in the constructor from `CdkColumnDef` to `TsColumnDefDirective` doesn't seem to play well with the CDK.
+    // Coercing the type here is a hack, but allows us to reference properties that do not exist on the underlying `CdkColumnDef`.
+    this.column = columnDef as TsColumnDefDirective;
+
+    setColumnAlignment(this.column, renderer, elementRef);
+
+    // eslint-disable-next-line no-underscore-dangle
+    if (columnDef._stickyEnd) {
+      elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
+    }
+
+    if (columnDef.sticky) {
+      elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
+    }
+  }
 }

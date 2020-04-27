@@ -1,5 +1,7 @@
 import {
   CDK_ROW_TEMPLATE,
+  CdkFooterRow,
+  CdkFooterRowDef,
   CdkHeaderRow,
   CdkHeaderRowDef,
   CdkRow,
@@ -89,6 +91,47 @@ export class TsRowComponent extends CdkRow {
 })
 export class TsHeaderRowDefDirective extends CdkHeaderRowDef {}
 
+/**
+ * Footer row definition for the {@link TsTableComponent}.
+ *
+ * Captures the footer row's template and other footer properties such as the columns to display.
+ */
+@Directive({
+  selector: '[tsFooterRowDef]',
+  providers: [{
+    provide: CdkFooterRowDef,
+    useExisting: TsFooterRowDefDirective,
+  }],
+  // NOTE: @Inputs are defined here rather than using decorators since we are extending the @Inputs of the base class
+  // tslint:disable-next-line:no-inputs-metadata-property
+  inputs: [
+    'columns: tsFooterRowDef',
+    'sticky: tsFooterRowDefSticky',
+  ],
+})
+export class TsFooterRowDefDirective extends CdkFooterRowDef {}
+
+/**
+ * Footer template container that contains the cell outlet. Adds the right class and role.
+ */
+@Component({
+  selector: 'ts-footer-row, tr[ts-footer-row]',
+  template: CDK_ROW_TEMPLATE,
+  host: {
+    class: 'ts-footer-row',
+    role: 'row',
+  },
+  providers: [{
+    provide: CdkFooterRow,
+    useExisting: TsFooterRowComponent,
+  }],
+  // See note on CdkTable for explanation on why this uses the default change detection strategy.
+  // tslint:disable-next-line:prefer-on-push-component-change-detection
+  changeDetection: ChangeDetectionStrategy.Default,
+  encapsulation: ViewEncapsulation.None,
+  exportAs: 'tsFooterRow',
+})
+export class TsFooterRowComponent extends CdkFooterRow {}
 
 /**
  * Data row definition for the {@link TsTableComponent}.

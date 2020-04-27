@@ -18,6 +18,10 @@ import {
   getTableInstance,
   TestData,
 } from '@terminus/ui/table/testing';
+import {
+  getFooterCells,
+  getFooterRows,
+} from '../testing/src/test-helpers';
 
 import {
   TsCellDirective,
@@ -226,6 +230,8 @@ describe(`TsTableComponent`, function() {
       fixture.detectChanges();
       const tableElement = fixture.nativeElement.querySelector('.ts-table');
       const headerCells = getHeaderCells(tableElement);
+      const footerRow = getFooterRows(tableElement)[0];
+      const footerCells = getFooterCells(footerRow);
       const cells = getCells(tableElement);
 
       expect(headerCells[0].classList).toContain('ts-table__column--sticky');
@@ -233,6 +239,9 @@ describe(`TsTableComponent`, function() {
 
       expect(cells[0].classList).not.toContain('ts-table__column--sticky-end');
       expect(cells[2].classList).toContain('ts-table__column--sticky-end');
+
+      expect(footerCells[0].classList).toContain('ts-table__column--sticky');
+      expect(footerCells[1].classList).not.toContain('ts-table__column--sticky');
     });
 
     test(`should only call to update sticky columns if at least one column is marked as sticky`, () => {
