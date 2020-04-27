@@ -1,3 +1,10 @@
+# [17.3.0](https://github.com/GetTerminus/terminus-ui/compare/v17.2.1...v17.3.0) (2020-04-27)
+
+
+### Features
+
+* **Table:** support footer rows ([8f4464c](https://github.com/GetTerminus/terminus-ui/commit/8f4464ca90576d48823cca98c0bf88380c84a18e))
+
 ## [17.2.1](https://github.com/GetTerminus/terminus-ui/compare/v17.2.0...v17.2.1) (2020-04-07)
 
 
