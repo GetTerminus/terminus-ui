@@ -7,11 +7,15 @@ import { TsSortModule } from '@terminus/ui/sort';
 import {
   TsCellDefDirective,
   TsCellDirective,
+  TsFooterCellDefDirective,
+  TsFooterCellDirective,
   TsHeaderCellDefDirective,
   TsHeaderCellDirective,
 } from './cell';
 import { TsColumnDefDirective } from './column';
 import {
+  TsFooterRowComponent,
+  TsFooterRowDefDirective,
   TsHeaderRowComponent,
   TsHeaderRowDefDirective,
   TsRowComponent,
@@ -39,38 +43,46 @@ export * from './table.component';
     TsTableComponent,
 
     // Template definitions
-    TsCellDefDirective,
-    TsColumnDefDirective,
     TsHeaderCellDefDirective,
     TsHeaderRowDefDirective,
+    TsColumnDefDirective,
+    TsCellDefDirective,
     TsRowDefDirective,
+    TsFooterCellDefDirective,
+    TsFooterRowDefDirective,
 
     // Cell directives
-    TsCellDirective,
     TsHeaderCellDirective,
+    TsCellDirective,
+    TsFooterCellDirective,
 
     // Row directives
     TsHeaderRowComponent,
     TsRowComponent,
+    TsFooterRowComponent,
   ],
   exports: [
     // Table
     TsTableComponent,
 
     // Template definitions
-    TsCellDefDirective,
-    TsColumnDefDirective,
     TsHeaderCellDefDirective,
     TsHeaderRowDefDirective,
+    TsColumnDefDirective,
+    TsCellDefDirective,
     TsRowDefDirective,
+    TsFooterCellDefDirective,
+    TsFooterRowDefDirective,
 
     // Cell directives
-    TsCellDirective,
     TsHeaderCellDirective,
+    TsCellDirective,
+    TsFooterCellDirective,
 
     // Row directives
     TsHeaderRowComponent,
     TsRowComponent,
+    TsFooterRowComponent,
   ],
 })
 export class TsTableModule {}

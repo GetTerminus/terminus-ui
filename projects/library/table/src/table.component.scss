@@ -94,7 +94,8 @@
 
   // Any cell
   .ts-cell,
-  .ts-header-cell {
+  .ts-header-cell,
+  .ts-footer-cell {
     min-height: inherit;
     position: relative;
     text-align: left;
@@ -133,7 +134,8 @@
   }
 
   // Body cell
-  .ts-cell {
+  .ts-cell,
+  .ts-footer-cell {
     background-color: var(--table-bg);
     overflow: hidden;
     padding: var(--cell-padding);
