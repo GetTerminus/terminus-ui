@@ -1,3 +1,10 @@
+## [18.2.1](https://github.com/GetTerminus/terminus-ui/compare/v18.2.0...v18.2.1) (2020-04-28)
+
+
+### Bug Fixes
+
+* **SelectionList:** fixed when seed values, chips do not show up in UI ([df8601d](https://github.com/GetTerminus/terminus-ui/commit/df8601df91c6689830eca9e568e3d432693b2778))
+
 # [18.2.0](https://github.com/GetTerminus/terminus-ui/compare/v18.1.21...v18.2.0) (2020-04-28)
 
 
