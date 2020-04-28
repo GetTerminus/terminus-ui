@@ -312,6 +312,49 @@ export class Seeded {
   template: `
     <ts-selection-list
       [formControl]="myCtrl"
+      [allowMultiple]="allowMultiple"
+      [allowDuplicateSelections]="allowDuplicates"
+      [reopenAfterSelection]="keepOpen"
+      [displayFormatter]="formatter"
+      (duplicateSelection)="duplicate($event)"
+    >
+      <ts-option
+        *ngFor="let option of states"
+        [value]="option"
+        [option]="option"
+        [isDisabled]="option?.disabled"
+      >
+        <span tsOptionDisplay>
+          {{ option.name }}
+        </span>
+      </ts-option>
+    </ts-selection-list>
+  `,
+})
+export class ManualSeeded {
+  public states: State[] = STATES.slice();
+  public myCtrl = new FormControl('');
+  public allowMultiple = true;
+  public allowDuplicates = false;
+  public keepOpen = false;
+  public formatter: TsSelectionListFormatter | undefined;
+
+  // Must be overwritten with a spy in the test
+  public duplicate = v => { };
+
+  public setNewStates() {
+    this.states = STATES.slice(3, 7);
+  }
+
+  public setFormatter() {
+    this.formatter = v => (v as State).population;
+  }
+}
+
+@Component({
+  template: `
+    <ts-selection-list
+      [formControl]="myCtrl"
       [displayFormatter]="formatter"
       [allowUserInput]="allowUserInput"
     >
@@ -1029,6 +1072,7 @@ export class NoValidationOrHint {
     PassingInObjectValue,
     Required,
     Seeded,
+    ManualSeeded,
     SeededNgModel,
     SeededNgModelError,
     SeededNonArray,
