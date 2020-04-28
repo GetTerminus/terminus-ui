@@ -13,8 +13,10 @@ import * as testComponents from '@terminus/ui/table/testing';
 // eslint-disable-next-line no-duplicate-imports
 import {
   getCells,
-  getRows,
+  getFooterCells,
+  getFooterRows,
   getHeaderCells,
+  getRows,
   getTableInstance,
   TestData,
 } from '@terminus/ui/table/testing';
@@ -264,12 +266,17 @@ describe(`TsTableComponent`, function() {
       const tableElement = fixture.nativeElement.querySelector('.ts-table');
       const headerCells = getHeaderCells(tableElement);
       const cells = getCells(tableElement);
+      const footerRow = getFooterRows(tableElement)[0];
+      const footerCells = getFooterCells(footerRow);
 
       expect(headerCells[0].classList).toContain('ts-table__column--sticky');
       expect(headerCells[1].classList).not.toContain('ts-table__column--sticky');
 
       expect(cells[0].classList).not.toContain('ts-table__column--sticky-end');
       expect(cells[2].classList).toContain('ts-table__column--sticky-end');
+
+      expect(footerCells[0].classList).toContain('ts-table__column--sticky');
+      expect(footerCells[1].classList).not.toContain('ts-table__column--sticky');
     });
 
     test(`should only call to update sticky columns if at least one column is marked as sticky`, () => {

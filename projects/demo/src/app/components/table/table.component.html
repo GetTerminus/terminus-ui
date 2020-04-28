@@ -80,69 +80,48 @@
     #myTable="tsTable"
   >
 
-    <ng-container tsColumnDef="title">
-      <th ts-header-cell *tsHeaderCellDef>
-        Title
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.title }}
-      </td>
+    <ng-container tsColumnDef="title" sticky>
+      <th ts-header-cell *tsHeaderCellDef>Title</th>
+      <td ts-cell *tsCellDef="let item">{{ item.title }}</td>
+      <td ts-footer-cell *tsFooterCellDef>TEST footer content</td>
     </ng-container>
 
     <ng-container tsColumnDef="updated" alignment="right">
-      <th ts-header-cell *tsHeaderCellDef ts-sort-header>
-        Updated
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.updated_at | date:"shortDate" }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef ts-sort-header>Updated</th>
+      <td ts-cell *tsCellDef="let item">{{ item.updated_at | date:"shortDate" }}</td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="comments" alignment="right">
-      <th ts-header-cell *tsHeaderCellDef>
-        Comments
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.comments }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef>Comments</th>
+      <td ts-cell *tsCellDef="let item">{{ item.comments }}</td>
+      <td ts-footer-cell *matfootercelldef>427</td>
     </ng-container>
 
     <ng-container tsColumnDef="assignee">
-      <th ts-header-cell *tsHeaderCellDef ts-sort-header>
-        Assignee
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.login }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef ts-sort-header>Assignee</th>
+      <td ts-cell *tsCellDef="let item">{{ item.login }}</td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="number" alignment="right">
-      <th ts-header-cell *tsHeaderCellDef ts-sort-header>
-        Number
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.number }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef ts-sort-header>Number</th>
+      <td ts-cell *tsCellDef="let item">{{ item.number }}</td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="labels">
-      <th ts-header-cell *tsHeaderCellDef>
-        Labels
-      </th>
+      <th ts-header-cell *tsHeaderCellDef>Labels</th>
       <td ts-cell *tsCellDef="let item">
-        <span *ngFor="let l of item.labels">
-          {{ l.name }},
-        </span>
+        <span *ngFor="let l of item.labels">{{ l.name }},</span>
       </td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="created">
-      <th ts-header-cell *tsHeaderCellDef ts-sort-header>
-        Created
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.created_at | date:"shortDate" }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef ts-sort-header>Created</th>
+      <td ts-cell *tsCellDef="let item">{{ item.created_at | date:"shortDate" }}</td>
+      <td ts-footer-cell *tsFooterCellDef>{{ latestCreationDate }}</td>
     </ng-container>
 
     <ng-container tsColumnDef="body">
@@ -152,39 +131,34 @@
       <td ts-cell *tsCellDef="let item">
         <span class="truncate" [innerHTML]="sanitize(item.body)"></span>
       </td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="state">
-      <th ts-header-cell *tsHeaderCellDef>
-        State
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.state }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef>State</th>
+      <td ts-cell *tsCellDef="let item">{{ item.state }}</td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="id" alignment="right">
-      <th ts-header-cell *tsHeaderCellDef>
-        ID
-      </th>
-      <td ts-cell *tsCellDef="let item">
-        {{ item.id }}
-      </td>
+      <th ts-header-cell *tsHeaderCellDef>ID</th>
+      <td ts-cell *tsCellDef="let item">{{ item.id }}</td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <ng-container tsColumnDef="html_url">
-      <th ts-header-cell *tsHeaderCellDef>
-        View
-      </th>
+      <th ts-header-cell *tsHeaderCellDef>View</th>
       <td ts-cell *tsCellDef="let item">
         <a href="{{ item.html_url }}">
           <ts-icon theme="accent">open_in_new</ts-icon>
         </a>
       </td>
+      <td ts-footer-cell *tsFooterCellDef>-</td>
     </ng-container>
 
     <tr ts-header-row *tsHeaderRowDef="myTable.columnNames; sticky: true"></tr>
     <tr ts-row *tsRowDef="let row; columns: myTable.columnNames;"></tr>
+    <tr ts-footer-row *tsFooterRowDef="myTable.columnNames; sticky: true"></tr>
   </table>
 </div>
 

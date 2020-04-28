@@ -243,25 +243,28 @@ export class TableColumnInvalidAlignmentTableApp {
       <ng-container tsColumnDef="column_a" sticky>
         <th ts-header-cell *tsHeaderCellDef> Column A</th>
         <td ts-cell *tsCellDef="let row">{{ row.a }}</td>
+        <td ts-footer-cell *tsFooterCellDef> Footer A</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_b">
         <th ts-header-cell *tsHeaderCellDef> Column B</th>
         <td ts-cell *tsCellDef="let row">{{ row.b }}</td>
+        <td ts-footer-cell *tsFooterCellDef> Footer B</td>
       </ng-container>
 
       <ng-container tsColumnDef="column_c" stickyEnd>
         <th ts-header-cell *tsHeaderCellDef> Column C</th>
         <td ts-cell *tsCellDef="let row">{{ row.c }}</td>
+        <td ts-footer-cell *tsFooterCellDef> Footer C</td>
       </ng-container>
 
       <ng-container tsColumnDef="special_column">
         <td ts-cell *tsCellDef="let row">fourth_row</td>
       </ng-container>
-
       <tr ts-header-row *tsHeaderRowDef="columnsToRender; sticky: true"></tr>
       <tr ts-row *tsRowDef="let row; columns: columnsToRender"></tr>
       <tr ts-row *tsRowDef="let row; columns: ['special_column']; when: isFourthRow"></tr>
+      <tr ts-footer-row *tsFooterRowDef="columnsToRender; sticky: true"></tr>
     </table>
   `,
 })

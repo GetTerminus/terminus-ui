@@ -15,6 +15,7 @@
 - [Content wrapping](#content-wrapping)
 - [Cell alignment](#cell-alignment)
 - [Sticky header](#sticky-header)
+- [Footer](#footer)
 - [Sticky column](#sticky-column)
   - [Sticky column at end](#sticky-column-at-end)
 - [Re-orderable columns](#re-orderable-columns)
@@ -313,11 +314,29 @@ Defining the header as sticky will ensure it is always visible as the table scro
 `tsHeaderRowDef` directive.
 
 ```html
+<ng-container tsColumnDef="example">
+  <th ts-header-cell *tsHeaderCellDef>Created</th>
+  <td ts-cell *tsCellDef="let item">{{ item.created_at }}</td>
+</ng-container>
+
 <tr ts-header-row *tsHeaderRowDef="displayedColumns; sticky: true"></tr>
 ```
 
 > NOTE: Multiple sticky headers can be defined.
 
+## Footer
+
+A footer row can be defined to be output at the bottom of the table. It supports the same 'sticky' setting that the
+header row does.
+
+```html
+<ng-container tsColumnDef="example">
+  <th ts-header-cell *tsHeaderCellDef>Created</th>
+  <td ts-cell *tsCellDef="let item">{{ item.created_at }}</td>
+  <td ts-footer-cell *tsFooterCellDef>Custom footer cell content</td>
+</ng-container>
+<tr ts-footer-row *tsFooterRowDef="displayedColumns; sticky: true"></tr>
+```
 
 ## Sticky column
 
@@ -589,7 +608,6 @@ import { TsSortDirective } from '@terminus/ui/sort';
 import { TsTableDataSource, TsColumn } from '@terminus/ui/table';
 import { TsPaginatorComponent } from '@terminus/ui/paginator';
 
-
 @Component({
   selector: 'my-component',
   template: `
@@ -612,54 +630,27 @@ import { TsPaginatorComponent } from '@terminus/ui/paginator';
       #myTable="tsTable"
     >
       <ng-container tsColumnDef="created">
-        <th ts-header-cell *tsHeaderCellDef ts-sort-header>
-          Created
-        </th>
-        <td ts-cell *tsCellDef="let item">
-          {{ item.created_at | date:shortDate }}
-        </td>
+        <th ts-header-cell *tsHeaderCellDef ts-sort-header>Created</th>
+        <td ts-cell *tsCellDef="let item">{{ item.created_at | date:shortDate }}</td>
+        <td ts-footer-cell *tsFooterCellDef>Footer A</td>
       </ng-container>
 
       <ng-container tsColumnDef="number" alignment="right">
-        <th ts-header-cell *tsHeaderCellDef>
-          Number
-        </th>
-        <td ts-cell *tsCellDef="let item">
-          {{ item.number }}
-        </td>
+        <th ts-header-cell *tsHeaderCellDef>Number</th>
+        <td ts-cell *tsCellDef="let item">{{ item.number }}</td>
+        <td ts-footer-cell *tsFooterCellDef>Footer B</td>
       </ng-container>
 
       <ng-container tsColumnDef="title">
-        <th ts-header-cell *tsHeaderCellDef>
-          Title
-        </th>
-        <td ts-cell *tsCellDef="let item">
-          {{ item.title }}
-        </td>
-      </ng-container>
-
-      <ng-container tsColumnDef="state">
-        <th ts-header-cell *tsHeaderCellDef>
-          State
-        </th>
-        <td ts-cell *tsCellDef="let item">
-          {{ item.state }}
-        </td>
-      </ng-container>
-
-      <ng-container tsColumnDef="comments">
-        <th ts-header-cell *tsHeaderCellDef ts-sort-header>
-          Comments
-        </th>
-        <td ts-cell *tsCellDef="let item">
-          {{ item.comments }}
-        </td>
+        <th ts-header-cell *tsHeaderCellDef>Title</th>
+        <td ts-cell *tsCellDef="let item">{{ item.title }}</td>
+        <td ts-footer-cell *tsFooterCellDef>Footer C</td>
       </ng-container>
 
       <tr ts-header-row *tsHeaderRowDef="myTable.columnNames"></tr>
-      <tr ts-row *tsRowDef="let row; columns: myTable.columnNames;"></tr>
+      <tr ts-row *tsRowDef="let row; columns: myTable.columnNames"></tr>
+      <tr ts-footer-row *tsFooterRowDef="myTable.columnNames"></tr>
     </table>
-
 
     <!-- Align the paginator to the right side -->
     <div fxLayout="row" fxLayoutAlign="end center">
