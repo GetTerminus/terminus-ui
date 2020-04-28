@@ -591,6 +591,7 @@ export class TsSelectionListComponent implements
               } else {
                 this.selectionListFormControl.setValue([newValue[0]], { emitEvent: false });
               }
+              this.changeDetectorRef.detectChanges();
             }
           });
       }

@@ -42,6 +42,8 @@ import {
 } from '@terminus/ui/selection-list/testing';
 import { getValidationMessageElement } from '@terminus/ui/validation-messages/testing';
 
+import { STATES } from '../testing/src/test-components';
+
 import { TsSelectionListTriggerDirective } from './selection-list-panel/selection-list-trigger.directive';
 import { TsSelectionListComponent } from './selection-list.component';
 import { TsSelectionListModule } from './selection-list.module';
@@ -116,12 +118,25 @@ describe(`TsSelectionListComponent`, function() {
   });
 
   describe(`chips`, function() {
-    test(`should show selections as chips`, () => {
-      const fixture = createComponent(testComponents.Seeded);
-      fixture.detectChanges();
-      const chip = getChipElement(fixture);
+    describe(`seed value`, () => {
+      test(`should show selections as chips when seeded manually`, () => {
+        const fixture = createComponent(testComponents.ManualSeeded);
+        fixture.detectChanges();
+        let chipElement;
+        chipElement = fixture.debugElement.nativeElement.querySelectorAll('ts-chip');
+        expect(chipElement.length).toBe(0);
+        fixture.componentInstance.myCtrl.setValue([STATES[4]]);
+        fixture.detectChanges();
+        chipElement = fixture.debugElement.nativeElement.querySelectorAll('ts-chip');
+        expect(chipElement.length).toBe(1);
+      });
 
-      expect(chip).toBeTruthy();
+      test(`should show selections as chips when seeded while component starts up`, () => {
+        const fixture = createComponent(testComponents.Seeded);
+        fixture.detectChanges();
+        const chipElement = fixture.debugElement.nativeElement.querySelectorAll('ts-chip');
+        expect(chipElement.length).toBe(1);
+      });
     });
 
     test(`should allow chips to be removed`, fakeAsync(() => {
