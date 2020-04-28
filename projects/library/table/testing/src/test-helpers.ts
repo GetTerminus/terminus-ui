@@ -80,6 +80,14 @@ export const getElements = (element: Element, query: string): Element[] => [].sl
 export const getHeaderRow = (tableElement: Element): Element => tableElement.querySelector('.ts-header-row')!;
 
 /**
+ * Return all footer rows
+ *
+ * @param tableElement - The table element to search within
+ * @returns An array of footer rows
+ */
+export const getFooterRows = (tableElement: Element): Element[] => Array.from(tableElement.querySelectorAll('.ts-footer-row'));
+
+/**
  * Get all row elements
  *
  * @param tableElement - The table to search within
@@ -102,6 +110,20 @@ export const getCells = (row: Element): Element[] => (row ? getElements(row, '.t
  * @returns An array of header cells
  */
 export const getHeaderCells = (tableElement: Element): Element[] => getElements(getHeaderRow(tableElement), '.ts-header-cell');
+
+/**
+ * Get all footer cells
+ *
+ * @param footerRow - The Row to search within
+ * @returns An array of footer cells
+ */
+export function getFooterCells(footerRow: Element): Element[] {
+  let cells = getElements(footerRow, 'ts-footer-cell');
+  if (!cells.length) {
+    cells = getElements(footerRow, 'td');
+  }
+  return cells;
+}
 
 /**
  * Get all cells within a column

@@ -2,6 +2,8 @@ import {
   CdkCell,
   CdkCellDef,
   CdkColumnDef,
+  CdkFooterCell,
+  CdkFooterCellDef,
   CdkHeaderCell,
   CdkHeaderCellDef,
 } from '@angular/cdk/table';
@@ -351,6 +353,70 @@ export class TsCellDirective extends CdkCell implements OnInit {
   constructor(
     public elementRef: ElementRef,
     private columnDef: CdkColumnDef,
+    private renderer: Renderer2,
+  ) {
+    super(columnDef, elementRef);
+  }
+
+  /**
+   * Initial setup
+   */
+  public ngOnInit(): void {
+    // HACK: Changing the type in the constructor from `CdkColumnDef` to `TsColumnDefDirective` doesn't seem to play well with the CDK.
+    // Coercing the type here is a hack, but allows us to reference properties that do not exist on the underlying `CdkColumnDef`.
+    this.column = this.columnDef as TsColumnDefDirective;
+
+    // Set a custom class for each column
+    this.elementRef.nativeElement.classList.add(`ts-column-${this.column.cssClassFriendlyName}`);
+
+    setColumnAlignment(this.column, this.renderer, this.elementRef);
+
+    // eslint-disable-next-line no-underscore-dangle
+    if (this.column._stickyEnd) {
+      this.elementRef.nativeElement.classList.add(`ts-table__column--sticky-end`);
+    }
+
+    if (this.column.sticky) {
+      this.elementRef.nativeElement.classList.add(`ts-table__column--sticky`);
+    }
+  }
+}
+
+
+/**
+ * Footer cell definition for the mat-table.
+ *
+ * Captures the template of a column's footer cell and as well as cell-specific properties.
+ */
+@Directive({
+  selector: '[tsFooterCellDef]',
+  providers: [{
+    provide: CdkFooterCellDef,
+    useExisting: TsFooterCellDefDirective,
+  }],
+})
+export class TsFooterCellDefDirective extends CdkFooterCellDef {}
+
+/**
+ * Footer cell template container that adds the right classes and role.
+ */
+@Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: 'ts-footer-cell, td[ts-footer-cell]',
+  host: {
+    class: 'ts-footer-cell',
+    role: 'gridcell',
+  },
+})
+export class TsFooterCellDirective extends CdkFooterCell implements OnInit {
+  /**
+   * Store a reference to the column
+   */
+  public column!: TsColumnDefDirective;
+
+  constructor(
+    public columnDef: CdkColumnDef,
+    public elementRef: ElementRef,
     private renderer: Renderer2,
   ) {
     super(columnDef, elementRef);
