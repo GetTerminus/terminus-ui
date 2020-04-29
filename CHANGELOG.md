@@ -1,3 +1,10 @@
+## [18.2.2](https://github.com/GetTerminus/terminus-ui/compare/v18.2.1...v18.2.2) (2020-04-29)
+
+
+### Bug Fixes
+
+* **CI:** revert to publishing ViewEngine code ([b4701fe](https://github.com/GetTerminus/terminus-ui/commit/b4701fe70422f3b955ea8af267f9d0d0348ec8c1))
+
 ## [18.2.1](https://github.com/GetTerminus/terminus-ui/compare/v18.2.0...v18.2.1) (2020-04-28)
 
 
