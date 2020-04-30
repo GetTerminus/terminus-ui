@@ -171,6 +171,12 @@ export class TsSearchComponent implements OnInit {
   public isSubmitting = false;
 
   /**
+   * Define whether formControl needs a validation or a hint
+   */
+  @Input()
+  public noValidationOrHint = false;
+
+  /**
    * Define the theme
    */
   @Input()
