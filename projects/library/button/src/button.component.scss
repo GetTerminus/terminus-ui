@@ -133,7 +133,7 @@ ts-button {
   .ts-search & {
     // Offset to account for space under input for error messages
     position: relative;
-    top: calc(var(--ts-space-stack-45) * -1);
+    top: calc(var(--ts-space-stack-400) * -1);
   }
 }
 
