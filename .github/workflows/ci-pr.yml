@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: check last commit message
+      - name: Check last commit message
         id: skip
         uses: atlwendy/retrieve-commit-messages-from-pr@v2
       - name: Set SHOULD_RUN flag
@@ -55,6 +55,171 @@ jobs:
         if: env.SHOULD_RUN == 'true'
 
   #
+  # Test the library
+  #
+  library_test:
+    name: Test Library
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Check last commit message
+        id: skip
+        uses: atlwendy/retrieve-commit-messages-from-pr@v2
+      - name: Set SHOULD_RUN flag
+        run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Run all tests
+        run: tooling/ci/test-unit.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v1
+        with:
+          name: code-coverage-report
+          path: coverage/lcov-report
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Lint all files
+  #
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Check last commit message
+        id: skip
+        uses: atlwendy/retrieve-commit-messages-from-pr@v2
+      - name: Set SHOULD_RUN flag
+        run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Lint all library files
+        run: yarn run library:lint & yarn run demo:lint & yarn run vr:lint
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Build the demos
+  #
+  demos_build:
+    name: Compile Demos
+    needs: library_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Check last commit message
+        id: skip
+        uses: atlwendy/retrieve-commit-messages-from-pr@v2
+      - name: Set SHOULD_RUN flag
+        run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - name: Download built library
+        uses: actions/download-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+      - name: Build demos with AoT
+        run: tooling/ci/build-demos-aot.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Inject new library version
+        run: tooling/ci/inject-library-version-number.sh
+        if: env.SHOULD_RUN == 'true'
+      - name: Upload built files
+        uses: actions/upload-artifact@v1
+        with:
+          name: built-demos
+          path: dist/demo
+        if: env.SHOULD_RUN == 'true'
+
+  #
+  # Run integration test
+  #
+  integration_test:
+    name: Run integration test
+    needs: demos_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Check last commit message
+        id: skip
+        uses: atlwendy/retrieve-commit-messages-from-pr@v2
+      - name: Set SHOULD_RUN flag
+        run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+        if: env.SHOULD_RUN == 'true'
+      - name: Cache node_modules
+        id: cache_node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+        if: env.SHOULD_RUN == 'true'
+      - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile --non-interactive
+      - if: env.SHOULD_RUN == 'true'
+        run: yarn add start-server-and-test
+      - name: Download built library
+        uses: actions/download-artifact@v1
+        with:
+          name: built-library
+          path: dist/library
+        if: env.SHOULD_RUN == 'true'
+      - name: Download built demo
+        uses: actions/download-artifact@v1
+        with:
+          name: built-demos
+          path: dist/demo
+        if: env.SHOULD_RUN == 'true'
+      - name: Run integration test
+        run: yarn library:test:integration
+        if: env.SHOULD_RUN == 'true'
+
+  #
   # Run regression test
   #
   regression_test:
@@ -64,11 +229,14 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
-      - name: check last commit message
+      - name: Get pusher name
+        run: echo ::set-env name=author::${{ github.event.pull_request.user.login }}
+      - name: Check last commit message
         id: skip
         uses: atlwendy/retrieve-commit-messages-from-pr@master
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
+        if: env.author != 'renovate'
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
@@ -92,7 +260,9 @@ jobs:
           path: dist/library
         if: env.SHOULD_RUN == 'true'
       - name: Run regression test
-        run: yarn run vr:test:regression
+        uses: percy/exec-action@v0.3.0
+        with:
+          custom-command: yarn run vr:test:regression
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         if: env.SHOULD_RUN == 'true'
