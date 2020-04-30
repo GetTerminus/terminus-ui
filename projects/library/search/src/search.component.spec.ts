@@ -26,6 +26,7 @@ import { TsSearchModule } from './search.module';
         [initialValue]="startingValue"
         [autoSubmit]="shouldAutoSubmit"
         [userCanClear]="userCanClear"
+        [noValidationOrHint]="noValidationOrHint"
         (submitted)="onSubmit($event)"
         (cleared)="onClear()"
         (changed)="onChange($event)"
@@ -100,6 +101,15 @@ describe('TsSearchComponent', function() {
       fixture.detectChanges();
       const button = fixture.debugElement.queryAll(By.css('.c-button'))[0].nativeElement as HTMLButtonElement;
       expect(button.getAttribute('disabled')).toEqual('true');
+    });
+  });
+
+  describe(`noValidationOrHint`, () => {
+    test(`should not have validation or hint added if set to true`, () => {
+      component.noValidationOrHint = true;
+      fixture.detectChanges();
+      const validationBlock = fixture.debugElement.query(By.css('.ts-form-field__subscript-wrapper'));
+      expect(validationBlock).toBeFalsy();
     });
   });
 
