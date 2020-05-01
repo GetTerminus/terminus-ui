@@ -1,3 +1,15 @@
+# [18.3.0](https://github.com/GetTerminus/terminus-ui/compare/v18.2.2...v18.3.0) (2020-05-01)
+
+
+### Bug Fixes
+
+* **Search:** Search button lines up with search input box ([91c8ef4](https://github.com/GetTerminus/terminus-ui/commit/91c8ef41447aeb164e7bff3d88efe4f6d4c9d49c))
+
+
+### Features
+
+* **Search:** Support noValidationOrHint mode ([9c1fa03](https://github.com/GetTerminus/terminus-ui/commit/9c1fa039993a1ca273c4566b51060dd043189a4a))
+
 ## [18.2.2](https://github.com/GetTerminus/terminus-ui/compare/v18.2.1...v18.2.2) (2020-04-29)
 
 
