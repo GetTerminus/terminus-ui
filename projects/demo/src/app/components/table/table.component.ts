@@ -282,6 +282,7 @@ export class TableComponent implements OnInit, AfterViewInit, OnDestroy {
     moveItemInArray(columns, event.previousIndex, event.currentIndex);
 
     this.allPossibleColumns = columns;
+    this.setVisibleColumns();
     this.changeDetectorRef.detectChanges();
   }
 
