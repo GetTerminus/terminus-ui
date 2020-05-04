@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
+import { TsCSVEntryComponent } from '@terminus/ui/csv-entry';
 import { TsValidatorsService } from '@terminus/ui/validators';
 
 
@@ -17,6 +18,12 @@ export class CSVEntryComponent {
   public myFile;
   public footerDirection: 'ltr' | 'rtl' = 'ltr';
 
+  @ViewChild(TsCSVEntryComponent, {
+    static: true,
+    read: false,
+  })
+  public csvComponent!: TsCSVEntryComponent;
+
   constructor(
     private validatorsService: TsValidatorsService,
   ) {}
@@ -31,6 +38,9 @@ export class CSVEntryComponent {
     saveFile(this.blob, 'test');
   }
 
+  public customReset(): void {
+    this.csvComponent.resetTable();
+  }
 }
 
 
