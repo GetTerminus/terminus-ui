@@ -236,7 +236,7 @@ jobs:
         uses: atlwendy/retrieve-commit-messages-from-pr@master
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
-        if: env.author != 'renovate'
+        if: ! env.author =~ 'renovate'
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
