@@ -1,3 +1,10 @@
+## [18.3.1](https://github.com/GetTerminus/terminus-ui/compare/v18.3.0...v18.3.1) (2020-05-07)
+
+
+### Bug Fixes
+
+* **Demo:** fixed table demo reorder ([1d4b2c4](https://github.com/GetTerminus/terminus-ui/commit/1d4b2c45ae4a23986498fe178737bc02d499bf92))
+
 # [18.3.0](https://github.com/GetTerminus/terminus-ui/compare/v18.2.2...v18.3.0) (2020-05-01)
 
 
