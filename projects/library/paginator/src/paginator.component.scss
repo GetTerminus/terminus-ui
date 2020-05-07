@@ -47,8 +47,12 @@
     width: $width-to-match-menu;
   }
 
-  .ts-select,
-  .ts-button {
+  .ts-selection-list {
+    width: var(--ts-space-base-large5);
+  }
+
+  .ts-button,
+  .ts-selection-list {
     margin-right: spacing(small, 2);
   }
 }

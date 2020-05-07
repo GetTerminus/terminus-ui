@@ -4,13 +4,14 @@
 >
 
 <div fxLayout="row" fxLayoutAlign="start start">
-
     <ts-selection-list
       class="qa-paginator-per-page-select"
       *ngIf="recordsPerPageChoices && showRecordsPerPageSelector"
       [label]="recordsSelectLabel"
       [isDisabled]="disableRecordsPerPage(totalRecords, recordsPerPageChoices)"
       [noValidationOrHint]="true"
+      [formControl]="pageControl"
+      [allowUserInput]="allowUserInput"
       (selectionChange)="recordsPerPageUpdated($event)"
     >
       <ts-option

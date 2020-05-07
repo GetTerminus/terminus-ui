@@ -1,0 +1,46 @@
+<div style="margin: 2em 0 0 2em;">
+  <label tsVerticalSpacing>
+    Current page:
+    <select [(ngModel)]="currentPageIndex" class="current-page">
+      <option *ngFor="let page of pages">{{ page }}</option>
+    </select>
+  </label>
+
+  <br>
+
+  <br>
+
+  <label>
+    Pagination is zero-based:
+    <input class='zero-based' type="checkbox" [(ngModel)]="zeroBased" (ngModelChange)="updatePages($event)">
+  </label>
+
+  <br>
+  <br>
+
+  <label>
+    Simple mode:
+    <input class="simple-mode" type="checkbox" [(ngModel)]="simpleMode">
+  </label>
+
+  <br>
+  <br>
+
+  <ts-paginator
+    [theme]="myTheme"
+    [totalRecords]="recordCount"
+    [showRecordsPerPageSelector]="showSelector"
+    [currentPageIndex]="currentPageIndex"
+    [menuLocation]="location"
+    [paginatorMessageTemplate]="myTemplate"
+    [isZeroBased]="zeroBased"
+    [isSimpleMode]="simpleMode"
+    recordCountTooHighMessage="Please refine your filters."
+    (recordsPerPageChange)="perPageChange($event)"
+    (pageSelect)="onPageSelect($event)"
+  ></ts-paginator>
+
+  <ng-template #myTemplate let-message>
+    <a routerLink="/components/link">{{ message }}</a>
+  </ng-template>
+</div>
