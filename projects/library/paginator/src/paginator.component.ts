@@ -12,6 +12,7 @@ import {
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { coerceNumberProperty } from '@terminus/ngx-tools/coercion';
 import { inputHasChanged } from '@terminus/ngx-tools/utilities';
 import { TsSelectionListChange } from '@terminus/ui/selection-list';
@@ -97,9 +98,19 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
   private DEFAULT_HIGH_RECORD_MESSAGE = `That's a lot of results! Try refining your filters for better results.`;
 
   /**
+   * This does not allow user input in selection list
+   */
+  public allowUserInput = false;
+
+  /**
    * Define the icon for the 'first page' button
    */
   public firstPageIcon = 'first_page';
+
+  /**
+   * Set up a form control to pass to {@link TsSelectionListComponent}
+   */
+  public pageControl = new FormControl();
 
   /**
    * Define the icon for the 'previous page' button
@@ -128,8 +139,18 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
   /**
    * Define the amount of records show per page
+   *
+   * @param value
    */
-  public recordsPerPage: number = DEFAULT_RECORDS_PER_PAGE;
+  // public recordsPerPage: number = DEFAULT_RECORDS_PER_PAGE;
+  public set recordsPerPage(value: number) {
+    this._recordsPerPage = value;
+    this.pageControl.setValue([value]);
+  }
+  public get recordsPerPage(): number {
+    return this._recordsPerPage;
+  }
+  private _recordsPerPage = DEFAULT_RECORDS_PER_PAGE;
 
   /**
    * Define the template context for the record count message
@@ -292,11 +313,12 @@ export class TsPaginatorComponent implements OnChanges, AfterViewInit {
 
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
-  ) {}
-
+  ) {
+    this.pageControl.setValue([this.recordsPerPage]);
+  }
 
   /**
-   * Initialize on init
+   * Initialize after the view is initialized
    */
   public ngAfterViewInit(): void {
     this.initialize();

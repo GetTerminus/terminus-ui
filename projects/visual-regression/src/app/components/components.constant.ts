@@ -17,6 +17,11 @@ export const componentsList: Routes = [
     data: { name: 'Input' },
   },
   {
+    path: 'paginator',
+    loadChildren: () => import('./paginator/paginator.module').then(m => m.PaginatorModule),
+    data: { name: 'Paginator' },
+  },
+  {
     path: 'selection-list',
     loadChildren: () => import('./selection-list/selection-list.module').then(m => m.SelectionListModule),
     data: { name: 'Selection List' },
