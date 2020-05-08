@@ -1,3 +1,11 @@
+## [18.3.2](https://github.com/GetTerminus/terminus-ui/compare/v18.3.1...v18.3.2) (2020-05-08)
+
+
+### Bug Fixes
+
+* **CI:** better check for pr author ([062755f](https://github.com/GetTerminus/terminus-ui/commit/062755f20b7cd8cfb8d78fcdb6299e190466b2d9))
+* **Paginator:** Selection list defaults to first selection, add visual regression test ([dc5bee4](https://github.com/GetTerminus/terminus-ui/commit/dc5bee49f82ea79541f295e89bf6508f5d36c286))
+
 ## [18.3.1](https://github.com/GetTerminus/terminus-ui/compare/v18.3.0...v18.3.1) (2020-05-07)
 
 
