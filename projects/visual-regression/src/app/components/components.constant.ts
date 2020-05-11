@@ -12,6 +12,10 @@ export const componentsList: Routes = [
     loadChildren: () => import('./card/card.module').then(m => m.CardModule),
   },
   {
+    path: 'chip',
+    loadChildren: () => import('./chip/chip.module').then(m => m.ChipModule),
+  },
+  {
     path: 'input',
     loadChildren: () => import('./input/input.module').then(m => m.InputModule),
     data: { name: 'Input' },

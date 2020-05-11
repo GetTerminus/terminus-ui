@@ -1,0 +1,62 @@
+<div style="margin-left: 20px">
+  <h3 tsVerticalSpacing>Chip</h3>
+
+  <div tsVerticalSpacing>
+    <label>
+      Orientation:
+      <select [(ngModel)]="orientation" class="orientation">
+        <option selected="selected" value="horizontal">Horizontal</option>
+        <option value="vertical">Vertical</option>
+      </select>
+    </label>
+    <br>
+    <br>
+    <div tsVerticalSpacing class="allow-disable">
+      <label>
+        Chip Collection Disabled:
+        <input type="checkbox" [(ngModel)]="disabled">
+      </label>
+    </div>
+
+    <div tsVerticalSpacing class="allow-removal">
+      <label>
+        Allow chip removal:
+        <input type="checkbox" [(ngModel)]="removable">
+      </label>
+    </div>
+  </div>
+
+
+  <div class="ts-chip-collection">
+    <ts-chip-collection
+      [allowMultipleSelections]="true"
+      [isSelectable]="selectable"
+      [orientation]="orientation"
+      (collectionChange)="change($event)"
+      [isDisabled]="disabled"
+      class="chip-collection"
+    >
+      <ts-chip
+        *ngFor="let chip of options;"
+        [isRemovable]="!readonly && removable"
+        [isDisabled]="disabled"
+        [isSelectable]="selectable"
+        [value]="chip"
+        (remove)="removeChip($event)"
+      >{{ chip }}</ts-chip>
+    </ts-chip-collection>
+  </div>
+
+
+  <h3 tsVerticalSpacing>Badge</h3>
+
+  <div tsVerticalSpacing="small--1">
+    <ts-chip tsChipBadge>One</ts-chip>
+  </div>
+  <div tsVerticalSpacing="small--1">
+    <ts-chip tsChipBadge theme="accent">Two</ts-chip>
+  </div>
+  <div tsVerticalSpacing="small--1">
+    <ts-chip tsChipBadge theme="warn">Three</ts-chip>
+  </div>
+</div>
