@@ -1,3 +1,10 @@
+## [18.3.3](https://github.com/GetTerminus/terminus-ui/compare/v18.3.2...v18.3.3) (2020-05-11)
+
+
+### Bug Fixes
+
+* **Chip:** Badge padding set to be the same on both sides. ([be8d2ba](https://github.com/GetTerminus/terminus-ui/commit/be8d2ba0ab545f89f337468693ce0a0f36e33dc7))
+
 ## [18.3.2](https://github.com/GetTerminus/terminus-ui/compare/v18.3.1...v18.3.2) (2020-05-08)
 
 
