@@ -192,7 +192,7 @@
     "gulp-print": "5.0.2",
     "gulp-remove-empty-lines": "0.1.0",
     "gulp-replace": "1.0.0",
-    "gulp-sass": "4.0.2",
+    "gulp-sass": "4.1.0",
     "gulp-sourcemaps": "2.6.5",
     "gulp-strip-json-comments": "4.0.1",
     "husky": "4.2.5",
