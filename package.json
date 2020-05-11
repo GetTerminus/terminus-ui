@@ -121,7 +121,7 @@
     "yarn": ">= 1.0.0"
   },
   "dependencies": {
-    "@amcharts/amcharts4": "4.9.17",
+    "@amcharts/amcharts4": "4.9.20",
     "@amcharts/amcharts4-geodata": "4.1.14",
     "@angular/animations": "9.1.1",
     "@angular/cdk": "9.2.0",

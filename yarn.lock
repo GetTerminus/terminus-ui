@@ -7,14 +7,13 @@
   resolved "https://registry.yarnpkg.com/@amcharts/amcharts4-geodata/-/amcharts4-geodata-4.1.14.tgz#ecc70d20a52f09e8598631c478b0b01a3fec1a71"
   integrity sha512-zb9eo88CcASLtGvyvKZ/ICM8xedPWK9HWSX8rixT1ObrmSv0jetQ3ky8K89smw3xfesTpZ68h5J1Isv/Fhj8aQ==
 
-"@amcharts/amcharts4@4.9.17":
-  version "4.9.17"
-  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.9.17.tgz#9a2d2176323a0337adea0070d8a337b263b95e13"
-  integrity sha512-6D5g3mjnLZ5tevGsA/ZLKLpFK0coAZy4YWtfJ23JniqO4a7fZ/gdQ6OzSyZZpmjZk70lMxU/7wlTfTJMUrvJ2Q==
+"@amcharts/amcharts4@4.9.20":
+  version "4.9.20"
+  resolved "https://registry.yarnpkg.com/@amcharts/amcharts4/-/amcharts4-4.9.20.tgz#274153d8cb3ea8fd3b03ab44811faa9b822231cc"
+  integrity sha512-myWiR5RI0XG2gdlSK6F222ypq/BGLznfRXGgIl8HxSLo2xTNizGeCsfwF24qRFhLBglHvB+U88/TkNiFaMo5Tw==
   dependencies:
     "@types/regression" "^2.0.0"
     canvg "^3.0.0"
-    css-element-queries "1.2.1"
     d3-force "^2.0.1"
     d3-geo "^1.11.3"
     d3-geo-projection "^2.6.0"
