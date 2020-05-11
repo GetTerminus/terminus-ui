@@ -15,6 +15,7 @@
   --chip-margin: #{spacing(small, 2)};
   --chip-padding: 2px 4px 2px 6px;
   --chip-remove-size: #{spacing(large)};
+  --badge-padding: 2px 4px 2px 4px;
 
   &:focus,
   &:hover {
@@ -49,6 +50,7 @@
   &.ts-chip--badge {
     .c-chip {
       --chip-color: color(pure);
+      padding: var(--badge-padding);
     }
   }
 
