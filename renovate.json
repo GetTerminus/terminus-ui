@@ -6,6 +6,10 @@
   "masterIssue": true,
   "packageRules": [
     {
+      "packagePatterns": ["^@angular"],
+      "groupName": "Angular Core Packages"
+    },
+    {
       "packagePatterns": ["jest"],
       "groupName": "Jest Packages"
     },
