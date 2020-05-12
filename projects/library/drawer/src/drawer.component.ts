@@ -59,6 +59,7 @@ export const TS_DRAWER_DEFAULT_EXPAND_SIZE = '12.5rem';
  * <ts-drawer
  *              [collapsedSize]="collapsedSize"
  *              [expandedSize]="expandedSize"
+ *              [hideShadowWhenCollapsed]="true"
  *              [isExpanded]="isExpanded"
  *              [mode]="mode"
  *              [position]="position"
@@ -101,7 +102,7 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
   /**
    * Define animation state, defaults to void state
    */
-  public animationState: 'open-instant' | 'open' | 'void' = 'void';
+  public animationState: 'open-instant' | 'open' | 'void' | 'void-shadow' = this.hideShadowWhenCollapsed ? 'void' : 'void-shadow';
 
   /**
    * Emits whenever the drawer has started animating.
@@ -156,6 +157,20 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
     return this._expandedSize;
   }
   public _expandedSize = '12.75rem';
+
+  /**
+   * Hide shadow when drawer is collapsed
+   *
+   * @param value
+   */
+  @Input()
+  public set hideShadowWhenCollapsed(value: boolean) {
+    this._hideShadowWhenCollapsed = value;
+  }
+  public get hideShadowWhenCollapsed(): boolean {
+    return this._hideShadowWhenCollapsed;
+  }
+  private _hideShadowWhenCollapsed = true;
 
   /**
    * Define whether the drawer is open
@@ -297,7 +312,10 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
     ).subscribe((event: AnimationEvent) => {
       const { fromState, toState } = event;
 
-      if ((toState.indexOf('open') === 0 && fromState === 'void') || (toState === 'void' && fromState.indexOf('open') === 0)) {
+      if ((
+        toState.indexOf('open') === 0 && (fromState === 'void' || fromState === 'void-shadow'))
+        || (toState === 'void' && fromState.indexOf('open') === 0)
+        || (toState === 'void-shadow' && fromState.indexOf('open') === 0)) {
         this.expandedChange.emit(this.isExpanded);
       }
     });
@@ -351,7 +369,7 @@ export class TsDrawerComponent implements AfterContentChecked, OnDestroy {
     if (isOpen) {
       this.animationState = this.enableAnimations ? 'open' : 'open-instant';
     } else {
-      this.animationState = 'void';
+      this.animationState = this.hideShadowWhenCollapsed ? 'void' : 'void-shadow';
     }
 
     return new Promise<TsDrawerToggleResult>(resolve => {
