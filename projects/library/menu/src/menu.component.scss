@@ -60,6 +60,7 @@
 
 .ts-menu__panel {
   .mat-menu-content {
+    background-color: var(--ts-color-base-white);
     // NOTE: Universal selector needed since we don't know what the first child will be
     > * {
       display: block;
