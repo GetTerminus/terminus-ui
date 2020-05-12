@@ -1,3 +1,10 @@
+## [18.3.4](https://github.com/GetTerminus/terminus-ui/compare/v18.3.3...v18.3.4) (2020-05-12)
+
+
+### Bug Fixes
+
+* **Icon:** icon should have a fixed height ([6e690c2](https://github.com/GetTerminus/terminus-ui/commit/6e690c2912393117107ffc6c882d41c643b437d9))
+
 ## [18.3.3](https://github.com/GetTerminus/terminus-ui/compare/v18.3.2...v18.3.3) (2020-05-11)
 
 
