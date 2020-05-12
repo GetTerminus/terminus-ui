@@ -12,7 +12,10 @@
 //
 .ts-icon {
   @include reset;
+  $icon-height: 24px;
+
   display: inline-block;
+  height: $icon-height;
 
   &.ts-icon--inline {
     $margin: spacing(small, 2);
