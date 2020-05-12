@@ -1,3 +1,10 @@
+# [18.4.0](https://github.com/GetTerminus/terminus-ui/compare/v18.3.5...v18.4.0) (2020-05-12)
+
+
+### Features
+
+* **TsTimeAgoPipe:** Compare date default to current date ([6c192d5](https://github.com/GetTerminus/terminus-ui/commit/6c192d5964dc0a556b266db8d678fa1e932d3263))
+
 ## [18.3.5](https://github.com/GetTerminus/terminus-ui/compare/v18.3.4...v18.3.5) (2020-05-12)
 
 
