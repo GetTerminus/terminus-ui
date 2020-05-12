@@ -43,5 +43,16 @@ describe(`TsTimeAgoPipe`, function() {
       });
     });
   });
+
+  test(`should compare to current date if no comparedDate passed in`, () => {
+    const mockDate = new Date(2018, 1, 8);
+    const spy = jest
+      .spyOn(global, 'Date')
+      .mockImplementation(() => mockDate);
+    const actual = pipe(date.toISOString());
+    const expected = 'less than a minute';
+    expect(actual).toEqual(expected);
+    spy.mockRestore();
+  });
 });
 

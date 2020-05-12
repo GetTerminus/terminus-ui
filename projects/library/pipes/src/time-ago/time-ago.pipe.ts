@@ -17,7 +17,7 @@ import { formatDistance } from 'date-fns';
  */
 @Pipe({ name: 'tsTimeAgo' })
 export class TsTimeAgoPipe implements PipeTransform {
-  public transform(value: string | Date, comparedDate: string | Date): string | undefined {
+  public transform(value: string | Date, comparedDate: string | Date  = new Date()): string | undefined {
     // Check for null values to avoid issues during data-binding
     if (value == null || value === '') {
       return undefined;
