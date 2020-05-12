@@ -217,7 +217,7 @@
     "scssfmt": "1.0.7",
     "semantic-release": "17.0.4",
     "shell-quote": "1.7.2",
-    "start-server-and-test": "1.10.11",
+    "start-server-and-test": "1.11.0",
     "stylelint": "13.3.2",
     "stylelint-order": "4.0.0",
     "systemjs": "6.3.0",
