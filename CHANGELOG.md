@@ -1,3 +1,11 @@
+## [18.3.5](https://github.com/GetTerminus/terminus-ui/compare/v18.3.4...v18.3.5) (2020-05-12)
+
+
+### Bug Fixes
+
+* **Menu:** Background color set to correct white ([92847df](https://github.com/GetTerminus/terminus-ui/commit/92847df3a5651af5df461934471950e89cef3661))
+* **packages:** update dependency @amcharts/amcharts4 to v4.9.20 ([f1a8be8](https://github.com/GetTerminus/terminus-ui/commit/f1a8be8cb18429eb0646f3313d95b962779ad516))
+
 ## [18.3.4](https://github.com/GetTerminus/terminus-ui/compare/v18.3.3...v18.3.4) (2020-05-12)
 
 
