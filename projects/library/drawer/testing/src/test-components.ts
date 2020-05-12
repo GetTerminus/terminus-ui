@@ -210,6 +210,22 @@ export class SetMargins {
 
 @Component({
   template: `
+    <ts-drawer-container >
+      <ts-drawer
+        [hideShadowWhenCollapsed]="hideShadowWhenCollapsed"
+      ></ts-drawer>
+      <ts-drawer-content>Content</ts-drawer-content>
+    </ts-drawer-container>`,
+})
+export class ShowShadow {
+  @ViewChild(TsDrawerComponent)
+  public drawer!: TsDrawerComponent;
+
+  public hideShadowWhenCollapsed = 'true';
+}
+
+@Component({
+  template: `
     <ts-drawer-container>
     <ts-drawer
     [mode]="mode"
@@ -259,6 +275,7 @@ export type TsDrawerTestComponents
   | SetMargins
   | SimpleDrawer
   | DrawerWithHeaderAndFooter
+  | ShowShadow
 ;
 
 /**
@@ -279,6 +296,7 @@ export type TsDrawerTestComponents
     SetMargins,
     SimpleDrawer,
     DrawerWithHeaderAndFooter,
+    ShowShadow,
   ],
 })
 export class TsDrawerContainerTestComponentsModule { }

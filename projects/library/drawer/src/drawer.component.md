@@ -10,9 +10,10 @@ The drawer component is designed to add side content to a section of content.
 - [Backdrop](#backdrop)
 - [Mode](#mode)
 - [Position](#position)
-  - [Collapsed and expanded sizes](#collapsed-and-expanded-sizes)
-  - [Expand on load](#expand-on-load)
-  - [Fixed header and footer](#fixed-header-and-footer)
+- [Collapsed and expanded sizes](#collapsed-and-expanded-sizes)
+- [Expand on load](#expand-on-load)
+- [Hide shadow when collapsed](#hide-shadow-when-collapsed)
+- [Fixed header and footer](#fixed-header-and-footer)
 - [Events](#events)
   - [Container events](#container-events)
   - [Drawer events](#drawer-events)
@@ -74,7 +75,7 @@ left side of the page. If set to `end`, it would expand the drawer from right of
 
 NOTE: An error will be thrown if more than one drawer in a given container has the same position AND `push` mode set.
 
-### Collapsed and expanded sizes
+## Collapsed and expanded sizes
 
 The size of a drawer when it's collapsed and expanded can be customized:
 
@@ -87,7 +88,7 @@ The size of a drawer when it's collapsed and expanded can be customized:
 
 NOTE: `collapsedSize` defaults to `3.75rem` and `expandedSize` to `12.5rem`.
 
-### Expand on load
+## Expand on load
 
 The drawer can be forced to expand on load:
 
@@ -96,7 +97,17 @@ The drawer can be forced to expand on load:
 </ts-drawer>
 ```
 
-### Fixed header and footer
+## Hide shadow when collapsed
+
+When a drawer is expanded, there is box shadow around the drawer. When a drawer is collapsed, if input `hideShadowWhenCollapsed` set to false and `collapseSize` greater than 0, there is box shadow shown; otherwise, no box shadow.
+
+```html
+<ts-drawer
+  [hideShadowWhenCollapsed]="true"
+></ts-drawer>
+```
+
+## Fixed header and footer
 
 The drawer supports both a header and footer:
 

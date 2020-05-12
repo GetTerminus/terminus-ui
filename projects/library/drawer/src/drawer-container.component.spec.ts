@@ -222,5 +222,30 @@ describe(`TsDrawerContainerComponent`, () => {
     expect(component.updateContentMargins).toHaveBeenCalled();
     expect(component.changeDetectorRef.markForCheck).toHaveBeenCalled();
   });
+
+  describe(`box shadow while drawer collapsed`, () => {
+    test(`should hide shadow when collapsed if hideShadowWhenCollapse is true`, fakeAsync(() => {
+      setUpTestComponent(testComponents.ShowShadow);
+      const drawerElement = fixture.debugElement.nativeElement.querySelector('.ts-drawer');
+      fixture.componentInstance.drawer.expand();
+      fixture.detectChanges();
+      tick();
+
+      fixture.componentInstance.drawer.collapse();
+      fixture.detectChanges();
+      tick();
+      expect(drawerElement.style.boxShadow).toEqual('none');
+    }));
+
+    test(`should show box shadow when collapsed if hideShadowWhenCollapse is false`, fakeAsync(() => {
+      setUpTestComponent(testComponents.ShowShadow);
+      component.hideShadowWhenCollapsed = false;
+      fixture.detectChanges();
+      tick();
+
+      const drawerElement = fixture.debugElement.nativeElement.querySelector('.ts-drawer');
+      expect(drawerElement.style.boxShadow).not.toEqual('none');
+    }));
+  });
 });
 
