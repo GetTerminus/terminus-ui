@@ -22,7 +22,6 @@ The library of UI components used for Terminus applications.
 [![style helpers](https://img.shields.io/badge/StyleHelpers-14-%2316a085.svg)](#style-helpers)
 [![validators](https://img.shields.io/badge/Validators-15-%2316a085.svg)](#validators)
 
-
 ---
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
