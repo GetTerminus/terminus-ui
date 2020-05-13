@@ -1,3 +1,15 @@
+## [18.5.1](https://github.com/GetTerminus/terminus-ui/compare/v18.5.0...v18.5.1) (2020-05-13)
+
+
+### Bug Fixes
+
+* **CI:** trigger release after previous failure ([dde36b3](https://github.com/GetTerminus/terminus-ui/commit/dde36b379f390574a0e30cc2bb7e8f65db38bf30))
+
+
+### Reverts
+
+* Revert "fix(Icon): icon should have a fixed height" ([9012c6b](https://github.com/GetTerminus/terminus-ui/commit/9012c6b76f1e1a2cef32454beb9d1adfb38ce842))
+
 # [18.5.0](https://github.com/GetTerminus/terminus-ui/compare/v18.4.0...v18.5.0) (2020-05-13)
 
 
