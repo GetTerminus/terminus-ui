@@ -1,3 +1,10 @@
+# [18.5.0](https://github.com/GetTerminus/terminus-ui/compare/v18.4.0...v18.5.0) (2020-05-13)
+
+
+### Features
+
+* **Drawer:** Add configurable box show on drawer collapse ([197b940](https://github.com/GetTerminus/terminus-ui/commit/197b9408f2042dfe06d144d41203dff5b29fef2c))
+
 # [18.4.0](https://github.com/GetTerminus/terminus-ui/compare/v18.3.5...v18.4.0) (2020-05-12)
 
 
