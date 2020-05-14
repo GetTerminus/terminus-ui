@@ -23,11 +23,8 @@
     "noUnusedLocals": true,
     "outDir": "dist/out-tsc",
     "paths": {
-      "@terminus/ui": [
-        "dist/library"
-      ],
       "@terminus/ui/*": [
-        "dist/library/*"
+        "projects/library/*/src/public-api"
       ]
     },
     "resolveJsonModule": true,
