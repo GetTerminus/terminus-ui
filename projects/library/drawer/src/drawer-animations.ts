@@ -30,7 +30,7 @@ export const tsDrawerAnimations: {
       width: '{{ collapsedSize }}',
     }), { params: { collapsedSize: '3.75rem' } }),
     transition('void => open-instant', animate('0ms')),
-    transition('void <=> open, open-instant => void, left-close <=> open, right-close <=> open',
+    transition('void <=> open, open-instant => void, void-shadow <=> open, open-instant => void-shadow',
       animate('400ms cubic-bezier(0.25, 0.8, 0.25, 1)')),
   ]),
 };
