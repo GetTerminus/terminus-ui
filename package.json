@@ -36,7 +36,7 @@
     "library:remove:prepublish": "sed -i.bak '/prepublishOnly/d' dist/library/package.json && rm dist/library/package.json.bak",
     "//////// Section: Demo App": "==============================",
     "predemo:start": "yarn run library:build:styles",
-    "demo:start": "yarn run replace-installed-library & ng serve demo",
+    "demo:start": "ng serve demo",
     "demo:start:prod": "yarn run demo:start --prod",
     "demo:build": "ng build demo",
     "demo:build:prod": "yarn run demo:build --prod",
