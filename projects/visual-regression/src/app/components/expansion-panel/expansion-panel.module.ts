@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from "@angular/forms";
 import { TsButtonModule } from '@terminus/ui/button';
 import { TsCardModule } from '@terminus/ui/card';
 import { TsCheckboxModule } from '@terminus/ui/checkbox';
@@ -15,12 +15,12 @@ import { ExpansionPanelComponent } from './expansion-panel.component';
   imports: [
     CommonModule,
     ExpansionPanelRoutingModule,
-    FormsModule,
     TsButtonModule,
     TsCardModule,
     TsCheckboxModule,
     TsExpansionPanelModule,
     TsSpacingModule,
+    FormsModule,
   ],
   declarations: [
     ExpansionPanelComponent,

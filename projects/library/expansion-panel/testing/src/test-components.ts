@@ -288,6 +288,21 @@ export class SinglePanel {}
 })
 export class TriggerTitleDescription {}
 
+@Component({
+  template: `
+    <ts-expansion-panel
+      [transparentMode]="true"
+    >
+      <ts-expansion-panel-trigger>
+        My trigger
+      </ts-expansion-panel-trigger>
+
+      My content
+    </ts-expansion-panel>
+  `,
+})
+export class TransparentModePanel {}
+
 /**
  * NOTE: Currently all exported Components must belong to a module.
  * So this is our useless module to avoid the build error.
@@ -313,6 +328,7 @@ export class TriggerTitleDescription {}
     ProgrammaticControl,
     SinglePanel,
     TriggerTitleDescription,
+    TransparentModePanel,
   ],
 })
 export class TsExpansionPanelTestComponentsModule {}

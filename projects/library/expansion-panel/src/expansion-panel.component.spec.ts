@@ -132,6 +132,16 @@ describe(`TsExpansionPanelComponent`, function() {
       expect(trigger['focusMonitor'].focusVia).toHaveBeenCalled();
     });
 
+    test(`should not have shadow when transparent mode is set`, () => {
+      const fixture = createComponent<testComponents.TransparentModePanel>(testComponents.TransparentModePanel);
+      fixture.detectChanges();
+      const triggerElement: HTMLElement = getTriggerElement(fixture);
+      const panelContainerElement: HTMLElement = getPanelElement(fixture);
+
+      expect(triggerElement.classList).toContain('ts-expansion-panel__trigger--transparent');
+      expect(panelContainerElement.classList).not.toContain('ts-expansion-panel--shadow');
+    });
+
     describe(`Events`, function() {
       test(`should emit opened and closed events`, function() {
         const fixture = createComponent<testComponents.Events>(testComponents.Events);

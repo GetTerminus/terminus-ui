@@ -9,6 +9,7 @@
 - [Disable a panel](#disable-a-panel)
 - [Default a panel open](#default-a-panel-open)
 - [Lazy loaded content](#lazy-loaded-content)
+- [Transparent mode](#transparent-mode)
 - [Panel events](#panel-events)
 - [Custom trigger heights](#custom-trigger-heights)
 - [Manual panel control](#manual-panel-control)
@@ -103,6 +104,24 @@ the panel is opened for the first time. The content will remain in the DOM until
 
 ```html
 <ts-expansion-panel>
+  <ts-expansion-panel-trigger>
+    Here is my trigger!
+  </ts-expansion-panel-trigger>
+
+  <ng-template tsExpansionPanelContent>
+    Here is my deferred template!
+  </ng-template>
+</ts-expansion-panel>
+```
+
+## Transparent mode
+
+Expansion panel with transparent mode on has no box shadow and padding on the side. It's default to `false`.
+
+```html
+<ts-expansion-panel
+  [transparentMode]="true"
+>
   <ts-expansion-panel-trigger>
     Here is my trigger!
   </ts-expansion-panel-trigger>

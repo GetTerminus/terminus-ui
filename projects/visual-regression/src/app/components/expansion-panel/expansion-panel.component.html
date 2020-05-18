@@ -1,0 +1,253 @@
+<div style="margin-left: 20px">
+  <div tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Single panel</h3>
+
+    <ts-expansion-panel>
+      <ts-expansion-panel-trigger class="trigger1">
+        Here is my trigger!
+      </ts-expansion-panel-trigger>
+
+      <p>
+        And here is my standard panel content.
+      </p>
+
+      <p>
+        Delectus ex maiores deleniti dolor earum minima possimus. Minima excepturi vel quos accusamus. Cupiditate cum ut iure modi.
+      </p>
+
+      <p>
+        Consequatur fugiat eius placeat tenetur consectetur labore. Laborum architecto animi. Inventore quod unde ea quae doloribus maxime.
+      </p>
+    </ts-expansion-panel>
+
+  </div>
+
+
+  <div tsVerticalSpacing class="accordion">
+    <h3 tsVerticalSpacing>Accordion</h3>
+
+    <ts-checkbox [(ngModel)]="allowMultiple" tsVerticalSpacing id="checkbox1">
+      Allow multiple panels to be open
+    </ts-checkbox>
+
+    <ts-accordion [multi]="allowMultiple">
+      <ts-expansion-panel>
+        <ts-expansion-panel-trigger>
+          <ts-expansion-panel-trigger-title>
+            Panel 1
+          </ts-expansion-panel-trigger-title>
+          <ts-expansion-panel-trigger-description>
+            Quod voluptatem corporis soluta assumenda.
+          </ts-expansion-panel-trigger-description>
+        </ts-expansion-panel-trigger>
+
+        This is my first panel content
+      </ts-expansion-panel>
+
+      <ts-expansion-panel>
+        <ts-expansion-panel-trigger>
+          <ts-expansion-panel-trigger-title>
+            Panel 2
+          </ts-expansion-panel-trigger-title>
+          <ts-expansion-panel-trigger-description>
+            Nemo magnam commodi unde.
+          </ts-expansion-panel-trigger-description>
+        </ts-expansion-panel-trigger>
+
+        This is my second panel content
+      </ts-expansion-panel>
+
+      <ts-expansion-panel>
+        <ts-expansion-panel-trigger>
+          <ts-expansion-panel-trigger-title>
+            Panel 3
+          </ts-expansion-panel-trigger-title>
+          <ts-expansion-panel-trigger-description>
+            Quod voluptatem corporis soluta assumenda.
+          </ts-expansion-panel-trigger-description>
+        </ts-expansion-panel-trigger>
+
+        This is my third panel content
+      </ts-expansion-panel>
+    </ts-accordion>
+  </div>
+
+
+  <div tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Accordion with a disabled panel</h3>
+
+    <ts-accordion>
+      <ts-expansion-panel>
+        <ts-expansion-panel-trigger>
+          Panel 1
+        </ts-expansion-panel-trigger>
+
+        <p>
+          And here is my standard panel content.
+        </p>
+      </ts-expansion-panel>
+
+      <ts-expansion-panel [isDisabled]="true">
+        <ts-expansion-panel-trigger>
+          <ts-expansion-panel-trigger-title>
+            Panel 2
+          </ts-expansion-panel-trigger-title>
+          <ts-expansion-panel-trigger-description>
+            And here is the description
+          </ts-expansion-panel-trigger-description>
+        </ts-expansion-panel-trigger>
+
+        <p>
+          And here is my standard panel content.
+        </p>
+      </ts-expansion-panel>
+    </ts-accordion>
+  </div>
+
+
+
+
+  <div tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Event emitters</h3>
+
+    <ts-checkbox [(ngModel)]="loadPanel">
+      Load panel (ngIf)
+    </ts-checkbox>
+
+    <ts-expansion-panel
+      *ngIf="loadPanel"
+    >
+      <ts-expansion-panel-trigger>
+        Panel Trigger
+      </ts-expansion-panel-trigger>
+
+      And here is my standard panel content.
+    </ts-expansion-panel>
+
+  </div>
+
+
+  <div tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Panel with custom trigger heights</h3>
+
+    <ts-expansion-panel>
+      <ts-expansion-panel-trigger
+        collapsedHeight="100px"
+        expandedHeight="200px"
+      >
+        Panel Trigger (100px -> 200px)
+      </ts-expansion-panel-trigger>
+
+      And here is my standard panel content.
+    </ts-expansion-panel>
+
+  </div>
+
+
+  <div tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Panel with lazy loaded template</h3>
+
+    <ts-expansion-panel>
+      <ts-expansion-panel-trigger>
+        Panel Trigger
+      </ts-expansion-panel-trigger>
+
+      <ng-template tsExpansionPanelContent>
+        Here is my deferred template!
+      </ng-template>
+    </ts-expansion-panel>
+
+  </div>
+
+
+  <div tsVerticalSpacing>
+    <h3 tsVerticalSpacing>Accordion as a stepper</h3>
+
+    <ts-accordion [hideToggle]="true">
+      <ts-expansion-panel [isExpanded]="activeStep === 0">
+        <ts-expansion-panel-trigger>
+          Step 1
+        </ts-expansion-panel-trigger>
+
+        And here is my standard panel content.
+
+        <ts-expansion-panel-action-row>
+          <ts-button (clicked)="nextStep()" class="first-next">
+            Next
+          </ts-button>
+        </ts-expansion-panel-action-row>
+      </ts-expansion-panel>
+
+      <ts-expansion-panel [isExpanded]="activeStep === 1">
+        <ts-expansion-panel-trigger>
+          <ts-expansion-panel-trigger-title>
+            Step 2
+          </ts-expansion-panel-trigger-title>
+          <ts-expansion-panel-trigger-description>
+            And here is the description
+          </ts-expansion-panel-trigger-description>
+        </ts-expansion-panel-trigger>
+
+        And here is my standard panel content.
+
+        <ts-expansion-panel-action-row>
+          <ts-button format="hollow" (clicked)="previousStep()" class="first-previous">
+            Previous
+          </ts-button>
+          <ts-button (clicked)="nextStep()" class="second-next">
+            Next
+          </ts-button>
+        </ts-expansion-panel-action-row>
+      </ts-expansion-panel>
+
+      <ts-expansion-panel [isExpanded]="activeStep === 2">
+        <ts-expansion-panel-trigger>
+          <ts-expansion-panel-trigger-title>
+            Step 3
+          </ts-expansion-panel-trigger-title>
+          <ts-expansion-panel-trigger-description>
+            Quod voluptatem corporis soluta assumenda. Nemo magnam commodi unde.
+          </ts-expansion-panel-trigger-description>
+        </ts-expansion-panel-trigger>
+
+        And here is my standard panel content.
+
+        <ts-expansion-panel-action-row>
+          <ts-button format="hollow" (clicked)="previousStep()" class="second-previous">
+            Previous
+          </ts-button>
+          <ts-button (clicked)="nextStep()" class="third-next">
+            End
+          </ts-button>
+        </ts-expansion-panel-action-row>
+      </ts-expansion-panel>
+    </ts-accordion>
+    <br>
+    <br>
+
+    <ts-card>
+      <h3 tsCardTitle>Expansion panel inside a card</h3>
+      <ts-expansion-panel
+        [transparentMode]="true"
+      >
+        <ts-expansion-panel-trigger
+        >
+          Trigger in a card
+        </ts-expansion-panel-trigger>
+
+        <p>
+          And here is my standard panel content.
+        </p>
+
+        <p>
+          Delectus ex maiores deleniti dolor earum minima possimus. Minima excepturi vel quos accusamus. Cupiditate cum ut iure modi.
+        </p>
+
+        <p>
+          Consequatur fugiat eius placeat tenetur consectetur labore. Laborum architecto animi. Inventore quod unde ea quae doloribus maxime.
+        </p>
+      </ts-expansion-panel>
+    </ts-card>
+
+  </div>
+</div>

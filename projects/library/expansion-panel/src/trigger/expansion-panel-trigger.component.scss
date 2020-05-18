@@ -12,6 +12,10 @@
   flex-direction: row;
   padding: 0 spacing(large);
 
+  &.ts-expansion-panel__trigger--transparent {
+    padding: 0;
+  }
+
   &:focus,
   &:hover {
     outline: none;

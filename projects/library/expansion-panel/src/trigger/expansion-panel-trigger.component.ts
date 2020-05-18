@@ -66,14 +66,15 @@ import {
     '[attr.aria-expanded]': 'isExpanded',
     '[attr.aria-disabled]': 'panel.disabled',
     '[class.ts-expansion-panel__trigger--expanded]': 'isExpanded',
+    '[class.ts-expansion-panel__trigger--transparent]': 'isTransparent',
     '(click)': 'toggle()',
     '(keydown)': 'keydown($event)',
     '[@expansionHeight]': `{
-        value: currentPanelExpandedState,
-        params: {
-          collapsedHeight: collapsedHeight,
-          expandedHeight: expandedHeight
-        }
+      value: currentPanelExpandedState,
+      params: {
+        collapsedHeight: collapsedHeight,
+        expandedHeight: expandedHeight
+      }
     }`,
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -93,6 +94,13 @@ export class TsExpansionPanelTriggerComponent implements OnDestroy, FocusableOpt
    */
   public get isExpanded(): boolean {
     return this.panel.expanded;
+  }
+
+  /**
+   * Determine if current mode is transparent
+   */
+  public get isTransparent(): boolean {
+    return this.panel.transparentMode;
   }
 
   /**
