@@ -7,6 +7,7 @@ import {
 import { TsCardModule } from '@terminus/ui/card';
 import { TsInputModule } from '@terminus/ui/input';
 import { TsSpacingModule } from '@terminus/ui/spacing';
+import { TsValidationMessagesModule } from '@terminus/ui/validation-messages';
 import { TsValidatorsModule } from '@terminus/ui/validators';
 
 import { ValidationRoutingModule } from './validation-routing.module';
@@ -24,6 +25,7 @@ import { ValidationComponent } from './validation.component';
     TsSpacingModule,
     TsValidatorsModule,
     ValidationRoutingModule,
+    TsValidationMessagesModule,
   ],
   declarations: [
     ValidationComponent,

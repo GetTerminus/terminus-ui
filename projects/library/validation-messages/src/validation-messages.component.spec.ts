@@ -1,4 +1,5 @@
-import { ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { createComponent } from '@terminus/ngx-tools/testing';
 import * as testComponents from '@terminus/ui/validation-messages/testing';
@@ -116,5 +117,52 @@ describe(`TsValidationMessagesComponent`, function() {
       expect(validationMessage.id).toEqual('foo');
       expect(validationMessageEl.id).toEqual('foo');
     });
+  });
+
+  describe(`messageFactory`, () => {
+    let component: testComponents.TestHostComponent;
+    let fixture: ComponentFixture<testComponents.TestHostComponent>;
+    let validationMessageEl: HTMLElement;
+
+    beforeEach(() => {
+      fixture = createComponent(testComponents.MessageFactory, [], [TsValidationMessagesModule]);
+      component = fixture.componentInstance;
+      const ERROR = { valid: false };
+      const control = {
+        touched: true,
+        errors: { invalidEmail: ERROR },
+      } as any;
+      component.controlForm = control;
+      fixture.detectChanges();
+      validationMessageEl = fixture.debugElement.query(By.css('.c-validation-message')).nativeElement as HTMLElement;
+    });
+
+    test(`should be used if it is passed in`, () => {
+      expect(validationMessageEl.textContent?.trim()).toEqual('My message.');
+    });
+  });
+
+  describe(`change detection`, () => {
+    let component: testComponents.Basic;
+    let fixture: ComponentFixture<testComponents.Basic>;
+    let validationMessageInstance: TsValidationMessagesComponent;
+
+    beforeEach(() => {
+      fixture = createComponent(testComponents.Basic, [], [TsValidationMessagesModule]);
+      component = fixture.componentInstance;
+      validationMessageInstance = component.validationMessagesComponent;
+      component.controlForm = new FormControl();
+      console.log('component: ', Object.keys(component));
+      component.setFactory();
+      fixture.detectChanges();
+    });
+
+    test(`should call change detection detect on control status changes`, fakeAsync(() => {
+      validationMessageInstance['changeDetectorRef'].detectChanges = jest.fn();
+      validationMessageInstance.control?.markAsDirty();
+      fixture.detectChanges();
+      tick(1000);
+      expect(validationMessageInstance['changeDetectorRef'].detectChanges).toHaveBeenCalled();
+    }));
   });
 });

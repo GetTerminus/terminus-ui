@@ -12,6 +12,10 @@ import { untilComponentDestroyed } from '@terminus/ngx-tools/utilities';
 
 import { TsValidationMessagesService } from './validation-messages.service';
 
+/**
+ * A function that returns an error message based on params
+ */
+export type TsValidationMessageFactory = (controlName: string, errors: ValidationErrors) => string | null;
 
 // Unique ID for each instance
 let nextUniqueId = 0;
@@ -58,9 +62,13 @@ export class TsValidationMessagesComponent implements OnDestroy {
         if (propertyName) {
           // Only show after 'touched' if we are NOT validating on every change
           const immediatelyOrOnChange = this.validateImmediately || this.validateOnChange;
+          // istanbul ignore else
           if (immediatelyOrOnChange || (!this.validateOnChange && this.control.touched)) {
             const errors = this.control.errors[propertyName] as ValidationErrors;
 
+            if (this.messagesFactory) {
+              return this.messagesFactory(propertyName, errors);
+            }
             return this.validationMessageService.getValidatorErrorMessage(propertyName, errors);
           }
         }
@@ -104,6 +112,12 @@ export class TsValidationMessagesComponent implements OnDestroy {
     return this._id;
   }
   protected _id: string = this.uid;
+
+  /**
+   * Define an optional message factory
+   */
+  @Input()
+  public messagesFactory: TsValidationMessageFactory | undefined;
 
   /**
    * Define if validation should occur on blur or immediately

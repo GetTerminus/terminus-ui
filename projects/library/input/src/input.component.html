@@ -44,6 +44,12 @@
     class="qa-datepicker-toggle qa-input-suffix-icon"
     [for]="picker"
   ></mat-datepicker-toggle>
+
+  <ng-container ngProjectAs=".customMessageSelector">
+    <div class="input-div">
+      <ng-content select="[tsCustomValidationMessage]"></ng-content>
+    </div>
+  </ng-container>
 </ts-form-field>
 
 

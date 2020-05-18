@@ -14,6 +14,22 @@
     </button>
   </ts-card>
 
+  <ts-card tsVerticalSpacing>
+    <h3 tsCardTitle>Custom validation message</h3>
+
+    <ts-input
+      [formControl]="myForm.get('emailCustom')"
+      label="Email"
+      type="email"
+    >
+      <ts-validation-messages
+        [control]="myForm.get('emailCustom')"
+        [messagesFactory]="emailMessageFactory"
+        tsCustomValidationMessage
+      ></ts-validation-messages>
+    </ts-input>
+  </ts-card>
+
 
   <ts-card tsVerticalSpacing>
     <h3 tsCardTitle>Email</h3>

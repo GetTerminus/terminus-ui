@@ -19,15 +19,12 @@
       <div class="ts-form-field__outline-end"></div>
     </div>
 
-
     <div class="ts-form-field__prefix qa-form-field-prefix" *ngIf="prefixChildren.length">
       <ng-content select="[tsPrefix]"></ng-content>
     </div>
 
-
     <div class="ts-form-field__infix qa-form-field-control-container">
-      <ng-content>
-      </ng-content>
+      <ng-content></ng-content>
 
       <span class="ts-form-field__label-wrapper">
         <!-- We add aria-owns as a workaround for an issue in JAWS & NVDA where the label isn't
@@ -52,11 +49,9 @@
       </span>
     </div>
 
-
     <div class="ts-form-field__suffix qa-form-field-suffix" *ngIf="suffixChildren.length">
       <ng-content select="[tsSuffix]"></ng-content>
     </div>
-
   </div>
 
   <div
@@ -67,20 +62,27 @@
     *ngIf="!noValidationOrHint"
   >
     <div *ngIf="control && (control.ngControl || control.formControl)">
-      <ts-validation-messages
-        class="qa-form-field-validation-messages"
-        [control]="control.ngControl || control.formControl"
-        [validateOnChange]="validateOnChange"
-      ></ts-validation-messages>
+      <pre>
+        Value: {{validationWrapper.innerText | json}}
+        Is: {{!(validationWrapper.innerText||'').trim()}}
+      </pre>
+      <div #validationWrapper>
+        <ng-content select=".customMessageSelector"></ng-content>
+      </div>
+
+      <ng-container *ngIf="!(validationWrapper.innerText||'').trim()">
+        <ts-validation-messages
+          class="qa-form-field-validation-messages"
+          [control]="control.ngControl || control.formControl"
+          [validateOnChange]="validateOnChange"
+        ></ts-validation-messages>
+      </ng-container>
     </div>
 
-    <div
-      class="ts-form-field__hint-wrapper"
-      *ngIf="hint"
-    >
-      <div
-        class="c-input__hint qa-form-field-hint"
-      >{{ hint }}</div>
+    <div *ngIf="hint" class="ts-form-field__hint-wrapper">
+      <div class="c-input__hint qa-form-field-hint">
+        {{ hint }}
+      </div>
     </div>
   </div>
 </div>

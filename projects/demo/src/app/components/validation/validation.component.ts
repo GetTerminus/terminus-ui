@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { TS_SPACING } from '@terminus/ui/spacing';
 import { TsValidatorsService } from '@terminus/ui/validators';
+import { TsValidationMessageFactory } from '../../../../../library/validation-messages/src/validation-messages.component';
 
 
 @Component({
@@ -40,7 +41,15 @@ export class ValidationComponent implements OnInit {
       id: 4,
     },
   ];
+  customValidationMessage = 'Sorry, only Hotmail or MySpace addresses supported';
+  emailMessageFactory: TsValidationMessageFactory = (a, b) => {
+    return a ? this.customValidationMessage : null;
+  };
   myForm: FormGroup = this.formBuilder.group({
+    emailCustom: [
+      null,
+      [this.validatorsService.email()],
+    ],
     email: [
       null,
       [this.validatorsService.email()],
