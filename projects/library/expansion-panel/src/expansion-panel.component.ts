@@ -86,6 +86,7 @@ let nextUniqueId = 0;
  *               [hideToggle]="true"
  *               [isExpanded]="true"
  *               [isDisabled]="true"
+ *               [transparentMode]="false"
  *               (opened)="panelOpened()"
  *               (closed)="panelClosed()"
  *               (expandedChange)="panelStateChanged($event)"
@@ -117,6 +118,7 @@ let nextUniqueId = 0;
   animations: [tsExpansionPanelAnimations.bodyExpansion],
   host: {
     'class': 'ts-expansion-panel',
+    '[class.ts-expansion-panel--shadow]': '!transparentMode',
     '[class.ts-expansion-panel--expanded]': 'expanded',
     '[class.ts-expansion-panel--animation-noopable]': 'animationMode === "NoopAnimations"',
   },
@@ -237,6 +239,20 @@ export class TsExpansionPanelComponent extends CdkAccordionItem implements After
   public get isExpanded(): boolean {
     return this.expanded;
   }
+
+  /**
+   * Support for transparent mode. Default set to false
+   *
+   * @param value
+   */
+  @Input()
+  public set transparentMode(value: boolean) {
+    this._transparentMode = value;
+  }
+  public get transparentMode(): boolean {
+    return this._transparentMode;
+  }
+  private _transparentMode = false;
 
   /**
    * The event emitted after the panel body's expansion animation finishes
