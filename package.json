@@ -220,7 +220,7 @@
     "start-server-and-test": "1.11.0",
     "stylelint": "13.3.2",
     "stylelint-order": "4.0.0",
-    "systemjs": "6.3.0",
+    "systemjs": "6.3.2",
     "tsickle": "0.38.1",
     "tslib": "1.11.1",
     "typescript": "3.8.3",
