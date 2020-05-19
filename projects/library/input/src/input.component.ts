@@ -25,6 +25,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   NgControl,
 } from '@angular/forms';
@@ -530,6 +531,8 @@ export class TsInputComponent implements TsFormFieldControl<any>, AfterViewInit,
     return this._formControl;
   }
   private _formControl: FormControl = new FormControl();
+  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility,camelcase
+  static ngAcceptInputType_formControl: FormControl | AbstractControl;
 
   /**
    * Define if the use-case provides it's own {@link TsFormFieldComponent} or if this component should provide it's own.
