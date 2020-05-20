@@ -1,3 +1,10 @@
+## [18.6.1](https://github.com/GetTerminus/terminus-ui/compare/v18.6.0...v18.6.1) (2020-05-20)
+
+
+### Bug Fixes
+
+* **Input:** Allow both AbstractControl and FormControl to be passed in. ([bfbcf00](https://github.com/GetTerminus/terminus-ui/commit/bfbcf00eafa5385d0c299b68eecb0efd1be8bc91))
+
 # [18.6.0](https://github.com/GetTerminus/terminus-ui/compare/v18.5.1...v18.6.0) (2020-05-20)
 
 
