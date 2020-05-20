@@ -1,3 +1,10 @@
+# [18.6.0](https://github.com/GetTerminus/terminus-ui/compare/v18.5.1...v18.6.0) (2020-05-20)
+
+
+### Features
+
+* **ExpansionPanel:** Add transparent mode ([233a44e](https://github.com/GetTerminus/terminus-ui/commit/233a44e4210563c594973616acd555796d1145ba))
+
 ## [18.5.1](https://github.com/GetTerminus/terminus-ui/compare/v18.5.0...v18.5.1) (2020-05-13)
 
 
