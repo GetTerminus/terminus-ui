@@ -62,15 +62,11 @@
     *ngIf="!noValidationOrHint"
   >
     <div *ngIf="control && (control.ngControl || control.formControl)">
-      <pre>
-        Value: {{validationWrapper.innerText | json}}
-        Is: {{!(validationWrapper.innerText||'').trim()}}
-      </pre>
       <div #validationWrapper>
         <ng-content select=".customMessageSelector"></ng-content>
       </div>
 
-      <ng-container *ngIf="!(validationWrapper.innerText||'').trim()">
+      <ng-container *ngIf="!customValidationMessage">
         <ts-validation-messages
           class="qa-form-field-validation-messages"
           [control]="control.ngControl || control.formControl"

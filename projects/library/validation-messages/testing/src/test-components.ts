@@ -4,6 +4,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
 import {
   TsValidationMessageFactory,
   TsValidationMessagesComponent,
@@ -27,9 +28,9 @@ export class Basic {
   @ViewChild(TsValidationMessagesComponent, { static: true })
   public validationMessagesComponent!: TsValidationMessagesComponent;
 
-  setFactory() {
+  public setFactory = () => {
     this.myFactory = (a, b) => 'My message.';
-  }
+  };
 }
 
 @Component({
@@ -56,6 +57,7 @@ export class TestHostComponent {
   template: `
     <ts-validation-messages
       [control]="controlForm"
+      [messagesFactory]="myFactory"
     ></ts-validation-messages>
   `,
 })

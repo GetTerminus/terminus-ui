@@ -27,10 +27,18 @@ export const inCollectionValidator =
       },
     };
 
+    let convertedControlValue;
+
+    try {
+      convertedControlValue = typeof (control.value) === 'string' ? JSON.parse(control.value) : control.value;
+    } catch {
+      convertedControlValue = control.value;
+    }
+
     const found = collection.some(v => {
       // Determine the correct value to compare
       const collectionValue = valueFn ? valueFn(v) : v;
-      const controlValue = valueFn ? valueFn(control.value) : control.value;
+      const controlValue = valueFn ? valueFn(convertedControlValue) : convertedControlValue;
       return collectionValue === controlValue;
     });
 
