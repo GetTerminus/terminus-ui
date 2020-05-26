@@ -681,7 +681,7 @@ describe(`TsSelectComponent`, function() {
     const contents = fixture.debugElement.query(By.css('.c-input__hint'));
 
     expect(hintElement).toBeTruthy();
-    expect(contents.nativeElement.textContent).toEqual('foo');
+    expect(contents.nativeElement.textContent.trim()).toEqual('foo');
   });
 
   describe(`ID`, function() {
@@ -771,7 +771,7 @@ describe(`TsSelectComponent`, function() {
 
       expect(fixture.componentInstance.myCtrl.value).toBeNull();
       expect(instance.selected).toBeFalsy();
-      expect(trigger.textContent).not.toContain('Null');
+      expect(trigger.textContent.trim()).not.toContain('Null');
     });
   });
 

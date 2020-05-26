@@ -34,4 +34,9 @@ export const componentsList: Routes = [
     loadChildren: () => import('./selection-list/selection-list.module').then(m => m.SelectionListModule),
     data: { name: 'Selection List' },
   },
+  {
+    path: 'validation',
+    loadChildren: () => import('./validation/validation.module').then(m => m.ValidationModule),
+    data: { name: 'Validation' },
+  },
 ];

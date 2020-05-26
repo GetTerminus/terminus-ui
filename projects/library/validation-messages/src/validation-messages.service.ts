@@ -60,7 +60,7 @@ export class TsValidationMessagesService {
       maxDate: '',
       minDate: '',
       min: `${validatorValue?.actual} must be greater than ${validatorValue?.min}.`,
-      greaterThan: `${validatorValue?.actual} must be less than ${validatorValue?.greaterThan}`,
+      greaterThan: `${validatorValue?.actual} must be greater than ${validatorValue?.greaterThan}`,
       numbers: `Must contain at least ${validatorValue?.numbers} numbers`,
       max: `${validatorValue?.actual} must be less than ${validatorValue?.max}.`,
       lessThan: `${validatorValue?.actual} must be less than ${validatorValue?.lessThan}.`,

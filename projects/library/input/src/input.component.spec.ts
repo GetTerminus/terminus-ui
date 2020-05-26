@@ -618,7 +618,7 @@ describe(`TsInputComponent`, function() {
       expect(hintElement).toBeTruthy();
 
       const contents = fixture.debugElement.query(By.css('.c-input__hint'));
-      expect(contents.nativeElement.textContent).toEqual('foo');
+      expect(contents.nativeElement.textContent.trim()).toEqual('foo');
     });
   });
 

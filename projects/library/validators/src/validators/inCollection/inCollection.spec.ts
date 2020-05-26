@@ -73,5 +73,12 @@ describe(`inCollectionValidator`, function() {
       expect(result?.inCollection.valid).toEqual(false);
       expect(result?.inCollection.actual).toEqual('234');
     });
+
+    test(`should return null if passed in value is valid string`, () => {
+      const obj2 = '{"name": "bar", "id": 2}';
+      const validatorFn = inCollectionValidator(deepCollection, myCollectionFn);
+
+      expect(validatorFn(new FormControl(obj2))).toBeNull();
+    });
   });
 });

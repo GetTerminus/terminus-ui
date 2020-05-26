@@ -13,7 +13,7 @@ import { TsValidatorsService } from '@terminus/ui/validators';
 
 
 @Component({
-  selector: 'demo-validation',
+  selector: 'app-validation',
   styleUrls: ['./validation.component.scss'],
   templateUrl: './validation.component.html',
 })
@@ -46,6 +46,10 @@ export class ValidationComponent implements OnInit {
     return a ? this.customValidationMessage : null;
   };
   myForm: FormGroup = this.formBuilder.group({
+    passwordCustom: [
+      null,
+      [this.validatorsService.password()],
+    ],
     emailCustom: [
       null,
       [this.validatorsService.email()],
@@ -152,6 +156,7 @@ export class ValidationComponent implements OnInit {
     }
 
     if (greaterThanInUse && greaterThanSource) {
+      console.log('greaterThanSource: ', greaterThanSource);
       greaterThanInUse.setValidators([
         this.validatorsService.greaterThan(greaterThanSource),
       ]);

@@ -554,7 +554,7 @@ describe(`TsAutocompleteComponent`, function() {
     const contents = fixture.debugElement.query(By.css('.c-input__hint'));
 
     expect(hintElement).toBeTruthy();
-    expect(contents.nativeElement.textContent).toEqual('foo');
+    expect(contents.nativeElement.textContent.trim()).toEqual('foo');
   });
 
   describe(`ID`, function() {
