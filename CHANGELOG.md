@@ -1,3 +1,10 @@
+## [18.6.2](https://github.com/GetTerminus/terminus-ui/compare/v18.6.1...v18.6.2) (2020-05-28)
+
+
+### Bug Fixes
+
+* **Drawer:** Fix missing animation when shadow is always visible ([f5daff0](https://github.com/GetTerminus/terminus-ui/commit/f5daff0d00407cc9d57b780f2d6fd33a16ab65b7))
+
 ## [18.6.1](https://github.com/GetTerminus/terminus-ui/compare/v18.6.0...v18.6.1) (2020-05-20)
 
 
