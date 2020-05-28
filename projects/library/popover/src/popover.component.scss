@@ -30,7 +30,7 @@
     opacity: 0;
   }
 
-  &[x-placement^='top'] {
+  &[data-popper-placement^='top'] {
     margin-bottom: $PLACEMENT_MARGIN;
     .popover__arrow {
       border-bottom-color: transparent;
@@ -43,7 +43,7 @@
       margin-top: 0;
     }
   }
-  &[x-placement^='bottom'] {
+  &[data-popper-placement^='bottom'] {
     margin-top: $PLACEMENT_MARGIN;
     .popover__arrow {
       border-left-color: transparent;
@@ -56,7 +56,7 @@
       top: $POSITION_ADJUSTMENT;
     }
   }
-  &[x-placement^='right'] {
+  &[data-popper-placement^='right'] {
     margin-left: $PLACEMENT_MARGIN;
     .popover__arrow {
       border-bottom-color: transparent;
@@ -69,7 +69,7 @@
       top: calc(50% - 5px);
     }
   }
-  &[x-placement^='left'] {
+  &[data-popper-placement^='left'] {
     display: block;
     margin-right: $PLACEMENT_MARGIN;
     .popover__arrow {

@@ -10,9 +10,9 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
+import { createPopper, Instance as Popper } from '@popperjs/core';
 import { TsUILibraryError } from '@terminus/ui/utilities';
 // NOTE: This path is to enforce Jest to import correct popper exports.
-import Popper from 'popper.js/dist/esm/popper.js';
 
 import {
   TsPopoverOptions,
@@ -130,7 +130,7 @@ export class TsPopoverComponent implements OnDestroy, OnInit {
    * Check whether popper.js has been properly imported.
    */
   public ngOnInit(): void {
-    if (!Popper) {
+    if (!createPopper) {
       throw new TsUILibraryError('TsPopoverComponent: popper.js is not available to reference.');
     }
   }
@@ -168,7 +168,7 @@ export class TsPopoverComponent implements OnDestroy, OnInit {
 
     this.onUpdate.emit(this.popoverInstance);
 
-    this.popoverInstance = new Popper(
+    this.popoverInstance = createPopper(
       this.referenceObject,
       this.popoverViewRef.nativeElement,
       options,
@@ -178,10 +178,10 @@ export class TsPopoverComponent implements OnDestroy, OnInit {
   }
 
   /**
-   * When popover is scheduled to be updated, call popper.js scheduleUpdate
+   * When popover is scheduled to be updated, call popper.js update
    */
   public scheduleUpdate(): void {
-    this.popoverInstance && this.popoverInstance.scheduleUpdate();
+    this.popoverInstance && this.popoverInstance.update();
   }
 
   /**
