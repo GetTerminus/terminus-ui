@@ -253,7 +253,7 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
     };
     popperRef.onHidden
       .pipe(untilComponentDestroyed(this))
-      .subscribe(e => this.popoverOnUpdate.emit(e));
+      .subscribe(_ => this.popoverOnUpdate.emit(this.popover));
   }
 
   /**
@@ -270,7 +270,7 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
   public hide(): void {
     this.isOpen = false;
     this.popover.hide();
-    this.popoverOnHidden.emit(this.popover.popoverInstance);
+    this.popoverOnHidden.emit(this.popover);
   }
 
   /**
@@ -279,6 +279,6 @@ export class TsPopoverTriggerDirective implements OnInit, OnDestroy, OnChanges, 
   public show(): void {
     this.isOpen = true;
     this.popover.show(this.popover.popoverOptions);
-    this.popoverOnShown.emit(this.popover.popoverInstance);
+    this.popoverOnShown.emit(this.popover);
   }
 }

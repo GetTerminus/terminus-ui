@@ -100,7 +100,7 @@ describe(`popover trigger`, () => {
         dispatchEvent(buttonDebugElement, event);
         fixture.detectChanges();
         tick();
-        expect(popoverDebugElement.nativeElement.getAttribute('x-placement')).toEqual('right');
+        expect(popoverDebugElement.nativeElement.getAttribute('data-popper-placement')).toEqual('right');
       }));
 
       test(`should throw UI library error if provided position is not allowed`, fakeAsync(() => {
@@ -145,7 +145,7 @@ describe(`popover trigger`, () => {
         setup(testComponents.DefaultOpen);
         tick();
         expect(popoverDebugElement.nativeElement.classList).toContain('c-popover--visible');
-        expect(popoverDebugElement.nativeElement.getAttribute('x-placement')).toEqual('right');
+        expect(popoverDebugElement.nativeElement.getAttribute('data-popper-placement')).toEqual('right');
       }));
     });
 
