@@ -1,8 +1,32 @@
 # Terminus UI Library
 
+---
+
+## :rotating_light: ATTENTION: THIS REPO HAS MOVED :rotating_light:
+
+We have moved to separately published packages from a monorepo.  
+
+This will:
+
+- provide caching to vastly improve build time
+- provide better dependency management between packages (requiring less downloads for some users)
+- provide an easier debugging environment
+- give us the option to support multiple frameworks (such as React or WebComponents)
+- give us a mature toolset that we don't have to maintain
+- allow consumers to update various UI components without opting in to all changes across all components at once
+
+Please update any bookmarks to point to the new repo:
+[https://github.com/GetTerminus/terminus-oss](https://github.com/GetTerminus/terminus-oss)
+
+Tips on migrating to the new packages can be found in the
+[new changelog](https://github.com/GetTerminus/terminus-oss/blob/master/CHANGELOG.md).
+
+## :rotating_light: 
+
+---
+
 The library of UI components used for Terminus applications.
 
-[![CircleCI][circle-badge]][circle-link]
 [![codecov][codecov-badge]][codecov-project]
 [![DavidDM][david-badge]][david-link]
 [![DavidDM Dev][david-dev-badge]][david-link]
@@ -303,7 +327,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 -->
 
 <!-- PROJECT -->
-[circle-link]:               https://circleci.com/gh/GetTerminus/terminus-ui/tree/release
 [codecov-project]:           https://codecov.io/gh/GetTerminus/terminus-ui
 [component-demo-screenshot]: https://user-images.githubusercontent.com/270193/28672864-f05b73cc-72ae-11e7-8ead-efd1ee008f43.png
 [dev-workflow]:              https://github.com/GetTerminus/terminus-ui/blob/release/DEVELOPMENT.md
@@ -311,7 +334,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [license-url]:               https://github.com/GetTerminus/terminus-ui/blob/release/LICENSE
 [pkg-json]:                  https://github.com/GetTerminus/terminus-ui/blob/release/package.json
 [docs-url]:                  http://uilibrary-docs.terminus.ninja/release/
-[generator]:                 https://github.com/GetTerminus/generator-terminus-ui
 [npm-url]:                   https://npmjs.org/package/@terminus/ui
 [raw-distribution-js]:       https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js
 [ui-github]:                 https://github.com/GetTerminus/terminus-ui
@@ -319,7 +341,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 [unpkg-terminus]:            https://unpkg.com/@terminus/ui/
 
 <!-- BADGES -->
-[circle-badge]:           https://circleci.com/gh/GetTerminus/terminus-ui/tree/release.svg?style=shield
 [codecov-badge]:          https://codecov.io/gh/GetTerminus/terminus-ui/branch/release/graph/badge.svg
 [file-size-badge]:        http://img.badgesize.io/https://unpkg.com/@terminus/ui/bundles/terminus-ui.umd.min.js?compression=gzip
 [npm-version-image]:      http://img.shields.io/npm/v/@terminus/ui.svg
@@ -337,7 +358,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 
 <!-- 3RD PARTY -->
 [codecov]:                https://codecov.io
-[commitizen-cli]:         https://github.com/commitizen/cz-cli
 [commitizen]:             https://github.com/commitizen
 [commitizen_vsc]:         https://github.com/KnisterPeter/vscode-commitizen
 [doctoc]:                 https://github.com/thlorenz/doctoc

@@ -1,3 +1,28 @@
+---
+
+## :rotating_light: ATTENTION: THIS REPO HAS MOVED :rotating_light:
+
+We have moved to separately published packages from a monorepo.  
+
+This will:
+
+- provide caching to vastly improve build time
+- provide better dependency management between packages (requiring less downloads for some users)
+- provide an easier debugging environment
+- give us the option to support multiple frameworks (such as React or WebComponents)
+- give us a mature toolset that we don't have to maintain
+- allow consumers to update various UI components without opting in to all changes across all components at once
+
+Please update any bookmarks to point to the new repo:
+[https://github.com/GetTerminus/terminus-oss](https://github.com/GetTerminus/terminus-oss)
+
+Tips on migrating to the new packages can be found in the
+[new changelog](https://github.com/GetTerminus/terminus-oss/blob/master/CHANGELOG.md).
+
+## :rotating_light: 
+
+---
+
 ## [18.6.2](https://github.com/GetTerminus/terminus-ui/compare/v18.6.1...v18.6.2) (2020-05-28)
 
 
