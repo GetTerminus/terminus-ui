@@ -18,8 +18,10 @@ This will:
 Please update any bookmarks to point to the new repo:
 [https://github.com/GetTerminus/terminus-oss](https://github.com/GetTerminus/terminus-oss)
 
-Tips on migrating to the new packages can be found in the
-[new changelog](https://github.com/GetTerminus/terminus-oss/blob/master/CHANGELOG.md).
+Tips on migrating to the new packages can be found here:
+[Migration guide](https://github.com/GetTerminus/terminus-oss/issues/62).
+
+New API docs location: [https://github.com/GetTerminus/terminus-ui](https://github.com/GetTerminus/terminus-ui)
 
 ## :rotating_light: 
 
