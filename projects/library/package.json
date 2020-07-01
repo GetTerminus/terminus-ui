@@ -66,6 +66,6 @@
   "optionalDependencies": {
     "@amcharts/amcharts4": "^4.9.0",
     "@amcharts/amcharts4-geodata": "^4.1.6",
-    "popper.js": "^2.0.0"
+    "popper.js": "^2.0.0-next"
   }
 }
