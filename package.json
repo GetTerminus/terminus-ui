@@ -182,7 +182,7 @@
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jsdoc": "23.1.0",
     "eslint-plugin-prefer-arrow": "1.2.0",
-    "execa": "4.0.0",
+    "execa": "4.1.0",
     "glob": "7.1.6",
     "global": "4.4.0",
     "gulp": "gulpjs/gulp#4.0",
