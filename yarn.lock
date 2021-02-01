@@ -7103,10 +7103,10 @@ eslint-plugin-jsdoc@23.1.0:
     semver "^6.3.0"
     spdx-expression-parse "^3.0.0"
 
-eslint-plugin-prefer-arrow@1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prefer-arrow/-/eslint-plugin-prefer-arrow-1.2.0.tgz#55f07b07e308f441c09e53a77ad12448ce1b7c29"
-  integrity sha512-/iaWpfc6CsGNG/OSElmN1/hZP9WG/EnxoCIFcJHT1utRqk8FRQYoyX7xWHo2O03p/9I2dw2lSNsVOYbpfNSsZQ==
+eslint-plugin-prefer-arrow@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prefer-arrow/-/eslint-plugin-prefer-arrow-1.2.3.tgz#e7fbb3fa4cd84ff1015b9c51ad86550e55041041"
+  integrity sha512-J9I5PKCOJretVuiZRGvPQxCbllxGAV/viI20JO3LYblAodofBxyMnZAJ+WGeClHgANnSJberTNoFWWjrWKBuXQ==
 
 eslint-plugin-sonarjs@^0.5.0:
   version "0.5.0"
