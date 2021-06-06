@@ -179,7 +179,7 @@
     "eslint": "6.8.0",
     "eslint-import-resolver-typescript": "2.0.0",
     "eslint-plugin-deprecation": "1.0.0",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-import": "2.23.4",
     "eslint-plugin-jsdoc": "23.1.0",
     "eslint-plugin-prefer-arrow": "1.2.0",
     "execa": "4.0.0",
