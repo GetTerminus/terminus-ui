@@ -48,7 +48,7 @@ jobs:
         run: yarn library:build:prod
         if: env.SHOULD_RUN == 'true'
       - name: Upload built files
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: built-library
           path: dist/library
@@ -88,7 +88,7 @@ jobs:
         run: tooling/ci/test-unit.sh
         if: env.SHOULD_RUN == 'true'
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: code-coverage-report
           path: coverage/lcov-report
@@ -172,7 +172,7 @@ jobs:
         run: tooling/ci/inject-library-version-number.sh
         if: env.SHOULD_RUN == 'true'
       - name: Upload built files
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: built-demos
           path: dist/demo
