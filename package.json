@@ -150,7 +150,7 @@
     "@angular/cli": "9.1.1",
     "@angular/compiler": "9.1.1",
     "@angular/compiler-cli": "9.1.1",
-    "@compodoc/compodoc": "1.1.11",
+    "@compodoc/compodoc": "1.1.21",
     "@ngrx/effects": "9.1.0",
     "@ngrx/store": "9.1.0",
     "@percy/cypress": "2.3.1",
