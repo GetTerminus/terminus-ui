@@ -31,7 +31,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -71,7 +71,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -111,7 +111,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -146,7 +146,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -196,7 +196,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -239,7 +239,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -293,7 +293,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -334,7 +334,7 @@ jobs:
             echo "::set-env name=SHOULD_RUN::true"
           fi
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'

@@ -31,7 +31,7 @@ jobs:
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -69,7 +69,7 @@ jobs:
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -107,7 +107,7 @@ jobs:
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -140,7 +140,7 @@ jobs:
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -188,7 +188,7 @@ jobs:
       - name: Set SHOULD_RUN flag
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
@@ -238,7 +238,7 @@ jobs:
         run: echo ::set-env name=SHOULD_RUN::${{ steps.skip.outputs.shouldRun }}
         if: "! contains(env.author, 'renovate')"
       - name: Set up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: 12.x
         if: env.SHOULD_RUN == 'true'
