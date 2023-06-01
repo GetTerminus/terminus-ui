@@ -210,7 +210,7 @@
     "node-sass-import": "2.0.1",
     "remap-istanbul": "0.13.0",
     "require-dir": "1.2.0",
-    "rimraf": "3.0.2",
+    "rimraf": "5.0.1",
     "rxjs": "6.5.5",
     "sass-module-importer": "1.4.0",
     "sass-true": "5.0.0",
