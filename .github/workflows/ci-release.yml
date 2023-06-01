@@ -356,7 +356,7 @@ jobs:
           path: dist/library
         if: env.SHOULD_RUN == 'true'
       - name: Run regression test
-        uses: percy/exec-action@v0.3.0
+        uses: percy/exec-action@v0.3.1
         with:
           custom-command: yarn run vr:test:regression
         env:
