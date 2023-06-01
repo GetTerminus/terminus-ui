@@ -213,7 +213,7 @@
     "rimraf": "3.0.2",
     "rxjs": "6.5.5",
     "sass-module-importer": "1.4.0",
-    "sass-true": "5.0.0",
+    "sass-true": "7.0.0",
     "scssfmt": "1.0.7",
     "semantic-release": "17.0.4",
     "shell-quote": "1.7.2",
