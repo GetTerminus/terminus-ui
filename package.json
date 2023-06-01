@@ -211,7 +211,7 @@
     "remap-istanbul": "0.13.0",
     "require-dir": "1.2.0",
     "rimraf": "3.0.2",
-    "rxjs": "6.5.5",
+    "rxjs": "7.8.1",
     "sass-module-importer": "1.4.0",
     "sass-true": "5.0.0",
     "scssfmt": "1.0.7",
