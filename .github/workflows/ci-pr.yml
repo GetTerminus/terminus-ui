@@ -154,7 +154,7 @@ jobs:
       - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --non-interactive
       - name: Download built library
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: built-library
           path: dist/library
@@ -204,13 +204,13 @@ jobs:
       - if: env.SHOULD_RUN == 'true'
         run: yarn add start-server-and-test
       - name: Download built library
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: built-library
           path: dist/library
         if: env.SHOULD_RUN == 'true'
       - name: Download built demo
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: built-demos
           path: dist/demo
@@ -254,7 +254,7 @@ jobs:
       - if: env.SHOULD_RUN == 'true' && steps.cache_node_modules.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile --non-interactive
       - name: Download built library
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v3
         with:
           name: built-library
           path: dist/library
