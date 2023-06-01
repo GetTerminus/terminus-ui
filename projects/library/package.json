@@ -58,7 +58,7 @@
     "@ngrx/effects": "^9.0.0",
     "@ngrx/store": "^9.0.0",
     "date-fns": "^2.0.1",
-    "ngx-perfect-scrollbar": "9.0.0",
+    "ngx-perfect-scrollbar": "10.1.1",
     "rxjs": "^6.5.4",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
