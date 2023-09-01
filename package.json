@@ -171,7 +171,7 @@
     "code-notes": "1.0.4",
     "commitizen": "4.1.2",
     "cpr": "3.0.1",
-    "cypress": "4.3.0",
+    "cypress": "13.0.0",
     "cz-customizable": "6.2.0",
     "del": "5.1.0",
     "doctoc": "1.4.0",
