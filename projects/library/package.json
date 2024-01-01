@@ -57,7 +57,7 @@
     "@terminus/ngx-tools": ">=8.0.0",
     "@ngrx/effects": "^9.0.0",
     "@ngrx/store": "^9.0.0",
-    "date-fns": "^2.0.1",
+    "date-fns": "^2.0.1 || ^3.0.0",
     "ngx-perfect-scrollbar": "9.0.0",
     "rxjs": "^6.5.4",
     "text-mask-addons": "3.8.0",
