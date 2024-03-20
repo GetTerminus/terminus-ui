@@ -37,7 +37,7 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -77,7 +77,7 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -117,7 +117,7 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -152,7 +152,7 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -202,7 +202,7 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -245,7 +245,7 @@ jobs:
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
@@ -342,7 +342,7 @@ jobs:
         run: yarn add start-server-and-test
       - name: Cache node_modules
         id: cache_node_modules
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
