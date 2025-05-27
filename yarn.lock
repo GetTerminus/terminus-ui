@@ -2354,10 +2354,10 @@
     stylelint-scss "^3.12.0"
     stylelint-selector-no-empty "^1.0.7"
 
-"@terminus/ui@18.2.2":
-  version "18.2.2"
-  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.2.2.tgz#b8a56538599b37c24f33cbe495b637b34d3e0f04"
-  integrity sha512-T1fRW66MjpDv/FDw0uvSb3c4Ypd6knHU+ggswj01J17ZsKGNiazbb3vEVT2tZmXGsyWigF8fJ4HCskODs1C89g==
+"@terminus/ui@18.6.1":
+  version "18.6.1"
+  resolved "https://registry.yarnpkg.com/@terminus/ui/-/ui-18.6.1.tgz#3095065851446def14599017ac260dd4f22ccc5c"
+  integrity sha512-Ws+JOumNcoj2BbVRU+zbr9OmLSNstkjJs/Nby1s1QuvU6zpWWi4PR5PMSLvMm0u1E5jhTr+S/3MPkW4tqfHQsA==
   optionalDependencies:
     "@amcharts/amcharts4" "^4.9.0"
     "@amcharts/amcharts4-geodata" "^4.1.6"
