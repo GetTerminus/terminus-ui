@@ -5956,15 +5956,15 @@ cz-conventional-changelog@3.2.0:
   optionalDependencies:
     "@commitlint/load" ">6.1.1"
 
-cz-customizable@6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/cz-customizable/-/cz-customizable-6.2.0.tgz#4591bef5eae9fcef44bf024259723979404cdee0"
-  integrity sha512-6fBA8pbwApTY20Q5aDkWgJcg5wCmbwlcnccUFyBQypN8AoRJ0Vt4pLehai0/P2Xr29t2UDYoNGOUDhi4eoR0JQ==
+cz-customizable@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/cz-customizable/-/cz-customizable-7.0.0.tgz#2a291010bae48936cb2d917447bf83b67fa497df"
+  integrity sha512-pQKkGSm+8SY9VY/yeJqDOla1MjrGaG7WG4EYLLEV4VNctGO7WdzdGtWEr2ydKSkrpmTs7f8fmBksg/FaTrUAyw==
   dependencies:
     editor "1.0.0"
     find-config "^1.0.0"
     inquirer "^6.3.1"
-    lodash "^4.17.11"
+    lodash "^4.17.19"
     temp "^0.9.0"
     word-wrap "^1.2.3"
 
@@ -11753,6 +11753,11 @@ lodash@4.17.15, lodash@^4.0.0, lodash@^4.1.0, lodash@^4.11.2, lodash@^4.14.0, lo
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
+
+lodash@^4.17.19:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@3.0.0, log-symbols@^3.0.0:
   version "3.0.0"
