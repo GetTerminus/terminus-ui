@@ -153,7 +153,7 @@
     "@compodoc/compodoc": "1.1.11",
     "@ngrx/effects": "9.1.0",
     "@ngrx/store": "9.1.0",
-    "@percy/cypress": "2.3.1",
+    "@percy/cypress": "2.3.4",
     "@semantic-release/changelog": "5.0.1",
     "@semantic-release/exec": "5.0.0",
     "@semantic-release/git": "9.0.0",
