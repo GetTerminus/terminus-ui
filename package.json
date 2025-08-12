@@ -166,7 +166,7 @@
     "@types/node": "13.13.5",
     "all-contributors-cli": "6.14.2",
     "autoprefixer": "9.7.6",
-    "camelcase": "6.0.0",
+    "camelcase": "6.3.0",
     "chalk-cli": "4.1.0",
     "code-notes": "1.0.4",
     "commitizen": "4.1.2",
