@@ -2555,6 +2555,11 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
+"@types/minimist@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
+  integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
+
 "@types/mocha@5.2.7":
   version "5.2.7"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-5.2.7.tgz#315d570ccb56c53452ff8638738df60726d5b6ea"
@@ -18401,10 +18406,12 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tsickle@0.38.1:
-  version "0.38.1"
-  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.38.1.tgz#30762db759d40c435943093b6972c7f2efb384ef"
-  integrity sha512-4xZfvC6+etRu6ivKCNqMOd1FqcY/m6JY3Y+yr5+Xw+i751ciwrWINi6x/3l1ekcODH9GZhlf0ny2LpzWxnjWYA==
+tsickle@0.43.0:
+  version "0.43.0"
+  resolved "https://registry.yarnpkg.com/tsickle/-/tsickle-0.43.0.tgz#d53501ee54932382c4923a77de9ab5a82abd9e98"
+  integrity sha512-n0lgIQBLliB7EFVTDpqrd/GjyB9I3NCodfX4R3NE/H73PQvGjgrkSZc8RVcWBG6s1MDiFjYDHIezYkuh8GYslw==
+  dependencies:
+    "@types/minimist" "^1.2.1"
 
 tslib@1.11.1, tslib@^1, tslib@^1.10.0, tslib@^1.7.1, tslib@^1.8.1, tslib@^1.9.0, tslib@^1.9.3:
   version "1.11.1"
