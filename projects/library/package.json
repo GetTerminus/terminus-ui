@@ -59,7 +59,7 @@
     "@ngrx/store": "^9.0.0",
     "date-fns": "^2.0.1",
     "ngx-perfect-scrollbar": "9.0.0",
-    "rxjs": "^6.5.4",
+    "rxjs": "^6.5.4 || ^7.0.0",
     "text-mask-addons": "3.8.0",
     "text-mask-core": "5.1.2"
   },
