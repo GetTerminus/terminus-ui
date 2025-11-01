@@ -33,7 +33,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 24.x
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
@@ -71,7 +71,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 24.x
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
@@ -109,7 +109,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 24.x
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
@@ -142,7 +142,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 24.x
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
@@ -190,7 +190,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 24.x
         if: env.SHOULD_RUN == 'true'
       - name: Cache node_modules
         id: cache_node_modules
@@ -240,7 +240,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 24.x
         if: env.SHOULD_RUN == 'true'
       - if: env.SHOULD_RUN == 'true'
         run: yarn add start-server-and-test
