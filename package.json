@@ -125,7 +125,7 @@
     "@amcharts/amcharts4-geodata": "4.1.14",
     "@angular/animations": "9.1.1",
     "@angular/cdk": "9.2.0",
-    "@angular/common": "9.1.1",
+    "@angular/common": "19.2.16",
     "@angular/core": "9.1.1",
     "@angular/flex-layout": "9.0.0-beta.29",
     "@angular/forms": "9.1.1",
