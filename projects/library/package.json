@@ -47,7 +47,7 @@
   "peerDependencies": {
     "@angular/animations": "^9.0.0",
     "@angular/cdk": "^9.0.0",
-    "@angular/common": "^9.1.0",
+    "@angular/common": "^9.1.0 || ^22.0.0",
     "@angular/core": "^9.0.0",
     "@angular/flex-layout": "9.0.0-beta.29",
     "@angular/forms": "^9.0.0",
